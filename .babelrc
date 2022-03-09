@@ -1,0 +1,22 @@
+{
+  "plugins": [
+    "@babel/plugin-syntax-dynamic-import", 
+    "@vue/babel-plugin-jsx"
+  ],
+  "env": {
+    "test": {
+      "plugins": ["dynamic-import-node"],
+      "presets": [
+        [
+          "@babel/preset-env",
+          {
+            "modules": "commonjs",
+            "targets": {
+              "node": "current"
+            }
+          }
+        ]
+      ]
+    }
+  }
+}
