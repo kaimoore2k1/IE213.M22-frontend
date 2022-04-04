@@ -48,5 +48,5 @@
     "@types/redux": "^3.6.0",
     "react-hook-form": "^7.27.1"
   },
-  "theme":"./style.ts"
+  "theme": "./style.ts"
 }
