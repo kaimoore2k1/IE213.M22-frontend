@@ -1,56 +1,56 @@
-import React from 'react';
-import { Table, Button } from 'antd';
-import { useState } from 'react';
-import { DeleteOutlined, ArrowLeftOutlined } from '@ant-design/icons';
-import '../../sass/Pay/RightContent.scss';
-import { ColumnsType } from 'antd/es/table';
-import { DataType, data } from './data';
+import React from "react";
+import { Table, Button } from "antd";
+import { useState } from "react";
+import { DeleteOutlined, ArrowLeftOutlined } from "@ant-design/icons";
+import "../../sass/Pay/RightContent.scss";
+import { ColumnsType } from "antd/es/table";
+import { DataType, data } from "./data";
 
 function RightContent() {
-  const [dataType, setDataType] = useState<DataType>();
+  const [dataType, setDataType] = useState(data);
 
   const [quantity, setQuantity] = useState(0);
 
   const handelSub: React.MouseEventHandler<HTMLButtonElement> = () => {
-    console.log('hi');
+    console.log("hi");
   };
 
   const columns: ColumnsType<DataType> = [
     {
-      title: 'SẢN PHẨM',
-      dataIndex: 'sanpham',
-      key: 'sanpham',
-      align: 'left',
+      title: "SẢN PHẨM",
+      dataIndex: "sanpham",
+      key: "sanpham",
+      align: "left",
       render: (value, record, index) => (
         <>
           <Button
-            style={{ marginRight: '10px' }}
+            style={{ marginRight: "10px" }}
             icon={<DeleteOutlined />}
           ></Button>
-          <img src={record.img} alt='Product' />
+          <img src={record.img} alt="Product" />
           {record.sanpham}
         </>
       ),
     },
     {
-      title: 'GIÁ',
-      dataIndex: 'gia',
-      key: 'gia',
-      align: 'center',
+      title: "GIÁ",
+      dataIndex: "gia",
+      key: "gia",
+      align: "center",
       render: (value, record, index) => (
         <>
-          <span>{record.gia} ₫</span>
+          <span>{record.gia.toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</span>
         </>
       ),
     },
     {
-      title: 'SỐ LƯỢNG',
-      dataIndex: 'soluong',
-      key: 'soluong',
-      align: 'center',
+      title: "SỐ LƯỢNG",
+      dataIndex: "soluong",
+      key: "soluong",
+      align: "center",
       render: (value, record, index) => (
         <>
-          <div className='button__frame'>
+          <div className="button__frame">
             <button onClick={handelSub}>-</button>
             <span>{record.soluong}</span>
             <button onClick={handelSub}>+</button>
@@ -59,12 +59,12 @@ function RightContent() {
       ),
     },
     {
-      title: 'TẠM TÍNH',
-      dataIndex: 'tamtinh',
-      key: 'tamtinh',
-      align: 'center',
+      title: "TẠM TÍNH",
+      dataIndex: "tamtinh",
+      key: "tamtinh",
+      align: "center",
       render: (value, record, index) => (
-        <span>{record.soluong * record.gia} ₫</span>
+        <span>{(record.soluong * record.gia).toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</span>
       ),
     },
   ];
@@ -85,14 +85,14 @@ function RightContent() {
                 <Table.Summary.Cell index={0}></Table.Summary.Cell>
                 <Table.Summary.Cell index={1}></Table.Summary.Cell>
                 <Table.Summary.Cell index={2} colSpan={2}>
-                  TỔNG: <span> {total} ₫</span>
+                  TỔNG: <span> {total.toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</span>
                 </Table.Summary.Cell>
               </Table.Summary.Row>
             </>
           );
         }}
       />
-      <div className='handleButton'>
+      <div className="handleButton">
         <Button icon={<ArrowLeftOutlined />}>TIẾP TỤC XEM SẢN PHẨM</Button>
         <Button>THANH TOÁN</Button>
       </div>
