@@ -9,6 +9,8 @@ import { DataType, data } from "./data";
 function RightContent() {
   const [dataType, setDataType] = useState(data);
 
+  console.log();
+
   const [quantity, setQuantity] = useState(0);
 
   const handelSub: React.MouseEventHandler<HTMLButtonElement> = () => {
@@ -21,14 +23,14 @@ function RightContent() {
       dataIndex: "sanpham",
       key: "sanpham",
       align: "left",
-      render: (value, record, index) => (
+      render: () => (
         <>
           <Button
             style={{ marginRight: "10px" }}
             icon={<DeleteOutlined />}
           ></Button>
-          <img src={record.img} alt="Product" />
-          {record.sanpham}
+          <img src={dataType[Number(dataType[0].key)].img} alt="Product" />
+          {dataType[Number(dataType[0].key)].sanpham}
         </>
       ),
     },
@@ -37,9 +39,9 @@ function RightContent() {
       dataIndex: "gia",
       key: "gia",
       align: "center",
-      render: (value, record, index) => (
+      render: () => (
         <>
-          <span>{record.gia.toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</span>
+          <span>{dataType[Number(dataType[0].key)].gia.toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</span>
         </>
       ),
     },
@@ -48,11 +50,11 @@ function RightContent() {
       dataIndex: "soluong",
       key: "soluong",
       align: "center",
-      render: (value, record, index) => (
+      render: () => (
         <>
           <div className="button__frame">
             <button onClick={handelSub}>-</button>
-            <span>{record.soluong}</span>
+            <span>{dataType[Number(dataType[0].key)].soluong}</span>
             <button onClick={handelSub}>+</button>
           </div>
         </>
@@ -63,8 +65,8 @@ function RightContent() {
       dataIndex: "tamtinh",
       key: "tamtinh",
       align: "center",
-      render: (value, record, index) => (
-        <span>{(record.soluong * record.gia).toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</span>
+      render: () => (
+        <span>{(dataType[Number(dataType[0].key)].gia * dataType[Number(dataType[0].key)].soluong).toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</span>
       ),
     },
   ];
