@@ -5,18 +5,23 @@ import {
   LeftContentContent,
   LeftContentHeader,
 } from "../modules/Pay/LeftContent";
+import { useState } from "react";
 import RightContent from "../modules/Pay/RightContent";
 
 function Pay() {
+  const [current, setCurrent] = useState(0)
+  const callBackCurrent = (childCurrent: number) => {
+    setCurrent(childCurrent)
+  }
   return (
     <div className="Pay__Layout">
       <Row className="Pay__Layout--Row">
         <Col className="Pay__Layout--Col" span={7}>
           <LeftContentHeader />
-          <LeftContentContent />
+          <LeftContentContent current={current}/>
         </Col>
         <Col className="Pay__Layout--Col" span={17}>
-          <RightContent />
+          <RightContent current={current} callBackCurrent={callBackCurrent} />
         </Col>
       </Row>
     </div>

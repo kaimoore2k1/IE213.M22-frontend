@@ -12,31 +12,45 @@
     }
 }
 
+.PayInformation__Header {
+    height: 99px;
+    font-size: 20px;
+    color: #6E3B3B !important;
+    font-weight: 500 !important;
+}
+
 .ant-table-tbody {
     tr {
         td {
             .ant-btn-icon-only {
                 border: none;
             }
-            .ant-btn-icon-only:focus, ant-btn-icon-only:hover {
+
+            .ant-btn-icon-only:focus,
+            ant-btn-icon-only:hover {
                 color: #FEA135;
                 background: transparent;
             }
+
             img {
                 width: 100px !important;
                 height: 100px !important;
                 margin-right: 25px;
             }
+
             font-weight: 500;
+
             span {
                 color: #FEA135;
                 font-weight: 500;
             }
+
             .button__frame {
                 border: 1px solid #c4c4c4;
                 margin: 0 auto;
                 border-radius: 10px;
                 width: 114px;
+
                 button {
                     outline: none;
                     border: none;
@@ -46,12 +60,15 @@
                     padding: 0px 12px;
                     position: relative;
                 }
+
                 button:first-child {
                     border-right: 1px solid #c4c4c4;
                 }
+
                 button:last-child {
                     border-left: 1px solid #c4c4c4;
                 }
+
                 span {
                     padding: 15px;
                     color: #c4c4c4;
@@ -63,13 +80,17 @@
 
 .ant-table-summary {
     font-weight: 500;
-    font-size:20px;
+    font-size: 20px;
     text-align: center;
+
     span {
-        color:#FEA135;
+        color: #FEA135;
     }
+
     tr {
-        th, td {
+
+        th,
+        td {
             border-bottom: none !important;
         }
     }
@@ -80,6 +101,7 @@
     width: 510px;
     margin-top: 20px;
     left: 480px;
+
     button {
         border: 2px solid #AB602B;
         border-radius: 15px;
@@ -87,16 +109,23 @@
         font-size: 20px;
         font-weight: 500;
     }
+
     button:first-child {
         background-color: white;
         color: #AB602B;
     }
+
     button:last-child {
         margin-left: 30px;
         background-color: #AB602B;
         color: white;
     }
-    button:hover, button:link, button:visited, button:active, button:focus {
+
+    button:hover,
+    button:link,
+    button:visited,
+    button:active,
+    button:focus {
         outline: none;
         border: 2px solid #AB602B;
         border-radius: 15px;
