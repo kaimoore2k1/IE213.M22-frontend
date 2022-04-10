@@ -9,28 +9,57 @@ import { DataType, data } from "./data";
 function RightContent() {
   const [dataType, setDataType] = useState(data);
 
-  console.log();
-
-  const [quantity, setQuantity] = useState(0);
-
-  const handelSub: React.MouseEventHandler<HTMLButtonElement> = () => {
-    console.log("hi");
+  const handelSub = (record: DataType) => {
+    record.soluong -= 1;
+    if (record.soluong < 1) {
+      record.soluong = 1;
+    }
+    const value = record.soluong
+    const index = Number(record.key) - 1
+    const newRecord = {...dataType[index], soluong: value}
+    const AfterValue = dataType.slice(index + 1, dataType.length)
+    const BeforeValue = dataType.slice(0, index)
+    setDataType(pre => {
+      return [...BeforeValue, newRecord ,...AfterValue]
+    })
   };
-
+  const handelPlus = (record: DataType) => {
+    record.soluong += 1;
+    if (record.soluong < 1) {
+      record.soluong = 1;
+    }
+    const value = record.soluong
+    const index = Number(record.key) - 1
+    const newRecord = {...dataType[index], soluong: value}
+    const AfterValue = dataType.slice(index + 1, dataType.length)
+    const BeforeValue = dataType.slice(0, index)
+    setDataType(() => {
+      return [...BeforeValue, newRecord ,...AfterValue]
+    })
+  };
+  const handelDelete = (record: DataType) => {
+    const newData = [...dataType]
+    const newRecord = newData.filter(e => e.key !== record.key)
+    for (let i:number = 0; i < newRecord.length; i++) {
+      newRecord[i].key = i + 1;
+    }
+    setDataType(newRecord)
+  };
   const columns: ColumnsType<DataType> = [
     {
       title: "SẢN PHẨM",
       dataIndex: "sanpham",
       key: "sanpham",
       align: "left",
-      render: () => (
+      render: (text, record) => (
         <>
           <Button
+            onClick={() => handelDelete(record)}
             style={{ marginRight: "10px" }}
             icon={<DeleteOutlined />}
           ></Button>
-          <img src={dataType[Number(dataType[0].key)].img} alt="Product" />
-          {dataType[Number(dataType[0].key)].sanpham}
+          <img src={dataType[Number(record.key) - 1].img} alt="Product" />
+          {dataType[Number(record.key) - 1].sanpham}
         </>
       ),
     },
@@ -39,9 +68,14 @@ function RightContent() {
       dataIndex: "gia",
       key: "gia",
       align: "center",
-      render: () => (
+      render: (title, record) => (
         <>
-          <span>{dataType[Number(dataType[0].key)].gia.toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</span>
+          <span>
+            {dataType[Number(record.key) - 1].gia.toLocaleString("vi-VN", {
+              style: "currency",
+              currency: "VND",
+            })}
+          </span>
         </>
       ),
     },
@@ -50,12 +84,12 @@ function RightContent() {
       dataIndex: "soluong",
       key: "soluong",
       align: "center",
-      render: () => (
+      render: (title, record) => (
         <>
           <div className="button__frame">
-            <button onClick={handelSub}>-</button>
-            <span>{dataType[Number(dataType[0].key)].soluong}</span>
-            <button onClick={handelSub}>+</button>
+            <button onClick={() => handelSub(record)}>-</button>
+            <span>{dataType[Number(record.key) - 1].soluong}</span>
+            <button onClick={() => handelPlus(record)}>+</button>
           </div>
         </>
       ),
@@ -65,8 +99,13 @@ function RightContent() {
       dataIndex: "tamtinh",
       key: "tamtinh",
       align: "center",
-      render: () => (
-        <span>{(dataType[Number(dataType[0].key)].gia * dataType[Number(dataType[0].key)].soluong).toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</span>
+      render: (title, record) => (
+        <span>
+          {(
+            dataType[Number(record.key) - 1].gia *
+            dataType[Number(record.key) - 1].soluong
+          ).toLocaleString("vi-VN", { style: "currency", currency: "VND" })}
+        </span>
       ),
     },
   ];
@@ -74,11 +113,11 @@ function RightContent() {
     <>
       <Table
         pagination={false}
-        dataSource={data}
+        dataSource={dataType}
         columns={columns}
         summary={(pageData) => {
           let total = 0;
-          pageData.forEach(({ gia, soluong, key }) => {
+          pageData.forEach(({ gia, soluong }) => {
             total += gia * soluong;
           });
           return (
@@ -87,7 +126,14 @@ function RightContent() {
                 <Table.Summary.Cell index={0}></Table.Summary.Cell>
                 <Table.Summary.Cell index={1}></Table.Summary.Cell>
                 <Table.Summary.Cell index={2} colSpan={2}>
-                  TỔNG: <span> {total.toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</span>
+                  TỔNG:{" "}
+                  <span>
+                    {" "}
+                    {total.toLocaleString("vi-VN", {
+                      style: "currency",
+                      currency: "VND",
+                    })}
+                  </span>
                 </Table.Summary.Cell>
               </Table.Summary.Row>
             </>
