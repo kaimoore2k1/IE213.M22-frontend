@@ -10,9 +10,15 @@
   // }
   .ant-card-cover {
     overflow: hidden;
+    img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
   .ant-card-body {
     padding: 0.7rem !important;
+
     .ant-card-meta-title {
       font-size: 1.2rem !important;
       -webkit-box-orient: vertical;

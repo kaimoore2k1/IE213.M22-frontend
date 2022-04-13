@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { Button, Card, Rate, Select,Form, Radio } from "antd";
+import { Button, Card, Rate, Select, Form, Radio } from "antd";
 import { AddToCartIcon, SearchIcon } from "../CustomIcon";
 import "./ProductCard.scss";
-export interface product{
+export interface product {
   productName: string;
   description: string;
   rating: number;
@@ -24,24 +24,21 @@ interface productCardProps {
   product: product;
 }
 const ProductCard = ({ product }: productCardProps) => {
-  
-  
-  const [isViewAddinfo, setViewAddinfo] = useState(false);
-  useEffect(() => {
-    const addInfo = document.querySelector(`#product-card-${product.id} .card-additional-info`);
-    if (addInfo) {
-      if (isViewAddinfo) {
-        addInfo.classList.remove("hidden");
-      } else {
-        addInfo.classList.add("hidden");
-      }
+  const [viewHidden, setViewHidden] = useState(false);
+  useEffect(()=>{
+    const productAddInfo = document.querySelector(`#product-card-${product.id} .card-additional-info`);
+    if(viewHidden){
+      productAddInfo?.classList.remove("hidden");
     }
-  }, [isViewAddinfo]);
+    else{ 
+      productAddInfo?.classList.add("hidden");
+    }
+  },[viewHidden])
 
   return (
     <Card
-      onMouseEnter={() => setViewAddinfo(true)}
-      onMouseLeave={() => setViewAddinfo(false)}
+      onMouseEnter={() => setViewHidden(true)}
+      onMouseLeave={() => setViewHidden(false)}
       className="product-card"
       id={`product-card-${product.id}`}
       hoverable={true}
@@ -73,7 +70,7 @@ const ProductCard = ({ product }: productCardProps) => {
               {product.productVariant.size ? (
                 <div className="size">
                   <span className="field">Size:</span>
-                  <Radio.Group defaultValue="S" >
+                  <Radio.Group defaultValue="S">
                     {product.productVariant.size.map((size: string) => (
                       <Radio.Button key={size} value={size}>
                         {size}
@@ -85,13 +82,9 @@ const ProductCard = ({ product }: productCardProps) => {
               {product.productVariant.color ? (
                 <div className="color">
                   <span className="field">Color:</span>
-                  <Radio.Group defaultValue="red" >
+                  <Radio.Group defaultValue="red">
                     {product.productVariant.color.map((color: string) => (
-                      <Radio.Button
-                        
-                        key={color}
-                        value={color}
-                      >
+                      <Radio.Button key={color} value={color}>
                         {color}
                       </Radio.Button>
                     ))}

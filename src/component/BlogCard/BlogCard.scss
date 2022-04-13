@@ -1,5 +1,5 @@
 .blog-card-small {
-  width: 400px;
+  width: 100%;
   display: flex;
   height: 120px;
   .ant-card-cover {
@@ -54,7 +54,7 @@
   }
 }
 .blog-card-large {
-  width: 500px;
+  width: 100%;
   .blog-card-image__container {
     position: relative;
     img {
