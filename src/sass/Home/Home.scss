@@ -62,4 +62,8 @@
         border-radius: 30px;
         font-weight: 500;
     }
+    button:active, button:hover, button:focus{
+        background-color: #A25016;
+        border-color: #A25016
+    }
 }

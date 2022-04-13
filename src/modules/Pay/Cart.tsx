@@ -5,7 +5,7 @@ import { DeleteOutlined, ArrowLeftOutlined } from "@ant-design/icons";
 import { ColumnsType } from "antd/es/table";
 import { DataType, data } from "./data";
 
-interface CurrentProps {
+export interface CurrentProps {
   callBackCurrent(childCurrent: number): void
 }
 

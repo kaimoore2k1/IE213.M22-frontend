@@ -13,10 +13,37 @@
 }
 
 .PayInformation__Header {
-    height: 99px;
+    background: white;
+    color: #6E3B3B;
+    font-weight: 500;
     font-size: 20px;
-    color: #6E3B3B !important;
-    font-weight: 500 !important;
+    padding: 35px;
+    height: 99px;
+}
+
+.PayInformation__Form {
+    padding: 0px 70px;
+
+    .ant-input {
+        border: 1px solid #FEA135;
+    }
+
+    .ant-input:hover,
+    .ant-input:focus,
+    .ant-input:active {
+        border: 1px solid #FEA135;
+        outline: none;
+    }
+
+    .ant-input:active,
+    .ant-input:focus {
+        box-shadow: 0 0 0 2px rgba(254, 161, 53, 20%);
+    }
+
+    .ant-input-group-addon {
+        border: 1px solid #FEA135;
+        background-color: white;
+    }
 }
 
 .ant-table-tbody {
@@ -96,11 +123,36 @@
     }
 }
 
+.ant-select {
+    .ant-select-selector {
+        border-color: #FEA135 !important;
+        text-align: left;
+    }
+
+    .ant-select-arrow {
+        color: rgba(254, 161, 53, 70%)
+    }
+}
+
+.ant-select-item-option-active {
+    background-color: rgba(254, 161, 53, 40%) !important;
+}
+
+.ant-select-item-option-selected {
+    background-color: rgba(254, 161, 53, 10%) !important;
+}
+
+.ant-select:active,
+.ant-select:hover,
+.ant-select:focus {
+    box-shadow: 0 0 0 2px rgba(254, 161, 53, 20%) !important;
+}
+
 .handleButton {
     position: relative;
-    width: 510px;
+    width: 600px;
     margin-top: 20px;
-    left: 480px;
+    left: 390px;
 
     button {
         border: 2px solid #AB602B;
@@ -129,5 +181,50 @@
         outline: none;
         border: 2px solid #AB602B;
         border-radius: 15px;
+    }
+}
+
+.PaymentFinished {
+    background: white;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 150px;
+
+    .CartFinishIcon {
+        font-size: 100px;
+    }
+
+    .Header {
+        font-size: 20px;
+        margin-bottom:30px;
+        color: #A25016;
+        font-weight: bold;
+    }
+    .fontBold {
+        font-weight: bold;
+    }
+
+    button {
+        border: 2px solid #AB602B;
+        border-radius: 15px;
+        height: 48px;
+        font-size: 20px;
+        font-weight: 500;
+        background-color: white;
+        color: #AB602B;
+        width: 256px;
+        margin-left: 500px;
+        margin-top: 80px;
+    }
+    button:hover,
+    button:link,
+    button:visited,
+    button:active,
+    button:focus {
+        outline: none;
+        border: 2px solid #AB602B;
+        border-radius: 15px;
+        color: #AB602B;
     }
 }

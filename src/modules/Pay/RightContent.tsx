@@ -2,6 +2,7 @@ import React from "react";
 import "../../sass/Pay/RightContent.scss";
 import Cart from "./Cart"
 import PayInformation from "./PayInformation"
+import PaymentFinished from "./PaymentFinished";
 
 interface CurrentProps {
   current:number
@@ -13,7 +14,9 @@ function RightContent({current, callBackCurrent}:CurrentProps) {
     case 0:
       return <Cart callBackCurrent={callBackCurrent} />
     case 1:
-      return <PayInformation />
+      return <PayInformation callBackCurrent={callBackCurrent} />
+    case 3:
+      return <PaymentFinished />
     default:
       return null
   }

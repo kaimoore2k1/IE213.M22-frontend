@@ -9,16 +9,16 @@ import { useState } from "react";
 import RightContent from "../modules/Pay/RightContent";
 
 function Pay() {
-  const [current, setCurrent] = useState(0)
+  const [current, setCurrent] = useState(0);
   const callBackCurrent = (childCurrent: number) => {
-    setCurrent(childCurrent)
-  }
+    setCurrent(childCurrent);
+  };
   return (
     <div className="Pay__Layout">
       <Row className="Pay__Layout--Row">
-        <Col className="Pay__Layout--Col" span={7}>
+        <Col className="Pay__Layout--Col" style={{height: "100%"}} span={7}>
           <LeftContentHeader />
-          <LeftContentContent current={current}/>
+          <LeftContentContent current={current} />
         </Col>
         <Col className="Pay__Layout--Col" span={17}>
           <RightContent current={current} callBackCurrent={callBackCurrent} />
