@@ -1,0 +1,36 @@
+.Wrapper {
+    width: 988px;
+    border: 1px solid #FFC107;
+    padding: 30px;
+    text-align: justify;
+
+    h1 {
+        color: #FFC107;
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    h2 {
+        font-size: 14px;
+        font-weight: 500;
+    }
+    .pTitle {
+        font-weight: 500;
+    }
+
+    .service {
+        color: #FFC107;
+    }
+
+    .imgCustom {
+        width: 100%;
+        height: auto;
+        margin: 10px 0px;
+    }
+
+    .moreInfor {
+        background-color: rgba(255, 193, 7, 0.3);
+        text-align: center !important;
+        padding: 10px 10px;
+    }
+}

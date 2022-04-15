@@ -1,29 +1,22 @@
 import { Form, Input, Button, Typography } from "antd";
 import React from "react";
 import "../../sass/Home/Home.scss";
-import { useState } from "react";
+import {information} from './type'
+
+
 
 function Contact() {
   const { Title, Text } = Typography;
 
-  interface information {
-    name?: string;
-    mail?: string;
-    content?: string;
+  let Information:information = {
+    name: "",
+    mail: "",
+    content: ""
   }
 
-  interface informationInputProps {
-    value?: information;
-    onChange?: (value: information) => void;
+  const HandleFinish = () => {
+    console.log(Information)
   }
-
-  /*const [Infor, setInfor] = useState<contactForm>({}); */
-
-  const [name, setName] = useState<string>("");
-  const [mail, setMail] = useState<string>("");
-  const [content, setContent] = useState<string>("");
-
-  //console.log(name, mail, content);
 
   return (
     <div className="home--contact">
@@ -47,39 +40,16 @@ function Contact() {
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
           autoComplete="off"
+          onFinish={HandleFinish}
         >
-          <Form.Item
-            name="name"
-            rules={[{ required: true, message: "Tên không được để trống!" }]}
-          >
-            <Input
-              defaultValue={name}
-              placeholder="Tên"
-              onChange={(e) => setName(e.target.value)}
-            />
+          <Form.Item name="name">
+            <Input placeholder="Tên" onChange={(e) => {Information.name = e.target.value.toString()}}/>
           </Form.Item>
-          <Form.Item
-            name="mail"
-            rules={[{ required: true, message: "Mail không được để trống!" }]}
-          >
-            <Input
-              defaultValue={mail}
-              placeholder="Mail"
-              onChange={(e) => setMail(e.target.value)}
-            />
+          <Form.Item name="mail">
+            <Input placeholder="Mail" onChange={(e) => {Information.mail = e.target.value.toString()}}/>
           </Form.Item>
-          <Form.Item
-            name="content"
-            rules={[
-              { required: true, message: "Nội dung không được để trống!" },
-            ]}
-          >
-            <Input.TextArea
-              defaultValue={content}
-              className="InputLastChild"
-              placeholder="Nội dung"
-              onChange={(e) => setContent(e.target.value)}
-            />
+          <Form.Item name="content">
+            <Input.TextArea onChange={(e) => {Information.content = e.target.value.toString()}} className="InputLastChild" placeholder="Nội dung" />
           </Form.Item>
           <Form.Item name="submit">
             <Button type="primary" htmlType="submit">
