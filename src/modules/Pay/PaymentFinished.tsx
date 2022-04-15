@@ -1,7 +1,6 @@
 import React from "react";
 import { Button, Typography } from "antd";
-import { CartFinishIcon } from "./CartFinishIcon";
-
+import { CartFinishIcon } from "../../assets/icons/CartFinishIcon";
 
 function PaymentFinished() {
   const day = new Date();

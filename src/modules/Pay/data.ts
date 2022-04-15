@@ -1,10 +1,4 @@
-export interface DataType {
-  key: React.Key;
-  sanpham: string;
-  gia: number;
-  soluong: number;
-  img: string;
-}
+import {DataType} from './type'
 
 export const data: DataType[] = [
   {

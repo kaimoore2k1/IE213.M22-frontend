@@ -4,9 +4,9 @@ import { Row, Col } from "antd";
 import {
   LeftContentContent,
   LeftContentHeader,
-} from "../modules/Pay/LeftContent";
+} from "./components/LeftContent";
 import { useState } from "react";
-import RightContent from "../modules/Pay/RightContent";
+import RightContent from "./components/RightContent";
 
 function Pay() {
   const [current, setCurrent] = useState(0);

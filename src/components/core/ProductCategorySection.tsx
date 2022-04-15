@@ -1,14 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ProductCategoryButtons from "./ProductCategoryButtons";
-import ProductCard, { product } from "../ProductCard/ProductCard";
-import "./ProductCategorySection.scss";
-import { Row, Col, Button } from "antd";
+import ProductCard from "./ProductCard";
+import "../../sass/Blog/ProductCategorySection.scss";
+import {productCategorySectionProps} from './type'
+import { Row, Col } from "antd";
 
-export interface productCategorySectionProps {
-  productList: product[];
-  categoryList: string[];
-  sectionName: string;
-}
+
 const ProductCategorySection = ({
   productList,
   categoryList,

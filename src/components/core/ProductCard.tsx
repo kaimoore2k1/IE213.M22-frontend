@@ -1,28 +1,10 @@
 import { useState, useEffect } from "react";
-import { Button, Card, Rate, Select, Form, Radio } from "antd";
-import { AddToCartIcon, SearchIcon } from "../CustomIcon";
-import "./ProductCard.scss";
-export interface product {
-  productName: string;
-  description: string;
-  rating: number;
-  ratingCount: number;
-  price: number;
-  salePrice?: number;
-  productVariant?: {
-    size?: string[];
-    color?: string[];
-  };
-  image: {
-    url: string;
-    title: string;
-  };
-  category: string[];
-  id: number;
-}
-interface productCardProps {
-  product: product;
-}
+import { Button, Card, Rate, Form, Radio } from "antd";
+import { AddToCartIcon, SearchIcon } from "../../assets/icons/BlogCustomIcon";
+import "../../sass/Blog/ProductCard.scss";
+import {productCardProps} from './type'
+
+
 const ProductCard = ({ product }: productCardProps) => {
   const [viewHidden, setViewHidden] = useState(false);
   useEffect(()=>{
@@ -33,7 +15,7 @@ const ProductCard = ({ product }: productCardProps) => {
     else{ 
       productAddInfo?.classList.add("hidden");
     }
-  },[viewHidden])
+  },[product.id, viewHidden])
 
   return (
     <Card
@@ -42,7 +24,7 @@ const ProductCard = ({ product }: productCardProps) => {
       className="product-card"
       id={`product-card-${product.id}`}
       hoverable={true}
-      cover={<img src={product.image.url} />}
+      cover={<img src={product.image.url} alt='product' />}
     >
       <Card.Meta
         title={product.productName}

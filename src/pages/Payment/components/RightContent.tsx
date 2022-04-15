@@ -1,8 +1,8 @@
 import React from "react";
 import "../../sass/Pay/RightContent.scss";
-import Cart from "./Cart"
-import PayInformation from "./PayInformation"
-import PaymentFinished from "./PaymentFinished";
+import Cart from "../../../modules/Pay/Cart"
+import PayInformation from "../../../modules/Pay/PayInformation"
+import PaymentFinished from "../../../modules/Pay/PaymentFinished";
 
 interface CurrentProps {
   current:number

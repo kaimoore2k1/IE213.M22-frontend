@@ -1,8 +1,8 @@
-import BlogCard, { blogCard } from "../BlogCard/BlogCard";
-import BlogSideCardList from "../BlogSideCardList/BlogSideCardList";
+import BlogCard, { blogCard } from "./BlogCard";
+import BlogSideCardList from "./BlogSideCardList";
 import { Row, Col, Pagination } from "antd";
-import { useState, useEffect } from "react";
-import "./BlogCategory.scss";
+import { useState } from "react";
+import "../../../sass/Blog/BlogCategory.scss";
 
 interface blogCategoryProps {
   blogList: blogCard[];

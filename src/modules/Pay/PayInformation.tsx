@@ -2,33 +2,8 @@ import React, { useState } from "react";
 import { Form, Input, Row, Col, Button, Select } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { CurrentProps } from "./Cart";
+import {FieldData, CustomizedFormProps} from "./type"
 
-
-
-interface PaymentInformation {
-  firstName: string;
-  lastName: string;
-  country: string;
-  address: string;
-  code?: string;
-  city?: string;
-  numberPhone?: string;
-  email?: string;
-  paymentMethod?: string;
-  voucher: string;
-  note: string;
-}
-
-interface FieldData {
-  name: string | number | (string | number)[];
-  value?: any;
-}
-
-interface CustomizedFormProps {
-  onChange: (fields: FieldData[]) => void;
-  fields: FieldData[];
-  onSubmit: () => void;
-}
 
 function PayInformation({ callBackCurrent }: CurrentProps) {
   const prefixSelector = <Form.Item noStyle>+84</Form.Item>;

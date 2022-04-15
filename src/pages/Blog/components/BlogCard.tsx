@@ -1,6 +1,6 @@
 import { Card } from "antd";
-import { LikeIcon, CommentIcon, ShareIcon } from "../CustomIcon";
-import "./BlogCard.scss";
+import { LikeIcon, CommentIcon, ShareIcon } from "../../../assets/icons/BlogCustomIcon";
+import "../../../sass/Blog/BlogCard.scss";
 
 export interface blogCard {
   title: string;
@@ -30,7 +30,7 @@ const BlogCard = ({ type, blog }: blogCardProps) => {
           className="blog-card-small"
           id={`blog-card-${blog.id}`}
           hoverable={true}
-          cover={<img src={blog.image.url} />}
+          cover={<img src={blog.image.url} alt="blog"/>}
         >
           <Card.Meta
             title={blog.title}
@@ -63,7 +63,7 @@ const BlogCard = ({ type, blog }: blogCardProps) => {
           hoverable={true}
           cover={
             <div className="blog-card-image__container">
-              <img src={blog.image.url} />
+              <img src={blog.image.url} alt="blog"/>
               <div className="blog-card-category">
                 <span>{blog.category}</span>
               </div>

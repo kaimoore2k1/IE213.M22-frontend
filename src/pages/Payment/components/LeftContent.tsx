@@ -15,7 +15,7 @@ function LeftContentHeader() {
     </Layout>
   );
 }
-interface CurrentProps {
+export interface CurrentProps {
   current:number
 }
 

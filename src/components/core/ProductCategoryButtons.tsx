@@ -1,9 +1,5 @@
-interface Props {
-  CategoryList: String[];
-  currentCategory: number;
-  updateCategory: (index: number) => void;
-}
-const ProdcutCategoryMenu = ({
+import {Props} from './type'
+const ProductCategoryMenu = ({
   CategoryList,
   currentCategory,
   updateCategory,
@@ -27,4 +23,4 @@ const ProdcutCategoryMenu = ({
     </div>
   );
 };
-export default ProdcutCategoryMenu;
+export default ProductCategoryMenu;

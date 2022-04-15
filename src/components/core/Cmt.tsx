@@ -2,13 +2,10 @@ import React from 'react'
 import { Comment, Avatar, Form, Button, List, Input } from 'antd';
 import {useState} from 'react'
 import moment from 'moment';
+import {CommentState} from './type'
 
 const { TextArea } = Input;
-interface CommentState {
-    comments: any[],
-    submitting: boolean,
-    value: string
-}
+
 
 const CommentList = ({ comments }:CommentState) => (
     <List

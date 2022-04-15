@@ -1,4 +1,4 @@
-import BlogCard, {blogCard} from '../BlogCard/BlogCard';
+import BlogCard, {blogCard} from './BlogCard';
 
 interface blogListProps{
     name: string;
