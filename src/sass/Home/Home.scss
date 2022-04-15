@@ -1,3 +1,4 @@
+
 .home--contact {
     display: flex;
     width: 100%;
@@ -61,5 +62,117 @@
         font-size: 24px;
         border-radius: 30px;
         font-weight: 500;
+    }
+}
+.home-service-wrapper{
+    margin: 70px 100px 70px 100px;
+    .home-service-title{
+        font-size: 48px;
+        font-weight: bold;
+        text-align: center;
+    }
+    .home-service-ul{
+        list-style-type: none;  
+        display:flex;
+        justify-content: space-between;
+        max-width: 550px;
+        margin-left: 350px;
+        margin-top: 50px;
+        margin-bottom: 10px;
+        position: relative;
+        
+        .active{
+            background-color: #FF9314;
+            color: #fff;
+            
+        }
+        li{
+            cursor: pointer;
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;           
+            text-align: center;
+            color: #000;
+            background-color: #C4C4C4;
+            margin: 0 10px;
+
+            .service-icons--css{
+                font-size:60px;
+                margin-top: 20px;
+                
+            }
+        }
+        li:hover{
+            background-color: #FF9314;
+                color: #fff;
+        }
+        
+        
+    }
+    .home-service-ul::before{
+        content: "";
+        background-image: url("../../modules/assets/stripe.jpg");
+        position: absolute;
+        left: 0;
+        right: 0;
+        z-index: -1;
+        top: 0;
+        bottom: 0;
+    }
+    
+}
+.home-service-block{
+    display:none;
+    
+}
+.home-service-block.active{
+    display: block !important;  
+}
+.home-service-element{
+    margin: 50px 0;
+    display: flex;
+    justify-content: space-between;
+    visibility: visible;
+    animation: fadeIn 0.7s ease;
+    @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;          
+        }
+    }
+    
+    
+    .service-block-des1{
+        margin: 100px 0 0 80px;
+    }
+    .service-block-h2{
+        font-weight: 700;
+        font-size: 32px;
+    }
+    .service-block-p{
+        font-weight: 400;
+        font-size: 24px;
+        text-align: justify;
+    }
+    button{
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+        color: #fff;
+        width: 174px;
+        height: 72px;
+        background: #EC7C2D;
+        border-radius: 5px;
+        font-size: 24px;
+        border: 1px solid #EC7C2D;
+    }
+    .service-block-des2{
+        margin: 100px 0 0 250px;
+    }
+    .service-block-ul{
+        li{
+            font-weight: 400;
+            font-size: 24px;
+        }
     }
 }
