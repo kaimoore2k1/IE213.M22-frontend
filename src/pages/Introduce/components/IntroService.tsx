@@ -1,11 +1,8 @@
 import { FaThumbsUp } from "react-icons/fa";
-import "../../sass/Intro/Intro.scss";
+import "../../../sass/Intro/Intro.scss";
 import React, {FC} from "react";
+import {ServiceProps} from "./type"
 
-interface ServiceProps{
-    serTitle: string;
-    serDes: string;
-}
 const IntroService:FC<ServiceProps> = ({serTitle, serDes}) => {
     return(
         <>

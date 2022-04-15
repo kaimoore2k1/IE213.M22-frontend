@@ -2,8 +2,7 @@ import { useState,useEffect, useRef } from "react";
 import React from "react";
 import "../../sass/Login-Logout/Login-Logout.scss";
 import { Form, Input, Button, Typography } from "antd";
-import Login from './Login';
-import Logout from './Logout';
+import {Login, Logout} from './components'
 
 
 function LoginLogout(){

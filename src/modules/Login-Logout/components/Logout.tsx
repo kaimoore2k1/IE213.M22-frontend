@@ -1,7 +1,7 @@
 import { useState } from "react";
 import React from "react";
-import logo from "../assets/logo.png";
-import "../../sass/Login-Logout/Login-Logout.scss";
+import logo from "../../../assets/images/logo.png";
+import "../../../sass/Login-Logout/Login-Logout.scss";
 import { Form, Input, Button, Typography } from "antd";
 
 function Logout(){

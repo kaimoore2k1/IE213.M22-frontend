@@ -1,12 +1,6 @@
-import avatar from "../assets/avatar.jpg"
-import "../../sass/Intro/Intro.scss";
+import "../../../sass/Intro/Intro.scss";
 import React, {FC} from "react";
-
-interface MemberProps{
-    nameMember: string;
-    posMember: string; 
-    srcImg: string;
-}
+import {MemberProps} from "./type"
 
 const IntroMember: FC<MemberProps> = ({nameMember,posMember, srcImg}) => {
     return(       
