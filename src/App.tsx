@@ -32,7 +32,7 @@ function App() {
                 <Route path='/dichvu' element={<Service />} />
                 <Route path='/dichvu/cattia' element={<Service />} />
                 <Route path='/dichvu/tronggiu' element={<Service />} />
-                <Route path='/dichvu/massage' element={<Service />} />
+                <Route path='/dichvu/spa' element={<Service />} />
                 <Route path='/dichvu/benhvienthuy' element={<Service />} />
                 <Route path='/dichvu/sanphamthuy' element={<Service />} />
                 <Route path='/dichvu/chiase' element={<Service />} />
