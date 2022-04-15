@@ -3,6 +3,7 @@ import { Comment, Avatar, Form, Button, List, Input } from 'antd';
 import {useState} from 'react'
 import moment from 'moment';
 
+
 const { TextArea } = Input;
 interface CommentState {
     comments: any[],
@@ -81,6 +82,7 @@ function Cmt() {
 
   return (
     <>
+     
         {state.comments.length > 0 && <CommentList comments={state.comments} submitting={state.submitting} value={state.value} />}
         <Comment
           avatar={<Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />}
