@@ -1,0 +1,27 @@
+.blog-post{
+    padding-right: 2rem;
+    h1{
+        font-size: 2.5rem;
+    }
+    .author-box{
+        font-size:1.2rem;
+        display:flex;
+        justify-content:space-between;
+    }
+    .blog-description{
+        font-size:1.2rem;
+        line-height:1.5rem;
+        margin-top:1rem;
+        font-weight:bold;
+        color:#666;
+    }
+    .blog-content{
+        font-size:1.2rem;
+        line-height:1.5rem;
+        
+        p{
+            margin-bottom:1rem;
+            text-align:justify;
+        }
+    }
+}

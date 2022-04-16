@@ -59,10 +59,10 @@ const BlogCategory = ({ blogList, categoryList }: blogCategoryProps) => {
             <Row gutter={[16, 16]}>
               {blogList
                 .filter((blog) => blog.category === currentCategory)
-                .slice(page * blogPerPage, (page + 1) * blogPerPage - 1)
+                .slice(page * blogPerPage, (page + 1) * blogPerPage )
                 .map((blog) => (
-                  <Col span="12" className="blog-card-wraper">
-                    <BlogCard key={blog.id} blog={blog} type="large" />
+                  <Col key={blog.id}  span="12" className="blog-card-wraper">
+                    <BlogCard blog={blog} type="large" />
                   </Col>
                 ))}
             </Row>
@@ -77,7 +77,8 @@ const BlogCategory = ({ blogList, categoryList }: blogCategoryProps) => {
             showTotal={(total, range) =>
               `${range[0]}-${range[1]} of ${total} items`
             }
-            defaultPageSize={20}
+            onChange={(page) => setPage(page - 1)}
+            defaultPageSize={blogPerPage}
             defaultCurrent={page + 1}
           />
         </div>

@@ -20,10 +20,8 @@ const ProductCategorySection = ({
 
   const updateCategory = (index: number) => {
     setCurrentCategory(index);
-    console.log('index :>> ', index);
-    console.log("currentCategory :>> ", currentCategory);
   };
-
+  useEffect(() => {}, [page]);
   return (
     <div className="product-category-section">
       <div className="section__top">
@@ -32,25 +30,24 @@ const ProductCategorySection = ({
           <button
             type="button"
             className="pre-page-button page-button"
-            onClick={() => setPage(page - 1)}
+            onClick={() => setPage(page - 1 < 0 ? 0 : page - 1)}
           >
             {" "}
             &lt; Trang trước{" "}
           </button>
           <div>
-            <input
-              className="page-number"
-              min="1"
-              max={`${productList.length / productPerPage}`}
-              type="number"
-              defaultValue={page+1}
-            />
-            <span>/ {productList.length / productPerPage}</span>
+            <span className="page-number">{page +1}/{Math.ceil(productList.length / productPerPage)}</span>
           </div>
           <button
             type="button"
             className="next-page-button page-button"
-            onClick={() => setPage(page + 1)}
+            onClick={() =>
+              setPage(
+                page + 1 >= Math.ceil(productList.length / productPerPage)
+                  ? Math.ceil(productList.length / productPerPage) - 1
+                  : page + 1
+              )
+            }
           >
             {" "}
             Trang sau &gt;
@@ -68,11 +65,16 @@ const ProductCategorySection = ({
           </Col>
 
           {productList
+            .filter((product) =>
+              product.category.some(
+                (category) => category === categoryList[currentCategory]
+              )
+            )
             .slice(page * productPerPage, (page + 1) * productPerPage)
             .map((item) => {
               return (
-                <Col span={5}>
-                  <ProductCard key={item.id} product={item} />
+                <Col key={item.id} span={5}>
+                  <ProductCard product={item} />
                 </Col>
               );
             })}

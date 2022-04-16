@@ -23,8 +23,13 @@ export interface product {
 interface productCardProps {
   product: product;
 }
+
+       
 const ProductCard = ({ product }: productCardProps) => {
   const [viewHidden, setViewHidden] = useState(false);
+  function addToCart(){
+    console.log()
+  }
   useEffect(()=>{
     const productAddInfo = document.querySelector(`#product-card-${product.id} .card-additional-info`);
     if(viewHidden){
@@ -69,10 +74,10 @@ const ProductCard = ({ product }: productCardProps) => {
             <div className="obtional-variant">
               {product.productVariant.size ? (
                 <div className="size">
-                  <span className="field">Size:</span>
-                  <Radio.Group defaultValue="S">
+                  <span className="field">Kích cỡ:</span>
+                  <Radio.Group size="small" defaultValue="S">
                     {product.productVariant.size.map((size: string) => (
-                      <Radio.Button key={size} value={size}>
+                      <Radio.Button  key={size} value={size}>
                         {size}
                       </Radio.Button>
                     ))}
@@ -81,7 +86,7 @@ const ProductCard = ({ product }: productCardProps) => {
               ) : null}
               {product.productVariant.color ? (
                 <div className="color">
-                  <span className="field">Color:</span>
+                  <span className="field">Màu sắc:</span>
                   <Radio.Group defaultValue="red">
                     {product.productVariant.color.map((color: string) => (
                       <Radio.Button key={color} value={color}>
@@ -95,7 +100,7 @@ const ProductCard = ({ product }: productCardProps) => {
           ) : null}
           <div className="action">
             <Button type="primary" icon={<SearchIcon />} />
-            <Button type="primary" icon={<AddToCartIcon />} />
+            <Button type="primary" onClick={()=>addToCart()} icon={<AddToCartIcon />} />
           </div>
         </div>
       </Form>

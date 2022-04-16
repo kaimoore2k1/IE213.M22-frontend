@@ -1,5 +1,5 @@
 import BlogCard, {blogCard} from '../BlogCard/BlogCard';
-
+import "./BlogSideCardList.scss";
 interface blogListProps{
     name: string;
     blogList: blogCard[];
