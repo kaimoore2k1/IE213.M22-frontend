@@ -3,8 +3,7 @@ import { Table, Button } from "antd";
 import { useState } from "react";
 import { DeleteOutlined, ArrowLeftOutlined } from "@ant-design/icons";
 import { ColumnsType } from "antd/es/table";
-import { data } from "./data";
-import {DataType} from "./type"
+import { DataType, data } from "./data";
 
 export interface CurrentProps {
   callBackCurrent(childCurrent: number): void

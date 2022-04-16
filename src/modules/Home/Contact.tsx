@@ -1,8 +1,12 @@
 import { Form, Input, Button, Typography } from "antd";
 import React from "react";
 import "../../sass/Home/Home.scss";
-import {information} from './type'
 
+interface information {
+  name?: string;
+  mail?: string;
+  content?: string;
+}
 
 
 function Contact() {
