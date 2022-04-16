@@ -7,8 +7,6 @@ import Navigation from '../modules/Home/Navigation'
 function Service() {
     return (
         <>
-            <Header />
-            <Navigation />
             <Category />
             <Booking />
         </>

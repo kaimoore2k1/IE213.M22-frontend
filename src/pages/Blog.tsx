@@ -5,8 +5,7 @@ import Navigation from '../modules/Home/Navigation'
 function Blog() {
     return (
         <>
-            <Header />
-            <Navigation />
+            <h1>BLOG</h1>
         </>
     )
 }

@@ -6,8 +6,6 @@ import Navigation from '../modules/Home/Navigation'
 function Pet() {
     return (
         <>
-            <Header />
-            <Navigation />
             <Category />
         </>
     )

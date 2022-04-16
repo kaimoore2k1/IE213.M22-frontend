@@ -7,8 +7,6 @@ import Navigation from '../modules/Home/Navigation'
 function Shop() {
     return (
         <>
-            <Header />
-            <Navigation />
             <Category />
         </>
     )

@@ -5,8 +5,7 @@ import Navigation from '../modules/Home/Navigation'
 function Intro() {
     return (
         <>
-            <Header />
-            <Navigation />
+            <h1>Introduction</h1>
         </>
     )
 }
