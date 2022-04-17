@@ -26,7 +26,7 @@ function Category() {
           title={
             <Menu.Item key="thucung">
               Thú cưng
-              <Link to={"/thucung"} />
+              <Link to={"/thucung/chocanh"} />
             </Menu.Item>
           }
         >
@@ -56,7 +56,7 @@ function Category() {
           title={
             <Menu.Item key="thucanthucung">
               Thức ăn thú cưng
-              <Link to={"/thucanthucung"} />
+              <Link to={"/thucanthucung/ta_cho"} />
             </Menu.Item>
           }
         >
@@ -90,7 +90,7 @@ function Category() {
           title={
             <Menu.Item key="dichvu">
               Dịch vụ
-              <Link to={"/dichvu"} />
+              <Link to={"/dichvu/cattia"} />
             </Menu.Item>
           }
         >
