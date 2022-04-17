@@ -136,7 +136,7 @@ function Detail_Module() {
         </div>
         <br />
         <br />
-        <div className="content">{getContent()}</div>
+        <div>{getContent()}</div>
       </div>
       <div className="related_product">
         <p>SẢN PHẨM TƯƠNG TỰ</p>
