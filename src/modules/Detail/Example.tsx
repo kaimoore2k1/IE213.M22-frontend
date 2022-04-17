@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Card } from 'antd';
-import Footer from '../Footer/Footer';
+import Footer from '../../components/Layout/Footer';
 import Reviews from '../Home/Reviews/Reviews';
 
 

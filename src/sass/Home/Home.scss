@@ -237,7 +237,7 @@
 }
 
 .category {
-  margin-top: 50px;
+  margin: 50px 0px;
   position: sticky;
   top: 70px;
   .category_tag {
@@ -258,15 +258,13 @@
 
 .store__layout {
   .store__layout--content {
-    margin-top: 50px;
+    margin: 50px 0px;
   }
 }
 
 .booking {
   position: absolute;
-  top: 300px;
-  left: 500px;
-
+  top: 60px;
   .header-form {
     padding: 20px;
     padding-bottom: 5px;

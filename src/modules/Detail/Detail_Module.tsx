@@ -78,7 +78,7 @@ function Detail_Module() {
     }
 
     const handleBuyProduct = ()=>{
-        window.alert("Quí khách đã thêm sản phẩm vào giỏ hàng");
+        window.alert("Quý khách đã thêm sản phẩm vào giỏ hàng");
     }
 
 
