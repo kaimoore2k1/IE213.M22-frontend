@@ -1,12 +1,11 @@
-import Blog from "../pages/Blog";
-import Homepage from "../pages/Homepage";
-import Intro from "../pages/Intro";
-import NotFound from "../pages/NotFound";
-import Pet from "../pages/Pet";
-import Service from "../pages/Service";
-import Shop from "../pages/Shop";
-import {RouterInterface} from "./type"
+import { RouterInterface } from "./type";
 import Layout from "../components/Layout/Layout";
+import Home from "../pages/Home/Home";
+import Store from "../pages/Store/Store";
+import NotFound from "../pages/NotFound";
+import { Spa, Hospital, Esthetic, Booking, Hotel } from "../modules/Service";
+import Intro from "../pages/Introduce/Intro";
+import Blog from "../pages/Blog/Blog";
 
 const RouterView: RouterInterface[] = [
   {
@@ -21,14 +20,14 @@ const RouterView: RouterInterface[] = [
         index: true,
         public: true,
         children: [],
-        element: () => <Homepage />,
+        element: () => <Home />,
       },
       {
         name: "ThuCung",
         index: false,
         path: "thucung",
         public: true,
-        element: () => <Pet />,
+        element: () => <Store />,
         children: [
           {
             name: "ChoCanh",
@@ -36,7 +35,7 @@ const RouterView: RouterInterface[] = [
             path: "chocanh",
             children: [],
             public: true,
-            element: () => <Pet />,
+            element: () => <Store />,
           },
           {
             name: "MeoCanh",
@@ -44,7 +43,7 @@ const RouterView: RouterInterface[] = [
             path: "meocanh",
             children: [],
             public: true,
-            element: () => <Pet />,
+            element: () => <Store />,
           },
           {
             name: "ThuKieng",
@@ -52,7 +51,7 @@ const RouterView: RouterInterface[] = [
             path: "thukieng",
             children: [],
             public: true,
-            element: () => <Pet />,
+            element: () => <Store />,
           },
           {
             name: "Hamster",
@@ -60,7 +59,7 @@ const RouterView: RouterInterface[] = [
             path: "hamster",
             children: [],
             public: true,
-            element: () => <Pet />,
+            element: () => <Store />,
           },
           {
             name: "ThuCungKhac",
@@ -68,7 +67,7 @@ const RouterView: RouterInterface[] = [
             index: false,
             path: "thucungkhac",
             public: true,
-            element: () => <Pet />,
+            element: () => <Store />,
           },
         ],
       },
@@ -77,7 +76,7 @@ const RouterView: RouterInterface[] = [
         index: false,
         path: "thucanthucung",
         public: true,
-        element: () => <Shop />,
+        element: () => <Store />,
         children: [
           {
             name: "ThucAnChoCho",
@@ -85,7 +84,7 @@ const RouterView: RouterInterface[] = [
             index: false,
             path: "ta_cho",
             public: true,
-            element: () => <Shop />,
+            element: () => <Store />,
           },
           {
             name: "ThucAnChoMeo",
@@ -93,7 +92,7 @@ const RouterView: RouterInterface[] = [
             index: false,
             path: "ta_meo",
             public: true,
-            element: () => <Shop />,
+            element: () => <Store />,
           },
           {
             name: "ThucAnKhac",
@@ -101,7 +100,7 @@ const RouterView: RouterInterface[] = [
             path: "ta_khac",
             children: [],
             public: true,
-            element: () => <Shop />,
+            element: () => <Store />,
           },
         ],
       },
@@ -111,7 +110,7 @@ const RouterView: RouterInterface[] = [
         children: [],
         path: "vatdungthucung",
         public: true,
-        element: () => <Shop />,
+        element: () => <Store />,
       },
       {
         name: "PhuKienThuCung",
@@ -119,7 +118,7 @@ const RouterView: RouterInterface[] = [
         path: "phukienthucung",
         children: [],
         public: true,
-        element: () => <Shop />,
+        element: () => <Store />,
       },
       {
         name: "DoChoiThuCung",
@@ -127,14 +126,14 @@ const RouterView: RouterInterface[] = [
         path: "dochoithucung",
         children: [],
         public: true,
-        element: () => <Shop />,
+        element: () => <Store />,
       },
       {
         name: "DichVu",
         index: false,
         path: "dichvu",
         public: true,
-        element: () => <Service />,
+        element: () => <Store />,
         children: [
           {
             name: "CatTia",
@@ -142,7 +141,7 @@ const RouterView: RouterInterface[] = [
             path: "cattia",
             children: [],
             public: true,
-            element: () => <Service />,
+            element: () => <Esthetic />,
           },
           {
             name: "TrongGiu",
@@ -150,7 +149,7 @@ const RouterView: RouterInterface[] = [
             path: "tronggiu",
             children: [],
             public: true,
-            element: () => <Shop />,
+            element: () => <Hotel />,
           },
           {
             name: "Spa",
@@ -158,7 +157,7 @@ const RouterView: RouterInterface[] = [
             path: "spa",
             children: [],
             public: true,
-            element: () => <Shop />,
+            element: () => <Spa />,
           },
           {
             name: "BenhVien",
@@ -166,7 +165,7 @@ const RouterView: RouterInterface[] = [
             children: [],
             path: "benhvienthuy",
             public: true,
-            element: () => <Shop />,
+            element: () => <Hospital />,
           },
           {
             name: "SanPhamThuY",
@@ -174,7 +173,7 @@ const RouterView: RouterInterface[] = [
             index: false,
             path: "sanphamthuy",
             public: true,
-            element: () => <Shop />,
+            element: () => <Hospital />,
           },
           {
             name: "ChiaSe",
@@ -182,7 +181,7 @@ const RouterView: RouterInterface[] = [
             index: false,
             path: "chiase",
             public: true,
-            element: () => <Shop />,
+            element: () => <Booking />,
           },
           {
             name: "DatHen",
@@ -190,7 +189,7 @@ const RouterView: RouterInterface[] = [
             path: "dathen",
             children: [],
             public: true,
-            element: () => <Shop />,
+            element: () => <Booking />,
           },
         ],
       },

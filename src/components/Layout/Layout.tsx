@@ -1,9 +1,9 @@
 import React from 'react'
-import Header from '../../modules/Home/Header';
-import Navigation from '../../modules/Home/Navigation';
+import Header from './Header';
+import Navigation from '../core/Navigation';
 import { Outlet } from 'react-router-dom';
 
-const Homepage = () => {
+const Layout = () => {
   return (
     <>
       <Header />
@@ -15,4 +15,4 @@ const Homepage = () => {
   )
 }
 
-export default Homepage
+export default Layout
