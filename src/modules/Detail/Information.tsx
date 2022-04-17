@@ -1,6 +1,6 @@
 import React from 'react'
-import {initial_products} from "../Data";
-import "./Information.css"
+import {initial_products} from "./Data";
+import "../../sass/DetailProduct/Information.scss"
 export default function Information() {
   return (
       

@@ -1,7 +1,7 @@
 import React from 'react'
-import { comment } from '../Data';
-import Cmt from './Cmt';
-import "./Feedback.css";
+import { comment } from './Data';
+import Cmt from '../../components/core/Cmt';
+import "../../sass/DetailProduct/Feedback.scss";
 export default function Comment() {
   return (
     <>

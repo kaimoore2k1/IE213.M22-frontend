@@ -1,7 +1,7 @@
 import { RouterInterface } from "../router/type";
 import Home from "./Home/Home";
 import Store from "./Store/Store"
-import DetailModule from '../modules/Detail/Detail_Module'
+import Detail from '../pages/DetailProduct/Detail'
 import Intro from "./Introduce/Intro";
 import Blog from "./Blog/Blog";
 import {RouterService} from "../modules/Service"
@@ -28,7 +28,7 @@ const RouterLayout: RouterInterface[] = [
         path: "chocanh",
         children: [],
         public: true,
-        element: () => <DetailModule />,
+        element: () => <Detail />,
       },
       {
         name: "MeoCanh",
@@ -36,7 +36,7 @@ const RouterLayout: RouterInterface[] = [
         path: "meocanh",
         children: [],
         public: true,
-        element: () => <Store />,
+        element: () => <Detail />,
       },
       {
         name: "ThuKieng",
@@ -44,7 +44,7 @@ const RouterLayout: RouterInterface[] = [
         path: "thukieng",
         children: [],
         public: true,
-        element: () => <Store />,
+        element: () => <Detail />,
       },
       {
         name: "Hamster",
@@ -52,7 +52,7 @@ const RouterLayout: RouterInterface[] = [
         path: "hamster",
         children: [],
         public: true,
-        element: () => <Store />,
+        element: () => <Detail />,
       },
       {
         name: "ThuCungKhac",
@@ -60,7 +60,7 @@ const RouterLayout: RouterInterface[] = [
         index: false,
         path: "thucungkhac",
         public: true,
-        element: () => <Store />,
+        element: () => <Detail />,
       },
     ],
   },
@@ -77,7 +77,7 @@ const RouterLayout: RouterInterface[] = [
         index: false,
         path: "ta_cho",
         public: true,
-        element: () => <Store />,
+        element: () => <Detail />,
       },
       {
         name: "ThucAnChoMeo",
@@ -85,7 +85,7 @@ const RouterLayout: RouterInterface[] = [
         index: false,
         path: "ta_meo",
         public: true,
-        element: () => <Store />,
+        element: () => <Detail />,
       },
       {
         name: "ThucAnKhac",
@@ -93,7 +93,7 @@ const RouterLayout: RouterInterface[] = [
         path: "ta_khac",
         children: [],
         public: true,
-        element: () => <Store />,
+        element: () => <Detail />,
       },
     ],
   },

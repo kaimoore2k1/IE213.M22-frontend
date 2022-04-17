@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card } from 'antd';
 import Footer from '../../components/Layout/Footer';
-import Reviews from '../Home/Reviews/Reviews';
+import Reviews from '../Home/Reviews';
 
 
 const tabList = [

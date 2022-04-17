@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import "./Review_images.css";
+import "../../sass/DetailProduct/Review_images.scss";
 
 
 interface SmallImagePath {
@@ -16,15 +16,15 @@ interface LargeImage{
 const largeImages: LargeImage[] = [
     {
         id: "12345",
-        image: require("../images/large_images/dog_1.png")
+        image: require("./images/large_images/dog_1.png")
     },
     {
         id: "54321",
-        image: require("../images/large_images/dog_2.png")
+        image: require("./images/large_images/dog_2.png")
     },
     {
         id: "56789",
-        image: require("../images/large_images/dog_3.png")
+        image: require("./images/large_images/dog_3.png")
     }
 ]
  
@@ -34,15 +34,15 @@ const largeImages: LargeImage[] = [
 const smallImagePaths: SmallImagePath[] = [
     {
         id: "12345",
-        image: require("../images/small_images/dog_1.png")
+        image: require("./images/small_images/dog_1.png")
     },
     {
         id: "54321",
-        image:require("../images/small_images/dog_2.png")
+        image:require("./images/small_images/dog_2.png")
     },
     {
         id: "56789",
-        image: require("../images/small_images/dog_3.png")
+        image: require("./images/small_images/dog_3.png")
     }
 ]
 
