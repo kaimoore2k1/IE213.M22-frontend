@@ -1,7 +1,7 @@
 import { RouterInterface } from "../router/type";
 import Home from "./Home/Home";
 import Store from "./Store/Store"
-
+import DetailModule from '../modules/Detail/Detail_Module'
 import Intro from "./Introduce/Intro";
 import Blog from "./Blog/Blog";
 import {RouterService} from "../modules/Service"
@@ -28,7 +28,7 @@ const RouterLayout: RouterInterface[] = [
         path: "chocanh",
         children: [],
         public: true,
-        element: () => <Store />,
+        element: () => <DetailModule />,
       },
       {
         name: "MeoCanh",

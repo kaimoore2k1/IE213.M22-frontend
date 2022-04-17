@@ -1,0 +1,25 @@
+.image{
+    display: grid;
+    grid-template-columns: 350px;
+  
+}
+.image>img{
+    width: 350px;
+    height: 350px;
+}
+.small_image{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: center;
+}
+
+.small_image>img{
+    padding: 5px;
+}
+
+.small_image>img:hover{
+    cursor: pointer;
+}
+
+
+
