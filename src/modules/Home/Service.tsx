@@ -2,7 +2,7 @@ import { Button, Typography } from "antd";
 import hospital from "../../assets/images/hospital.jpg";
 import price from "../../assets/images/price.jpg";
 import spa from "../../assets/images/spa.jpg";
-import { useState } from "react";
+import { useState, useEffect,useRef } from "react";
 import { FaRegHospital, FaHandHoldingUsd } from "react-icons/fa";
 import { GiHairStrands } from "react-icons/gi";
 import "../../sass/Home/Home.scss";
@@ -10,20 +10,36 @@ import "../../sass/Home/Home.scss";
 function Service() {
   const { Title, Text } = Typography;
   const [change, setChange] = useState(0);
-  const $ = document.querySelector.bind(document);
-  const $$ = document.querySelectorAll.bind(document);
-  const icons = $$(".home-service-item");
-  const contents = $$(".home-service-block");
-  icons.forEach((icon, index) => {
-    const content = contents[index];
-    if (change === index) {
-      $(".home-service-item.active")?.classList.remove("active");
-      $(".home-service-block.active")?.classList.remove("active");
-      icon.classList.add("active");
-      content.classList.add("active");
-    }
-  });
-
+  let isPaused = useRef(false);
+  useEffect(() => {
+    const $ = document.querySelector.bind(document);
+    const $$ = document.querySelectorAll.bind(document);
+    const icons = $$(".home-service-item");
+    const contents = $$(".home-service-block");
+    $(".home-service-item.active")?.classList.remove("active");
+    $(".home-service-block.active")?.classList.remove("active");
+    icons[change].classList.add("active");
+    contents[change].classList.add("active");
+  }, [change]);
+  useEffect(() => {
+    let timer = setInterval(() => {
+      console.log("isPaused", isPaused.current);
+      if (!isPaused.current) setChange((change) => (change + 1) % 3);
+    }, 3000);
+    const serviceBlocks = document.querySelectorAll(".home-service-element");
+    serviceBlocks.forEach((e) => {
+      e.addEventListener("mouseover", () => {
+        isPaused.current=true;
+      });
+      e.addEventListener("mouseleave", () => {
+        isPaused.current=false;
+      })
+    });
+    return () => {
+      clearInterval(timer)
+      
+    };
+  }, []);
   return (
     <>
       <section className="home-service-wrapper">
@@ -39,7 +55,10 @@ function Service() {
             <FaHandHoldingUsd className="service-icons--css" />
           </li>
         </ul>
-        <div className="home-service-block  active">
+        <div
+          className="home-service-block  active"
+          
+        >
           <div className="home-service-element ">
             <img src={hospital} alt="dich-vu-kham-benh" />
 
@@ -57,7 +76,10 @@ function Service() {
           </div>
         </div>
 
-        <div className="home-service-block  ">
+        <div
+          className="home-service-block  "
+          
+        >
           <div className="home-service-element ">
             <div className="service-block-des2">
               <h2 className="service-block-h2">Chăm sóc thú cưng</h2>
@@ -77,7 +99,10 @@ function Service() {
           </div>
         </div>
 
-        <div className="home-service-block  ">
+        <div
+          className="home-service-block  "
+          
+        >
           <div className="home-service-element">
             <img src={price} alt="gia-ca" />
 
