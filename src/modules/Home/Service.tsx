@@ -23,7 +23,6 @@ function Service() {
   }, [change]);
   useEffect(() => {
     let timer = setInterval(() => {
-      console.log("isPaused", isPaused.current);
       if (!isPaused.current) setChange((change) => (change + 1) % 3);
     }, 3000);
     const serviceBlocks = document.querySelectorAll(".home-service-element");
