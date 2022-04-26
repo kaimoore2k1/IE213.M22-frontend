@@ -154,6 +154,9 @@
     :hover {
       color: rgba(0, 0, 0, 0.85);
     }
+    a:before{
+      display: none;
+    }
   }
 
   #nav_item_home {
