@@ -1,8 +1,10 @@
 import React from "react";
 import { Button, Typography } from "antd";
 import { CartFinishIcon } from "../../assets/icons/CartFinishIcon";
+import { useNavigate } from "react-router-dom";
 
 function PaymentFinished() {
+  const navigate = useNavigate();
   const day = new Date();
   let textDay = day.toLocaleDateString();
   return (
@@ -31,7 +33,7 @@ function PaymentFinished() {
           Trả tiền mặt khi nhận hàng
         </Typography.Text>
       </div>
-      <Button className="OtherProduct">XEM SẢN PHẨM KHÁC</Button>
+      <Button className="OtherProduct" onClick={() => navigate(-1)}>XEM SẢN PHẨM KHÁC</Button>
     </div>
   );
 }

@@ -159,6 +159,9 @@
   #nav_item_home {
     margin-left: 50px;
   }
+
+  .span_item {
+  }
 }
 
 .navBar {
@@ -271,13 +274,12 @@
 }
 
 .booking {
-  position: absolute;
-  top: 60px;
+  margin-top: 100px;
+  position: relative;
   .header-form {
     padding: 20px;
     padding-bottom: 5px;
     background-color: #fea135;
-    position: absolute;
     border-top-left-radius: 100%;
     border-top-right-radius: 100%;
     color: white;
@@ -286,7 +288,6 @@
     left: 250px;
     box-shadow: 2px 2px 10px #767676;
   }
-
   .booking-form-img {
     border: 1px solid #ff9e2e;
     width: 800px;
@@ -299,11 +300,11 @@
     background-size: cover;
     opacity: 10%;
   }
-
   .booking-form {
     position: absolute;
     top: 20px;
     left: 20px;
+    font-size: 18px;
   }
 
   button {
@@ -315,6 +316,34 @@
     font-size: 24px;
     border-radius: 30px;
     font-weight: 500;
+    margin: 20px;
+    margin-left: 40px;
+
+    .sdt {
+      position: absolute;
+      top: 0px;
+      left: 300px;
+    }
+    .date_picker {
+      display: inline-block !important;
+      width: 300px;
+      margin-top: -10px;
+    }
+    .button-booking {
+      border-radius: 5px !important;
+      background-color: #ff9e2e;
+      border-color: #ff9e2e;
+      width: 80px;
+      height: 40px;
+      font-size: 18px;
+      font-weight: 500;
+      position: absolute;
+      bottom: -20px;
+      left: 300px;
+    }
+    #booking-form_noidung {
+      height: 100px;
+    }
   }
 }
 
@@ -444,4 +473,66 @@ button:hover,
 button:focus {
   background-color: #a25016;
   border-color: #a25016;
+}
+
+.error {
+  position: relative;
+  height: 600px;
+  .img1 {
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    width: 200px;
+    height: 400px;
+    background-image: url(../../assets/images/e1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .img2 {
+    position: absolute;
+    top: 100px;
+    right: 100px;
+    width: 200px;
+    height: 400px;
+    background-image: url(../../assets/images/e2.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .e404 {
+    display: inline;
+    position: absolute;
+    top: 50px;
+    left: 400px;
+    img {
+      width: 160px;
+    }
+    span {
+      padding: 50px;
+      font-size: 200px;
+      color: rgba(217, 134, 0, 0.748);
+      vertical-align: middle;
+      text-shadow: 4px 4px 8px rgba(217, 134, 0, 0.548);
+    }
+  }
+  h2 {
+    position: absolute;
+    top: 320px;
+    left: 500px;
+    text-align: center;
+    color: red;
+  }
+  .undo {
+    font-size: 80px;
+    color: black;
+    position: absolute;
+    top: 400px;
+    left: 650px;
+  }
+  p {
+    font-size: 20px;
+    color: black;
+    position: absolute;
+    top: 480px;
+    left: 650px;
+  }
 }

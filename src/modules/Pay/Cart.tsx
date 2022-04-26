@@ -4,13 +4,15 @@ import { useState } from "react";
 import { DeleteOutlined, ArrowLeftOutlined } from "@ant-design/icons";
 import { ColumnsType } from "antd/es/table";
 import { data } from "./data";
-import {DataType} from "./type"
+import { DataType } from "./type"
+import { useNavigate } from 'react-router-dom';
 
 export interface CurrentProps {
   callBackCurrent(childCurrent: number): void
 }
 
-function Cart({callBackCurrent}:CurrentProps) {
+function Cart({ callBackCurrent }: CurrentProps) {
+  const navigate = useNavigate();
   const [dataType, setDataType] = useState(data);
   let isDisabled = true;
   if (dataType.length > 0) {
@@ -24,11 +26,11 @@ function Cart({callBackCurrent}:CurrentProps) {
     }
     const value = record.soluong
     const index = Number(record.key) - 1
-    const newRecord = {...dataType[index], soluong: value}
+    const newRecord = { ...dataType[index], soluong: value }
     const AfterValue = dataType.slice(index + 1, dataType.length)
     const BeforeValue = dataType.slice(0, index)
     setDataType(pre => {
-      return [...BeforeValue, newRecord ,...AfterValue]
+      return [...BeforeValue, newRecord, ...AfterValue]
     })
   };
   const handelPlus = (record: DataType) => {
@@ -38,17 +40,17 @@ function Cart({callBackCurrent}:CurrentProps) {
     }
     const value = record.soluong
     const index = Number(record.key) - 1
-    const newRecord = {...dataType[index], soluong: value}
+    const newRecord = { ...dataType[index], soluong: value }
     const AfterValue = dataType.slice(index + 1, dataType.length)
     const BeforeValue = dataType.slice(0, index)
     setDataType(() => {
-      return [...BeforeValue, newRecord ,...AfterValue]
+      return [...BeforeValue, newRecord, ...AfterValue]
     })
   };
   const handelDelete = (record: DataType) => {
     const newData = [...dataType]
     const newRecord = newData.filter(e => e.key !== record.key)
-    for (let i:number = 0; i < newRecord.length; i++) {
+    for (let i: number = 0; i < newRecord.length; i++) {
       newRecord[i].key = i + 1;
     }
     setDataType(newRecord)
@@ -149,7 +151,7 @@ function Cart({callBackCurrent}:CurrentProps) {
         }}
       />
       <div className="handleButton">
-        <Button icon={<ArrowLeftOutlined />}>TIẾP TỤC XEM SẢN PHẨM</Button>
+        <Button icon={<ArrowLeftOutlined />} onClick={() => navigate(-1)}>TIẾP TỤC XEM SẢN PHẨM</Button>
         <Button disabled={isDisabled} onClick={() => callBackCurrent(1)}>THANH TOÁN</Button>
       </div>
     </>

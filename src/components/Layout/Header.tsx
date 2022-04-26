@@ -1,4 +1,4 @@
-import { Input, Button } from "antd";
+import { Input, Button, Badge } from "antd";
 import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.svg";
 import cart from "../../assets/images/shoppingCart.svg";
@@ -21,9 +21,13 @@ const Header = () => {
         enterButton
       />
       <div className="header__right">
-        <button className="shopping_cart">
-          <img src={cart} alt="Giỏ hàng" />
-        </button>
+        <Link to={"/giohang"}>
+          <button className="shopping_cart">
+            <Badge count={1} offset={[8, -5]}>
+              <img src={cart} alt="Giỏ hàng" />
+            </Badge>
+          </button>
+        </Link>
         <Button className="sign_in" type="primary" htmlType="submit">
           Đăng nhập
         </Button>
