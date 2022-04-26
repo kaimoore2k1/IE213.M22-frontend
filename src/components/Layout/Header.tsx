@@ -20,17 +20,18 @@ const Header = () => {
         onSearch={onSearch}
         enterButton
       />
-      <Link to={"/giohang"}>
-        <button className="shopping_cart">
-          <Badge count={1} offset={[8, -5]}>
-            <img src={cart} alt="Giỏ hàng" />
-          </Badge>
-        </button>
-      </Link>
-      <Button className="sign_in" type="primary" htmlType="submit">
-        Đăng nhập
-      </Button>
-
+      <div className="header__right">
+        <Link to={"/giohang"}>
+          <button className="shopping_cart">
+            <Badge count={1} offset={[8, -5]}>
+              <img src={cart} alt="Giỏ hàng" />
+            </Badge>
+          </button>
+        </Link>
+        <Button className="sign_in" type="primary" htmlType="submit">
+          Đăng nhập
+        </Button>
+      </div>
     </div>
   );
 };

@@ -64,28 +64,16 @@
 }
 
 .Header {
-  .sign_in {
-    background-color: #ab602b;
-    width: 110px;
-    height: 48px;
-    font-size: 16px;
-    border-color: #ab602b;
-    border-radius: 16px;
-    font-weight: 500;
-    margin-left: 100px;
-  }
-
-  Button {
-    height: 45px;
-    background-color: #fea135;
-    border-color: #fea135;
-  }
+  display: flex;
+  align-items: center;
+  position: relative;
+  justify-content: space-between;
 
   .search_input {
     width: 600px;
-    margin-top: 30px;
-    margin-left: 120px;
-
+    position: absolute;
+    right: 50%;
+    transform: translateX(50%);
     .ant-input:first-child {
       font-size: 16px;
       border-color: #f3cf7a;
@@ -106,15 +94,32 @@
     }
   }
 
-  .shopping_cart {
-    width: 50px;
-    height: 50px;
-    border-style: dashed;
-    border-color: #f3cf7a;
-    border-radius: 30px;
-    background-color: #ffff;
-    margin-left: 200px;
-    cursor: pointer;
+  Button {
+    height: 45px;
+    background-color: #fea135;
+    border-color: #fea135;
+  }
+  .header__right {
+    padding-right: 30px;
+    .shopping_cart {
+      width: 50px;
+      height: 50px;
+      border-style: dashed;
+      border-color: #f3cf7a;
+      border-radius: 30px;
+      background-color: #ffff;
+      cursor: pointer;
+    }
+    .sign_in {
+      background-color: #ab602b;
+      width: 110px;
+      height: 48px;
+      font-size: 16px;
+      border-color: #ab602b;
+      border-radius: 16px;
+      font-weight: 500;
+      margin-left: 50px;
+    }
   }
 }
 
@@ -139,11 +144,16 @@
   position: sticky !important;
   top: 0;
   z-index: 9999;
-
+  height: 60px;
   .icon {
-    top: 15px;
     position: absolute;
-    right: 200px;
+    right: 50px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    :hover {
+      color: rgba(0, 0, 0, 0.85);
+    }
   }
 
   #nav_item_home {
@@ -161,8 +171,8 @@
   width: 100%;
   font-weight: 500;
   font-size: 18px;
-  height: 60px;
-  padding-top: 8px;
+  height: 100%;
+  padding-top: 5px;
 }
 
 .ant-menu-item:after {
@@ -295,6 +305,16 @@
     top: 20px;
     left: 20px;
     font-size: 18px;
+  }
+
+  button {
+    background-color: #a25016;
+    border: 1px solid #a25016;
+    box-shadow: 0 1px 2px #a25016;
+    width: 158px;
+    height: 58px;
+    font-size: 24px;
+    border-radius: 30px;
     font-weight: 500;
     margin: 20px;
     margin-left: 40px;

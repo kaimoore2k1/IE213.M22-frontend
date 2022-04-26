@@ -98,17 +98,19 @@ function Navigation() {
           Giới thiệu
           <Link to={"gioithieu"} />
         </Menu.Item>
+        <Menu.Item className="icon">
+          <img src={phone} alt="Phone" />
+          <span style={{ fontWeight: "500", fontSize: "16px" }}>
+            0956789999
+          </span>
+          <a href="https://www.facebook.com/senshopdottech">
+            <img style={{ marginLeft: "50px" }} src={face} alt="Facebook" />
+          </a>
+          <a href="https://www.youtube.com/channel/UCEfOnxocSnSHgzmD2FFxnGQ">
+            <img style={{ marginLeft: "20px" }} src={youtube} alt="Youtube" />
+          </a>
+        </Menu.Item>
       </Menu>
-      <div className="icon">
-        <img src={phone} alt="Phone" />
-        <span style={{ fontWeight: "500", fontSize: "16px" }}>0956789999</span>
-        <a href="#">
-          <img style={{ marginLeft: "50px" }} src={face} alt="Facebook" />
-        </a>
-        <a href="#">
-          <img style={{ marginLeft: "20px" }} src={youtube} alt="Youtube" />
-        </a>
-      </div>
     </div>
   );
 }
