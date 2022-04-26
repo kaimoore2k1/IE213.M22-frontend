@@ -1,6 +1,7 @@
 import React from "react";
 import { Layout } from "antd";
-import "../../sass/Pay/LeftContent.scss";
+import "../../../sass/Pay/LeftContent.scss";
+
 import { Steps } from "antd";
 
 const { Header, Content } = Layout;
@@ -16,10 +17,10 @@ function LeftContentHeader() {
   );
 }
 export interface CurrentProps {
-  current:number
+  current: number
 }
 
-function LeftContentContent({current}:CurrentProps) {
+function LeftContentContent({ current }: CurrentProps) {
   interface steps {
     id: number;
     title: string;
@@ -27,21 +28,21 @@ function LeftContentContent({current}:CurrentProps) {
 
 
   // eslint-disable-next-line @typescript-eslint/no-redeclare
-  const steps:steps[] = [
+  const steps: steps[] = [
     {
-      id : 0,
+      id: 0,
       title: "GIỎ HÀNG"
     },
     {
-      id : 1,
+      id: 1,
       title: "THÔNG TIN THANH TOÁN"
     },
     {
-      id : 2,
+      id: 2,
       title: "THANH TOÁN"
     },
     {
-      id : 3,
+      id: 3,
       title: "HOÀN TẤT"
     }
   ]

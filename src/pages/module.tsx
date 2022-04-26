@@ -2,9 +2,12 @@ import { RouterInterface } from "../router/type";
 import Home from "./Home/Home";
 import Store from "./Store/Store"
 import Detail from '../pages/DetailProduct/Detail'
+import Service from "./Service/Service"
 import Intro from "./Introduce/Intro";
 import Blog from "./Blog/Blog";
-import {RouterService} from "../modules/Service"
+import { RouterService } from "../modules/Service"
+import Pay from "./Payment/Pay";
+
 
 const RouterLayout: RouterInterface[] = [
   {
@@ -22,6 +25,14 @@ const RouterLayout: RouterInterface[] = [
     public: true,
     element: () => <Store />,
     children: [
+      {
+        name: "Thucung",
+        index: false,
+        path: "",
+        children: [],
+        public: true,
+        element: () => <Detail />,
+      },
       {
         name: "ChoCanh",
         index: false,
@@ -71,6 +82,14 @@ const RouterLayout: RouterInterface[] = [
     public: true,
     element: () => <Store />,
     children: [
+      {
+        name: "ThucAnThuCung",
+        children: [],
+        index: false,
+        path: "",
+        public: true,
+        element: () => <Detail />,
+      },
       {
         name: "ThucAnChoCho",
         children: [],
@@ -122,6 +141,31 @@ const RouterLayout: RouterInterface[] = [
     element: () => <Store />,
   },
   {
+    name: "SanPhamThuY",
+    index: false,
+    path: "sanphamthuy",
+    children: [],
+    public: true,
+    element: () => <Store />,
+  },
+  {
+    name: "DichVu",
+    index: false,
+    path: "dichvu",
+    public: true,
+    element: () => <Store />,
+    children: [
+      {
+        name: "Dichvu",
+        index: false,
+        path: "",
+        children: [],
+        public: true,
+        element: () => <Service />,
+      },
+    ],
+  },
+  {
     name: "DichVu",
     index: false,
     path: "dichvu",
@@ -144,6 +188,14 @@ const RouterLayout: RouterInterface[] = [
     children: [],
     public: true,
     element: () => <Intro />,
+  },
+  {
+    name: "GioHang",
+    path: "giohang",
+    index: false,
+    public: true,
+    children: [],
+    element: () => <Pay />,
   },
 ];
 

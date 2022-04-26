@@ -26,7 +26,7 @@ function Category() {
           title={
             <Menu.Item key="thucung">
               Thú cưng
-              <Link to={"/thucung/chocanh"} />
+              <Link to={"/thucung"} />
             </Menu.Item>
           }
         >
@@ -56,7 +56,7 @@ function Category() {
           title={
             <Menu.Item key="thucanthucung">
               Thức ăn thú cưng
-              <Link to={"/thucanthucung/ta_cho"} />
+              <Link to={"/thucanthucung"} />
             </Menu.Item>
           }
         >
@@ -85,12 +85,16 @@ function Category() {
           Đồ chơi thú cưng
           <Link to={"/dochoithucung"} />
         </Menu.Item>
+        <Menu.Item key="sanphamthuy">
+          Sản phẩm thú y
+          <Link to={"/sanphamthuy"} />
+        </Menu.Item>
         <SubMenu
           key="dichvu"
           title={
             <Menu.Item key="dichvu">
               Dịch vụ
-              <Link to={"/dichvu/cattia"} />
+              <Link to={"/dichvu"} />
             </Menu.Item>
           }
         >
@@ -109,10 +113,6 @@ function Category() {
           <Menu.Item key="benhvienthuy">
             Bệnh viện thú y
             <Link to={"/dichvu/benhvienthuy"} />
-          </Menu.Item>
-          <Menu.Item key="sanphamthuy">
-            Sản phẩm thú y
-            <Link to={"/dichvu/sanphamthuy"} />
           </Menu.Item>
           <Menu.Item key="chiase">
             Góc chia sẻ

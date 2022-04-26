@@ -1,14 +1,14 @@
 import { Form, Input, Button, Typography } from "antd";
 import React from "react";
 import "../../sass/Home/Home.scss";
-import {information} from './type'
+import { information } from './type'
 
 
 
 function Contact() {
   const { Title, Text } = Typography;
 
-  let Information:information = {
+  let Information: information = {
     name: "",
     mail: "",
     content: ""
@@ -43,13 +43,13 @@ function Contact() {
           onFinish={HandleFinish}
         >
           <Form.Item name="name">
-            <Input placeholder="Tên" onChange={(e) => {Information.name = e.target.value.toString()}}/>
+            <Input placeholder="Tên" onChange={(e) => { Information.name = e.target.value.toString() }} />
           </Form.Item>
           <Form.Item name="mail">
-            <Input placeholder="Mail" onChange={(e) => {Information.mail = e.target.value.toString()}}/>
+            <Input placeholder="Mail" onChange={(e) => { Information.mail = e.target.value.toString() }} />
           </Form.Item>
           <Form.Item name="content">
-            <Input.TextArea onChange={(e) => {Information.content = e.target.value.toString()}} className="InputLastChild" placeholder="Nội dung" />
+            <Input.TextArea onChange={(e) => { Information.content = e.target.value.toString() }} className="InputLastChild" placeholder="Nội dung" />
           </Form.Item>
           <Form.Item name="submit">
             <Button type="primary" htmlType="submit">
