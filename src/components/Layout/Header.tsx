@@ -20,12 +20,14 @@ const Header = () => {
         onSearch={onSearch}
         enterButton
       />
-      <button className="shopping_cart">
-        <img src={cart} alt="Giỏ hàng" />
-      </button>
-      <Button className="sign_in" type="primary" htmlType="submit">
-        Đăng nhập
-      </Button>
+      <div className="header__right">
+        <button className="shopping_cart">
+          <img src={cart} alt="Giỏ hàng" />
+        </button>
+        <Button className="sign_in" type="primary" htmlType="submit">
+          Đăng nhập
+        </Button>
+      </div>
     </div>
   );
 };

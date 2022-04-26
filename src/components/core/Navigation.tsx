@@ -4,8 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import phone from "../../assets/images/phone.svg";
 import face from "../../assets/images/face.svg";
 import youtube from "../../assets/images/youtube.svg";
-import {listSubMenu} from "../../modules/Home/type"
-
+import { listSubMenu } from "../../modules/Home/type";
 
 function Navigation() {
   const { SubMenu } = Menu;
@@ -81,8 +80,6 @@ function Navigation() {
           </Menu.Item>
         </SubMenu>
 
-
-
         <SubMenu
           key="dichvu"
           title={
@@ -126,7 +123,6 @@ function Navigation() {
             Đặt hẹn
             <Link to={"dichvu/dathen"} />
           </Menu.Item>
-
         </SubMenu>
 
         <Menu.Item key="tapchi">
@@ -137,17 +133,19 @@ function Navigation() {
           Giới thiệu
           <Link to={"gioithieu"} />
         </Menu.Item>
+        <Menu.Item className="icon">
+          <img src={phone} alt="Phone" />
+          <span style={{ fontWeight: "500", fontSize: "16px" }}>
+            0956789999
+          </span>
+          <a href="#">
+            <img style={{ marginLeft: "50px" }} src={face} alt="Facebook" />
+          </a>
+          <a href="#">
+            <img style={{ marginLeft: "20px" }} src={youtube} alt="Youtube" />
+          </a>
+        </Menu.Item>
       </Menu>
-      <div className="icon">
-        <img src={phone} alt="Phone" />
-        <span style={{ fontWeight: "500", fontSize: "16px" }}>0956789999</span>
-        <a href="#">
-          <img style={{ marginLeft: "50px" }} src={face} alt="Facebook" />
-        </a>
-        <a href="#">
-          <img style={{ marginLeft: "20px" }} src={youtube} alt="Youtube" />
-        </a>
-      </div>
     </div>
   );
 }
