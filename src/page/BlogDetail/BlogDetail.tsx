@@ -2,6 +2,7 @@ import Editor from "../../component/Jodit/Jodit";
 import BlogPost from "../../component/BlogPost/BlogPost";
 import { blogCard } from "../../component/BlogCard/BlogCard";
 import { Col, Row } from "antd";
+import { decode } from "html-entities";
 import BlogSideCardList from "../../component/BlogSideCardList/BlogSideCardList";
 import "./BlogDetail.scss";
 const exampleSmallBlogCard = {
@@ -93,11 +94,12 @@ const BlogDetail = () => {
         "lorem ipsum dolor sit amet, consectetur adip lorem lorem ipsum dolor sit amet, consectetur adip loremlorem ipsum dolor sit amet, consectetur adip loremlorem ipsum dolor sit amet, consectetur adip lorem",
     },
     id: 1,
-    content: window.localStorage.getItem("blogContent") ?? "<h1>Hello world</h1>",
+    content: decode(window.localStorage.getItem("blogContent")) ?? "<h1>Hello world</h1>",
   };
   return (
     <div className="blog-detail">
       <Editor />
+      
       <Row>
           <Col span={16}>
             <BlogPost blog={exampleblog} />
