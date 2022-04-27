@@ -64,28 +64,16 @@
 }
 
 .Header {
-  .sign_in {
-    background-color: #ab602b;
-    width: 110px;
-    height: 48px;
-    font-size: 16px;
-    border-color: #ab602b;
-    border-radius: 16px;
-    font-weight: 500;
-    margin-left: 100px;
-  }
-
-  Button {
-    height: 45px;
-    background-color: #fea135;
-    border-color: #fea135;
-  }
+  display: flex;
+  align-items: center;
+  position: relative;
+  justify-content: space-between;
 
   .search_input {
     width: 600px;
-    margin-top: 30px;
-    margin-left: 120px;
-
+    position: absolute;
+    right: 50%;
+    transform: translateX(50%);
     .ant-input:first-child {
       font-size: 16px;
       border-color: #f3cf7a;
@@ -106,15 +94,32 @@
     }
   }
 
-  .shopping_cart {
-    width: 50px;
-    height: 50px;
-    border-style: dashed;
-    border-color: #f3cf7a;
-    border-radius: 30px;
-    background-color: #ffff;
-    margin-left: 200px;
-    cursor: pointer;
+  Button {
+    height: 45px;
+    background-color: #fea135;
+    border-color: #fea135;
+  }
+  .header__right {
+    padding-right: 30px;
+    .shopping_cart {
+      width: 50px;
+      height: 50px;
+      border-style: dashed;
+      border-color: #f3cf7a;
+      border-radius: 30px;
+      background-color: #ffff;
+      cursor: pointer;
+    }
+    .sign_in {
+      background-color: #ab602b;
+      width: 110px;
+      height: 48px;
+      font-size: 16px;
+      border-color: #ab602b;
+      border-radius: 16px;
+      font-weight: 500;
+      margin-left: 50px;
+    }
   }
 }
 
@@ -139,18 +144,27 @@
   position: sticky !important;
   top: 0;
   z-index: 9999;
-
+  height: 60px;
   .icon {
-    top: 15px;
     position: absolute;
-    right: 200px;
+    right: 50px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    :hover {
+      color: rgba(0, 0, 0, 0.85);
+    }
+    a:before{
+      display: none;
+    }
   }
 
   #nav_item_home {
     margin-left: 50px;
   }
 
-  .span_item {}
+  .span_item {
+  }
 }
 
 .navBar {
@@ -160,8 +174,8 @@
   width: 100%;
   font-weight: 500;
   font-size: 18px;
-  height: 60px;
-  padding-top: 8px;
+  height: 100%;
+  padding-top: 5px;
 }
 
 .ant-menu-item:after {
@@ -224,7 +238,7 @@
   color: #a25016 !important;
 }
 
-.ant-menu-submenu:hover>.ant-menu-submenu-title>.ant-menu-submenu-arrow {
+.ant-menu-submenu:hover > .ant-menu-submenu-title > .ant-menu-submenu-arrow {
   color: #fe832b !important;
 }
 
@@ -263,13 +277,12 @@
 }
 
 .booking {
-  position: absolute;
-  top: 60px;
+  margin-top: 100px;
+  position: relative;
   .header-form {
     padding: 20px;
     padding-bottom: 5px;
     background-color: #fea135;
-    position: absolute;
     border-top-left-radius: 100%;
     border-top-right-radius: 100%;
     color: white;
@@ -278,7 +291,6 @@
     left: 250px;
     box-shadow: 2px 2px 10px #767676;
   }
-
   .booking-form-img {
     border: 1px solid #ff9e2e;
     width: 800px;
@@ -291,22 +303,50 @@
     background-size: cover;
     opacity: 10%;
   }
-
   .booking-form {
     position: absolute;
     top: 20px;
     left: 20px;
+    font-size: 18px;
   }
 
   button {
-    background-color: #A25016;
-    border: 1px solid #A25016;
-    box-shadow: 0 1px 2px #A25016;
+    background-color: #a25016;
+    border: 1px solid #a25016;
+    box-shadow: 0 1px 2px #a25016;
     width: 158px;
     height: 58px;
     font-size: 24px;
     border-radius: 30px;
     font-weight: 500;
+    margin: 20px;
+    margin-left: 40px;
+
+    .sdt {
+      position: absolute;
+      top: 0px;
+      left: 300px;
+    }
+    .date_picker {
+      display: inline-block !important;
+      width: 300px;
+      margin-top: -10px;
+    }
+    .button-booking {
+      border-radius: 5px !important;
+      background-color: #ff9e2e;
+      border-color: #ff9e2e;
+      width: 80px;
+      height: 40px;
+      font-size: 18px;
+      font-weight: 500;
+      position: absolute;
+      bottom: -20px;
+      left: 300px;
+    }
+    #booking-form_noidung {
+      height: 100px;
+    }
   }
 }
 
@@ -330,9 +370,8 @@
     position: relative;
 
     .active {
-      background-color: #FF9314;
+      background-color: #ff9314;
       color: #fff;
-
     }
 
     li {
@@ -342,22 +381,19 @@
       border-radius: 50%;
       text-align: center;
       color: #000;
-      background-color: #C4C4C4;
+      background-color: #c4c4c4;
       margin: 0 10px;
 
       .service-icons--css {
         font-size: 60px;
         margin-top: 20px;
-
       }
     }
 
     li:hover {
-      background-color: #FF9314;
+      background-color: #ff9314;
       color: #fff;
     }
-
-
   }
 
   .home-service-ul::before {
@@ -370,12 +406,10 @@
     top: 0;
     bottom: 0;
   }
-
 }
 
 .home-service-block {
   display: none;
-
 }
 
 .home-service-block.active {
@@ -399,7 +433,6 @@
     }
   }
 
-
   .service-block-des1 {
     margin: 100px 0 0 80px;
   }
@@ -420,10 +453,10 @@
     color: #fff;
     width: 174px;
     height: 72px;
-    background: #EC7C2D;
+    background: #ec7c2d;
     border-radius: 5px;
     font-size: 24px;
-    border: 1px solid #EC7C2D;
+    border: 1px solid #ec7c2d;
   }
 
   .service-block-des2 {
@@ -441,6 +474,68 @@
 button:active,
 button:hover,
 button:focus {
-  background-color: #A25016;
-  border-color: #A25016
+  background-color: #a25016;
+  border-color: #a25016;
+}
+
+.error {
+  position: relative;
+  height: 600px;
+  .img1 {
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    width: 200px;
+    height: 400px;
+    background-image: url(../../assets/images/e1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .img2 {
+    position: absolute;
+    top: 100px;
+    right: 100px;
+    width: 200px;
+    height: 400px;
+    background-image: url(../../assets/images/e2.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .e404 {
+    display: inline;
+    position: absolute;
+    top: 50px;
+    left: 400px;
+    img {
+      width: 160px;
+    }
+    span {
+      padding: 50px;
+      font-size: 200px;
+      color: rgba(217, 134, 0, 0.748);
+      vertical-align: middle;
+      text-shadow: 4px 4px 8px rgba(217, 134, 0, 0.548);
+    }
+  }
+  h2 {
+    position: absolute;
+    top: 320px;
+    left: 500px;
+    text-align: center;
+    color: red;
+  }
+  .undo {
+    font-size: 80px;
+    color: black;
+    position: absolute;
+    top: 400px;
+    left: 650px;
+  }
+  p {
+    font-size: 20px;
+    color: black;
+    position: absolute;
+    top: 480px;
+    left: 650px;
+  }
 }

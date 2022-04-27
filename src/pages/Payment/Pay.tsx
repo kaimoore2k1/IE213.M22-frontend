@@ -1,5 +1,6 @@
 import React from "react";
-import "../sass/Pay/Pay.scss";
+import "../../sass/Pay/Pay.scss";
+
 import { Row, Col } from "antd";
 import {
   LeftContentContent,
@@ -16,7 +17,7 @@ function Pay() {
   return (
     <div className="Pay__Layout">
       <Row className="Pay__Layout--Row">
-        <Col className="Pay__Layout--Col" style={{height: "100%"}} span={7}>
+        <Col className="Pay__Layout--Col" style={{ height: "100%" }} span={7}>
           <LeftContentHeader />
           <LeftContentContent current={current} />
         </Col>

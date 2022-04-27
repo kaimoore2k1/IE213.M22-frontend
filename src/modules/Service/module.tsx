@@ -34,14 +34,7 @@ const RouterService: RouterInterface[] = [
     public: true,
     element: () => <Hospital />,
   },
-  {
-    name: "SanPhamThuY",
-    children: [],
-    index: false,
-    path: "sanphamthuy",
-    public: true,
-    element: () => <Hospital />,
-  },
+
   {
     name: "ChiaSe",
     children: [],

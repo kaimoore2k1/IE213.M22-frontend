@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { Form, Input, Row, Col, Button, Select } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { CurrentProps } from "./Cart";
-import {FieldData, CustomizedFormProps} from "./type"
+import { FieldData, CustomizedFormProps } from "./type"
+import { useNavigate } from "react-router-dom";
 
 
 function PayInformation({ callBackCurrent }: CurrentProps) {
   const prefixSelector = <Form.Item noStyle>+84</Form.Item>;
+  const navigate = useNavigate();
 
   interface PaymentMethod {
     paymentMethodID: number;
@@ -30,7 +32,7 @@ function PayInformation({ callBackCurrent }: CurrentProps) {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const handelFinish = (e:FieldData[]) => {
+  const handelFinish = (e: FieldData[]) => {
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
@@ -179,7 +181,7 @@ function PayInformation({ callBackCurrent }: CurrentProps) {
         <Input.TextArea style={{ minHeight: "200px" }} />
       </Form.Item>
       <div className="handleButton">
-        <Button icon={<ArrowLeftOutlined />}>TIẾP TỤC XEM SẢN PHẨM</Button>
+        <Button icon={<ArrowLeftOutlined />} onClick={() => navigate(-1)}>TIẾP TỤC XEM SẢN PHẨM</Button>
         <Button htmlType="submit" loading={isLoading}>
           THANH TOÁN
         </Button>
@@ -187,21 +189,21 @@ function PayInformation({ callBackCurrent }: CurrentProps) {
     </Form>
   );
 
-  const fields:FieldData[] =[
-    {name: ['firstName']},
-    {name: ['name']},
-    {name: ['country']},
-    {name: ['address']},
-    {name: ['code']},
-    {name: ['city']},
-    {name: ['numberPhone']},
-    {name: ['email']},
-    {name: ['paymentMethod']},
-    {name: ['voucher']},
-    {name: ['note']}
+  const fields: FieldData[] = [
+    { name: ['firstName'] },
+    { name: ['name'] },
+    { name: ['country'] },
+    { name: ['address'] },
+    { name: ['code'] },
+    { name: ['city'] },
+    { name: ['numberPhone'] },
+    { name: ['email'] },
+    { name: ['paymentMethod'] },
+    { name: ['voucher'] },
+    { name: ['note'] }
   ]
 
-  let tempFeilds:FieldData[] = []
+  let tempFeilds: FieldData[] = []
 
   return (
     <>
@@ -212,7 +214,7 @@ function PayInformation({ callBackCurrent }: CurrentProps) {
           onChange={(newFields) => {
             tempFeilds = newFields
           }}
-          onSubmit={ () => handelFinish(tempFeilds)}
+          onSubmit={() => handelFinish(tempFeilds)}
         />
       </div>
     </>

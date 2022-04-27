@@ -1,36 +1,116 @@
 .Wrapper {
-    width: 988px;
-    border: 1px solid #FFC107;
-    padding: 30px;
-    text-align: justify;
+  width: 988px;
+  border: 1px solid #ffc107;
+  padding: 30px;
+  text-align: justify;
 
-    h1 {
-        color: #FFC107;
-        font-size: 20px;
-        font-weight: 500;
+  h1 {
+    color: #ffc107;
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  h2 {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .pTitle {
+    font-weight: 500;
+  }
+
+  .service {
+    color: #ffc107;
+  }
+
+  .imgCustom {
+    width: 100%;
+    height: auto;
+    margin: 10px 0px;
+  }
+
+  .moreInfor {
+    background-color: rgba(255, 193, 7, 0.3);
+    text-align: center !important;
+    padding: 10px 10px;
+  }
+}
+.main-service-imgLeft {
+  position: relative;
+  width: 900px;
+  height: 150px;
+  background-color: #fff5d7;
+  border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px;
+  border-top-right-radius: 200px;
+  margin-bottom: 50px;
+  img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
+  .main-content {
+    font-weight: 450;
+    position: absolute;
+    top: 10px;
+    left: 170px;
+    width: 650px;
+    p {
+      margin-bottom: 5px !important;
+      color: black;
     }
-
+    span {
+      position: absolute;
+      right: -30px;
+      bottom: -20px;
+      font-weight: 500;
+      color: red;
+    }
+  }
+}
+.main-service-imgRight {
+  position: relative;
+  width: 900px;
+  height: 150px;
+  background-color: #fff5d7;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+  border-top-left-radius: 200px;
+  margin-bottom: 50px;
+  img {
+    position: absolute;
+    right: 0px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
+  .circle {
+    width: 150px;
+    height: 150px;
+    background-image: url(../../assets/images/service_1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+  }
+  .main-content {
+    font-weight: 450;
+    position: absolute;
+    top: 10px;
+    left: 100px;
+    width: 620px;
     h2 {
-        font-size: 14px;
-        font-weight: 500;
+      margin-left: 440px;
     }
-    .pTitle {
-        font-weight: 500;
+    p {
+      margin-left: -30px;
+      margin-bottom: 5px !important;
+      color: black;
     }
-
-    .service {
-        color: #FFC107;
+    span {
+      position: absolute;
+      left: -50px;
+      bottom: -20px;
+      font-weight: 500;
+      color: red;
     }
-
-    .imgCustom {
-        width: 100%;
-        height: auto;
-        margin: 10px 0px;
-    }
-
-    .moreInfor {
-        background-color: rgba(255, 193, 7, 0.3);
-        text-align: center !important;
-        padding: 10px 10px;
-    }
+  }
 }

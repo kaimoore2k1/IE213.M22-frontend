@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import phone from "../../assets/images/phone.svg";
 import face from "../../assets/images/face.svg";
 import youtube from "../../assets/images/youtube.svg";
-import {listSubMenu} from "../../modules/Home/type"
+import { listSubMenu } from "../../modules/Home/type"
 
 
 function Navigation() {
@@ -79,55 +79,16 @@ function Navigation() {
             Đồ chơi thú cưng
             <Link to={"dochoithucung"} />
           </Menu.Item>
-        </SubMenu>
-
-
-
-        <SubMenu
-          key="dichvu"
-          title={
-            <>
-              <span>Dịch vụ</span>
-              <CaretDownOutlined />
-            </>
-          }
-        >
-          <Menu.Item key="cattia">
-            Cắt tỉa
-            <Link to={"dichvu/cattia"} />
-          </Menu.Item>
-
-          <Menu.Item key="tronggiu">
-            Trông giữ
-            <Link to={"dichvu/tronggiu"} />
-          </Menu.Item>
-
-          <Menu.Item key="spa">
-            Spa
-            <Link to={"dichvu/spa"} />
-          </Menu.Item>
-
-          <Menu.Item key="benhvienthuy">
-            Bệnh viện thú y
-            <Link to={"dichvu/benhvienthuy"} />
-          </Menu.Item>
-
           <Menu.Item key="sanphamthuy">
             Sản phẩm thú y
-            <Link to={"dichvu/sanphamthuy"} />
+            <Link to={"sanphamthuy"} />
           </Menu.Item>
-
-          <Menu.Item key="chiase">
-            Góc chia sẻ
-            <Link to={"dichvu/chiase"} />
-          </Menu.Item>
-
-          <Menu.Item key="dathen">
-            Đặt hẹn
-            <Link to={"dichvu/dathen"} />
-          </Menu.Item>
-
         </SubMenu>
+
+        <Menu.Item key="dichvu">
+          Dịch vụ
+          <Link to={"dichvu"} />
+        </Menu.Item>
 
         <Menu.Item key="tapchi">
           Tạp chí thú cưng
@@ -137,17 +98,19 @@ function Navigation() {
           Giới thiệu
           <Link to={"gioithieu"} />
         </Menu.Item>
+        <Menu.Item className="icon">
+          <img src={phone} alt="Phone" />
+          <span style={{ fontWeight: "500", fontSize: "16px" }}>
+            0956789999
+          </span>
+          <a href="https://www.facebook.com/senshopdottech">
+            <img style={{ marginLeft: "50px" }} src={face} alt="Facebook" />
+          </a>
+          <a href="https://www.youtube.com/channel/UCEfOnxocSnSHgzmD2FFxnGQ">
+            <img style={{ marginLeft: "20px" }} src={youtube} alt="Youtube" />
+          </a>
+        </Menu.Item>
       </Menu>
-      <div className="icon">
-        <img src={phone} alt="Phone" />
-        <span style={{ fontWeight: "500", fontSize: "16px" }}>0956789999</span>
-        <a href="#">
-          <img style={{ marginLeft: "50px" }} src={face} alt="Facebook" />
-        </a>
-        <a href="#">
-          <img style={{ marginLeft: "20px" }} src={youtube} alt="Youtube" />
-        </a>
-      </div>
     </div>
   );
 }

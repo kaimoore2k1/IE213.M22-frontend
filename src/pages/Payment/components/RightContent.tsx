@@ -1,15 +1,15 @@
 import React from "react";
-import "../../sass/Pay/RightContent.scss";
+import "../../../sass/Pay/RightContent.scss";
 import Cart from "../../../modules/Pay/Cart"
 import PayInformation from "../../../modules/Pay/PayInformation"
 import PaymentFinished from "../../../modules/Pay/PaymentFinished";
 
 interface CurrentProps {
-  current:number
+  current: number
   callBackCurrent(childCurrent: number): void
 }
 
-function RightContent({current, callBackCurrent}:CurrentProps) {
+function RightContent({ current, callBackCurrent }: CurrentProps) {
   switch (current) {
     case 0:
       return <Cart callBackCurrent={callBackCurrent} />
