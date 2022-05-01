@@ -180,7 +180,7 @@ function PayInformation({ callBackCurrent }: CurrentProps) {
       <Form.Item name="note" label="Ghi chú đơn hàng (Tùy chọn)">
         <Input.TextArea style={{ minHeight: "200px" }} />
       </Form.Item>
-      <div className="handleButton">
+      <div className="handleButton handleButton_responsive">
         <Button icon={<ArrowLeftOutlined />} onClick={() => navigate(-1)}>TIẾP TỤC XEM SẢN PHẨM</Button>
         <Button htmlType="submit" loading={isLoading}>
           THANH TOÁN

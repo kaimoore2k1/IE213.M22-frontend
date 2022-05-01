@@ -7,6 +7,7 @@ import Intro from "./Introduce/Intro";
 import Blog from "./Blog/Blog";
 import { RouterService } from "../modules/Service";
 import Pay from "./Payment/Pay";
+import PetItem from "./Products/PetItems/PetItem";
 
 const RouterLayout: RouterInterface[] = [
   {
@@ -121,7 +122,7 @@ const RouterLayout: RouterInterface[] = [
     children: [],
     path: "vatdungthucung",
     public: true,
-    element: () => <Store />,
+    element: () => <PetItem />,
   },
   {
     name: "PhuKienThuCung",
