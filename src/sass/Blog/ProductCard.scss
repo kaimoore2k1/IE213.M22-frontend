@@ -20,11 +20,17 @@
     padding: 0.7rem !important;
 
     .ant-card-meta-title {
-      font-size: 1.2rem !important;
+      font-size: 1.1rem !important;
+
       -webkit-box-orient: vertical;
       display: -webkit-box;
       overflow: hidden;
-      -webkit-line-clamp: 1;
+      -webkit-line-clamp: 2;
+      text-overflow: ellipsis;
+      white-space: unset !important;
+      a {
+        color: #333 !important;
+      }
     }
     .ant-card-meta-description {
       font-size: 0.8rem;
@@ -58,7 +64,7 @@
         margin-left: 0.5rem;
       }
     }
-    .ant-form-item{
+    .ant-form-item {
       margin-bottom: 0px;
     }
     .card-additional-info {
@@ -76,7 +82,6 @@
             border: transparent;
             background: #ffe6aa;
             height: 30px;
-            
           }
           .ant-radio-button-wrapper:before {
             display: none;
@@ -107,10 +112,10 @@
             fill: #000;
           }
         }
-        .ant-btn:active{
+        .ant-btn:active {
           background-color: #e8a600;
-        
-          path{
+
+          path {
             transform: scale(1.1);
           }
         }
