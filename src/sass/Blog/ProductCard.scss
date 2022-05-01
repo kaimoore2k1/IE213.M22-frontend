@@ -21,13 +21,14 @@
 
     .ant-card-meta-title {
       font-size: 1.1rem !important;
-
+      margin-bottom: 0px;
       -webkit-box-orient: vertical;
       display: -webkit-box;
       overflow: hidden;
       -webkit-line-clamp: 2;
       text-overflow: ellipsis;
       white-space: unset !important;
+      line-height: 1.1;
       a {
         color: #333 !important;
       }
@@ -58,11 +59,12 @@
       font-size: 1rem;
       font-weight: bold;
       color: #333;
-      .original-price {
-        text-decoration: line-through;
-        color: #999;
-        margin-left: 0.5rem;
-      }
+    }
+    .original-price {
+      text-decoration: line-through;
+      margin-right: 1rem;
+      color: #999;
+      font-weight: bold;
     }
     .ant-form-item {
       margin-bottom: 0px;
