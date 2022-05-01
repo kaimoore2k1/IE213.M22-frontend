@@ -1,5 +1,5 @@
 export interface product {
-    productName: string;
+    name: string;
     description: string;
     rating: number;
     ratingCount: number;
@@ -11,12 +11,48 @@ export interface product {
     };
     image: {
       url: string;
-      title: string;
+      title?: string;
     };
     category: string[];
     id: number;
 }
+interface image {
+    url: string;
+    title?: string;
+    author?: string;
+}
+export interface productDetail{
+  name: string;
+  description: string;
+  price: number;
+  rating: number;
+  salePrice?: number;
+  productVariant?: {
+    size?: string[];
+    color?: string[];
+  };
+  image: image[];
+  category: string[];
+  content: string;
+  id: number;
+  stock: number;
+  comment: comment[];
+}
+export interface commentAuthor{
+  id: number;
+  name: string;
+  avatar:{
+    url: string;
+    alt?: string;
+  }
 
+}
+export interface comment{
+  id: number;
+  content: string;
+  rating?: number;
+  author:commentAuthor;
+}
 export interface productCardProps {
   product: product;
 }

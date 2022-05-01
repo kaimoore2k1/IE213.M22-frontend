@@ -1,31 +1,36 @@
 import { useState, useEffect } from "react";
 import { Button, Card, Rate, Form, Radio } from "antd";
+import { Link } from "react-router-dom";
 import { AddToCartIcon, SearchIcon } from "../../assets/icons/BlogCustomIcon";
 import "../../sass/Blog/ProductCard.scss";
 import { productCardProps } from "./type";
+import toSlug from "../../assets/toSlug";
 
 const ProductCard = ({ product }: productCardProps) => {
-  const [viewHidden, setViewHidden] = useState(true);
+  const [viewHidden, setViewHidden] = useState(false);
 
-  
   useEffect(() => {
     const productAddInfo = document.querySelector(
       `#product-card-${product.id} .card-additional-info`
     );
     if (viewHidden) {
       productAddInfo?.classList.remove("hidden");
-    }
-    else{
+    } else {
       productAddInfo?.classList.add("hidden");
     }
   }, [viewHidden]);
 
-  
   function handelAddToCart(value: any) {
-    console.log(value);
+    console.log({
+      variant: value ?? null,
+      id: product.id,
+      name: product.name,
+      price: product.salePrice ?? product.price,
+      image: product.image,
+      quantity: 1,
+    });
   }
 
-  
   return (
     <Card
       onMouseEnter={() => setViewHidden(true)}
@@ -33,10 +38,16 @@ const ProductCard = ({ product }: productCardProps) => {
       className="product-card"
       id={`product-card-${product.id}`}
       hoverable={true}
-      cover={<img src={product.image.url} alt="product" />}
+      cover={
+        <Link to={`/san-pham/${toSlug(product.name)}`}>
+          <img src={product.image.url} alt="product" />
+        </Link>
+      }
     >
       <Card.Meta
-        title={product.productName}
+        title={
+          <Link to={`/san-pham/${toSlug(product.name)}`}>{product.name}</Link>
+        }
         description={product.description}
       />
       <div className="rating-container">
@@ -93,7 +104,9 @@ const ProductCard = ({ product }: productCardProps) => {
             </div>
           ) : null}
           <div className="action">
-            <Button type="primary" icon={<SearchIcon />} />
+            <Link to={`/san-pham/${toSlug(product.name)}`}>
+              <Button type="primary" icon={<SearchIcon />} />
+            </Link>
             <Form.Item>
               <Button
                 type="primary"
