@@ -1,6 +1,4 @@
 .footer-container {
-  display: grid;
-  grid-template-rows: auto auto;
   font-weight: bold;
   width: 100%;
   p {
@@ -8,12 +6,8 @@
     margin-bottom: 0px;
   }
   .footer-content {
-    display: grid;
-    grid-template-columns: 40% 20% 40%;
-    justify-content: center;
     background-color: #f3cf7a;
-    padding: 20px 0;
-    align-content: space-around;
+    padding: 20px 20px;
     #content-3 {
       display: flex;
       align-content: center;
@@ -71,5 +65,12 @@
     padding: 10px 20px;
     background-color: #a25016;
     color: #ffffff;
+  }
+}
+@media (max-width: 768px){
+  .footer-content {
+    .ant-col{
+      margin-bottom: 1rem;
+    }
   }
 }

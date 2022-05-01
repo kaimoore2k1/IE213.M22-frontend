@@ -1,10 +1,11 @@
 import "../../sass/Home/Footer.scss";
+import {Row, Col} from "antd";
 
 function Footer() {
   return (
     <section className="footer-container">
-      <div className="footer-content">
-        <div className="footer-left-content">
+      <Row className="footer-content" >
+        <Col xl={9} lg={8}  md={8} sm={24} xs={24} className="footer-left-content" >
           <div className="logo-container">
             <img
               src={require("../../assets/images/footer/SenShop-Logo-clone.png")}
@@ -24,8 +25,8 @@ function Footer() {
               <p> Tạo dựng niềm tin cho khách hàng!</p>
             </div>
           </div>
-        </div>
-        <div className="footer-center-content">
+        </Col>
+        <Col xl={6} lg={8} md={8} sm={24} xs={24} className="footer-center-content" >
           <p>Về chúng tôi</p>
           <ul>
             <li>Giới thiệu</li>
@@ -53,8 +54,8 @@ function Footer() {
               />
             </a>
           </div>
-        </div>
-        <div className="footer-right-content">
+        </Col>
+        <Col xl={9} lg={8} md={8} sm={24} xs={24} className="footer-right-content">
           <p>Dịch vụ thú cưng Senshop</p>
           <div>
             <img
@@ -96,8 +97,8 @@ function Footer() {
               toàn cầu chứng nhận
             </p>
           </div>
-        </div>
-      </div>
+        </Col>
+      </Row>
       <div id="copyright">
         Copyright © 2022. Bản quyền được sở hữu bởi Senshop
       </div>
