@@ -21,7 +21,7 @@ function PetItem() {
           <ProductCategorySection
             productList={data.getAllProductsByCategory}
             categoryList={[]}
-            sectionName=""
+            sectionName="Vật dụng thú cưng"
           />
         </Col>
       </Row>
