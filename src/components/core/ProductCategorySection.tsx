@@ -2,9 +2,8 @@ import { useState } from "react";
 import ProductCategoryButtons from "./ProductCategoryButtons";
 import ProductCard from "./ProductCard";
 import "../../sass/Blog/ProductCategorySection.scss";
-import {productCategorySectionProps} from './type'
+import { productCategorySectionProps } from "./type";
 import { Row, Col } from "antd";
-
 
 const ProductCategorySection = ({
   productList,
@@ -14,10 +13,9 @@ const ProductCategorySection = ({
   const [page, setPage] = useState<number>(0);
   const [productPerPage, setProductPerPage] = useState<number>(4);
   const [currentCategory, setCurrentCategory] = useState<number>(0);
-
   const updateCategory = (index: number) => {
     setCurrentCategory(index);
-    console.log('index :>> ', index);
+    console.log("index :>> ", index);
     console.log("currentCategory :>> ", currentCategory);
   };
 
@@ -29,7 +27,7 @@ const ProductCategorySection = ({
           <button
             type="button"
             className="pre-page-button page-button"
-            onClick={() => setPage(page - 1)}
+            onClick={() => setPage((page) => (page - 1 < 0 ? 0 : page - 1))}
           >
             {" "}
             &lt; Trang trước{" "}
@@ -40,14 +38,21 @@ const ProductCategorySection = ({
               min="1"
               max={`${productList.length / productPerPage}`}
               type="number"
-              defaultValue={page+1}
+              defaultValue={ 1}
+              value={page + 1}
             />
             <span>/ {Math.ceil(productList.length / productPerPage)}</span>
           </div>
           <button
             type="button"
             className="next-page-button page-button"
-            onClick={() => setPage(page + 1)}
+            onClick={() =>
+              setPage((page) =>
+                page + 1 > Math.floor(productList.length / productPerPage)
+                  ? Math.floor(productList.length / productPerPage)
+                  : page + 1
+              )
+            }
           >
             {" "}
             Trang sau &gt;
@@ -68,8 +73,8 @@ const ProductCategorySection = ({
             .slice(page * productPerPage, (page + 1) * productPerPage)
             .map((item) => {
               return (
-                <Col key={item.id}xl={5} lg={5} md={6} sm={12} xs={24}>
-                  <ProductCard  product={item} />
+                <Col key={item.id} xl={5} lg={5} md={6} sm={12} xs={24}>
+                  <ProductCard product={item} />
                 </Col>
               );
             })}

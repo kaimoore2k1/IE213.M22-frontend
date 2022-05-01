@@ -5,7 +5,7 @@ export interface product {
     ratingCount: number;
     price: number;
     salePrice?: number;
-    productVariant?: {
+    variant?: {
       size?: string[];
       color?: string[];
     };
