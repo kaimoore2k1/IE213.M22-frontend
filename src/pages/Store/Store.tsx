@@ -1,10 +1,12 @@
 import React from 'react'
 import { Row, Col } from "antd";
-import {Outlet} from 'react-router-dom'
+import {Outlet, useLocation} from 'react-router-dom'
 import {Category} from "../../components/core"
 
 
 function Store() {
+  const location = useLocation()
+  console.log(location)
   return (
     <div className="store__layout">
       <Row>

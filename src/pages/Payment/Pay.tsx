@@ -17,11 +17,11 @@ function Pay() {
   return (
     <div className="Pay__Layout">
       <Row className="Pay__Layout--Row">
-        <Col className="Pay__Layout--Col" style={{ height: "100%" }} span={7}>
+        <Col className="Pay__Layout--Col" style={{ height: "100%" }} span={7} xs={0} sm={0} md={0} lg={7} xl={7}>
           <LeftContentHeader />
           <LeftContentContent current={current} />
         </Col>
-        <Col className="Pay__Layout--Col" span={17}>
+        <Col className="Pay__Layout--Col" span={17} xs={24} sm={24} md={24} lg={17} xl={17}>
           <RightContent current={current} callBackCurrent={callBackCurrent} />
         </Col>
       </Row>

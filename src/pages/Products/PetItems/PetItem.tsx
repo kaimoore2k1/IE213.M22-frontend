@@ -7,7 +7,8 @@ import { ProductCategorySection } from "../../../components/core";
 
 function PetItem() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { loading, error, data } = useQuery(getAllProductsByCategory);
+
+  const { loading, error, data } = useQuery(getAllProductsByCategory("vatdungthucung"));
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error...</p>;
   return (
@@ -20,7 +21,7 @@ function PetItem() {
           <ProductCategorySection
             productList={data.getAllProductsByCategory}
             categoryList={[]}
-            sectionName="Vật dụng thú cưng"
+            sectionName=""
           />
         </Col>
       </Row>

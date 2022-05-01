@@ -1,3 +1,61 @@
+@media screen and (max-width: 786px) {
+    .ant-table-thead {
+        height: 30px !important;
+        tr {
+            height: 30px !important;
+            border: 2px solid #c4c4c4 !important;
+            th {
+                font-size: 15px !important;
+                color: #6E3B3B !important;
+                font-weight: 500 !important;
+            }
+        }
+    }
+    .ant-table-tbody {
+        tr {
+            td {
+                img {
+                    min-width: 60px !important;
+                    min-height: 60px !important;
+                    height: 12vh !important;
+                    margin-right: 0px !important;
+                }
+            }
+        }
+    }
+    
+    .ant-table-summary {
+        font-size: 17px !important;
+    }
+    .handleButton {
+        width: 80% !important;
+        left: 10% !important;
+        display: inline-block !important;
+        button {
+            height: 45px !important;
+            font-size: 15px !important;
+        }
+        button:last-child {
+            margin-left: 10px !important;
+        }
+    }
+    .handleButton_responsive {
+        button:first-child {
+            display: none;
+        }
+    }
+    .PaymentFinished {
+        padding: 50px 20px 0px 20px !important;
+    
+        button {
+            height: 45px !important;
+            font-size: 15px !important;
+            width: 190px !important;
+            margin-left: 45% !important;
+        }
+    }
+}
+
 .ant-table-thead {
     height: 99px;
 
@@ -60,8 +118,8 @@
             }
 
             img {
-                width: 100px !important;
-                height: 100px !important;
+                width: 100px ;
+                height: 100px ;
                 margin-right: 25px;
             }
 

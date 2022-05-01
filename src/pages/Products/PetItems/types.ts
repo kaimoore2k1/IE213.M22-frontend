@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
-export const getAllProductsByCategory = gql`
+export const getAllProductsByCategory = (a:string) => gql`
   query {
-    getAllProductsByCategory(category: "vatdungthucung") {
+    getAllProductsByCategory(category: "${a}") {
       name
       price
       image{
