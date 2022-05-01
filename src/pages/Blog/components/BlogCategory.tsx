@@ -61,8 +61,8 @@ const BlogCategory = ({ blogList, categoryList }: blogCategoryProps) => {
                 .filter((blog) => blog.category === currentCategory)
                 .slice(page * blogPerPage, (page + 1) * blogPerPage - 1)
                 .map((blog) => (
-                  <Col span="12" className="blog-card-wraper">
-                    <BlogCard key={blog.id} blog={blog} type="large" />
+                  <Col span="12" key={blog.id} className="blog-card-wraper">
+                    <BlogCard blog={blog} type="large" />
                   </Col>
                 ))}
             </Row>
