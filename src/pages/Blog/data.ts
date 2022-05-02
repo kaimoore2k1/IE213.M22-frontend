@@ -22,10 +22,10 @@ export const exampleSmallBlogCard = {
     likeCount: 12,
     commentCount: 3,
     shareCount: 2,
-    images: [{
+    images: {
         url: "https://via.placeholder.com/600/92c952",
         title: "hello world"
-    }],
+    },
     id: 1,
     author: "John Smith",
     date: new Date(),
@@ -39,10 +39,10 @@ export const exampleLargeBlogCard = {
     description:
         "lorem ipsum dolor sit amet, consectetur adip lorem lorem ipsum dolor sit amet, consectetur adip loremlorem ipsum dolor sit amet, consectetur adip loremlorem ipsum dolor sit amet, consectetur adip lorem",
     categories: "pet blog",
-    images: [{
+    images: {
         url: "https://via.placeholder.com/600/92c952",
         title: "hello world"
-    }],
+    },
     id: 1,
     author: "John Smith",
     date: new Date(),

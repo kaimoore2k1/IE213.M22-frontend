@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Row, Col } from "antd";
 import { useLocation } from "react-router-dom";
 import { Category, ProductCategorySection } from "../../components/core";
@@ -8,10 +8,8 @@ import { getAllProductsByCategory } from "../../graphql/schema/product.graphql";
 function Store() {
   const location = useLocation();
   const pathName = location.pathname.split("/");
-  pathName.shift()
-  const { loading, error, data } = useQuery(
-    getAllProductsByCategory(pathName)
-  );
+  pathName.shift();
+  const { loading, error, data } = useQuery(getAllProductsByCategory(pathName));
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error...</p>;
   return (
