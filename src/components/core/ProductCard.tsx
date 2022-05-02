@@ -26,7 +26,7 @@ const ProductCard = ({ product }: productCardProps) => {
       id: product.id,
       name: product.name,
       price: product.salePrice ?? product.price,
-      image: product.image,
+      image: product.images,
       quantity: 1,
     });
   }
@@ -40,7 +40,7 @@ const ProductCard = ({ product }: productCardProps) => {
       hoverable={true}
       cover={
         <Link to={`/san-pham/${toSlug(product.name)}`}>
-          <img src={product.image.url} alt="product" />
+          <img src={product.images[0].url} alt="product" />
         </Link>
       }
     >
@@ -76,7 +76,7 @@ const ProductCard = ({ product }: productCardProps) => {
                   name="size"
                   className="size"
                 >
-                  <Radio.Group defaultValue={product.productVariant.size[0]}>
+                  <Radio.Group defaultValue={product.productVariant.size}>
                     {product.productVariant.size.map((size: string) => (
                       <Radio.Button key={size} value={size}>
                         {size}
@@ -87,7 +87,7 @@ const ProductCard = ({ product }: productCardProps) => {
               ) : null}
               {product.productVariant.color ? (
                 <Form.Item
-                  initialValue={product.productVariant.color[0]}
+                  initialValue={product.productVariant.color}
                   label="Màu sắc:"
                   name="color"
                   className="color"

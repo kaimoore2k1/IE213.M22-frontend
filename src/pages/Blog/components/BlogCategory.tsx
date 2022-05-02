@@ -58,7 +58,7 @@ const BlogCategory = ({ blogList, categoryList }: blogCategoryProps) => {
           <Col span={16} className="blog-card-container">
             <Row gutter={[16, 16]}>
               {blogList
-                .filter((blog) => blog.category === currentCategory)
+                .filter((blog) => blog.categories === currentCategory)
                 .slice(page * blogPerPage, (page + 1) * blogPerPage - 1)
                 .map((blog) => (
                   <Col span="12" key={blog.id} className="blog-card-wraper">
@@ -71,7 +71,7 @@ const BlogCategory = ({ blogList, categoryList }: blogCategoryProps) => {
         <div className="blog-category-footer">
           <Pagination
             total={
-              blogList.filter((blog) => blog.category === currentCategory)
+              blogList.filter((blog) => blog.categories === currentCategory)
                 .length
             }
             showTotal={(total, range) =>

@@ -9,7 +9,7 @@ function Store() {
   const location = useLocation();
   const pathName = location.pathname.split("/");
   const { loading, error, data } = useQuery(
-    getAllProductsByCategory(pathName[1])
+    getAllProductsByCategory([pathName[1]])
   );
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error...</p>;
