@@ -8,8 +8,10 @@ import { getAllProductsByCategory } from "../../graphql/schema/product.graphql";
 function Store() {
   const location = useLocation();
   const pathName = location.pathname.split("/");
+  pathName.shift()
+  console.log(pathName)
   const { loading, error, data } = useQuery(
-    getAllProductsByCategory([pathName[1]])
+    getAllProductsByCategory(pathName)
   );
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error...</p>;
