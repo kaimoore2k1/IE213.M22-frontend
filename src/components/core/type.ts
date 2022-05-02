@@ -5,7 +5,7 @@ export interface product {
     ratingCount: number;
     price: number;
     salePrice?: number;
-    productVariant?: Variant;
+    variant?: Variant;
     images: [Image];
     categories: string[];
     id: number;

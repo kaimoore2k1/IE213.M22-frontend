@@ -8,7 +8,6 @@ import toSlug from "../../assets/toSlug";
 
 const ProductCard = ({ product }: productCardProps) => {
   const [viewHidden, setViewHidden] = useState(false);
-
   useEffect(() => {
     const productAddInfo = document.querySelector(
       `#product-card-${product.id} .card-additional-info`
@@ -67,17 +66,17 @@ const ProductCard = ({ product }: productCardProps) => {
       {/* Khi hover vao trong Card  */}
       <Form onFinish={handelAddToCart}>
         <div className="card-additional-info hidden">
-          {product.productVariant ? (
+          {product.variant ? (
             <div className="obtional-variant">
-              {product.productVariant.size ? (
+              {product.variant.size ? (
                 <Form.Item
-                  initialValue={product.productVariant.size[0]}
+                  initialValue={product.variant.size}
                   label="Kích cỡ:"
                   name="size"
                   className="size"
                 >
-                  <Radio.Group defaultValue={product.productVariant.size}>
-                    {product.productVariant.size.map((size: string) => (
+                  <Radio.Group defaultValue={product.variant.size[0]}>
+                    {product.variant.size.map((size: string) => (
                       <Radio.Button key={size} value={size}>
                         {size}
                       </Radio.Button>
@@ -85,15 +84,15 @@ const ProductCard = ({ product }: productCardProps) => {
                   </Radio.Group>
                 </Form.Item>
               ) : null}
-              {product.productVariant.color ? (
+              {product.variant.color ? (
                 <Form.Item
-                  initialValue={product.productVariant.color}
+                  initialValue={product.variant.color}
                   label="Màu sắc:"
                   name="color"
                   className="color"
                 >
-                  <Radio.Group defaultValue={product.productVariant.color[0]}>
-                    {product.productVariant.color.map((color: string) => (
+                  <Radio.Group defaultValue={product.variant.color[0]}>
+                    {product.variant.color.map((color: string) => (
                       <Radio.Button key={color} value={color}>
                         {color}
                       </Radio.Button>
