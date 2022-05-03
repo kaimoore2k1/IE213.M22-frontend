@@ -2,6 +2,7 @@ import { RouterInterface } from "./type";
 import Layout from "../components/Layout/Layout";
 import NotFound from "../pages/NotFound/NotFound";
 import RouterLayout from "../pages/module"
+import AdminLayout from "../admin/components/layout/AdminLayout";
 
 const RouterView: RouterInterface[] = [
   {
@@ -18,6 +19,14 @@ const RouterView: RouterInterface[] = [
     children: [],
     element: () => <NotFound />,
   },
+  {
+    name: "Admin",
+    path: "/admin",
+    index: false,
+    public: true,
+    children: [],
+    element: () => <AdminLayout />,
+  }
 ];
 
 export default RouterView;

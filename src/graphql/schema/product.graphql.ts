@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 
 export const getAllProductsByCategory = (category: string[]) => gql`
   query {
-    getAllProductsByCategory (categories:"${category}") {
+    getAllProductsByCategory (categories:[${category.map(cate => "\"" + cate + "\"")}]) {
       name
       price
       stock
