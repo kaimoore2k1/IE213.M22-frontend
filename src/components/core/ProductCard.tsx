@@ -38,14 +38,14 @@ const ProductCard = ({ product }: productCardProps) => {
       id={`product-card-${product.id}`}
       hoverable={true}
       cover={
-        <Link to={`/san-pham/${toSlug(product.name)}`}>
+        <Link to={`${toSlug(product.name)}`}>
           <img src={product.images[0].url} alt="product" />
         </Link>
       }
     >
       <Card.Meta
         title={
-          <Link to={`/san-pham/${toSlug(product.name)}`}>{product.name}</Link>
+          <Link to={`${toSlug(product.name)}`}>{product.name}</Link>
         }
         description={product.description}
       />
@@ -103,7 +103,7 @@ const ProductCard = ({ product }: productCardProps) => {
             </div>
           ) : null}
           <div className="action">
-            <Link to={`/san-pham/${toSlug(product.name)}`}>
+            <Link to={`${toSlug(product.name)}`}>
               <Button type="primary" icon={<SearchIcon />} />
             </Link>
             <Form.Item>
