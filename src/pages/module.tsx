@@ -9,6 +9,8 @@ import { RouterService } from "../modules/Service";
 import ServiceLayout from '../pages/Service/ServiceLayout'
 import Pay from "./Payment/Pay";
 
+import LoginLogout from "../modules/Login-Logout/LoginLogout";
+
 const RouterLayout: RouterInterface[] = [
   {
     name: "Homepage",
@@ -198,13 +200,22 @@ const RouterLayout: RouterInterface[] = [
     element: () => <Pay />,
   },
   {
+    name: "login",
+    path: "login",
+    index: false,
+    public: true,
+    children: [],
+    element: () => <LoginLogout />,
+  },
+  {
     name: "SanPham",
     path: "san-pham/:slug",
     index: false,
     public: true,
     children: [],
-    element: () => <Detail/>,
+    element: () => <Detail />,
   }
 ];
 
 export default RouterLayout;
+

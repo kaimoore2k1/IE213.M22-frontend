@@ -1,5 +1,7 @@
 .login,
 .Logout {
+  margin: 0 auto;
+  margin-bottom: 50px;
   width: 700px;
   // height: 720px;
   border-bottom-left-radius: 10px;
@@ -64,6 +66,8 @@
   }
 }
 .login-logout__wrapper {
+  margin: 0 auto;
+  margin-top: 50px;
   width: 700px;
   height: 70px;
   border: 1px solid #c4c4c4;
@@ -105,4 +109,30 @@
 }
 .to-top:hover {
   background-color: #a25016;
+}
+@media screen and (max-width: 786px) {
+  .login-logout__wrapper {
+    width: 100%;
+  }
+  .login,
+  .Logout {
+    width: 100%;
+    input {
+      width: 90%;
+    }
+    .ant-btn-primary {
+      width: 90%;
+    }
+    .facebook-google {
+      width: 90%;
+    }
+    .facebook-google--css {
+      width: 40%;
+    }
+  }
+  .logout-another {
+    p {
+      margin-left: 35% !important;
+    }
+  }
 }
