@@ -3,6 +3,7 @@ import Layout from "../components/Layout/Layout";
 import NotFound from "../pages/NotFound/NotFound";
 import RouterLayout from "../pages/module"
 import AdminLayout from "../components/Layout/AdminLayout";
+import AdminLoginForm from "../components/core/AdminLoginForm";
 
 const RouterView: RouterInterface[] = [
   {
@@ -25,7 +26,7 @@ const RouterView: RouterInterface[] = [
     index: false,
     public: true,
     children: [],
-    element: () => <AdminLayout />,
+    element: () => <AdminLoginForm />,
   }
 ];
 

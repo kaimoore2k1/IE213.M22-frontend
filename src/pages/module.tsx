@@ -209,7 +209,7 @@ const RouterLayout: RouterInterface[] = [
   },
   {
     name: "SanPham",
-    path: ":slug",
+    path: "/:slug",
     index: false,
     public: true,
     children: [],

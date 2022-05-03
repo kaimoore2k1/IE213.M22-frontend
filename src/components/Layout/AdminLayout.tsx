@@ -4,12 +4,13 @@ import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
   UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
+  CodeSandboxOutlined,
+  BookOutlined,
 } from "@ant-design/icons";
+import AdminLogin from "../../modules/Admin/AdminLogin";
 
 function AdminLayout() {
-  const { Header, Sider, Content } = Layout;
+  const { Header, Sider, Content, Footer } = Layout;
   const [collapsed, setCollapsed] = useState(false);
   const onToggle = () => {
     setCollapsed(!collapsed);
@@ -17,11 +18,10 @@ function AdminLayout() {
 
   useEffect(() => {
     const handleResize = () => {
-      if(!(window.innerWidth > 500)) {
-        setCollapsed(true)
-      }
-      else {
-        setCollapsed(false)
+      if (!(window.innerWidth > 500)) {
+        setCollapsed(true);
+      } else {
+        setCollapsed(false);
       }
     };
     window.addEventListener("resize", handleResize, true);
@@ -34,17 +34,17 @@ function AdminLayout() {
     {
       key: "1",
       icon: <UserOutlined />,
-      label: "nav 1",
+      label: "User",
     },
     {
       key: "2",
-      icon: <VideoCameraOutlined />,
-      label: "nav 2",
+      icon: <CodeSandboxOutlined />,
+      label: "Product",
     },
     {
       key: "3",
-      icon: <UploadOutlined />,
-      label: "nav 3",
+      icon: <BookOutlined />,
+      label: "Blog",
     },
   ];
   return (
@@ -57,7 +57,7 @@ function AdminLayout() {
         collapsible
         collapsed={collapsed}
       >
-        <div className="logo" style={{ padding: "10px", height: "30%" }}>
+        <div className="logo" style={{ padding: "10px", height: "30%", position: "relative", top: "1%"}}>
           <img
             src="https://senshop.tech/static/media/logo.bc588d992055212e8997a878ac242940.svg"
             alt="logo"
@@ -82,10 +82,13 @@ function AdminLayout() {
           {React.createElement(
             collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
             {
+              style: { marginRight: "1%" },
               className: "trigger",
               onClick: onToggle,
             }
           )}
+          Welcome to Admin!
+          <AdminLogin />
         </Header>
         <Content
           className="site-layout-background"
@@ -97,6 +100,7 @@ function AdminLayout() {
         >
           Content
         </Content>
+        <Footer style={{ backgroundColor: "white" }}></Footer>
       </Layout>
     </Layout>
   );
