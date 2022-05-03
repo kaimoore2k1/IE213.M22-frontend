@@ -31,10 +31,15 @@ const Header = () => {
               </Badge>
             </button>
           </Link>
-          <Avatar className="sign_in-responsive" size={48} icon={<UserOutlined />} />
-          <Button className="sign_in" type="primary" htmlType="submit">
-            <span>Đăng nhập</span>
-          </Button>
+          <Link to={"/login"}>
+            <Avatar className="sign_in-responsive" size={48} icon={<UserOutlined />} />
+          </Link>
+
+          <Link to={"/login"}>
+            <Button className="sign_in" type="primary" htmlType="submit">
+              <span>Đăng nhập</span>
+            </Button>
+          </Link>
         </div>
       </div>
       <Search

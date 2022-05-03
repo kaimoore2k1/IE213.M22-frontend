@@ -42,7 +42,7 @@ const ProductCategorySection = ({
               type="number"
               defaultValue={page+1}
             />
-            <span>/ {productList.length / productPerPage}</span>
+            <span>/ {Math.ceil(productList.length / productPerPage)}</span>
           </div>
           <button
             type="button"
@@ -56,7 +56,7 @@ const ProductCategorySection = ({
       </div>
       <div className="section__bottom">
         <Row gutter={16}>
-          <Col span={4}>
+          <Col xl={4} lg={4} md={24} sm={24} xs={24}>
             <ProductCategoryButtons
               currentCategory={currentCategory}
               updateCategory={updateCategory}
@@ -68,8 +68,8 @@ const ProductCategorySection = ({
             .slice(page * productPerPage, (page + 1) * productPerPage)
             .map((item) => {
               return (
-                <Col span={5}>
-                  <ProductCard key={item.id} product={item} />
+                <Col key={item.id}xl={5} lg={5} md={6} sm={12} xs={24}>
+                  <ProductCard  product={item} />
                 </Col>
               );
             })}

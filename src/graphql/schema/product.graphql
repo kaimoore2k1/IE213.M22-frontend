@@ -1,0 +1,12 @@
+query getAllProductsByCategory{
+    getAllProductsByCategory(category: "vatdungthucung") {
+      name
+      price
+      image {
+        url
+        title
+      }
+      evaluate
+      description
+    }
+  }

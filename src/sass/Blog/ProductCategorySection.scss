@@ -68,3 +68,30 @@
       }
   }
 }
+
+@media (max-width: 768px) {
+  .product-category-section {
+    padding: 0 5rem;
+
+  }
+}
+@media (max-width: 576px) {
+  .product-category-section {
+    padding: 0 3rem;
+    .section__top{
+      .page{
+        display: none;
+      }
+    }
+    .product-category-buttons{
+      flex-direction: row;
+      margin-bottom: 1.3rem;
+    }
+    .product-card{
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+
+  

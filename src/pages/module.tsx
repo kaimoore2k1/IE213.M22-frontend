@@ -1,13 +1,14 @@
 import { RouterInterface } from "../router/type";
 import Home from "./Home/Home";
-import Store from "./Store/Store"
-import Detail from '../pages/DetailProduct/Detail'
-import Service from "./Service/Service"
+import Store from "./Store/Store";
+import Detail from "../pages/DetailProduct/Detail";
+import Service from "./Service/Service";
 import Intro from "./Introduce/Intro";
 import Blog from "./Blog/Blog";
-import { RouterService } from "../modules/Service"
+import { RouterService } from "../modules/Service";
 import Pay from "./Payment/Pay";
-
+import PetItem from "./Products/PetItems/PetItem";
+import LoginLogout from "../modules/Login-Logout/LoginLogout";
 
 const RouterLayout: RouterInterface[] = [
   {
@@ -122,7 +123,7 @@ const RouterLayout: RouterInterface[] = [
     children: [],
     path: "vatdungthucung",
     public: true,
-    element: () => <Store />,
+    element: () => <PetItem />,
   },
   {
     name: "PhuKienThuCung",
@@ -197,6 +198,23 @@ const RouterLayout: RouterInterface[] = [
     children: [],
     element: () => <Pay />,
   },
+  {
+    name: "login",
+    path: "login",
+    index: false,
+    public: true,
+    children: [],
+    element: () => <LoginLogout />,
+  },
+  {
+    name: "SanPham",
+    path: "san-pham/:slug",
+    index: false,
+    public: true,
+    children: [],
+    element: () => <Detail />,
+  }
 ];
 
 export default RouterLayout;
+
