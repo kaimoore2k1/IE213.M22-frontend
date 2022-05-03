@@ -14,10 +14,22 @@ function AdminLayout() {
   const onToggle = () => {
     setCollapsed(!collapsed);
   };
-  if (window.innerWidth < 100) {
-    
-  }
-  
+
+  useEffect(() => {
+    const handleResize = () => {
+      if(!(window.innerWidth > 500)) {
+        setCollapsed(true)
+      }
+      else {
+        setCollapsed(false)
+      }
+    };
+    window.addEventListener("resize", handleResize, true);
+
+    return () => {
+      window.removeEventListener("resize", handleResize, true);
+    };
+  });
   const items = [
     {
       key: "1",
@@ -37,9 +49,20 @@ function AdminLayout() {
   ];
   return (
     <Layout>
-      <Sider width='15%' style={{height: '100vh'}} theme="light" trigger={null} collapsible collapsed={collapsed}>
-        <div className="logo" style={{ padding: '10px', height: '30%'}}>
-          <img src='https://senshop.tech/static/media/logo.bc588d992055212e8997a878ac242940.svg' alt='logo' style={{width: '100%'}}/>
+      <Sider
+        width="15%"
+        style={{ height: "100vh" }}
+        theme="light"
+        trigger={null}
+        collapsible
+        collapsed={collapsed}
+      >
+        <div className="logo" style={{ padding: "10px", height: "30%" }}>
+          <img
+            src="https://senshop.tech/static/media/logo.bc588d992055212e8997a878ac242940.svg"
+            alt="logo"
+            style={{ width: "100%" }}
+          />
         </div>
         <Menu mode="inline" defaultSelectedKeys={["1"]}>
           {items.map((item) => {
@@ -52,7 +75,10 @@ function AdminLayout() {
         </Menu>
       </Sider>
       <Layout className="site-layout">
-        <Header className="site-layout-background" style={{ padding: 0 , backgroundColor:'white'}}>
+        <Header
+          className="site-layout-background"
+          style={{ padding: 0, backgroundColor: "white" }}
+        >
           {React.createElement(
             collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
             {

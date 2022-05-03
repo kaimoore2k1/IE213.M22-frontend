@@ -2,7 +2,7 @@ import { RouterInterface } from "./type";
 import Layout from "../components/Layout/Layout";
 import NotFound from "../pages/NotFound/NotFound";
 import RouterLayout from "../pages/module"
-import AdminLayout from "../admin/components/layout/AdminLayout";
+import AdminLayout from "../components/Layout/AdminLayout";
 
 const RouterView: RouterInterface[] = [
   {

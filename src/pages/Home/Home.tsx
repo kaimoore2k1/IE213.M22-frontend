@@ -9,6 +9,7 @@ import { ProductCategorySection } from "../../components/core";
 
 import { useQuery } from "@apollo/client";
 import { getAllProductsByCategory } from "../../graphql/schema/product.graphql";
+import Loader from "../../components/core/Loader";
 
 function Home() {
   const { loading, error, data } = useQuery(
@@ -20,7 +21,7 @@ function Home() {
       <Slider />
       <Service />
       {loading ? (
-        <p>Loading</p>
+        <Loader />
       ) : (
         <ProductCategorySection
           productList={data.getAllProductsByCategory}
@@ -30,7 +31,7 @@ function Home() {
       )}
 
       {loading ? (
-        <p>Loading</p>
+        <Loader />
       ) : (
         <ProductCategorySection
           productList={data.getAllProductsByCategory}

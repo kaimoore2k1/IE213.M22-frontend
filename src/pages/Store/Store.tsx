@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { Category, ProductCategorySection } from "../../components/core";
 import { useQuery } from "@apollo/client";
 import { getAllProductsByCategory } from "../../graphql/schema/product.graphql";
+import Loader from '../../components/core/Loader'
 
 function Store() {
   const location = useLocation();
@@ -35,7 +36,7 @@ function Store() {
           xl={17}
         >
           {loading ? (
-            <p>Loading</p>
+            <Loader />
           ) : (
             <ProductCategorySection
               productList={data.getAllProductsByCategory}
