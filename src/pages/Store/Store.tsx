@@ -10,7 +10,6 @@ function Store() {
   const pathName = location.pathname.split("/");
   pathName.shift();
   const { loading, error, data } = useQuery(getAllProductsByCategory(pathName));
-  if (loading) return <p>Loading...</p>;
   if (error) return <p>Error...</p>;
   return (
     <div className="store__layout">
@@ -35,11 +34,15 @@ function Store() {
           lg={17}
           xl={17}
         >
-          <ProductCategorySection
-            productList={data.getAllProductsByCategory}
-            categoryList={[]}
-            sectionName=""
-          />
+          {loading ? (
+            <p>Loading</p>
+          ) : (
+            <ProductCategorySection
+              productList={data.getAllProductsByCategory}
+              categoryList={[]}
+              sectionName=""
+            />
+          )}
         </Col>
       </Row>
     </div>

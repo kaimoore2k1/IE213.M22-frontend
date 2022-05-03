@@ -14,22 +14,30 @@ function Home() {
   const { loading, error, data } = useQuery(
     getAllProductsByCategory(["vatdungthucung"])
   );
-  if (loading) return <p>Loading...</p>;
   if (error) return <p>Error...</p>;
   return (
     <>
       <Slider />
       <Service />
-      <ProductCategorySection
-        productList={data.getAllProductsByCategory}
-        categoryList={["pet", "clothes", "food"]}
-        sectionName="product-category-section"
-      />
-      <ProductCategorySection
-        productList={data.getAllProductsByCategory}
-        categoryList={["pet", "clothes", "food"]}
-        sectionName="product-category-section"
-      />
+      {loading ? (
+        <p>Loading</p>
+      ) : (
+        <ProductCategorySection
+          productList={data.getAllProductsByCategory}
+          categoryList={["pet", "clothes", "food"]}
+          sectionName="product-category-section"
+        />
+      )}
+
+      {loading ? (
+        <p>Loading</p>
+      ) : (
+        <ProductCategorySection
+          productList={data.getAllProductsByCategory}
+          categoryList={["pet", "clothes", "food"]}
+          sectionName="product-category-section"
+        />
+      )}
       <Reviews />
       <Contact />
     </>
