@@ -8,7 +8,6 @@ import toSlug from "../../assets/toSlug";
 
 const ProductCard = ({ product }: productCardProps) => {
   const [viewHidden, setViewHidden] = useState(false);
-
   useEffect(() => {
     const productAddInfo = document.querySelector(
       `#product-card-${product.id} .card-additional-info`
@@ -26,7 +25,7 @@ const ProductCard = ({ product }: productCardProps) => {
       id: product.id,
       name: product.name,
       price: product.salePrice ?? product.price,
-      image: product.image,
+      image: product.images,
       quantity: 1,
     });
   }
@@ -40,7 +39,7 @@ const ProductCard = ({ product }: productCardProps) => {
       hoverable={true}
       cover={
         <Link to={`/san-pham/${toSlug(product.name)}`}>
-          <img src={product.image.url} alt="product" />
+          <img src={product.images[0].url} alt="product" />
         </Link>
       }
     >
@@ -67,17 +66,17 @@ const ProductCard = ({ product }: productCardProps) => {
       {/* Khi hover vao trong Card  */}
       <Form onFinish={handelAddToCart}>
         <div className="card-additional-info hidden">
-          {product.productVariant ? (
+          {product.variant ? (
             <div className="obtional-variant">
-              {product.productVariant.size ? (
+              {product.variant.size ? (
                 <Form.Item
-                  initialValue={product.productVariant.size[0]}
+                  initialValue={product.variant.size}
                   label="Kích cỡ:"
                   name="size"
                   className="size"
                 >
-                  <Radio.Group defaultValue={product.productVariant.size[0]}>
-                    {product.productVariant.size.map((size: string) => (
+                  <Radio.Group defaultValue={product.variant.size[0]}>
+                    {product.variant.size.map((size: string) => (
                       <Radio.Button key={size} value={size}>
                         {size}
                       </Radio.Button>
@@ -85,15 +84,15 @@ const ProductCard = ({ product }: productCardProps) => {
                   </Radio.Group>
                 </Form.Item>
               ) : null}
-              {product.productVariant.color ? (
+              {product.variant.color ? (
                 <Form.Item
-                  initialValue={product.productVariant.color[0]}
+                  initialValue={product.variant.color}
                   label="Màu sắc:"
                   name="color"
                   className="color"
                 >
-                  <Radio.Group defaultValue={product.productVariant.color[0]}>
-                    {product.productVariant.color.map((color: string) => (
+                  <Radio.Group defaultValue={product.variant.color[0]}>
+                    {product.variant.color.map((color: string) => (
                       <Radio.Button key={color} value={color}>
                         {color}
                       </Radio.Button>

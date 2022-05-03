@@ -8,8 +8,8 @@ export interface blogCard {
   commentCount: number;
   shareCount: number;
   description?: string;
-  category?: string;
-  image: {
+  categories?: string;
+  images: {
     url: string;
     title: string;
   };
@@ -30,7 +30,7 @@ const BlogCard = ({ type, blog }: blogCardProps) => {
           className="blog-card-small"
           id={`blog-card-${blog.id}`}
           hoverable={true}
-          cover={<img src={blog.image.url} alt="blog"/>}
+          cover={<img src={blog.images.url} alt="blog"/>}
         >
           <Card.Meta
             title={blog.title}
@@ -63,9 +63,9 @@ const BlogCard = ({ type, blog }: blogCardProps) => {
           hoverable={true}
           cover={
             <div className="blog-card-image__container">
-              <img src={blog.image.url} alt="blog"/>
+              <img src={blog.images.url} alt="blog"/>
               <div className="blog-card-category">
-                <span>{blog.category}</span>
+                <span>{blog.categories}</span>
               </div>
             </div>
           }
