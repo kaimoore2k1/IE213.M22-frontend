@@ -747,7 +747,17 @@ button:focus {
     .e404 {
       margin-left: 10%;
       span {
+        padding: 10vw !important;
         font-size: 20vw !important;
+      }
+    }
+  }
+}
+@media screen and (max-width: 360px) {
+  .error {
+    .e404 {
+      span {
+        padding: 10vw !important;
       }
     }
   }
