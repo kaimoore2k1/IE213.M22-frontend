@@ -58,14 +58,25 @@ const ProductCard = ({ product }: productCardProps) => {
         {product.salePrice ? (
           <>
             <span className="original-price">
-              {product.price.toLocaleString()}₫
+              {product.price.toLocaleString("vi-VN", {
+                style: "currency",
+                currency: "VND",
+              })}
             </span>
             <span className="sale-price price">
-              {product.salePrice.toLocaleString()}₫
+              {product.salePrice.toLocaleString("vi-VN", {
+                style: "currency",
+                currency: "VND",
+              })}
             </span>
           </>
         ) : (
-          <span className="price">{product.price.toLocaleString()}₫</span>
+          <span className="price">
+            {product.price.toLocaleString("vi-VN", {
+              style: "currency",
+              currency: "VND",
+            })}
+          </span>
         )}
       </div>
       {/* Khi hover vao trong Card  */}
