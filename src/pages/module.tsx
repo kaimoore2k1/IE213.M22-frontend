@@ -8,6 +8,7 @@ import Blog from "./Blog/Blog";
 import { RouterService } from "../modules/Service";
 import Pay from "./Payment/Pay";
 import PetItem from "./Products/PetItems/PetItem";
+import BlogDetail from "./BlogDetail/BlogDetail";
 
 const RouterLayout: RouterInterface[] = [
   {
@@ -199,12 +200,21 @@ const RouterLayout: RouterInterface[] = [
   },
   {
     name: "SanPham",
-    path: "san-pham/:slug",
+    path: "san-pham/:productName",
     index: false,
     public: true,
     children: [],
     element: () => <Detail/>,
-  }
+  },
+  {
+    name: "TapChi",
+    index: false,
+    path: "tapchi/:blogName",
+    children: [],
+    public: true,
+    element: () => <BlogDetail />,
+  },
+  
 ];
 
 export default RouterLayout;

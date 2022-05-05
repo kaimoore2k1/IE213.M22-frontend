@@ -1,0 +1,145 @@
+.blog-detail-container {
+  margin-top: 1rem;
+  padding: 0 9rem;
+  .blog-single {
+    margin-right: 2rem;
+    .author-box {
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 2rem;
+      .date {
+        color: #888;
+      }
+    }
+    .blog-detail-action {
+      display: flex;
+      justify-content: space-around;
+      position: relative;
+      margin-bottom: 1rem;
+
+      ::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 3%;
+        width: 94%;
+        height: 1px;
+        background-color: #e5e5e5;
+      }
+      ::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 3%;
+        width: 94%;
+        height: 1px;
+        background-color: #e5e5e5;
+      }
+      .blog-action-item {
+        width: 33%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        span {
+          height: fit-content;
+        }
+        .anticon {
+          cursor: pointer;
+          svg {
+            margin-left: 0.3rem;
+            height: 1.5rem;
+            width: 1.5rem;
+            fill: #666;
+          }
+        }
+        .anticon:hover {
+          svg path {
+            fill: #51a7f2;
+          }
+        }
+        // .anticon-like:hover {
+        //   svg {
+        //     fill: #51a7f2;
+        //     path {
+        //       d: path(
+        //         "M2.06987 15.0746H2.85871V4.952H2.06987C1.65144 4.952 1.25015 5.11608 0.954279 5.40813C0.658407 5.70019 0.492188 6.0963 0.492188 6.50932V13.5173C0.492188 13.9303 0.658407 14.3264 0.954279 14.6185C1.25015 14.9105 1.65144 15.0746 2.06987 15.0746ZM14.6913 4.952H9.16942L10.0545 2.32947C10.1335 2.09541 10.155 1.84619 10.1173 1.60232C10.0796 1.35845 9.98368 1.12691 9.83755 0.926782C9.69142 0.726651 9.49922 0.563651 9.27677 0.451207C9.05432 0.338763 8.80799 0.280093 8.55807 0.280029H8.38058L4.43639 4.51439V15.0746H13.1136L16.1996 8.38123L16.269 8.06665V6.50932C16.269 6.0963 16.1028 5.70019 15.8069 5.40813C15.511 5.11608 15.1097 4.952 14.6913 4.952Z"
+        //       );
+        //     }
+        //   }
+        // }
+        font-size: 1rem;
+        font-weight: bold;
+        color: #666;
+      }
+    }
+    p {
+      // -webkit-touch-callout: none;
+      // -webkit-user-select: none;
+      // user-select: none;
+      box-sizing: border-box;
+      margin: 0px 0px 10px;
+      font-size: 15px;
+      line-height: 20px !important;
+      color: rgb(58, 58, 58);
+      font-style: normal;
+      font-variant-ligatures: normal;
+      font-variant-caps: normal;
+      font-weight: 400;
+      letter-spacing: normal;
+      orphans: 2;
+      text-align: justify;
+      text-indent: 0px;
+      text-transform: none;
+      white-space: normal;
+      widows: 2;
+      word-spacing: 0px;
+      -webkit-text-stroke-width: 0px;
+      background-color: rgb(255, 255, 255);
+      text-decoration-thickness: initial;
+      text-decoration-style: initial;
+      text-decoration-color: initial;
+    }
+    h3 {
+      box-sizing: border-box;
+      font-family: Arial !important;
+      font-weight: bold !important;
+      line-height: 1.6;
+      color: rgb(58, 58, 58);
+      margin: 10px 0px;
+      font-size: 15px !important;
+      padding: 0px 0px 5px;
+      font-style: normal;
+      font-variant-ligatures: normal;
+      font-variant-caps: normal;
+      letter-spacing: normal;
+      orphans: 2;
+      text-align: justify;
+      text-indent: 0px;
+      text-transform: none;
+      white-space: normal;
+      widows: 2;
+      word-spacing: 0px;
+      -webkit-text-stroke-width: 0px;
+      background-color: rgb(255, 255, 255);
+      text-decoration-thickness: initial;
+      text-decoration-style: initial;
+      text-decoration-color: initial;
+    }
+    img {
+      width: 100%;
+    }
+  }
+  .blog-side-bar {
+    position: sticky;
+    top: 80px;
+    h4 {
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+    .blog-card-small + .blog-card-small {
+      margin-top: 1rem;
+    }
+  }
+}
