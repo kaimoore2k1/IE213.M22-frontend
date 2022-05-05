@@ -6,9 +6,11 @@ import Service from "./Service/Service";
 import Intro from "./Introduce/Intro";
 import Blog from "./Blog/Blog";
 import { RouterService } from "../modules/Service";
+import ServiceLayout from '../pages/Service/ServiceLayout'
 import Pay from "./Payment/Pay";
-import PetItem from "./Products/PetItems/PetItem";
 import BlogDetail from "./BlogDetail/BlogDetail";
+
+import LoginLogout from "../modules/Login-Logout/LoginLogout";
 
 const RouterLayout: RouterInterface[] = [
   {
@@ -123,7 +125,7 @@ const RouterLayout: RouterInterface[] = [
     children: [],
     path: "vatdungthucung",
     public: true,
-    element: () => <PetItem />,
+    element: () => <Store />,
   },
   {
     name: "PhuKienThuCung",
@@ -154,7 +156,7 @@ const RouterLayout: RouterInterface[] = [
     index: false,
     path: "dichvu",
     public: true,
-    element: () => <Store />,
+    element: () => <ServiceLayout />,
     children: [
       {
         name: "Dichvu",
@@ -171,7 +173,7 @@ const RouterLayout: RouterInterface[] = [
     index: false,
     path: "dichvu",
     public: true,
-    element: () => <Store />,
+    element: () => <ServiceLayout />,
     children: [...RouterService],
   },
   {
@@ -199,12 +201,20 @@ const RouterLayout: RouterInterface[] = [
     element: () => <Pay />,
   },
   {
-    name: "SanPham",
-    path: "san-pham/:productName",
+    name: "login",
+    path: "login",
     index: false,
     public: true,
     children: [],
-    element: () => <Detail/>,
+    element: () => <LoginLogout />,
+  },
+  {
+    name: "SanPham",
+    path: "/:slug",
+    index: false,
+    public: true,
+    children: [],
+    element: () => <Detail />,
   },
   {
     name: "TapChi",
@@ -218,3 +228,4 @@ const RouterLayout: RouterInterface[] = [
 ];
 
 export default RouterLayout;
+

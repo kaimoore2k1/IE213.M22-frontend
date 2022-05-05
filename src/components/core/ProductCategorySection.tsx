@@ -61,7 +61,7 @@ const ProductCategorySection = ({
       </div>
       <div className="section__bottom">
         <Row gutter={16}>
-          <Col xl={4} lg={4} md={24} sm={24} xs={24}>
+          <Col className='target' xl={4} lg={4} md={24} sm={24} xs={24}>
             <ProductCategoryButtons
               currentCategory={currentCategory}
               updateCategory={updateCategory}

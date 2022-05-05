@@ -26,8 +26,8 @@ function Service() {
                         <div className="main-content">
                             <h2>{content.content.h2}</h2>
                             <p>{content.content.p}</p>
-                            <span>Bấm vào xem chi tiết</span>
                         </div>
+                        <span>Bấm vào xem chi tiết</span>
                     </div>
                 </Link>)
                 )

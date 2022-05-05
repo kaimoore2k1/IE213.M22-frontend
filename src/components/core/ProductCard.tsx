@@ -8,7 +8,6 @@ import toSlug from "../../assets/toSlug";
 
 const ProductCard = ({ product }: productCardProps) => {
   const [viewHidden, setViewHidden] = useState(false);
-
   useEffect(() => {
     const productAddInfo = document.querySelector(
       `#product-card-${product.id} .card-additional-info`
@@ -26,7 +25,7 @@ const ProductCard = ({ product }: productCardProps) => {
       id: product.id,
       name: product.name,
       price: product.salePrice ?? product.price,
-      image: product.image,
+      image: product.images,
       quantity: 1,
     });
   }
@@ -39,14 +38,14 @@ const ProductCard = ({ product }: productCardProps) => {
       id={`product-card-${product.id}`}
       hoverable={true}
       cover={
-        <Link to={`/san-pham/${toSlug(product.name)}`}>
-          <img src={product.image.url} alt="product" />
+        <Link to={`/${toSlug(product.name)}`}>
+          <img src={product.images[0].url} alt="product" />
         </Link>
       }
     >
       <Card.Meta
         title={
-          <Link to={`/san-pham/${toSlug(product.name)}`}>{product.name}</Link>
+          <Link to={`/${toSlug(product.name)}`}>{product.name}</Link>
         }
         description={product.description}
       />
@@ -119,7 +118,7 @@ const ProductCard = ({ product }: productCardProps) => {
             </div>
           ) : null}
           <div className="action">
-            <Link to={`/san-pham/${toSlug(product.name)}`}>
+            <Link to={`/${toSlug(product.name)}`}>
               <Button type="primary" icon={<SearchIcon />} />
             </Link>
             <Form.Item>

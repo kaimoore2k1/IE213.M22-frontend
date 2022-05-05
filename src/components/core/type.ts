@@ -5,18 +5,16 @@ export interface product {
     ratingCount: number;
     price: number;
     salePrice?: number;
-    variant?: {
-      size?: string[];
-      color?: string[];
-    };
-    image: {
-      url: string;
-      title?: string;
-    };
-    category: string[];
+    variant?: Variant;
+    images: [Image];
+    categories: string[];
     id: number;
 }
-interface image {
+interface Variant {
+  size: [string]
+  color: [string]
+}
+interface Image {
     url: string;
     title?: string;
     author?: string;
@@ -31,7 +29,7 @@ export interface productDetail{
     size?: string[];
     color?: string[];
   };
-  image: image[];
+  image: Image[];
   category: string[];
   content: string;
   id: number;

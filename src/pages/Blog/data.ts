@@ -9,11 +9,11 @@ export const exampleProduct = {
         size: ["S", "M", "L", "XL"],
         color: ["red", "blue", "green"],
     },
-    image: {
+    images: [{
         url: "https://via.placeholder.com/600/92c952",
-        title: "hello world",
-    },
-    category: ["pet"],
+        title: "hello world"
+    }],
+    categories: ["pet"],
     id: 1,
 };
 
@@ -22,9 +22,9 @@ export const exampleSmallBlogCard = {
     likeCount: 12,
     commentCount: 3,
     shareCount: 2,
-    image: {
+    images: {
         url: "https://via.placeholder.com/600/92c952",
-        title: "hello world",
+        title: "hello world"
     },
     id: 1,
     author: "John Smith",
@@ -38,10 +38,10 @@ export const exampleLargeBlogCard = {
     shareCount: 2,
     description:
         "lorem ipsum dolor sit amet, consectetur adip lorem lorem ipsum dolor sit amet, consectetur adip loremlorem ipsum dolor sit amet, consectetur adip loremlorem ipsum dolor sit amet, consectetur adip lorem",
-    category: "pet blog",
-    image: {
+    categories: "pet blog",
+    images: {
         url: "https://via.placeholder.com/600/92c952",
-        title: "hello world",
+        title: "hello world"
     },
     id: 1,
     author: "John Smith",

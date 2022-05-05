@@ -13,8 +13,8 @@ export interface blogCard {
   commentCount: number;
   shareCount: number;
   description?: string;
-  category?: string;
-  image: {
+  categories?: string;
+  images: {
     url: string;
     title: string;
   };
@@ -37,7 +37,7 @@ const BlogCard = ({ type, blog }: blogCardProps) => {
           hoverable={true}
           cover={
             <Link to={`/tapchi/${toSlug(blog.title)}`}>
-              <img src={blog.image.url} alt="blog" />
+              <img src={blog.images.url} alt="blog" />
             </Link>
           }
         >
@@ -75,10 +75,10 @@ const BlogCard = ({ type, blog }: blogCardProps) => {
           cover={
             <div className="blog-card-image__container">
               <Link to={`/tapchi/${toSlug(blog.title)}`}>
-                <img src={blog.image.url} alt="blog" />
+                <img src={blog.images.url} alt="blog" />
               </Link>
               <div className="blog-card-category">
-                <span>{blog.category}</span>
+                <span>{blog.categories}</span>
               </div>
             </div>
           }

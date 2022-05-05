@@ -1,9 +1,9 @@
 .Wrapper {
-  width: 988px;
+  width: 100%;
   border: 1px solid #ffc107;
   padding: 30px;
   text-align: justify;
-
+  margin: 0 auto;
   h1 {
     color: #ffc107;
     font-size: 20px;
@@ -36,8 +36,7 @@
 }
 .main-service-imgLeft {
   position: relative;
-  width: 900px;
-  height: 150px;
+  width: 90%;
   background-color: #fff5d7;
   border-top-left-radius: 100px;
   border-bottom-left-radius: 100px;
@@ -53,23 +52,23 @@
     position: absolute;
     top: 10px;
     left: 170px;
-    width: 650px;
+    width: 70%;
     p {
       margin-bottom: 5px !important;
       color: black;
     }
-    span {
-      position: absolute;
-      right: -30px;
-      bottom: -20px;
-      font-weight: 500;
-      color: red;
-    }
+  }
+  span {
+    position: absolute;
+    right: 50px;
+    bottom: 10px;
+    font-weight: 500;
+    color: red;
   }
 }
 .main-service-imgRight {
   position: relative;
-  width: 900px;
+  width: 90%;
   height: 150px;
   background-color: #fff5d7;
   border-top-right-radius: 100px;
@@ -83,34 +82,64 @@
     height: 150px;
     border-radius: 50%;
   }
-  .circle {
-    width: 150px;
-    height: 150px;
-    background-image: url(../../assets/images/service_1.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-radius: 50%;
-  }
   .main-content {
     font-weight: 450;
     position: absolute;
     top: 10px;
     left: 100px;
-    width: 620px;
+    width: 70%;
     h2 {
-      margin-left: 440px;
+      position: absolute;
+      right: 20px;
     }
     p {
       margin-left: -30px;
+      margin-top: 30px;
       margin-bottom: 5px !important;
       color: black;
     }
+  }
+  span {
+    position: absolute;
+    left: 50px;
+    bottom: 10px;
+    font-weight: 500;
+    color: red;
+  }
+}
+@media screen and (max-width: 500px) {
+  .main-service-imgRight,
+  .main-service-imgLeft {
+    margin-left: 20px;
+    img {
+      width: 100px;
+      height: 100px;
+    }
+    height: 100px !important;
+    .main-content {
+      h2 {
+        width: 60%;
+        transform: translateY(10%);
+      }
+      p {
+        display: none;
+      }
+    }
+  }
+  .main-service-imgLeft {
+    h2 {
+      margin-left: -50px;
+    }
     span {
-      position: absolute;
-      left: -50px;
-      bottom: -20px;
-      font-weight: 500;
-      color: red;
+      bottom: 2px;
+    }
+  }
+  .main-service-imgRight {
+    h2 {
+      right: 120px !important;
+    }
+    span {
+      bottom: 2px;
     }
   }
 }
