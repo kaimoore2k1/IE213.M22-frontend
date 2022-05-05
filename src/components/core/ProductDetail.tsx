@@ -1,6 +1,16 @@
-import { Button, Form, Image, Rate, InputNumber, Radio, Tabs } from "antd";
+import {
+  Button,
+  Form,
+  Image,
+  Rate,
+  InputNumber,
+  Radio,
+  Tabs,
+  Row,
+  Col,
+} from "antd";
 import { useState, useEffect } from "react";
-import { productDetail } from "./type";
+import { productDetail, comment } from "./type";
 import { decode } from "html-entities";
 import { Link } from "react-router-dom";
 import Comment from "./Comment";
@@ -8,26 +18,36 @@ import CommentEditor from "./CommentEditor";
 
 interface ProductDetailProps {
   product: productDetail;
+  comments: comment[];
 }
 
-const ProdcutDetail = ({ product }: ProductDetailProps) => {
+const ProdcutDetail = ({ product, comments }: ProductDetailProps) => {
   const [productQuantity, setProductQuantity] = useState(1);
+  const handleCommentTab = () => {
+    let antTabElement: HTMLElement = document.querySelectorAll(
+      ".ant-tabs-tab"
+    )[1] as HTMLElement;
+    if (antTabElement) {
+      antTabElement.click();
+    }
+  };
 
   useEffect(() => {
     const quantity = document.querySelector(
-      ".product-quantity input"
+      ".product-quantity-input .ant-input-number-input"
     ) as HTMLInputElement;
 
     if (quantity) {
       quantity.value = "" + productQuantity;
+
+      console.log(quantity.value);
     }
-    console.log(productQuantity);
   }, [productQuantity]);
+
   function updateQuantity() {
     const quantity = document.querySelector(
-      ".product-quantity input"
+      ".product-quantity-input .ant-input-number-input"
     ) as HTMLInputElement;
-
     if (quantity) {
       if (parseInt(quantity.value) > product.stock)
         quantity.value = product.stock + "";
@@ -49,44 +69,62 @@ const ProdcutDetail = ({ product }: ProductDetailProps) => {
 
   return (
     <div className="product-detail">
-      <div className="product-detail_top">
-        <div className="product-detail-image">
+      <Row gutter={40} className="product-detail_top">
+        <Col xl={12} sm={24} className="product-detail-image">
           <Image.PreviewGroup>
-            <div className="main-image">
+            <Row className="main-image">
               <Image
                 src={product.image[0].url}
                 alt={product.image[0].title ?? product.name}
               />
-            </div>
-            <div className="sub-image">
-              {product.image.slice(1).map((image, index) => (
-                <Image
-                  key={index}
-                  src={image.url}
-                  alt={image.title ?? product.name}
-                />
+            </Row>
+            <Row gutter={16} className="sub-image">
+              {product.image.slice(1, 5).map((image, index) => (
+                <Col xl={6}>
+                  <Image
+                    key={index}
+                    src={image.url}
+                    alt={image.title ?? product.name}
+                  />
+                </Col>
               ))}
-            </div>
+            </Row>
           </Image.PreviewGroup>
-        </div>
-        <div className="product-detail-info">
+        </Col>
+        <Col xl={12} sm={24} className="product-detail-info">
           <div className="product-detail-info-title">
             <h1>{product.name}</h1>
           </div>
           <div className="product-detail-info-price">
             {product.salePrice ? (
               <>
-                <span>{product.price}</span>
-                <span className="product-price">{product.salePrice}</span>
+                <span className="original-price">
+                  {product.price.toLocaleString("vi-VN", {
+                    style: "currency",
+                    currency: "VND",
+                  })}
+                </span>
+                <span className="sale-price price">
+                  {product.salePrice.toLocaleString("vi-VN", {
+                    style: "currency",
+                    currency: "VND",
+                  })}
+                </span>
               </>
             ) : (
-              <span className="product-price">{product.price}</span>
+              <span className="price">
+                {product.price.toLocaleString("vi-VN", {
+                  style: "currency",
+                  currency: "VND",
+                })}
+              </span>
             )}
-            ;
           </div>
           <div className="product-rating">
             <Rate disabled allowHalf value={product.rating} />
-            <span>({product.comment.length} nhận xét)</span>
+            <a href="#comment" onClick={handleCommentTab}>
+              ({comments.length} nhận xét)
+            </a>
           </div>
           <div className="product-description">{product.description}</div>
           <Form onFinish={handelAddToCart}>
@@ -128,13 +166,15 @@ const ProdcutDetail = ({ product }: ProductDetailProps) => {
             ) : null}
             <div className="product-quantity-section">
               <InputNumber
-                className="product-quantity"
+                className="product-quantity-input"
+                size="large"
                 min={1}
                 defaultValue={1}
                 controls={false}
                 onBlur={() => updateQuantity()}
                 addonAfter={
                   <div
+                    className="product-quantity-input-addon"
                     onClick={() =>
                       setProductQuantity((count) =>
                         count + 1 > product.stock ? count : ++count
@@ -146,6 +186,7 @@ const ProdcutDetail = ({ product }: ProductDetailProps) => {
                 }
                 addonBefore={
                   <div
+                    className="product-quantity-input-addon"
                     onClick={() =>
                       setProductQuantity((count) =>
                         count - 1 == 0 ? count : --count
@@ -155,7 +196,6 @@ const ProdcutDetail = ({ product }: ProductDetailProps) => {
                     -
                   </div>
                 }
-                disabled={product.stock === 0}
                 max={product.stock === 0 ? 1 : product.stock}
               />
               <Form.Item>
@@ -163,6 +203,7 @@ const ProdcutDetail = ({ product }: ProductDetailProps) => {
                   type="primary"
                   disabled={product.stock === 0}
                   htmlType="submit"
+                  size="large"
                 >
                   Thêm vào giỏ hàng
                 </Button>
@@ -177,8 +218,8 @@ const ProdcutDetail = ({ product }: ProductDetailProps) => {
               </Link>
             ))}
           </div>
-        </div>
-      </div>
+        </Col>
+      </Row>
       <div className="product-detail-bottom">
         <Tabs type="card">
           <Tabs.TabPane key="1" tab="Thông tin chi tiết">
@@ -192,10 +233,10 @@ const ProdcutDetail = ({ product }: ProductDetailProps) => {
             ></div>
           </Tabs.TabPane>
           <Tabs.TabPane key="2" tab="Đánh giá">
-            <div className="comment-section">
+            <div id="comment" className="comment-section">
               <CommentEditor type="product" />
               <div className="comment-list">
-                {product.comment.map((comment, index) => (
+                {comments.map((comment, index) => (
                   <Comment key={index} comment={comment} />
                 ))}
               </div>
