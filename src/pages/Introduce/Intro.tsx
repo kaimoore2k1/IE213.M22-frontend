@@ -21,11 +21,6 @@ function Intro() {
         </div>
         <div className="intro-member__elements">
           <IntroMember
-            nameMember="TRẦN PHAN HẢI ĐĂNG"
-            posMember="NHÀ PHÁT TRIỂN"
-            srcImg={avatar}
-          />
-          <IntroMember
             nameMember="NGUYỄN NHỰT HÀO"
             posMember="NHÀ PHÁT TRIỂN"
             srcImg={avatar}
@@ -36,17 +31,22 @@ function Intro() {
             srcImg={avatar}
           />
           <IntroMember
-            nameMember="TRẦN PHAN HẢI ĐĂNG"
+            nameMember="NGUYỄN HỮU TÂM"
             posMember="NHÀ PHÁT TRIỂN"
             srcImg={avatar}
           />
           <IntroMember
-            nameMember="TRẦN PHAN HẢI ĐĂNG"
+            nameMember="NGUYỄN ĐĂNG ĐỊNH"
             posMember="NHÀ PHÁT TRIỂN"
             srcImg={avatar}
           />
           <IntroMember
-            nameMember="TRẦN PHAN HẢI ĐĂNG"
+            nameMember="TRẦN HỮU TÌNH"
+            posMember="NHÀ PHÁT TRIỂN"
+            srcImg={avatar}
+          />
+          <IntroMember
+            nameMember="PHẠM KIM CHIẾN"
             posMember="NHÀ PHÁT TRIỂN"
             srcImg={avatar}
           />

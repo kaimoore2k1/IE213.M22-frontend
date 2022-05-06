@@ -81,16 +81,13 @@
   .login-logout--logout {
     width: 350px;
     height: 70px;
-
+    border-radius: 0px 10px 0px 0px;
     font-size: 20px;
     text-align: center;
     padding-top: 20px;
   }
   .login-logout--login {
     border-radius: 10px 0px 0px 0px;
-  }
-  .login-logout--logout {
-    border-radius: 0px 10px 0px 0px;
   }
   .active {
     background-color: #fff;
@@ -112,23 +109,18 @@
 }
 @media screen and (max-width: 786px) {
   .login-logout__wrapper {
-    width: 100%;
+    width: 95%;
+    margin-right: 10px;
+    margin-left: 20px;
+    .login-logout--login,
+    .login-logout--logout{
+      width: 100%;
+    }
   }
   .login,
   .Logout {
-    width: 100%;
-    input {
-      width: 90%;
-    }
-    .ant-btn-primary {
-      width: 90%;
-    }
-    .facebook-google {
-      width: 90%;
-    }
-    .facebook-google--css {
-      width: 40%;
-    }
+    width: 95%;
+    margin-left: 20px;
   }
   .logout-another {
     p {
