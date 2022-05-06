@@ -12,10 +12,10 @@ const BlogDetail = () => {
 
   return (
     <Row  className="blog-detail-container">
-      <Col xl={16}>
+      <Col xl={16} md={24}>
         <BlogSingle blog={exampleBlog} comments={exampleComment} />
       </Col>
-      <Col xl={8}>
+      <Col xl={8} md={12} sm={24}>
         <BlogSideCardList blogList={blogList} name="Các bài viết liên quan"/>
       </Col>
     </Row>

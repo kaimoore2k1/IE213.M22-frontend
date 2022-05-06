@@ -36,14 +36,14 @@ const BlogCard = ({ type, blog }: blogCardProps) => {
           id={`blog-card-${blog.id}`}
           hoverable={true}
           cover={
-            <Link to={`/tapchi/${toSlug(blog.title)}`}>
+            <Link to={`/tap-chi/${toSlug(blog.title)}`}>
               <img src={blog.images.url} alt="blog" />
             </Link>
           }
         >
           <Card.Meta
             title={
-              <Link to={`/tapchi/${toSlug(blog.title)}`}>{blog.title}</Link>
+              <Link to={`/tap-chi/${toSlug(blog.title)}`}>{blog.title}</Link>
             }
             description={
               <div className="blog-card-info__top">
@@ -74,7 +74,7 @@ const BlogCard = ({ type, blog }: blogCardProps) => {
           hoverable={true}
           cover={
             <div className="blog-card-image__container">
-              <Link to={`/tapchi/${toSlug(blog.title)}`}>
+              <Link to={`/tap-chi/${toSlug(blog.title)}`}>
                 <img src={blog.images.url} alt="blog" />
               </Link>
               <div className="blog-card-category">
@@ -85,7 +85,7 @@ const BlogCard = ({ type, blog }: blogCardProps) => {
         >
           <Card.Meta
             title={
-              <Link to={`/tapchi/${toSlug(blog.title)}`}>{blog.title}</Link>
+              <Link to={`/tap-chi/${toSlug(blog.title)}`}>{blog.title}</Link>
             }
             description={
               <>
