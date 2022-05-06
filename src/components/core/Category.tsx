@@ -22,105 +22,101 @@ function Category() {
         mode="inline"
       >
         <SubMenu
-          key="thucung"
+          key="thu-cung"
           title={
-            <Menu.Item key="thucung">
+            <Menu.Item key="thu-cung">
               Thú cưng
-              <Link to={"/thucung"} />
+              <Link to={"/thu-cung"} />
             </Menu.Item>
           }
         >
-          <Menu.Item key="chocanh">
+          <Menu.Item key="cho-canh">
             Chó cảnh
-            <Link to={"/thucung/chocanh"} />
+            <Link to={"/thu-cung/cho-canh"} />
           </Menu.Item>
-          <Menu.Item key="meocanh">
+          <Menu.Item key="meo-canh">
             Mèo cảnh
-            <Link to={"/thucung/meocanh"} />
+            <Link to={"/thu-cung/meo-canh"} />
           </Menu.Item>
-          <Menu.Item key="thukieng">
+          <Menu.Item key="thu-kieng">
             Thú kiểng
-            <Link to={"/thucung/thukieng"} />
+            <Link to={"/thu-cung/thu-kieng"} />
           </Menu.Item>
           <Menu.Item key="hamster">
             Hamster
-            <Link to={"/thucung/hamster"} />
+            <Link to={"/thu-cung/hamster"} />
           </Menu.Item>
-          <Menu.Item key="thucungkhac">
+          <Menu.Item key="thu-cung-khac">
             Khác (bò sát, bọ ú,...)
-            <Link to={"/thucung/thucungkhac"} />
+            <Link to={"/thu-cung/thu-cung-khac"} />
           </Menu.Item>
         </SubMenu>
         <SubMenu
-          key="thucanthucung"
+          key="thuc-an-thu-cung"
           title={
-            <Menu.Item key="thucanthucung">
+            <Menu.Item key="thuc-an-thu-cung">
               Thức ăn thú cưng
-              <Link to={"/thucanthucung"} />
+              <Link to={"/thuc-an-thu-cung"} />
             </Menu.Item>
           }
         >
-          <Menu.Item key="ta_cho">
+          <Menu.Item key="ta-cho">
             Thức ăn cho chó
-            <Link to={"/thucanthucung/ta_cho"} />
+            <Link to={"/thuc-an-thu-cung/ta-cho"} />
           </Menu.Item>
-          <Menu.Item key="ta_meo">
+          <Menu.Item key="ta-meo">
             Thức ăn cho mèo
-            <Link to={"/thucanthucung/ta_meo"} />
+            <Link to={"/thuc-an-thu-cung/ta-meo"} />
           </Menu.Item>
-          <Menu.Item key="ta_khac">
+          <Menu.Item key="ta-khac">
             Thức ăn khác
-            <Link to={"/thucanthucung/ta_khac"} />
+            <Link to={"/thuc-an-thu-cung/ta-khac"} />
           </Menu.Item>
         </SubMenu>
-        <Menu.Item key="phukienthucung">
+        <Menu.Item key="phu-kien-thu-cung">
           Phụ Kiện thú cưng
-          <Link to={"/phukienthucung"} />
+          <Link to={"/phu-kien-thu-cung"} />
         </Menu.Item>
-        <Menu.Item key="vatdungthucung">
+        <Menu.Item key="vat-dung-thu-cung">
           Vật dụng thú cưng
-          <Link to={"/vatdungthucung"} />
+          <Link to={"/vat-dung-thu-cung"} />
         </Menu.Item>
-        <Menu.Item key="dochoithucung">
+        <Menu.Item key="do-choi-thu-cung">
           Đồ chơi thú cưng
-          <Link to={"/dochoithucung"} />
+          <Link to={"/do-choi-thu-cung"} />
         </Menu.Item>
-        <Menu.Item key="sanphamthuy">
+        <Menu.Item key="san-pham-thu-y">
           Sản phẩm thú y
-          <Link to={"/sanphamthuy"} />
+          <Link to={"/san-pham-thu-y"} />
         </Menu.Item>
         <SubMenu
-          key="dichvu"
+          key="dich-vu"
           title={
-            <Menu.Item key="dichvu">
+            <Menu.Item key="dich-vu">
               Dịch vụ
-              <Link to={"/dichvu"} />
+              <Link to={"/dich-vu"} />
             </Menu.Item>
           }
         >
-          <Menu.Item key="cattia">
+          <Menu.Item key="cat-tia">
             Cắt móng, tỉa lông,...
-            <Link to={"/dichvu/cattia"} />
+            <Link to={"/dich-vu/cat-tia"} />
           </Menu.Item>
-          <Menu.Item key="tronggiu">
+          <Menu.Item key="trong-giu">
             Trông giữ thú cưng
-            <Link to={"/dichvu/tronggiu"} />
+            <Link to={"/dich-vu/trong-giu"} />
           </Menu.Item>
           <Menu.Item key="spa">
             Spa
-            <Link to={"/dichvu/spa"} />
+            <Link to={"/dich-vu/spa"} />
           </Menu.Item>
-          <Menu.Item key="benhvienthuy">
+          <Menu.Item key="benh-vien-thu-y">
             Bệnh viện thú y
-            <Link to={"/dichvu/benhvienthuy"} />
+            <Link to={"/dich-vu/benh-vien-thu-y"} />
           </Menu.Item>
-          <Menu.Item key="chiase">
-            Góc chia sẻ
-            <Link to={"/dichvu/chiase"} />
-          </Menu.Item>
-          <Menu.Item key="dathen">
+          <Menu.Item key="dat-hen">
             Đặt hẹn trước
-            <Link to={"/dichvu/dathen"} />
+            <Link to={"/dich-vu/dat-hen"} />
           </Menu.Item>
         </SubMenu>
       </Menu>
