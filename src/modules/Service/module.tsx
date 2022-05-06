@@ -5,7 +5,7 @@ const RouterService: RouterInterface[] = [
   {
     name: "CatTia",
     index: false,
-    path: "cattia",
+    path: "cat-tia",
     children: [],
     public: true,
     element: () => <Esthetic />,
@@ -13,7 +13,7 @@ const RouterService: RouterInterface[] = [
   {
     name: "TrongGiu",
     index: false,
-    path: "tronggiu",
+    path: "trong-giu",
     children: [],
     public: true,
     element: () => <Hotel />,
@@ -30,23 +30,14 @@ const RouterService: RouterInterface[] = [
     name: "BenhVien",
     index: false,
     children: [],
-    path: "benhvienthuy",
+    path: "benh-vien-thu-y",
     public: true,
     element: () => <Hospital />,
-  },
-
-  {
-    name: "ChiaSe",
-    children: [],
-    index: false,
-    path: "chiase",
-    public: true,
-    element: () => <Booking />,
   },
   {
     name: "DatHen",
     index: false,
-    path: "dathen",
+    path: "dat-hen",
     children: [],
     public: true,
     element: () => <Booking />,

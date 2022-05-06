@@ -24,7 +24,7 @@ const RouterLayout: RouterInterface[] = [
   {
     name: "ThuCung",
     index: false,
-    path: "thucung",
+    path: "thu-cung",
     public: true,
     element: () => <Store />,
     children: [
@@ -39,7 +39,7 @@ const RouterLayout: RouterInterface[] = [
       {
         name: "ChoCanh",
         index: false,
-        path: "chocanh",
+        path: "cho-canh",
         children: [],
         public: true,
         element: () => <Detail />,
@@ -47,7 +47,7 @@ const RouterLayout: RouterInterface[] = [
       {
         name: "MeoCanh",
         index: false,
-        path: "meocanh",
+        path: "meo-canh",
         children: [],
         public: true,
         element: () => <Detail />,
@@ -55,7 +55,7 @@ const RouterLayout: RouterInterface[] = [
       {
         name: "ThuKieng",
         index: false,
-        path: "thukieng",
+        path: "thu-kieng",
         children: [],
         public: true,
         element: () => <Detail />,
@@ -72,7 +72,7 @@ const RouterLayout: RouterInterface[] = [
         name: "ThuCungKhac",
         children: [],
         index: false,
-        path: "thucungkhac",
+        path: "thu-cung-khac",
         public: true,
         element: () => <Detail />,
       },
@@ -81,7 +81,7 @@ const RouterLayout: RouterInterface[] = [
   {
     name: "ThucAnThuCung",
     index: false,
-    path: "thucanthucung",
+    path: "thuc-an-thu-cung",
     public: true,
     element: () => <Store />,
     children: [
@@ -97,7 +97,7 @@ const RouterLayout: RouterInterface[] = [
         name: "ThucAnChoCho",
         children: [],
         index: false,
-        path: "ta_cho",
+        path: "ta-cho",
         public: true,
         element: () => <Detail />,
       },
@@ -105,14 +105,14 @@ const RouterLayout: RouterInterface[] = [
         name: "ThucAnChoMeo",
         children: [],
         index: false,
-        path: "ta_meo",
+        path: "ta-meo",
         public: true,
         element: () => <Detail />,
       },
       {
         name: "ThucAnKhac",
         index: false,
-        path: "ta_khac",
+        path: "ta-khac",
         children: [],
         public: true,
         element: () => <Detail />,
@@ -123,14 +123,14 @@ const RouterLayout: RouterInterface[] = [
     name: "VatDungThuCung",
     index: false,
     children: [],
-    path: "vatdungthucung",
+    path: "vat-dung-thu-cung",
     public: true,
     element: () => <Store />,
   },
   {
     name: "PhuKienThuCung",
     index: false,
-    path: "phukienthucung",
+    path: "phu-kien-thu-cung",
     children: [],
     public: true,
     element: () => <Store />,
@@ -138,7 +138,7 @@ const RouterLayout: RouterInterface[] = [
   {
     name: "DoChoiThuCung",
     index: false,
-    path: "dochoithucung",
+    path: "do-choi-thu-cung",
     children: [],
     public: true,
     element: () => <Store />,
@@ -146,7 +146,7 @@ const RouterLayout: RouterInterface[] = [
   {
     name: "SanPhamThuY",
     index: false,
-    path: "sanphamthuy",
+    path: "san-pham-thu-y",
     children: [],
     public: true,
     element: () => <Store />,
@@ -154,7 +154,7 @@ const RouterLayout: RouterInterface[] = [
   {
     name: "DichVu",
     index: false,
-    path: "dichvu",
+    path: "dich-vu",
     public: true,
     element: () => <ServiceLayout />,
     children: [
@@ -171,7 +171,7 @@ const RouterLayout: RouterInterface[] = [
   {
     name: "DichVu",
     index: false,
-    path: "dichvu",
+    path: "dich-vu",
     public: true,
     element: () => <ServiceLayout />,
     children: [...RouterService],
@@ -179,7 +179,7 @@ const RouterLayout: RouterInterface[] = [
   {
     name: "TapChi",
     index: false,
-    path: "tapchi",
+    path: "tap-chi",
     children: [],
     public: true,
     element: () => <Blog />,
@@ -187,14 +187,14 @@ const RouterLayout: RouterInterface[] = [
   {
     name: "GioiThieu",
     index: false,
-    path: "gioithieu",
+    path: "gioi-thieu",
     children: [],
     public: true,
     element: () => <Intro />,
   },
   {
     name: "GioHang",
-    path: "giohang",
+    path: "gio-hang",
     index: false,
     public: true,
     children: [],
@@ -219,12 +219,12 @@ const RouterLayout: RouterInterface[] = [
   {
     name: "TapChi",
     index: false,
-    path: "tapchi/:blogName",
+    path: "tap-chi/:blogName",
     children: [],
     public: true,
     element: () => <BlogDetail />,
   },
-  
+
 ];
 
 export default RouterLayout;

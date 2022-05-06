@@ -478,9 +478,13 @@
 }
 
 .booking {
-  margin-top: 100px;
+  margin-top: 7%;
   position: relative;
+  width: 100%;
   .header-form {
+    font-size: 20px;
+    text-align: center;
+    width: 30%;
     padding: 20px;
     padding-bottom: 5px;
     background-color: #fea135;
@@ -488,13 +492,14 @@
     border-top-right-radius: 100%;
     color: white;
     position: absolute;
-    top: -55px;
-    left: 250px;
+    transform: translateY(-100%);
+    left: 30%;
     box-shadow: 2px 2px 10px #767676;
   }
   .booking-form-img {
     border: 1px solid #ff9e2e;
-    width: 800px;
+    width: 80%;
+    margin-left: 5%;
     height: 500px;
     background-color: #fcf8f12d;
     border-radius: 15px;
@@ -507,50 +512,44 @@
   .booking-form {
     position: absolute;
     top: 20px;
-    left: 20px;
+    left: 10%;
     font-size: 18px;
+    width: 70%;
   }
-
-  button {
-    background-color: #a25016;
-    border: 1px solid #a25016;
-    box-shadow: 0 1px 2px #a25016;
-    width: 158px;
-    height: 58px;
-    font-size: 24px;
-    border-radius: 30px;
+  .button-booking {
     font-weight: 500;
-    margin: 20px;
-    margin-left: 40px;
-
-    .sdt {
-      position: absolute;
-      top: 0px;
-      left: 300px;
-    }
-    .date_picker {
-      display: inline-block !important;
-      width: 300px;
-      margin-top: -10px;
-    }
-    .button-booking {
-      border-radius: 5px !important;
-      background-color: #ff9e2e;
-      border-color: #ff9e2e;
-      width: 80px;
-      height: 40px;
-      font-size: 18px;
-      font-weight: 500;
-      position: absolute;
-      bottom: -20px;
-      left: 300px;
-    }
-    #booking-form_noidung {
-      height: 100px;
-    }
+    margin-top: 5%;
+    font-size: 25px;
+    width: 100px;
+    left: 40%;
+    border-radius: 50px;
+    height: auto;
+    background-color: #ff9e2e;
+    border: none;
   }
 }
-
+@media screen and (max-width: 768px) {
+  .header-form {
+    font-size: 18px !important;
+    width: 60% !important;
+    left: 20% !important;
+    padding: 5px !important;
+    padding-top: 15px !important;
+  }
+  .booking-form-img {
+    width: 90% !important;
+    height: 600px !important;
+  }
+  .button-booking {
+    margin-top: 10px !important;
+    left: 35% !important;
+    width: 80px !important;
+    font-size: 20px !important;
+  }
+  .booking-form {
+    width: 80% !important;
+  }
+}
 .home-service-wrapper {
   margin: 70px 100px 70px 100px;
 
