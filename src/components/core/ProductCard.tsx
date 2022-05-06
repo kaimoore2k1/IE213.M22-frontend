@@ -10,7 +10,7 @@ const ProductCard = ({ product }: productCardProps) => {
   const [viewHidden, setViewHidden] = useState(false);
   useEffect(() => {
     const productAddInfo = document.querySelector(
-      `#product-card-${product.id} .card-additional-info`
+      `#${toSlug(product.name)} .card-additional-info`
     );
     if (viewHidden) {
       productAddInfo?.classList.remove("hidden");
@@ -35,7 +35,7 @@ const ProductCard = ({ product }: productCardProps) => {
       onMouseEnter={() => setViewHidden(true)}
       onMouseLeave={() => setViewHidden(false)}
       className="product-card"
-      id={`product-card-${product.id}`}
+      id={`${toSlug(product.name)}`}
       hoverable={true}
       cover={
         <Link to={`/${toSlug(product.name)}`}>

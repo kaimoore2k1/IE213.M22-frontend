@@ -46,7 +46,7 @@ const BlogCategory = ({ blogList, categoryList }: blogCategoryProps) => {
       </div>
       <div className="blog-category-body">
         <Row gutter={[16, 16]}>
-          <Col span={8}>
+          <Col xl={{span:8,order:0}} lg={{span:8,order:0}} md={0} sm={{ span: 24, order: 3 }} xs={{ span: 24, order: 3 }} >
             <BlogSideCardList
               name="Bài viết nổi bật nhất"
               blogList={featuredBlog}
@@ -55,32 +55,38 @@ const BlogCategory = ({ blogList, categoryList }: blogCategoryProps) => {
               <BlogSideCardList name="Bài viết gần đây" blogList={recentBlog} />
             )}
           </Col>
-          <Col span={16} className="blog-card-container">
+          <Col
+          order={1}
+            xl={16}
+            lg={16}
+            md={24}
+            className="blog-card-container"
+          >
             <Row gutter={[16, 16]}>
               {blogList
                 .filter((blog) => blog.categories === currentCategory)
                 .slice(page * blogPerPage, (page + 1) * blogPerPage - 1)
-                .map((blog) => (
-                  <Col span="12" key={blog.id} className="blog-card-wraper">
+                .map((blog,index) => (
+                  <Col md="12" sm={24} key={index} className="blog-card-wraper">
                     <BlogCard blog={blog} type="large" />
                   </Col>
                 ))}
             </Row>
           </Col>
+          <Col span={24} sm={{ order: 2 }} className="blog-category-pagination">
+            <Pagination
+              total={
+                blogList.filter((blog) => blog.categories === currentCategory)
+                  .length
+              }
+              showTotal={(total, range) =>
+                `${range[0]}-${range[1]} of ${total} items`
+              }
+              defaultPageSize={20}
+              defaultCurrent={page + 1}
+            />
+          </Col>
         </Row>
-        <div className="blog-category-footer">
-          <Pagination
-            total={
-              blogList.filter((blog) => blog.categories === currentCategory)
-                .length
-            }
-            showTotal={(total, range) =>
-              `${range[0]}-${range[1]} of ${total} items`
-            }
-            defaultPageSize={20}
-            defaultCurrent={page + 1}
-          />
-        </div>
       </div>
     </div>
   );
