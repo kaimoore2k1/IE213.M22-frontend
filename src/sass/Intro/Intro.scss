@@ -1,16 +1,22 @@
 .intro-member {
-  margin: 50px 100px 50px 100px;
   .intro-member__text {
-    margin-bottom: 20px;
+    text-align: center;
+    padding: 3%;
+  }
+  .intro-member__elements {
+    width: 90%;
+    margin: 0 auto;
   }
 }
 .component-block {
-  width: 350px;
+  width: 100%;
   height: 450px;
   background: #2b2b2b;
   .block-img {
-    width: 350px;
-    height: 356px;
+    img {
+      width: 100% !important;
+      height: 356px !important;
+    }
   }
   .block-divider {
     border: 3px solid #a25016;
@@ -34,19 +40,20 @@
     }
   }
 }
-.intro-member__elements {
-  display: grid;
-  grid-template-columns: 350px 350px 350px;
-  grid-gap: 40px;
-  margin: 40px 0 40px 0;
-}
+
 .intro-about {
-  height: 871px;
+  margin-top: 3%;
+  height: auto;
   width: 100%;
   background: #454343;
   display: flex;
+  img {
+    width: 150%;
+    height: auto;
+  }
   .about-text {
-    margin: 130px 50px 0 50px;
+    margin-left: 12%;
+    margin-right: 10px;
   }
   .about-text-header {
     font-size: 36px;
@@ -68,23 +75,19 @@
   }
 }
 .intro-service {
-  margin: 80px 100px 80px 100px;
-
+  width: 90%;
+  margin: 0 auto;
   .block-divider {
     border: 3px solid #a25016;
     transform: rotate(-0.54deg);
     width: 120px;
+    margin: 0 auto;
     margin-bottom: 50px;
-    margin-left: 550px;
-  }
-  .intro-service-element {
-    display: grid;
-    grid-template-columns: 394px 394px 394px;
-    grid-gap: 20px;
+    margin-top: 50px;
   }
 }
 .service-block {
-  width: 394px;
+  width: 100%;
   max-height: 270px;
   background: #454343;
   .service-icon {
@@ -112,8 +115,9 @@
     border: 3px solid #a25016;
     transform: rotate(-0.54deg);
     width: 120px;
+    margin: 0 auto;
     margin-bottom: 50px;
-    margin-left: 650px;
+    margin-top: 50px;
   }
   .intro-more-img {
     width: 100%;
@@ -124,13 +128,8 @@
   .intro-member {
     margin-bottom: 15%;
     .intro-member__text {
+      font-size: 24px !important;
       text-align: center;
-    }
-    .intro-member__elements {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-gap: 3%;
-      margin: 6% 0 0 -15%;
     }
   }
 
@@ -146,25 +145,11 @@
     .block-divider {
       margin: 5% auto;
     }
-    .intro-service-element {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-gap: 0.5%;
-      margin-left: -16%;
-      position: relative;
-    }
-  }
-  .service-block:last-child {
-    width: 350px;
-    margin-left: 30%;
-    position: absolute;
-    top: 102%;
   }
   .service-block {
     width: auto;
   }
   .intro-more {
-    margin-top: 43%;
     .block-divider {
       margin: 5% auto;
     }
