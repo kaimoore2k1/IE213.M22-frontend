@@ -5,6 +5,7 @@ import { Category, ProductCategorySection } from "../../components/core";
 import { useQuery } from "@apollo/client";
 import { getAllProductsByCategory } from "../../graphql/schema/product.graphql";
 import Loader from '../../components/core/Loader'
+import { getProductByName } from "../../graphql/schema/productDetail.graphql";
 
 function Store() {
   const location = useLocation();

@@ -30,17 +30,17 @@ export default BlogDetail;
 
 const exampleComment = [
   {
-    id: 1,
+    _id: '1',
     content: "lorem ipsum dolor sit amet",
     author: {
-      id: 1,
+      _id: '1',
       name: "holi duch",
       avatar: { url: "https://via.placeholder.com/150/24f355" },
     },
   },
 ];
 const exampleBlog = {
-  id: 1,
+  _id: '1',
   title: "Các dòng chó Phốc Sóc lai cực đáng yêu và thu hút",
   like: 12,
   share: 3,

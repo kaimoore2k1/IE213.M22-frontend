@@ -8,7 +8,7 @@ export interface product {
     variant?: Variant;
     images: [Image];
     categories: string[];
-    id: number;
+    _id: string;
 }
 interface Variant {
   size: [string]
@@ -20,23 +20,20 @@ interface Image {
     author?: string;
 }
 export interface productDetail{
-  name: string;
-  description: string;
-  price: number;
-  rating: number;
-  salePrice?: number;
-  productVariant?: {
-    size?: string[];
-    color?: string[];
-  };
-  image: Image[];
-  category: string[];
-  content: string;
-  id: number;
-  stock: number;
+  name: string;//
+  price: number;//
+  stock: number;//
+  salePrice?: number;//
+  description: string;//
+  content: string;//
+  rating: number;//
+  variant?: Variant;//
+  images: Image[];//
+  categories: string[];//
+  _id: string;
 }
 export interface commentAuthor{
-  id: number;
+  _id: string;
   name: string;
   avatar:{
     url: string;
@@ -45,7 +42,7 @@ export interface commentAuthor{
 
 }
 export interface comment{
-  id: number;
+  _id: string;
   content: string;
   rating?: number;
   author:commentAuthor;
@@ -72,7 +69,7 @@ export interface Props {
   updateCategory: (index: number) => void;
 }
 export interface blog{
-  id: number;
+  _id: string;
   title: string;
   like: number;
   share: number;
