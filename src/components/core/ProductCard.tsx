@@ -10,7 +10,7 @@ const ProductCard = ({ product }: productCardProps) => {
   const [viewHidden, setViewHidden] = useState(false);
   useEffect(() => {
     const productAddInfo = document.querySelector(
-      `#product-card-${product.id} .card-additional-info`
+      `#${toSlug(product.name)} .card-additional-info`
     );
     if (viewHidden) {
       productAddInfo?.classList.remove("hidden");
@@ -35,7 +35,7 @@ const ProductCard = ({ product }: productCardProps) => {
       onMouseEnter={() => setViewHidden(true)}
       onMouseLeave={() => setViewHidden(false)}
       className="product-card"
-      id={`product-card-${product.id}`}
+      id={`${toSlug(product.name)}`}
       hoverable={true}
       cover={
         <Link to={`/${toSlug(product.name)}`}>
@@ -53,14 +53,29 @@ const ProductCard = ({ product }: productCardProps) => {
         <Rate disabled allowHalf value={product.rating} />
         <span>{`(${product.ratingCount} nhận xét)`}</span>
       </div>
-      <div className="price">
+      <div className="price-section">
         {product.salePrice ? (
           <>
-            <span className="sale-price">{product.salePrice}VNĐ</span>
-            <sub className="original-price">{product.price}VNĐ</sub>
+            <span className="original-price">
+              {product.price.toLocaleString("vi-VN", {
+                style: "currency",
+                currency: "VND",
+              })}
+            </span>
+            <span className="sale-price price">
+              {product.salePrice.toLocaleString("vi-VN", {
+                style: "currency",
+                currency: "VND",
+              })}
+            </span>
           </>
         ) : (
-          <span className="original-price">{product.price}VNĐ</span>
+          <span className="price">
+            {product.price.toLocaleString("vi-VN", {
+              style: "currency",
+              currency: "VND",
+            })}
+          </span>
         )}
       </div>
       {/* Khi hover vao trong Card  */}
@@ -70,7 +85,7 @@ const ProductCard = ({ product }: productCardProps) => {
             <div className="obtional-variant">
               {product.variant.size ? (
                 <Form.Item
-                  initialValue={product.variant.size}
+                  initialValue={product.variant.size[0]}
                   label="Kích cỡ:"
                   name="size"
                   className="size"
@@ -86,7 +101,7 @@ const ProductCard = ({ product }: productCardProps) => {
               ) : null}
               {product.variant.color ? (
                 <Form.Item
-                  initialValue={product.variant.color}
+                  initialValue={product.variant.color[0]}
                   label="Màu sắc:"
                   name="color"
                   className="color"

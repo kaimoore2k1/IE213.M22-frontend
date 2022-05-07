@@ -1,7 +1,7 @@
 import { content } from "./Service";
 export const Content: content[] = [
   {
-    path: "cattia",
+    path: "cat-tia",
     className: "main-service-imgLeft",
     img: {
       src: "http://petlove.vn/wp-content/uploads/2019/07/71GeJTERNGL._AC_SL1200_.jpg",
@@ -13,7 +13,7 @@ export const Content: content[] = [
     },
   },
   {
-    path: "tronggiu",
+    path: "trong-giu",
     className: "main-service-imgRight",
     img: {
       src: "https://toplist.vn/images/800px/pet-kingdom-101653.jpg",
@@ -37,7 +37,7 @@ export const Content: content[] = [
     },
   },
   {
-    path: "benhvienthuy",
+    path: "benh-vien-thu-y",
     className: "main-service-imgRight",
     img: {
       src: "https://pateforpet.com/admin/uploads/images/tieu-chi-lua-chon-phong-kham-benh-vien-thu-y-uy-tin.jpg",
@@ -49,7 +49,7 @@ export const Content: content[] = [
     },
   },
   {
-    path: "dathen",
+    path: "dat-hen",
     className: "main-service-imgLeft",
     img: {
       src: "https://www.toyotatiengiang.com.vn/vnt_upload/service/09_2018/dat-hen-dich-vu.jpg",

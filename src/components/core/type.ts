@@ -34,7 +34,6 @@ export interface productDetail{
   content: string;
   id: number;
   stock: number;
-  comment: comment[];
 }
 export interface commentAuthor{
   id: number;
@@ -71,4 +70,19 @@ export interface Props {
   CategoryList: String[];
   currentCategory: number;
   updateCategory: (index: number) => void;
+}
+export interface blog{
+  id: number;
+  title: string;
+  like: number;
+  share: number;
+  description: string;
+  category: string;
+  author: string;
+  date: Date;
+  image: {
+      url: string;
+      title?: string;
+  };
+  content: string;
 }

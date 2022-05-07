@@ -20,7 +20,7 @@
     font-size: 20px;
   }
   input {
-    width: 554px;
+    width: 90%;
     height: 50px;
     border-radius: 20px;
     border: 1px solid #c4c4c4;
@@ -31,7 +31,7 @@
     font-size: 20px;
   }
   .ant-btn-primary {
-    width: 555px;
+    width: 90%;
     height: 50px;
     background: #f3cf7a;
     border: 1px solid #f3cf7a;
@@ -47,12 +47,12 @@
     text-align: center;
   }
   .facebook-google {
-    width: 554px;
+    width: 90%;
     display: flex;
     justify-content: space-between;
   }
   .facebook-google--css {
-    width: 266px;
+    width: 45%;
     height: 61px;
     font-size: 20px;
     background: #ffffff;
@@ -81,16 +81,13 @@
   .login-logout--logout {
     width: 350px;
     height: 70px;
-
+    border-radius: 0px 10px 0px 0px;
     font-size: 20px;
     text-align: center;
     padding-top: 20px;
   }
   .login-logout--login {
     border-radius: 10px 0px 0px 0px;
-  }
-  .login-logout--logout {
-    border-radius: 0px 10px 0px 0px;
   }
   .active {
     background-color: #fff;
@@ -112,23 +109,18 @@
 }
 @media screen and (max-width: 786px) {
   .login-logout__wrapper {
-    width: 100%;
+    width: 95%;
+    margin-right: 10px;
+    margin-left: 10px !important;
+    .login-logout--login,
+    .login-logout--logout {
+      width: 100%;
+    }
   }
   .login,
   .Logout {
-    width: 100%;
-    input {
-      width: 90%;
-    }
-    .ant-btn-primary {
-      width: 90%;
-    }
-    .facebook-google {
-      width: 90%;
-    }
-    .facebook-google--css {
-      width: 40%;
-    }
+    width: 95%;
+    margin-left: 10px !important;
   }
   .logout-another {
     p {

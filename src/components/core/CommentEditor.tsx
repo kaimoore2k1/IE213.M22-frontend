@@ -8,7 +8,7 @@ const CommentEditor = ({ type }: any) => {
   return (
     <Form onFinish={submitHandler}>
       {
-        (type = "product" && (
+        (type == "product" && (
           <Form.Item className="rating-input">
             <Rate allowHalf defaultValue={3} />
           </Form.Item>
@@ -19,7 +19,7 @@ const CommentEditor = ({ type }: any) => {
       </Form.Item>
       <Form.Item>
         <Button htmlType="submit" type="primary">
-          Add Comment
+          Gửi bình luận
         </Button>
       </Form.Item>
     </Form>

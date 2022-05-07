@@ -1,7 +1,12 @@
 import { Card } from "antd";
-import { LikeIcon, CommentIcon, ShareIcon } from "../../../assets/icons/BlogCustomIcon";
+import {
+  LikeIcon,
+  CommentIcon,
+  ShareIcon,
+} from "../../../assets/icons/BlogCustomIcon";
 import "../../../sass/Blog/BlogCard.scss";
-
+import { Link } from "react-router-dom";
+import toSlug from "../../../assets/toSlug";
 export interface blogCard {
   title: string;
   likeCount: number;
@@ -30,10 +35,16 @@ const BlogCard = ({ type, blog }: blogCardProps) => {
           className="blog-card-small"
           id={`blog-card-${blog.id}`}
           hoverable={true}
-          cover={<img src={blog.images.url} alt="blog"/>}
+          cover={
+            <Link to={`/tap-chi/${toSlug(blog.title)}`}>
+              <img src={blog.images.url} alt="blog" />
+            </Link>
+          }
         >
           <Card.Meta
-            title={blog.title}
+            title={
+              <Link to={`/tap-chi/${toSlug(blog.title)}`}>{blog.title}</Link>
+            }
             description={
               <div className="blog-card-info__top">
                 <div className="blog-card-date">{blog.date.toDateString()}</div>
@@ -63,7 +74,9 @@ const BlogCard = ({ type, blog }: blogCardProps) => {
           hoverable={true}
           cover={
             <div className="blog-card-image__container">
-              <img src={blog.images.url} alt="blog"/>
+              <Link to={`/tap-chi/${toSlug(blog.title)}`}>
+                <img src={blog.images.url} alt="blog" />
+              </Link>
               <div className="blog-card-category">
                 <span>{blog.categories}</span>
               </div>
@@ -71,7 +84,9 @@ const BlogCard = ({ type, blog }: blogCardProps) => {
           }
         >
           <Card.Meta
-            title={blog.title}
+            title={
+              <Link to={`/tap-chi/${toSlug(blog.title)}`}>{blog.title}</Link>
+            }
             description={
               <>
                 <div className="blog-card-info__top">
