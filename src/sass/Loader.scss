@@ -44,7 +44,7 @@
 //   }
 
 
-  $bgColor:     rgb(230, 220, 219);
+  $bgColor:     rgb(255, 255, 255);
 $bodyColor:   rgb(237, 166, 93);
 $tailColor:   rgb(198, 130, 59);
 $tummyColor:  rgb(242, 192, 137);
@@ -104,7 +104,12 @@ $borderWidth: 6.5px;
   );
 }
 
-
+.loading-cat-wrapper {
+  display:flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
 
 .loading-cat {
   position: relative;
