@@ -703,6 +703,7 @@ button:focus {
     position: relative;
     margin: 0 auto;
     .e404 {
+      margin-left: 7%;
       display: inline;
       img {
         width: 25%;
@@ -723,7 +724,7 @@ button:focus {
   }
   .undo {
     position: absolute;
-    left: 40%;
+    left: 38%;
     font-size: 80px;
     color: black;
   }
@@ -735,7 +736,10 @@ button:focus {
     color: black;
   }
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 786px) {
+  .detail {
+    padding: none !important;
+  }
   .error {
     margin-top: -100px;
     height: 500px;
@@ -744,17 +748,18 @@ button:focus {
       display: none;
     }
     .e404 {
-      margin-left: 10%;
+      margin-left: 10% !important;
       span {
-        padding: 10vw !important;
-        font-size: 20vw !important;
+        padding: 5vw !important;
+        font-size: 10vw !important;
       }
     }
   }
 }
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 420px) {
   .error {
     .e404 {
+      margin-left: 15% !important;
       span {
         padding: 10vw !important;
       }

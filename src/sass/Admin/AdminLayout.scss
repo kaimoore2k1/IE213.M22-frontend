@@ -1,0 +1,56 @@
+html {
+    scrollbar-width: none;
+    /* For Firefox */
+    -ms-overflow-style: none;
+    /* For Internet Explorer and Edge */
+}
+
+html::-webkit-scrollbar {
+    width: 0px;
+    /* For Chrome, Safari, and Opera */
+}
+
+
+
+.ant-table-wrapper {
+    position: relative;
+
+    .ant-table-thead {
+        height: 100%;
+
+        tr {
+            th {
+                font-size: 16px;
+            }
+        }
+    }
+
+    .ant-table-body {
+        scrollbar-width: none !important;
+        /* For Firefox */
+        -ms-overflow-style: none !important;
+        /* For Internet Explorer and Edge */
+    }
+    .ant-table-body-webkit-scrollbar {
+        width: 0px !important;
+        /* For Chrome, Safari, and Opera */
+    }
+}
+
+.Admin_Header_Add {
+    width: 30%;
+    float: right;
+    margin-bottom: 20px;
+
+    button {
+        margin-bottom: 5px;
+        float: right;
+        padding: 0px 7px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .Admin_Header_Add {
+        width: 60%;
+    }
+}

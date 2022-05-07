@@ -38,7 +38,7 @@ const ProductCategorySection = ({
               min="1"
               max={`${productList.length / productPerPage}`}
               type="number"
-              defaultValue={ 1}
+              defaultValue={1}
               value={page + 1}
             />
             <span>/ {Math.ceil(productList.length / productPerPage)}</span>
