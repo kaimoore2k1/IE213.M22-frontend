@@ -10,7 +10,10 @@ function Store() {
   const location = useLocation();
   const pathName = location.pathname.split("/");
   pathName.shift();
-  const { loading, error, data } = useQuery(getAllProductsByCategory(pathName));
+  const path = pathName.map(path => {
+    return path.split('-').join('')
+  })
+  const { loading, error, data } = useQuery(getAllProductsByCategory(path));
   if (error) return <p>Error...</p>;
   return (
     <div className="store__layout">
