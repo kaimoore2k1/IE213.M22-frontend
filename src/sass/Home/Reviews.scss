@@ -1,13 +1,7 @@
 .content{
     background-color: #FFF3CC;
-    height: 750px;
-    display: grid;
-    grid-template-columns: 30% 30% 30%;
-    grid-template-rows: 15% 85%;
     padding: 50px;
     font-size: 17px;
-    justify-content: center;
-    width: 100%;
 }
 .content>p{
     grid-column: 1/4;
@@ -25,6 +19,7 @@
     border-radius: 15px;
     position: relative;
     z-index: 0;
+    width: 394px;
 }
 
 #image1>svg{
@@ -34,8 +29,7 @@
     z-index: 1;
     fill: #FFFFFF;
     stroke:#FFFFFF;
-    stroke-width:2
-    
+    stroke-width:2;
 }
 #image1>p{
     position: relative;
