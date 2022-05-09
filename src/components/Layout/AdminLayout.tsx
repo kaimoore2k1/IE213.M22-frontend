@@ -110,7 +110,7 @@ function AdminLayout() {
             backgroundColor: "white",
             position: "sticky",
             top: "0",
-            zIndex: "9999",
+            zIndex: "500",
           }}
         >
           {React.createElement(
