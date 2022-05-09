@@ -59,10 +59,10 @@ const ProdcutDetail = ({ product, comments }: ProductDetailProps) => {
   function handelAddToCart(value: any) {
     console.log({
       variant: value ?? null,
-      id: product.id,
+      _id: product._id,
       name: product.name,
       price: product.salePrice ?? product.price,
-      image: product.image,
+      image: product.images[0],
       quantity: productQuantity,
     });
   }
@@ -74,12 +74,12 @@ const ProdcutDetail = ({ product, comments }: ProductDetailProps) => {
           <Image.PreviewGroup>
             <Row className="main-image">
               <Image
-                src={product.image[0].url}
-                alt={product.image[0].title ?? product.name}
+                src={product.images[0].url}
+                alt={product.images[0].title ?? product.name}
               />
             </Row>
             <Row gutter={16} className="sub-image">
-              {product.image.slice(1, 5).map((image, index) => (
+              {product.images.slice(1, 5).map((image, index) => (
                 <Col xl={6}>
                   <Image
                     key={index}
@@ -128,17 +128,17 @@ const ProdcutDetail = ({ product, comments }: ProductDetailProps) => {
           </div>
           <div className="product-description">{product.description}</div>
           <Form onFinish={handelAddToCart}>
-            {product.productVariant ? (
+            {product.variant ? (
               <div className="obtional-variant">
-                {product.productVariant.size ? (
+                {product.variant?.size.length > 0 ? (
                   <Form.Item
-                    initialValue={product.productVariant.size[0]}
+                    initialValue={product.variant.size[0]}
                     label="Kích cỡ:"
                     name="size"
                     className="size"
                   >
-                    <Radio.Group defaultValue={product.productVariant.size[0]}>
-                      {product.productVariant.size.map((size: string) => (
+                    <Radio.Group defaultValue={product.variant.size[0]}>
+                      {product.variant.size.map((size: string) => (
                         <Radio.Button key={size} value={size}>
                           {size}
                         </Radio.Button>
@@ -146,15 +146,15 @@ const ProdcutDetail = ({ product, comments }: ProductDetailProps) => {
                     </Radio.Group>
                   </Form.Item>
                 ) : null}
-                {product.productVariant.color ? (
+                {product.variant?.color?.length >0 ? (
                   <Form.Item
-                    initialValue={product.productVariant.color[0]}
+                    initialValue={product.variant.color[0]}
                     label="Màu sắc:"
                     name="color"
                     className="color"
                   >
-                    <Radio.Group defaultValue={product.productVariant.color[0]}>
-                      {product.productVariant.color.map((color: string) => (
+                    <Radio.Group defaultValue={product.variant.color[0]}>
+                      {product.variant.color.map((color: string) => (
                         <Radio.Button key={color} value={color}>
                           {color}
                         </Radio.Button>
@@ -212,7 +212,7 @@ const ProdcutDetail = ({ product, comments }: ProductDetailProps) => {
           </Form>
           <div className="category">
             <span>Danh mục:</span>
-            {product.category.map((category: string, index: number) => (
+            {product.categories.map((category: string, index: number) => (
               <Link to={``} key={index}>
                 {category}
               </Link>

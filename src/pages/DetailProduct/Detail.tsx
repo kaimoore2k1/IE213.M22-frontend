@@ -5,30 +5,10 @@ import { useParams } from "react-router-dom";
 import Content404 from "../NotFound/Content404";
 import toSlug from "../../assets/toSlug";
 import { product } from "./../../components/core/type";
-const exampleProduct = [
-  {
-    name: "example product",
-    description: "lorem ipsum dolor sit amet, consectetur adip",
-    price: 20000,
-    rating: 4,
-    salePrice: 10000,
-    productVariant: {
-      size: ["Lớn", "Nhỏ"],
-      color: ["Đen", "Đỏ"],
-    },
-    image: [
-      { url: "https://via.placeholder.com/150/24f355" },
-      { url: "https://via.placeholder.com/150/24f355" },
-      { url: "https://via.placeholder.com/150/24f355" },
-      { url: "https://via.placeholder.com/150/24f355" },
-      { url: "https://via.placeholder.com/150/24f355" },
-    ],
-    category: ["Chó", "lợn"],
-    content: "lorem ipsum dolor sit amet, consectetur adip",
-    id: 1,
-    stock: 5,
-  },
-];
+import { useQuery } from "@apollo/client";
+import { getProductByName } from "../../graphql/schema/productDetail.graphql";
+import Loader from "../../components/core/Loader";
+
 const exampleComment = [
   {
     id: 1,
@@ -43,19 +23,26 @@ const exampleComment = [
 ];
 
 export default function Detail() {
-  const slug = useParams().productName ?? false;
-  const data = exampleProduct.find(({ name }) => toSlug(name) == slug);
+  const slug: string = useParams().productName ?? "";
 
+  const { loading, error, data } = useQuery(getProductByName(slug));
+  console.log(loading);
+  console.log(error);
+  console.log(data);
+
+  if (error) return <Content404 />;
   return (
     <div className="detail">
-      {data ? (
+      {loading ? (
+        <Loader />
+      ) : (
         <>
-          <ProductDetail comments={exampleComment} product={data} />
+          <ProductDetail comments={[]} product={data.getProductByName} />
           <div className="related_products"></div>
         </>
-      ) : (
-        <Content404 />
       )}
+
+      {/* <Content404 /> */}
     </div>
   );
 }

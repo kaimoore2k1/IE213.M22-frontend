@@ -10,6 +10,12 @@
 }
 
 @media screen and (max-width: 786px) {
+  .ant-row {
+    justify-content: center !important;
+  }
+  #contact {
+    width: 100%;
+  }
   .home--contact {
     height: 650px !important;
     img {
@@ -26,7 +32,7 @@
     }
     input {
       height: 50px !important;
-      width: 450px !important;
+      width: 90% !important;
       margin-left: 25px;
     }
 
@@ -35,9 +41,9 @@
       height: 150px !important;
       max-height: 150px !important;
       min-height: 150px !important;
-      width: 450px !important;
-      min-width: 450px !important;
-      max-width: 450px !important;
+      width: 90% !important;
+      min-width: unset !important;
+      max-width: unset !important;
       font-size: 14px !important;
     }
 
@@ -97,6 +103,7 @@
   }
 
   .contact--form {
+    width: 100%;
     height: 738px;
     flex: 1;
   }
@@ -245,13 +252,13 @@
   .menu-responsive {
     position: sticky;
     top: 0 !important;
-    z-index: 9999;
+    z-index: 1000;
     .navBar-responsive {
       position: fixed !important;
       display: block !important;
       width: 70vw !important;
       top: 0px;
-      z-index: 9999;
+      z-index: 1000;
       height: 100%;
       overflow: auto;
       box-shadow: 0px 0.1px 5px #fff6e0;
@@ -336,7 +343,7 @@
 .menu {
   position: sticky !important;
   top: 0;
-  z-index: 9999;
+  z-index: 1000;
   height: 100%;
   .icon {
     position: absolute;
@@ -551,7 +558,9 @@
   }
 }
 .home-service-wrapper {
-  margin: 70px 100px 70px 100px;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 3%;
 
   .home-service-title {
     font-size: 48px;
@@ -563,10 +572,9 @@
     list-style-type: none;
     display: flex;
     justify-content: space-between;
-    max-width: 550px;
-    margin-left: 350px;
-    margin-top: 50px;
-    margin-bottom: 10px;
+    width: 40%;
+    height: auto;
+    margin: 0 auto;
     position: relative;
 
     .active {
@@ -607,7 +615,24 @@
     bottom: 0;
   }
 }
-
+@media screen and (max-width: 768px) {
+  .home-service-ul {
+    width: 100% !important;
+  }
+  .home-service-element {
+    img {
+      display: none;
+    }
+    .service-block-des1 {
+      margin: 0 auto !important;
+      padding: 5% !important;
+    }
+    .service-block-des2 {
+      margin: 0 auto !important;
+      padding: 5% !important;
+    }
+  }
+}
 .home-service-block {
   display: none;
 }

@@ -73,7 +73,7 @@ const ProductCategorySection = ({
             .slice(page * productPerPage, (page + 1) * productPerPage)
             .map((item) => {
               return (
-                <Col key={item.id} xl={5} lg={5} md={6} sm={12} xs={24}>
+                <Col key={item._id} xl={5} lg={5} md={6} sm={12} xs={24}>
                   <ProductCard product={item} />
                 </Col>
               );
