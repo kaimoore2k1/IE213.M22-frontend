@@ -1,11 +1,32 @@
-import { Form, Input, Button, Typography } from "antd";
+import { Modal, Form, Input, Button, Typography, notification } from "antd";
 import React from "react";
 import "../../sass/Home/Home.scss";
 import { information } from './type'
+import { ExclamationCircleOutlined } from '@ant-design/icons';
 
-
+const { confirm } = Modal;
 
 function Contact() {
+
+  const showConfirm = () => {
+    confirm({
+      title: 'Xác nhận gửi thông tin?',
+      icon: <ExclamationCircleOutlined />,
+      content: 'Gửi phản hồi cho chúng tôi',
+      onOk() {
+        notification.info({
+          message: 'Thông báo!',
+          description:
+            'Cảm ơn bạn đã gửi phản hồi cho chúng tôi!',
+        });
+        console.log(Information);
+      },
+      onCancel() {
+        console.log('Cancel');
+      },
+    });
+  }
+
   const { Title, Text } = Typography;
 
   let Information: information = {
@@ -15,7 +36,7 @@ function Contact() {
   }
 
   const HandleFinish = () => {
-    console.log(Information)
+    return Information;
   }
 
   return (
@@ -52,7 +73,7 @@ function Contact() {
             <Input.TextArea onChange={(e) => { Information.content = e.target.value.toString() }} className="InputLastChild" placeholder="Nội dung" />
           </Form.Item>
           <Form.Item name="submit">
-            <Button type="primary" htmlType="submit">
+            <Button onClick={showConfirm} type="primary" htmlType="submit">
               Gửi
             </Button>
           </Form.Item>
