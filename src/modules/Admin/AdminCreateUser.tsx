@@ -3,7 +3,7 @@ import AvatarUpload from "../../components/core/AvatarUpload";
 import { Button, Col, Form, Input, Row } from "antd";
 import {UserData} from './type'
 
-function AdminCreateUser(props: { visibleProp: (arg0: boolean) => void, dataProp: UserData }) {
+function AdminCreateUser(props: { visibleProp: (arg0: boolean) => void, dataProp: any }) {
   const prefixSelector = <Form.Item noStyle>+84</Form.Item>;
   const handleCancel = () =>{
     props.visibleProp(false)
