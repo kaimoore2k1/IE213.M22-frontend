@@ -12,7 +12,7 @@ function Category() {
       <Menu
         className="category_menu"
         style={{
-          width: 256,
+          width: "100%",
           borderLeft: "1px solid #c0c0c0",
           fontSize: 16,
           fontWeight: 500,

@@ -12,31 +12,33 @@ import { getAllProductsByCategory } from "../../graphql/schema/product.graphql";
 import Loader from "../../components/core/Loader";
 
 function Home() {
-  const { loading, error, data } = useQuery(
-    getAllProductsByCategory(["vatdungthucung"])
+  const pet = useQuery(
+    getAllProductsByCategory("thucung")
   );
-  if (error) return <p>Error...</p>;
+  const food = useQuery(
+    getAllProductsByCategory("thucanthucung")
+  )
   return (
     <>
       <Slider />
       <Service />
-      {loading ? (
+      {pet.loading ? (
         <Loader />
       ) : (
         <ProductCategorySection
-          productList={data.getAllProductsByCategory}
-          categoryList={["pet", "clothes", "food"]}
-          sectionName="product-category-section"
+          productList={pet.data.getAllProductsByCategory}
+          categoryList={["Chó cảnh", "Mèo cảnh", "Thú cưng khác"]}
+          sectionName="Thú cưng"
         />
       )}
 
-      {loading ? (
+      {food.loading ? (
         <Loader />
       ) : (
         <ProductCategorySection
-          productList={data.getAllProductsByCategory}
-          categoryList={["pet", "clothes", "food"]}
-          sectionName="product-category-section"
+          productList={food.data.getAllProductsByCategory}
+          categoryList={["Thức ăn cho chó", "Thức ăn cho mèo", "Thức ăn khác"]}
+          sectionName="Thức ăn cho thú cưng"
         />
       )}
       <Reviews />

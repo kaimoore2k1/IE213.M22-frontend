@@ -35,14 +35,13 @@ export default function Detail() {
     <div className="detail">
       {loading ? (
         <Loader />
-      ) : (
+      ) : !!data.getProductByName ? (
         <>
           <ProductDetail comments={[]} product={data.getProductByName} />
-          <div className="related_products"></div>
         </>
+      ) : (
+        <Content404 />
       )}
-
-      {/* <Content404 /> */}
     </div>
   );
 }
