@@ -1,3 +1,8 @@
-.store__layout{
-    padding:0 5rem;
+.store__layout {
+  padding: 0 5rem;
+}
+@media screen and (max-width: 600px) {
+  .store__layout {
+    padding: 0 1rem !important;
+  }
 }
