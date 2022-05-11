@@ -24,7 +24,7 @@ const Header = () => {
           enterButton
         />
         <div className="header__right">
-          <Link to={"/giohang"}>
+          <Link to={"/gio-hang"}>
             <button className="shopping_cart">
               <Badge count={1} offset={[8, -5]}>
                 <img src={cart} alt="Giỏ hàng" />
