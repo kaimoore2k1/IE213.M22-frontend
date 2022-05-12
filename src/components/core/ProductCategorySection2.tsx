@@ -1,26 +1,24 @@
 import { useState } from "react";
-import ProductCategoryButtons from "./ProductCategoryButtons";
 import ProductCard from "./ProductCard";
-import "../../sass/Blog/ProductCategorySection.scss";
-import { productCategorySectionProps } from "./type";
+import "../../sass/Blog/ProductCategorySection2.scss";
+import { product } from "./type";
 import { Row, Col } from "antd";
 
-const ProductCategorySection = ({
+interface Props{
+    productList: product[];
+    sectionName: string;
+}
+
+const ProductCategorySection2 = ({
   productList,
-  categoryList,
   sectionName,
-}: productCategorySectionProps) => {
+}: Props) => {
   const [page, setPage] = useState<number>(0);
-  const [productPerPage, setProductPerPage] = useState<number>(4);
-  const [currentCategory, setCurrentCategory] = useState<number>(0);
-  const updateCategory = (index: number) => {
-    setCurrentCategory(index);
-    console.log("index :>> ", index);
-    console.log("currentCategory :>> ", currentCategory);
-  };
+  const [productPerPage, setProductPerPage] = useState<number>(8);
+
 
   return (
-    <div className="product-category-section">
+    <div className="product-category-section-2">
       <div className="section__top">
         <div className="section-name">{sectionName}</div>
         <div className="page">
@@ -61,19 +59,11 @@ const ProductCategorySection = ({
       </div>
       <div className="section__bottom">
         <Row gutter={16}>
-          <Col className='target' xl={4} lg={4} md={24} sm={24} xs={24}>
-            <ProductCategoryButtons
-              currentCategory={currentCategory}
-              updateCategory={updateCategory}
-              CategoryList={categoryList}
-            />
-          </Col>
-
           {productList
             .slice(page * productPerPage, (page + 1) * productPerPage)
             .map((item) => {
               return (
-                <Col key={item._id} xl={5} lg={5} md={6} sm={12} xs={24}>
+                <Col key={item._id} xl={6} lg={6} md={6} sm={12} xs={24}>
                   <ProductCard product={item} />
                 </Col>
               );
@@ -84,4 +74,4 @@ const ProductCategorySection = ({
   );
 };
 
-export default ProductCategorySection;
+export default ProductCategorySection2;

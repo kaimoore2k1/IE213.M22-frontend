@@ -46,10 +46,9 @@ function Login() {
       <div className="login--form">
         <Form
           className="form--form"
-          layout="horizontal"
+          layout="vertical"
+          wrapperCol={{span: 24}}
           name="login"
-          labelCol={{ span: 8 }}
-          wrapperCol={{ span: 16 }}
           autoComplete="off"
           onFinish={handleFinish}
         >

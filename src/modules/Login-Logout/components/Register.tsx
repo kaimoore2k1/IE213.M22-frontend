@@ -36,10 +36,9 @@ function Register(){
               <Form
                 onFinish={handleFinish}
                 className="form--form"
-                layout="horizontal"
+                layout="vertical"
+                wrapperCol={{span: 24}}
                 name="register"
-                labelCol={{ span: 8 }}
-                wrapperCol={{ span: 16 }}
                 autoComplete="off"
                 
               >

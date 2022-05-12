@@ -17,7 +17,6 @@
           margin-bottom: 1rem;
           width: 100%;
         }
-
       }
       .product-detail-info {
         .price {
@@ -67,4 +66,9 @@
 }
 .ant-image-preview-mask {
   background-color: rgba(0, 0, 0, 0.7);
+}
+@media screen and (max-width: 768px) {
+  .detail {
+    padding: unset !important;
+  }
 }

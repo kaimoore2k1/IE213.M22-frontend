@@ -14,9 +14,12 @@ import JWTManager  from "./modules/utils/jwt";
 import AuthContextProvider from "./modules/context/AuthContext";
 
 const httpLink = createHttpLink({
-	uri: 'http://localhost:4000/',
+	uri: 'https://senshopdottech.herokuapp.com/',
+	// uri: 'http://localhost:4000/',
 	credentials: 'include'
+	
 })
+
 
 const authLink = setContext((_, { headers }) => {
 	// get the authentication token from JWTManager if it exists

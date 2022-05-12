@@ -10,7 +10,7 @@ const ProductCard = ({ product }: productCardProps) => {
   const [viewHidden, setViewHidden] = useState(false);
   useEffect(() => {
     const productAddInfo = document.querySelector(
-      `#product-card-${product.id} .card-additional-info`
+      `#${toSlug(product.name)} .card-additional-info`
     );
     if (viewHidden) {
       productAddInfo?.classList.remove("hidden");
@@ -22,7 +22,7 @@ const ProductCard = ({ product }: productCardProps) => {
   function handelAddToCart(value: any) {
     console.log({
       variant: value ?? null,
-      id: product.id,
+      _id: product._id,
       name: product.name,
       price: product.salePrice ?? product.price,
       image: product.images,
@@ -35,7 +35,7 @@ const ProductCard = ({ product }: productCardProps) => {
       onMouseEnter={() => setViewHidden(true)}
       onMouseLeave={() => setViewHidden(false)}
       className="product-card"
-      id={`product-card-${product.id}`}
+      id={`${toSlug(product.name)}`}
       hoverable={true}
       cover={
         <Link to={`/${toSlug(product.name)}`}>
@@ -44,9 +44,7 @@ const ProductCard = ({ product }: productCardProps) => {
       }
     >
       <Card.Meta
-        title={
-          <Link to={`/${toSlug(product.name)}`}>{product.name}</Link>
-        }
+        title={<Link to={`/${toSlug(product.name)}`}>{product.name}</Link>}
         description={product.description}
       />
       <div className="rating-container">
@@ -83,7 +81,7 @@ const ProductCard = ({ product }: productCardProps) => {
         <div className="card-additional-info hidden">
           {product.variant ? (
             <div className="obtional-variant">
-              {product.variant.size ? (
+              {product.variant?.size.length > 0 ? (
                 <Form.Item
                   initialValue={product.variant.size[0]}
                   label="Kích cỡ:"
@@ -99,7 +97,7 @@ const ProductCard = ({ product }: productCardProps) => {
                   </Radio.Group>
                 </Form.Item>
               ) : null}
-              {product.variant.color ? (
+              {product.variant?.color.length > 0 ? (
                 <Form.Item
                   initialValue={product.variant.color[0]}
                   label="Màu sắc:"

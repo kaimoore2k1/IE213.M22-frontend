@@ -1,288 +1,293 @@
 @media screen and (max-width: 786px) {
-    .ant-table-thead {
-        height: 30px !important;
-        tr {
-            height: 30px !important;
-            border: 2px solid #c4c4c4 !important;
-            th {
-                font-size: 15px !important;
-                color: #6E3B3B !important;
-                font-weight: 500 !important;
-            }
-        }
+  .ant-table-thead {
+    height: 30px !important;
+    tr {
+      height: 30px !important;
+      border: 2px solid #c4c4c4 !important;
+      th {
+        font-size: 15px !important;
+        color: #6e3b3b !important;
+        font-weight: 500 !important;
+      }
     }
-    .ant-table-tbody {
-        tr {
-            td {
-                img {
-                    min-width: 60px !important;
-                    min-height: 60px !important;
-                    height: 12vh !important;
-                    margin-right: 0px !important;
-                }
-            }
+  }
+  .ant-table-tbody {
+    tr {
+      td {
+        img {
+          min-width: 60px !important;
+          min-height: 60px !important;
+          height: 12vh !important;
+          margin-right: 0px !important;
         }
+      }
     }
-    
-    .ant-table-summary {
-        font-size: 17px !important;
+  }
+
+  .ant-table-summary {
+    font-size: 17px !important;
+  }
+  .handleButton {
+    width: 80% !important;
+    left: 10% !important;
+    display: inline-block !important;
+    button {
+      height: 45px !important;
+      font-size: 15px !important;
     }
-    .handleButton {
-        width: 80% !important;
-        left: 10% !important;
-        display: inline-block !important;
-        button {
-            height: 45px !important;
-            font-size: 15px !important;
-        }
-        button:last-child {
-            margin-left: 10px !important;
-        }
+    button:last-child {
+      margin-left: 10px !important;
     }
-    .handleButton_responsive {
-        button:first-child {
-            display: none;
-        }
+  }
+  .handleButton_responsive {
+    button:first-child {
+      display: none;
     }
-    .PaymentFinished {
-        padding: 50px 20px 0px 20px !important;
-    
-        button {
-            height: 45px !important;
-            font-size: 15px !important;
-            width: 190px !important;
-            margin-left: 45% !important;
-        }
+  }
+  .PaymentFinished {
+    padding: 50px 20px 0px 20px !important;
+
+    button {
+      height: 45px !important;
+      font-size: 15px !important;
+      width: 190px !important;
+      margin-left: 45% !important;
     }
+  }
+  .ant-table-tbody > tr > td {
+    padding: 0px !important;
+  }
+  .ant-table-thead > tr > th {
+    padding: 0px !important;
+  }
 }
 
 .ant-table-thead {
-    height: 99px;
+  height: 99px;
 
-    tr {
-        th {
-            font-size: 20px;
-            color: #6E3B3B !important;
-            font-weight: 500 !important;
-            border-bottom: 2px solid #c4c4c4 !important;
-            border-top: 2px solid #c4c4c4 !important;
-        }
+  tr {
+    th {
+      font-size: 20px;
+      color: #6e3b3b !important;
+      font-weight: 500 !important;
+      border-bottom: 2px solid #c4c4c4 !important;
+      border-top: 2px solid #c4c4c4 !important;
     }
+  }
 }
 
 .PayInformation__Header {
-    background: white;
-    color: #6E3B3B;
-    font-weight: 500;
-    font-size: 20px;
-    padding: 35px;
-    height: 99px;
+  background: white;
+  color: #6e3b3b;
+  font-weight: 500;
+  font-size: 20px;
+  padding: 35px;
+  height: 99px;
 }
 
 .PayInformation__Form {
-    padding: 0px 70px;
+  padding: 0px 70px;
 
-    .ant-input {
-        border: 1px solid #FEA135;
-    }
+  .ant-input {
+    border: 1px solid #fea135;
+  }
 
-    .ant-input:hover,
-    .ant-input:focus,
-    .ant-input:active {
-        border: 1px solid #FEA135;
-        outline: none;
-    }
+  .ant-input:hover,
+  .ant-input:focus,
+  .ant-input:active {
+    border: 1px solid #fea135;
+    outline: none;
+  }
 
-    .ant-input:active,
-    .ant-input:focus {
-        box-shadow: 0 0 0 2px rgba(254, 161, 53, 20%);
-    }
+  .ant-input:active,
+  .ant-input:focus {
+    box-shadow: 0 0 0 2px rgba(254, 161, 53, 20%);
+  }
 
-    .ant-input-group-addon {
-        border: 1px solid #FEA135;
-        background-color: white;
-    }
+  .ant-input-group-addon {
+    border: 1px solid #fea135;
+    background-color: white;
+  }
 }
 
 .ant-table-tbody {
-    tr {
-        td {
-            .ant-btn-icon-only {
-                border: none;
-            }
+  tr {
+    td {
+      .ant-btn-icon-only {
+        border: none;
+      }
 
-            .ant-btn-icon-only:focus,
-            ant-btn-icon-only:hover {
-                color: #FEA135;
-                background: transparent;
-            }
+      .ant-btn-icon-only:focus,
+      ant-btn-icon-only:hover {
+        color: #fea135;
+        background: transparent;
+      }
 
-            img {
-                width: 100px ;
-                height: 100px ;
-                margin-right: 25px;
-            }
+      img {
+        width: 100px;
+        height: 100px;
+        margin-right: 25px;
+      }
 
-            font-weight: 500;
+      font-weight: 500;
 
-            span {
-                color: #FEA135;
-                font-weight: 500;
-            }
+      span {
+        color: #fea135;
+        font-weight: 500;
+      }
 
-            .button__frame {
-                border: 1px solid #c4c4c4;
-                margin: 0 auto;
-                border-radius: 10px;
-                width: 114px;
+      .button__frame {
+        border: 1px solid #c4c4c4;
+        margin: 0 auto;
+        border-radius: 10px;
+        width: 114px;
 
-                button {
-                    outline: none;
-                    border: none;
-                    background-color: transparent;
-                    cursor: pointer;
-                    color: #c4c4c4;
-                    padding: 0px 12px;
-                    position: relative;
-                }
-
-                button:first-child {
-                    border-right: 1px solid #c4c4c4;
-                }
-
-                button:last-child {
-                    border-left: 1px solid #c4c4c4;
-                }
-
-                span {
-                    padding: 15px;
-                    color: #c4c4c4;
-                }
-            }
+        button {
+          outline: none;
+          border: none;
+          background-color: transparent;
+          cursor: pointer;
+          color: #c4c4c4;
+          padding: 0px 12px;
+          position: relative;
         }
+
+        button:first-child {
+          border-right: 1px solid #c4c4c4;
+        }
+
+        button:last-child {
+          border-left: 1px solid #c4c4c4;
+        }
+
+        span {
+          padding: 15px;
+          color: #c4c4c4;
+        }
+      }
     }
+  }
 }
 
 .ant-table-summary {
-    font-weight: 500;
-    font-size: 20px;
-    text-align: center;
+  font-weight: 500;
+  font-size: 20px;
+  text-align: center;
 
-    span {
-        color: #FEA135;
+  span {
+    color: #fea135;
+  }
+
+  tr {
+    th,
+    td {
+      border-bottom: none !important;
     }
-
-    tr {
-
-        th,
-        td {
-            border-bottom: none !important;
-        }
-    }
+  }
 }
 
 .ant-select {
-    .ant-select-selector {
-        border-color: #FEA135 !important;
-        text-align: left;
-    }
+  .ant-select-selector {
+    border-color: #fea135 !important;
+    text-align: left;
+  }
 
-    .ant-select-arrow {
-        color: rgba(254, 161, 53, 70%)
-    }
+  .ant-select-arrow {
+    color: rgba(254, 161, 53, 70%);
+  }
 }
 
 .ant-select-item-option-active {
-    background-color: rgba(254, 161, 53, 40%) !important;
+  background-color: rgba(254, 161, 53, 40%) !important;
 }
 
 .ant-select-item-option-selected {
-    background-color: rgba(254, 161, 53, 10%) !important;
+  background-color: rgba(254, 161, 53, 10%) !important;
 }
 
 .ant-select:active,
 .ant-select:hover,
 .ant-select:focus {
-    box-shadow: 0 0 0 2px rgba(254, 161, 53, 20%) !important;
+  box-shadow: 0 0 0 2px rgba(254, 161, 53, 20%) !important;
 }
 
 .handleButton {
-    position: relative;
-    width: 600px;
-    margin-top: 20px;
-    left: 390px;
+  position: relative;
+  width: 600px;
+  margin-top: 20px;
+  left: 390px;
 
-    button {
-        border: 2px solid #AB602B;
-        border-radius: 15px;
-        height: 48px;
-        font-size: 20px;
-        font-weight: 500;
-    }
+  button {
+    border: 2px solid #ab602b;
+    border-radius: 15px;
+    height: 48px;
+    font-size: 20px;
+    font-weight: 500;
+  }
 
-    button:first-child {
-        background-color: white;
-        color: #AB602B;
-    }
+  button:first-child {
+    background-color: white;
+    color: #ab602b;
+  }
 
-    button:last-child {
-        margin-left: 30px;
-        background-color: #AB602B;
-        color: white;
-    }
+  button:last-child {
+    margin-left: 30px;
+    background-color: #ab602b;
+    color: white;
+  }
 
-    button:hover,
-    button:link,
-    button:visited,
-    button:active,
-    button:focus {
-        outline: none;
-        border: 2px solid #AB602B;
-        border-radius: 15px;
-    }
+  button:hover,
+  button:link,
+  button:visited,
+  button:active,
+  button:focus {
+    outline: none;
+    border: 2px solid #ab602b;
+    border-radius: 15px;
+  }
 }
 
 .PaymentFinished {
-    background: white;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: 150px;
+  background: white;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 150px;
 
-    .CartFinishIcon {
-        font-size: 100px;
-    }
+  .CartFinishIcon {
+    font-size: 100px;
+  }
 
-    .Header {
-        font-size: 20px;
-        margin-bottom:30px;
-        color: #A25016;
-        font-weight: bold;
-    }
-    .fontBold {
-        font-weight: bold;
-    }
+  .Header {
+    font-size: 20px;
+    margin-bottom: 30px;
+    color: #a25016;
+    font-weight: bold;
+  }
+  .fontBold {
+    font-weight: bold;
+  }
 
-    button {
-        border: 2px solid #AB602B;
-        border-radius: 15px;
-        height: 48px;
-        font-size: 20px;
-        font-weight: 500;
-        background-color: white;
-        color: #AB602B;
-        width: 256px;
-        margin-left: 500px;
-        margin-top: 80px;
-    }
-    button:hover,
-    button:link,
-    button:visited,
-    button:active,
-    button:focus {
-        outline: none;
-        border: 2px solid #AB602B;
-        border-radius: 15px;
-        color: #AB602B;
-    }
+  button {
+    border: 2px solid #ab602b;
+    border-radius: 15px;
+    height: 48px;
+    font-size: 20px;
+    font-weight: 500;
+    background-color: white;
+    color: #ab602b;
+    width: 256px;
+    margin-left: 500px;
+    margin-top: 80px;
+  }
+  button:hover,
+  button:link,
+  button:visited,
+  button:active,
+  button:focus {
+    outline: none;
+    border: 2px solid #ab602b;
+    border-radius: 15px;
+    color: #ab602b;
+  }
 }

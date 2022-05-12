@@ -1,6 +1,6 @@
 import "../../sass/Intro/Intro.scss";
-import { Typography } from "antd";
-import {IntroMember, IntroService} from "./components";
+import { Col, Row, Typography } from "antd";
+import { IntroMember, IntroService } from "./components";
 import about from "../../assets/images/about.jpg";
 import avatar from "../../assets/images/avatar.jpg";
 import more from "../../assets/images/more.png";
@@ -11,7 +11,7 @@ function Intro() {
       <section className="intro-member">
         <div className="intro-member__text">
           <Title
-            style={{ fontSize: "48px", color: "#FEA135", fontWeight: "bold" }}
+            style={{ color: "#FEA135", fontWeight: "bold" }}
           >
             Đội ngũ nhân viên
           </Title>
@@ -20,36 +20,50 @@ function Intro() {
           </Text>
         </div>
         <div className="intro-member__elements">
-          <IntroMember
-            nameMember="NGUYỄN NHỰT HÀO"
-            posMember="NHÀ PHÁT TRIỂN"
-            srcImg={avatar}
-          />
-          <IntroMember
-            nameMember="TRẦN PHAN HẢI ĐĂNG"
-            posMember="NHÀ PHÁT TRIỂN"
-            srcImg={avatar}
-          />
-          <IntroMember
-            nameMember="NGUYỄN HỮU TÂM"
-            posMember="NHÀ PHÁT TRIỂN"
-            srcImg={avatar}
-          />
-          <IntroMember
-            nameMember="NGUYỄN ĐĂNG ĐỊNH"
-            posMember="NHÀ PHÁT TRIỂN"
-            srcImg={avatar}
-          />
-          <IntroMember
-            nameMember="TRẦN HỮU TÌNH"
-            posMember="NHÀ PHÁT TRIỂN"
-            srcImg={avatar}
-          />
-          <IntroMember
-            nameMember="PHẠM KIM CHIẾN"
-            posMember="NHÀ PHÁT TRIỂN"
-            srcImg={avatar}
-          />
+          <Row gutter={[48, 48]}>
+            <Col xs={24} sm={12} lg={8}>
+              <IntroMember
+                nameMember="NGUYỄN NHỰT HÀO"
+                posMember="NHÀ PHÁT TRIỂN"
+                srcImg={avatar}
+              />
+            </Col>
+            <Col xs={24} sm={12} lg={8}>
+              <IntroMember
+                nameMember="TRẦN PHAN HẢI ĐĂNG"
+                posMember="NHÀ PHÁT TRIỂN"
+                srcImg={avatar}
+              />
+            </Col>
+            <Col xs={24} sm={12} lg={8}>
+              <IntroMember
+                nameMember="NGUYỄN HỮU TÂM"
+                posMember="NHÀ PHÁT TRIỂN"
+                srcImg={avatar}
+              />
+            </Col>
+            <Col xs={24} sm={12} lg={8}>
+              <IntroMember
+                nameMember="NGUYỄN ĐĂNG ĐỊNH"
+                posMember="NHÀ PHÁT TRIỂN"
+                srcImg={avatar}
+              />
+            </Col>
+            <Col xs={24} sm={12} lg={8}>
+              <IntroMember
+                nameMember="TRẦN HỮU TÌNH"
+                posMember="NHÀ PHÁT TRIỂN"
+                srcImg={avatar}
+              />
+            </Col>
+            <Col xs={24} sm={12} lg={8}>
+              <IntroMember
+                nameMember="PHẠM KIM CHIẾN"
+                posMember="NHÀ PHÁT TRIỂN"
+                srcImg={avatar}
+              />
+            </Col>
+          </Row>
         </div>
       </section>
       <section className="intro-about">
@@ -76,24 +90,32 @@ function Intro() {
       <section className="intro-service">
         <div className="block-divider"></div>
         <div className="intro-service-element">
-          <IntroService
-            serTitle="CHẤT LƯỢNG"
-            serDes="Là một trong những website đi đầu trong 
+          <Row gutter={[48, 48]}>
+            <Col xs={24} sm={12} lg={8} >
+              <IntroService
+                serTitle="CHẤT LƯỢNG"
+                serDes="Là một trong những website đi đầu trong 
                         việc cung cấp các sản phẩm về thú cưng 
                         tốt nhất Việt Nam"
-          />
-          <IntroService
-            serTitle="ƯU ĐÃI"
-            serDes="Cập nhật đa dạng các chương trình khuyến
+              />
+            </Col>
+            <Col xs={24} sm={12} lg={8}>
+              <IntroService
+                serTitle="ƯU ĐÃI"
+                serDes="Cập nhật đa dạng các chương trình khuyến
                         mãi với phương châm sản phẩm chất lượng
                         giá cả hợp lý."
-          />
-          <IntroService
-            serTitle="HỖ TRỢ"
-            serDes="Đội ngũ chăm sóc khách hàng chuyên môn
+              />
+            </Col>
+            <Col xs={24} sm={12} lg={8}>
+              <IntroService
+                serTitle="HỖ TRỢ"
+                serDes="Đội ngũ chăm sóc khách hàng chuyên môn
                         cao sẵn sàng giải đáp thắc mắc của khách
                         hàng. Liên hệ ngay để trải nghiệm. "
-          />
+              />
+            </Col>
+          </Row>
         </div>
       </section>
       <section className="intro-more">

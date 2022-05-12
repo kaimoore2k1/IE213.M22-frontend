@@ -10,6 +10,12 @@
 }
 
 @media screen and (max-width: 786px) {
+  .ant-row {
+    justify-content: center !important;
+  }
+  #contact {
+    width: 100%;
+  }
   .home--contact {
     height: 650px !important;
     img {
@@ -26,7 +32,7 @@
     }
     input {
       height: 50px !important;
-      width: 450px !important;
+      width: 90% !important;
       margin-left: 25px;
     }
 
@@ -35,9 +41,9 @@
       height: 150px !important;
       max-height: 150px !important;
       min-height: 150px !important;
-      width: 450px !important;
-      min-width: 450px !important;
-      max-width: 450px !important;
+      width: 90% !important;
+      min-width: unset !important;
+      max-width: unset !important;
       font-size: 14px !important;
     }
 
@@ -55,6 +61,12 @@
 }
 
 .home--contact {
+  .ant-row {
+    justify-content: center !important;
+  }
+  #contact {
+    width: 100%;
+  }
   display: flex;
   width: 100%;
   height: 738px;
@@ -67,7 +79,7 @@
 
   input {
     height: 68px;
-    width: 514px;
+    width: 100%;
     border-radius: 30px;
     border: 3px solid #c4c4c4;
     font-size: 24px;
@@ -78,9 +90,7 @@
     height: 180px;
     max-height: 180px;
     min-height: 180px;
-    width: 514px;
-    min-width: 514px;
-    max-width: 514px;
+    width: 100%;
     border-radius: 30px;
     border: 3px solid #c4c4c4;
     font-size: 24px;
@@ -97,6 +107,7 @@
   }
 
   .contact--form {
+    width: 100%;
     height: 738px;
     flex: 1;
   }
@@ -245,13 +256,13 @@
   .menu-responsive {
     position: sticky;
     top: 0 !important;
-    z-index: 9999;
+    z-index: 1000;
     .navBar-responsive {
       position: fixed !important;
       display: block !important;
       width: 70vw !important;
       top: 0px;
-      z-index: 9999;
+      z-index: 1000;
       height: 100%;
       overflow: auto;
       box-shadow: 0px 0.1px 5px #fff6e0;
@@ -453,12 +464,13 @@
 
 .category {
   margin: 50px 0px;
+
   position: sticky;
   top: 70px;
   .category_tag {
     margin: 0 auto;
     background-color: #ffcf41;
-    width: 256px;
+    width: 100%;
     height: 40px;
     font-size: 18px;
     font-weight: 700;
@@ -478,9 +490,13 @@
 }
 
 .booking {
-  margin-top: 100px;
+  margin-top: 7%;
   position: relative;
+  width: 100%;
   .header-form {
+    font-size: 20px;
+    text-align: center;
+    width: 30%;
     padding: 20px;
     padding-bottom: 5px;
     background-color: #fea135;
@@ -488,13 +504,14 @@
     border-top-right-radius: 100%;
     color: white;
     position: absolute;
-    top: -55px;
-    left: 250px;
+    transform: translateY(-100%);
+    left: 30%;
     box-shadow: 2px 2px 10px #767676;
   }
   .booking-form-img {
     border: 1px solid #ff9e2e;
-    width: 800px;
+    width: 80%;
+    margin-left: 5%;
     height: 500px;
     background-color: #fcf8f12d;
     border-radius: 15px;
@@ -507,52 +524,48 @@
   .booking-form {
     position: absolute;
     top: 20px;
-    left: 20px;
+    left: 10%;
     font-size: 18px;
+    width: 70%;
   }
-
-  button {
-    background-color: #a25016;
-    border: 1px solid #a25016;
-    box-shadow: 0 1px 2px #a25016;
-    width: 158px;
-    height: 58px;
-    font-size: 24px;
-    border-radius: 30px;
+  .button-booking {
     font-weight: 500;
-    margin: 20px;
-    margin-left: 40px;
-
-    .sdt {
-      position: absolute;
-      top: 0px;
-      left: 300px;
-    }
-    .date_picker {
-      display: inline-block !important;
-      width: 300px;
-      margin-top: -10px;
-    }
-    .button-booking {
-      border-radius: 5px !important;
-      background-color: #ff9e2e;
-      border-color: #ff9e2e;
-      width: 80px;
-      height: 40px;
-      font-size: 18px;
-      font-weight: 500;
-      position: absolute;
-      bottom: -20px;
-      left: 300px;
-    }
-    #booking-form_noidung {
-      height: 100px;
-    }
+    margin-top: 5%;
+    font-size: 25px;
+    width: 100px;
+    left: 40%;
+    border-radius: 50px;
+    height: auto;
+    background-color: #ff9e2e;
+    border: none;
   }
 }
-
+@media screen and (max-width: 768px) {
+  .header-form {
+    font-size: 18px !important;
+    width: 60% !important;
+    left: 20% !important;
+    padding: 5px !important;
+    padding-top: 15px !important;
+  }
+  .booking-form-img {
+    width: 90% !important;
+    height: 600px !important;
+  }
+  .button-booking {
+    margin-top: 10px !important;
+    left: 35% !important;
+    width: 80px !important;
+    font-size: 20px !important;
+  }
+  .booking-form {
+    width: 80% !important;
+  }
+}
 .home-service-wrapper {
-  margin: 70px 100px 70px 100px;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 3%;
 
   .home-service-title {
     font-size: 48px;
@@ -564,10 +577,9 @@
     list-style-type: none;
     display: flex;
     justify-content: space-between;
-    max-width: 550px;
-    margin-left: 350px;
-    margin-top: 50px;
-    margin-bottom: 10px;
+    width: 40%;
+    height: auto;
+    margin: 0 auto;
     position: relative;
 
     .active {
@@ -608,7 +620,24 @@
     bottom: 0;
   }
 }
-
+@media screen and (max-width: 768px) {
+  .home-service-ul {
+    width: 100% !important;
+  }
+  .home-service-element {
+    img {
+      display: none;
+    }
+    .service-block-des1 {
+      margin: 0 auto !important;
+      padding: 5% !important;
+    }
+    .service-block-des2 {
+      margin: 0 auto !important;
+      padding: 5% !important;
+    }
+  }
+}
 .home-service-block {
   display: none;
 }
@@ -623,7 +652,10 @@
   justify-content: space-between;
   visibility: visible;
   animation: fadeIn 0.7s ease;
-
+  img {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -636,6 +668,9 @@
 
   .service-block-des1 {
     margin: 100px 0 0 80px;
+    p {
+      margin-right: 50px;
+    }
   }
 
   .service-block-h2 {
@@ -661,7 +696,7 @@
   }
 
   .service-block-des2 {
-    margin: 100px 0 0 250px;
+    margin: 100px 0 0 150px;
   }
 
   .service-block-ul {
@@ -685,7 +720,6 @@ button:focus {
   justify-content: space-between;
   align-items: center;
   .img1 {
-    margin-left: 50px;
     width: 200px;
     height: 400px;
     background-image: url(../../assets/images/e1.png);
@@ -698,12 +732,12 @@ button:focus {
     background-image: url(../../assets/images/e2.png);
     background-repeat: no-repeat;
     background-size: cover;
-    margin-right: 50px;
   }
   .content-error {
     position: relative;
     margin: 0 auto;
     .e404 {
+      margin-left: 7%;
       display: inline;
       img {
         width: 25%;
@@ -724,7 +758,7 @@ button:focus {
   }
   .undo {
     position: absolute;
-    left: 40%;
+    left: 38%;
     font-size: 80px;
     color: black;
   }
@@ -736,7 +770,18 @@ button:focus {
     color: black;
   }
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
+  .e404 {
+    span {
+      padding-right: 30px !important;
+      padding-left: 30px !important;
+    }
+  }
+}
+@media screen and (max-width: 786px) {
+  .detail {
+    padding: none !important;
+  }
   .error {
     margin-top: -100px;
     height: 500px;
@@ -745,17 +790,18 @@ button:focus {
       display: none;
     }
     .e404 {
-      margin-left: 10%;
+      margin-left: 10% !important;
       span {
-        padding: 10vw !important;
-        font-size: 20vw !important;
+        padding: 5vw !important;
+        font-size: 10vw !important;
       }
     }
   }
 }
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 420px) {
   .error {
     .e404 {
+      margin-left: 15% !important;
       span {
         padding: 10vw !important;
       }

@@ -19,35 +19,26 @@
   .ant-form label {
     font-size: 20px;
   }
-  .ant-input {
-    font-size: 20px !important;
-  }
-  .input--css{
-    width: 554px;
+  // .ant-row{
+  //   display:block;
+  // }
+  // .ant-col{
+  //   display: inline;
+  // }
+  .ant-input-password,.input--css {
+    width: 90%;
     height: 50px;
     border-radius: 20px;
     border: 1px solid #c4c4c4;
+    font-size: 20px;
     box-shadow: 0 3px 4px #c4c4c4;
   }
-  .ant-checkbox-wrapper {
-    margin-bottom: 20px;
-  }
-  .ant-col-8{
-    display: flex !important;
-  }
-  .ant-input-affix-wrapper{
-    width: 554px;
-    height: 50px;
-    font-size:20px;
-    border-radius: 20px;
-    border: 1px solid #c4c4c4;
-    box-shadow: 0 3px 4px #c4c4c4;
-  }
+  
   .ant-form-item {
-    display: block;
+    font-size: 20px;
   }
   .ant-btn-primary {
-    width: 555px;
+    width: 90%;
     height: 50px;
     background: #f3cf7a;
     border: 1px solid #f3cf7a;
@@ -63,12 +54,12 @@
     text-align: center;
   }
   .facebook-google {
-    width: 554px;
+    width: 90%;
     display: flex;
     justify-content: space-between;
   }
   .facebook-google--css {
-    width: 266px;
+    width: 45%;
     height: 61px;
     font-size: 20px;
     background: #ffffff;
@@ -127,16 +118,16 @@
   .login-logout__wrapper {
     width: 95%;
     margin-right: 10px;
-    margin-left: 20px;
+    margin-left: 10px !important;
     .login-logout--login,
-    .login-logout--logout{
+    .login-logout--logout {
       width: 100%;
     }
   }
   .login,
   .Logout {
     width: 95%;
-    margin-left: 20px;
+    margin-left: 10px !important;
   }
   .logout-another {
     p {

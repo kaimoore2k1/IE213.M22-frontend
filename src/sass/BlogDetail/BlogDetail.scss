@@ -143,3 +143,24 @@
     }
   }
 }
+@media (max-width:1200px) {
+  .blog-single{
+    margin-right: 0px;
+  }
+}
+@media (max-width: 768px){
+  .blog-detail-container{
+    padding:0 4rem;
+    .blog-single{
+      margin-right: 0px;
+    }
+  }
+}
+@media (max-width: 576px){
+  .blog-detail-container{
+    padding:0 2rem;
+    .blog-single{
+      margin-right: 0px;
+    }
+  }
+}
