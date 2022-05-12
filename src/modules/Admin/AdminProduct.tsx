@@ -5,7 +5,7 @@ import AdminCreateUser from "./AdminCreateUser";
 
 interface ProductData {
   id: number;
-  productName: string;
+  name: string;
   price: number;
   stock: number;
   categories: string[];
@@ -22,8 +22,8 @@ const productColumn = [
   },
   {
     title: "Product Name",
-    dataIndex: "productName",
-    key: "productName",
+    dataIndex: "name",
+    key: "name",
   },
   {
     title: "Price",
@@ -53,7 +53,7 @@ const productColumn = [
 const productData:ProductData[] = [
   {
     id: 1,
-    productName: "Product",
+    name: "Product",
     price: 20000,
     stock: 30,
     categories: ["thucung", ", chocanh"],
@@ -61,7 +61,7 @@ const productData:ProductData[] = [
   },
   {
     id: 2,
-    productName: "Product",
+    name: "Product",
     price: 20000,
     stock: 30,
     categories: ["thucung", ", chocanh"],
@@ -89,7 +89,7 @@ function AdminProduct() {
     setDataSource(
       productData.filter((entry) => {
         return (
-          entry.productName.includes(searchValue)
+          entry.name.includes(searchValue)
         );
       })
     );
@@ -99,7 +99,7 @@ function AdminProduct() {
       <AdminContentHeader
         title={title}
         setSearchValue={setSearchValue}
-        current={1}
+        current={2}
       />
       <Drawer
         title={titleDrawer}

@@ -2,6 +2,7 @@ import { Button, Drawer, Input, Typography } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import React, { useState } from "react";
 import AdminCreateUser from "./AdminCreateUser";
+import AdminAddProduct from "./AdminAddProduct";
 const { Title } = Typography;
 const { Search } = Input;
 
@@ -16,15 +17,16 @@ function AdminContentHeader(props: {
   };
   let titleDrawer: string = ""
   let contentDrawer:JSX.Element = <></>
-  const userData:any = null
+  const data:any = null
   switch (props.current) {
     case 1: {
       titleDrawer = "CREATE USER";
-      contentDrawer = <AdminCreateUser visibleProp={setVisible} dataProp={userData}/>
+      contentDrawer = <AdminCreateUser visibleProp={setVisible} dataProp={data}/>
       break;
     }
     case 2: {
-      //statements;
+      titleDrawer = "ADD PRODUCT";
+      contentDrawer = <AdminAddProduct visibleProp={setVisible} dataProp={data}/>
       break;
     }
     case 3: {

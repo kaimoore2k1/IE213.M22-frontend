@@ -1,20 +1,42 @@
-import React, { useState } from "react";
-import AvatarUpload from "../../components/core/AvatarUpload";
 import { Button, Col, Form, Input, Row } from "antd";
+import React from "react";
+import PicturesWall from "../../components/core/PicturesWall";
 
-function AdminCreateUser(props: { visibleProp: (arg0: boolean) => void, dataProp: any }) {
-  const prefixSelector = <Form.Item noStyle>+84</Form.Item>;
-  const handleCancel = () =>{
-    props.visibleProp(false)
-  }
+function AdminAddProduct(props: {
+  visibleProp: (arg0: boolean) => void;
+  dataProp: any;
+}) {
+  const handleCancel = () => {
+    props.visibleProp(false);
+  };
   return (
-    <Form layout="vertical" wrapperCol={{ span: 24 }} autoComplete="off" initialValues={props.dataProp}>
+    <Form
+      layout="vertical"
+      wrapperCol={{ span: 24 }}
+      autoComplete="off"
+      initialValues={props.dataProp}
+    >
       <Row align="middle" justify="center">
-        <Col span={3}>
-          <Form.Item >
-            <AvatarUpload />
+        <Col span={9}>
+          <Form.Item>
+            <PicturesWall />
           </Form.Item>
         </Col>
+      </Row>
+      <Form.Item
+        name="name"
+        label="Product Name"
+        rules={[
+          {
+            required: true,
+            message: "Required Information!",
+          },
+        ]}
+      >
+        <Input />
+      </Form.Item>
+      <Row align="middle" justify="center">
+        <Col span={3}></Col>
       </Row>
       <Row justify="space-between">
         <Col span={11}>
@@ -86,18 +108,7 @@ function AdminCreateUser(props: { visibleProp: (arg0: boolean) => void, dataProp
       <Form.Item name="city" label="City">
         <Input />
       </Form.Item>
-      <Form.Item
-        name="numberPhone"
-        label="Number Phone"
-        rules={[
-          {
-            required: true,
-            message: "Required Information!",
-          },
-        ]}
-      >
-        <Input addonBefore={prefixSelector} />
-      </Form.Item>
+
       <Form.Item
         name="email"
         label="Email"
@@ -115,14 +126,11 @@ function AdminCreateUser(props: { visibleProp: (arg0: boolean) => void, dataProp
         <Input />
       </Form.Item>
       <Row>
-        <Col span={24} style={{ textAlign: 'right' }}>
+        <Col span={24} style={{ textAlign: "right" }}>
           <Button type="primary" htmlType="submit">
             Submit
           </Button>
-          <Button
-            style={{ margin: '0 8px' }}
-            onClick={handleCancel}
-          >
+          <Button style={{ margin: "0 8px" }} onClick={handleCancel}>
             Cancel
           </Button>
         </Col>
@@ -131,4 +139,4 @@ function AdminCreateUser(props: { visibleProp: (arg0: boolean) => void, dataProp
   );
 }
 
-export default AdminCreateUser;
+export default AdminAddProduct;
