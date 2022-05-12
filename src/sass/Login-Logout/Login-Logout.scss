@@ -19,16 +19,32 @@
   .ant-form label {
     font-size: 20px;
   }
-  input {
+  .ant-input {
+    font-size: 20px !important;
+  }
+  .input--css{
     width: 554px;
     height: 50px;
     border-radius: 20px;
     border: 1px solid #c4c4c4;
-    font-size: 20px;
+    box-shadow: 0 3px 4px #c4c4c4;
+  }
+  .ant-checkbox-wrapper {
+    margin-bottom: 20px;
+  }
+  .ant-col-8{
+    display: flex !important;
+  }
+  .ant-input-affix-wrapper{
+    width: 554px;
+    height: 50px;
+    font-size:20px;
+    border-radius: 20px;
+    border: 1px solid #c4c4c4;
     box-shadow: 0 3px 4px #c4c4c4;
   }
   .ant-form-item {
-    font-size: 20px;
+    display: block;
   }
   .ant-btn-primary {
     width: 555px;

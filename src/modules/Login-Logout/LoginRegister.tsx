@@ -2,22 +2,22 @@ import { useState, useEffect, useRef } from "react";
 import React from "react";
 import "../../sass/Login-Logout/Login-Logout.scss";
 import { Form, Input, Button, Typography } from "antd";
-import { Login, Logout } from './components'
+import { Login, Register } from './components'
 
 
-function LoginLogout() {
+function LoginRegister() {
     const [clickChange, setClickChange] = useState<boolean>(true);
 
 
     let className = 'active'
     let idLogin = document.getElementById('loginRef');
-    let idLogout = document.getElementById('logoutRef');
+    let idRegister = document.getElementById('registerRef');
 
     if (clickChange === true) {
         idLogin?.classList.add(className);
-        idLogout?.classList.remove(className);
+        idRegister?.classList.remove(className);
     } else {
-        idLogout?.classList.add(className);
+        idRegister?.classList.add(className);
         idLogin?.classList.remove(className);
     }
     return (
@@ -32,7 +32,7 @@ function LoginLogout() {
                 </div>
 
                 <div className="login-logout--logout"
-                    id='logoutRef'
+                    id='registerRef'
                     onClick={() => setClickChange(false)}
                 >
                     Đăng ký
@@ -41,11 +41,11 @@ function LoginLogout() {
             </div>
             {clickChange === true ?
                 <Login /> :
-                <Logout />
+                <Register />
             }
         </>
 
 
     )
 }
-export default LoginLogout;
+export default LoginRegister;

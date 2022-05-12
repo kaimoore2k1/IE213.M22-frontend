@@ -3,26 +3,46 @@ import React from "react";
 import { connect } from "react-redux";
 import "../../../sass/Login-Logout/Login-Logout.scss";
 import logo from "../../../assets/images/logo.png";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, Checkbox } from "antd";
+import { useNavigate } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import { LOGIN } from "../../../graphql/mutations/login.graphql";
+import JWTManager from "../../utils/jwt"
+import { useAuthContext } from "../../context/AuthContext";
 
 function Login() {
-  interface information {
-    nameMail?: string;
-    password?: string;
-  }
+ 
+  const navigate = useNavigate();
+  const {setIsAuthenticated} = useAuthContext()     
+      const [login, {data, loading, error}] = useMutation(LOGIN);
+      const [errorMessage, setErrorMessage] = useState('')
 
-  interface informationInputProps {
-    value?: information;
-    onChange?: (value: information) => void;
-  }
+      if (loading) return <p>loading....</p>;
+      if (error) return <p>error</p>;
+      const handleFinish = async (values: any) => {
 
-  const [nameMail, setNameMail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+        const response = await login({
+          variables : {username: values.username, password: values.password}
+        })
+        
+        if (response.data?.login.success) {
+          JWTManager.setToken(response.data.login.accessToken as string)
+          console.log(response.data.login.accessToken as string)
+          setIsAuthenticated(true)
+          navigate('..')
+        } else {
+          if (response.data?.login.message) setErrorMessage(response.data.login.message)
+        }
+        
+        
+      }
+      
   return (
     <div className="login">
       <div className="login--logo">
         <img src={logo} alt="logo-sen-shop" />
       </div>
+      {errorMessage && <p style={{color:"red", textAlign: "center", fontSize:"20px"}}>{errorMessage}</p>}
       <div className="login--form">
         <Form
           className="form--form"
@@ -31,38 +51,38 @@ function Login() {
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
           autoComplete="off"
+          onFinish={handleFinish}
         >
           <Form.Item
-            name="nameMail"
-            rules={[{ required: true, message: "Tên không được để trống!" }]}
+            name="username"
+            label="Tên đăng nhập"
+            rules={[{ required: true, message: "Tên đăng nhập không được để trống!" }]}
           >
-            <label htmlFor="nameMail">Tên đăng nhập hoặc email</label>
-            <Input
-              defaultValue={nameMail}
-              placeholder=""
-              onChange={(e) => setNameMail(e.target.value)}
-            />
+            <Input className="input--css"/>
           </Form.Item>
           <Form.Item
             name="password"
+            label="Mật Khẩu"
             rules={[
-              { required: true, message: "Mật khẩu không được bỏ trống!" },
+              { 
+                required: true, 
+                message: "Mật khẩu không được bỏ trống!" },
+              { 
+                min: 8, message: "Độ dài từ 8 kí tự"
+              }
             ]}
+            hasFeedback
           >
-            <label htmlFor="password">Mật khẩu</label>
-            <Input
-              defaultValue={password}
-              type="password"
-              placeholder=""
-              onChange={(e) => setPassword(e.target.value)}
-            />
+            <Input.Password />
           </Form.Item>
-          <Form.Item name="rememberMe">
-            <Input type="checkbox" />
-            <span style={{ marginLeft: "5px" }}>Nhớ mật khẩu</span>
+          <Form.Item name="remember" valuePropName="checked" noStyle>
+            <Checkbox>Nhớ mật khẩu</Checkbox>
           </Form.Item>
           <Form.Item name="submit">
-            <Button type="primary" htmlType="submit">
+            <Button 
+              type="primary" 
+              htmlType="submit"
+            >
               Đăng nhập
             </Button>
           </Form.Item>
