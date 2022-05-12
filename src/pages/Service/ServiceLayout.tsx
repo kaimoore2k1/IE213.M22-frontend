@@ -6,26 +6,26 @@ import { Category } from "../../components/core";
 function ServiceLayout() {
   return (
     <div className="store__layout">
-      <Row>
+      <Row gutter={32}>
         <Col
-          span={7}
+          span={5}
           className="store__layout--sidebar"
           xs={0}
           sm={0}
           md={0}
-          lg={7}
-          xl={7}
+          lg={5}
+          xl={5}
         >
           <Category />
         </Col>
         <Col
-          span={17}
+          span={19}
           className="store__layout--content"
           xs={24}
           sm={24}
           md={24}
-          lg={17}
-          xl={17}
+          lg={19}
+          xl={19}
         >
           <Outlet />
         </Col>

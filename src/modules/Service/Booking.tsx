@@ -1,19 +1,40 @@
 
-import { Form, Input, Button, Select, Row, Col } from 'antd';
+import { Form, Input, Button, Select, Row, Col, notification, Modal } from 'antd';
 import { useState } from 'react';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
 
 interface informationForm {
     name?: string;
-    number?: number[];
+    number?: string;
     pet?: string;
     service?: string;
     time?: string;
     dateTime?: string;
     content?: string
 }
-
+const { confirm } = Modal;
 function Booking() {
+    const showConfirm = () => {
+        if (InformationForm.name && InformationForm.number && InformationForm.pet && InformationForm.service && InformationForm.time && InformationForm.dateTime) {
 
+            confirm({
+                title: 'Xác nhận gửi thông tin đặt hẹn?',
+                icon: <ExclamationCircleOutlined />,
+                content: 'Gửi phản hồi cho chúng tôi',
+                onOk() {
+                    notification.info({
+                        message: 'Thông báo!',
+                        description:
+                            'Cảm ơn bạn đã gửi đặt hẹn trước. Chúng tôi sẽ ghi nhận thông tin cho bạn!',
+                    });
+                    console.log(InformationForm);
+                },
+                onCancel() {
+                    console.log('Cancel');
+                },
+            });
+        }
+    }
     const [name, setName] = useState<string>("");
     const [number, setNumber] = useState<string>("");
     const [pet, setPet] = useState<string>("");
@@ -21,9 +42,17 @@ function Booking() {
     const [time, setTime] = useState<string>("");
     const [dateTime, setDateTime] = useState<string>("");
     const [content, setContent] = useState<string>("");
-    const handleSubmit: () => void = () => {
-        console.log(`${name}, ${number}, ${pet}, ${service}, ${time}, ${dateTime}, ${content}`);
+    let InformationForm: informationForm = {
+        name: "",
+        number: "",
+        pet: "",
+        service: "",
+        time: "",
+        dateTime: "",
+        content: ""
     }
+
+
     return (
         <div className="booking">
             <h2 className="header-form">
@@ -33,24 +62,25 @@ function Booking() {
             <Form name="booking-form"
                 wrapperCol={{ span: 24 }}
                 autoComplete="off"
-                className="booking-form">
+                className="booking-form"
+            >
                 <Row justify="space-between">
                     <Col span={11}>
                         <Form.Item style={{ width: '100%' }} label="Họ tên" name='tên' rules={[{ required: true, message: 'Chưa nhập Tên' }]}>
-                            <Input onChange={(e) => setName(e.target.value)} placeholder="Nhập..." />
+                            <Input onChange={(e) => InformationForm.name = e.target.value.toString()} placeholder="Nhập..." />
                         </Form.Item>
                     </Col>
                     <Col span={11}>
                         <Form.Item className='sdt' label="Số điện thoại" name="sdt" rules={[{ required: true, message: 'Chưa nhập SĐT' }]}>
-                            <Input onChange={(e) => setNumber(e.target.value)} placeholder="Nhập..." />
+                            <Input onChange={(e) => InformationForm.number = e.target.value.toString()} placeholder="Nhập..." />
                         </Form.Item>
                     </Col>
                 </Row>
                 <Form.Item style={{ width: '60%' }} name="thucung" label="Thú cưng của bạn" rules={[{ required: true, message: 'Chưa nhập thú cưng' }]}>
-                    <Input onChange={(e) => setPet(e.target.value)} placeholder="Tên thú cưng..." />
+                    <Input onChange={(e) => InformationForm.pet = e.target.value.toString()} placeholder="Tên thú cưng..." />
                 </Form.Item>
                 <Form.Item style={{ width: '70%' }} name="service" label="Chọn dịch vụ" rules={[{ required: true, message: 'Vui lòng chọn dịch vụ' }]}>
-                    <Select onChange={(e) => setService(e)} placeholder="Chọn dịch vụ bạn muốn đặt hẹn trước">
+                    <Select onChange={(e) => InformationForm.service = e.toString()} placeholder="Chọn dịch vụ bạn muốn đặt hẹn trước">
                         <Select.Option value="Cắt móng, tỉa lông, tạo kiểu">Cắt móng, tỉa lông, tạo kiểu</Select.Option>
                         <Select.Option value="Trông giữ thú cưng">Trông giữ thú cưng</Select.Option>
                         <Select.Option value="Spa, massage">Spa, massage</Select.Option>
@@ -60,7 +90,7 @@ function Booking() {
                 <Row justify="space-between">
                     <Col span={11}>
                         <Form.Item className='date_picker' name='time' label="Thời gian hẹn" rules={[{ required: true, message: 'Vui lòng chọn thời gian' }]}>
-                            <Select onChange={(e) => setTime(e)} placeholder="Chọn thời gian" >
+                            <Select onChange={(e) => InformationForm.time = e.toString()} placeholder="Chọn thời gian" >
                                 <Select.Option value="Sáng (7h30-11h)">Sáng (7h30-11h)</Select.Option>
                                 <Select.Option value="Chiều (13h30-17h)">Chiều (13h30-17h)</Select.Option>
                                 <Select.Option value="Tối (19h30 -22h)">Tối (19h30 -22h)</Select.Option>
@@ -69,16 +99,16 @@ function Booking() {
                     </Col>
                     <Col span={11}>
                         <Form.Item className='date_picker' name='date' label="Chọn ngày" rules={[{ required: true, message: 'Vui lòng chọn thời gian' }]}>
-                            <Input type="date" onChange={(e) => setDateTime(e.target.value)} />
+                            <Input type="date" onChange={(e) => InformationForm.dateTime = e.target.value.toString()} />
                         </Form.Item>
                     </Col>
                 </Row>
 
                 <Form.Item name='noidung' label="Nội dung(Nếu có)">
-                    <Input.TextArea onChange={(e) => setContent(e.target.value)} />
+                    <Input.TextArea onChange={(e) => InformationForm.content = e.target.value.toString()} />
                 </Form.Item>
                 <Form.Item name='submit'>
-                    <Button onClick={handleSubmit} className='button-booking' type="primary" htmlType="submit">
+                    <Button onClick={showConfirm} className='button-booking' type="primary" htmlType="submit">
                         Gửi
                     </Button>
                 </Form.Item>

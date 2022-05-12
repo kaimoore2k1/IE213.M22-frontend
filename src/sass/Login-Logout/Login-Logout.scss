@@ -19,7 +19,13 @@
   .ant-form label {
     font-size: 20px;
   }
-  input {
+  // .ant-row{
+  //   display:block;
+  // }
+  // .ant-col{
+  //   display: inline;
+  // }
+  .ant-input-password,.input--css {
     width: 90%;
     height: 50px;
     border-radius: 20px;
@@ -27,6 +33,7 @@
     font-size: 20px;
     box-shadow: 0 3px 4px #c4c4c4;
   }
+  
   .ant-form-item {
     font-size: 20px;
   }
