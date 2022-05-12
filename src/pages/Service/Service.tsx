@@ -17,6 +17,8 @@ export interface content {
 function Service() {
     return (
         <>
+            <h2 style={{ textAlign: 'center' }}>Sen Shop - Dịch vụ thú cưng thủ đức</h2>
+            <p style={{ textAlign: 'center' }}>Dịch vụ thú cưng ở thủ đức đem lại trải nghiệm hài lòng cho khách hàng, giúp thú cưng được thoải mái, thư giãn,...</p>
             {
 
                 Content.map((content, index) =>
