@@ -24,12 +24,8 @@ const exampleComment = [
 
 export default function Detail() {
   const slug: string = useParams().productName ?? "";
-
+  console.log('slug :>> ', slug);
   const { loading, error, data } = useQuery(getProductByName(slug));
-  console.log(loading);
-  console.log(error);
-  console.log(data);
-
   if (error) return <Content404 />;
   return (
     <div className="detail">

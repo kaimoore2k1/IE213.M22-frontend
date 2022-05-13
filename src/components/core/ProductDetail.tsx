@@ -23,14 +23,6 @@ interface ProductDetailProps {
 
 const ProdcutDetail = ({ product, comments }: ProductDetailProps) => {
   const [productQuantity, setProductQuantity] = useState(1);
-  const handleCommentTab = () => {
-    let antTabElement: HTMLElement = document.querySelectorAll(
-      ".ant-tabs-tab"
-    )[1] as HTMLElement;
-    if (antTabElement) {
-      antTabElement.click();
-    }
-  };
 
   useEffect(() => {
     const quantity = document.querySelector(
@@ -43,6 +35,16 @@ const ProdcutDetail = ({ product, comments }: ProductDetailProps) => {
       console.log(quantity.value);
     }
   }, [productQuantity]);
+
+  const handleCommentTab = () => {
+    let antTabElement: HTMLElement = document.querySelectorAll(
+      ".ant-tabs-tab"
+    )[1] as HTMLElement;
+    if (antTabElement) {
+      antTabElement.click();
+    }
+  };
+
 
   function updateQuantity() {
     const quantity = document.querySelector(
@@ -146,7 +148,7 @@ const ProdcutDetail = ({ product, comments }: ProductDetailProps) => {
                     </Radio.Group>
                   </Form.Item>
                 ) : null}
-                {product.variant?.color?.length >0 ? (
+                {product.variant?.color?.length > 0 ? (
                   <Form.Item
                     initialValue={product.variant.color[0]}
                     label="Màu sắc:"
@@ -234,7 +236,7 @@ const ProdcutDetail = ({ product, comments }: ProductDetailProps) => {
           </Tabs.TabPane>
           <Tabs.TabPane key="2" tab="Đánh giá">
             <div id="comment" className="comment-section">
-              <CommentEditor type="product" />
+              <CommentEditor idProduct={product._id} />
               <div className="comment-list">
                 {comments.map((comment, index) => (
                   <Comment key={index} comment={comment} />

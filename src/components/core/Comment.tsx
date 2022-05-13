@@ -13,8 +13,8 @@ function Comment({ comment }: commentProps) {
       author={<a>{comment.author.name}</a>}
       avatar={
         <Avatar
-          src={comment.author.avatar.url}
-          alt={comment.author.avatar.alt ?? comment.author.name}
+          src={comment.author.avatar}
+          alt={comment.author.name}
         />
       }
       content={<p>{comment.content}</p>}
