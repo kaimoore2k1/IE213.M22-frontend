@@ -10,7 +10,7 @@ import ServiceLayout from '../pages/Service/ServiceLayout'
 import Pay from "./Payment/Pay";
 import BlogDetail from "./BlogDetail/BlogDetail";
 
-import LoginLogout from "../modules/Login-Logout/LoginLogout";
+import LoginRegister from "../modules/Login-Logout/LoginRegister";
 
 const RouterLayout: RouterInterface[] = [
   {
@@ -206,7 +206,7 @@ const RouterLayout: RouterInterface[] = [
     index: false,
     public: true,
     children: [],
-    element: () => <LoginLogout />,
+    element: () => <LoginRegister />,
   },
   {
     name: "SanPham",

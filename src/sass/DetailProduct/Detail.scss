@@ -91,3 +91,8 @@
 .ant-image-preview-mask {
   background-color: rgba(0, 0, 0, 0.7);
 }
+@media screen and (max-width: 768px) {
+  .detail {
+    padding: unset !important;
+  }
+}

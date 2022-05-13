@@ -61,6 +61,12 @@
 }
 
 .home--contact {
+  .ant-row {
+    justify-content: center !important;
+  }
+  #contact {
+    width: 100%;
+  }
   display: flex;
   width: 100%;
   height: 738px;
@@ -73,7 +79,7 @@
 
   input {
     height: 68px;
-    width: 514px;
+    width: 100%;
     border-radius: 30px;
     border: 3px solid #c4c4c4;
     font-size: 24px;
@@ -84,9 +90,7 @@
     height: 180px;
     max-height: 180px;
     min-height: 180px;
-    width: 514px;
-    min-width: 514px;
-    max-width: 514px;
+    width: 100%;
     border-radius: 30px;
     border: 3px solid #c4c4c4;
     font-size: 24px;
@@ -343,7 +347,7 @@
 .menu {
   position: sticky !important;
   top: 0;
-  z-index: 1000;
+  z-index: 10;
   height: 100%;
   .icon {
     position: absolute;
@@ -460,7 +464,7 @@
 
 .category {
   margin: 50px 0px;
-  
+
   position: sticky;
   top: 70px;
   .category_tag {
@@ -649,7 +653,10 @@
   justify-content: space-between;
   visibility: visible;
   animation: fadeIn 0.7s ease;
-
+  img {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -662,6 +669,9 @@
 
   .service-block-des1 {
     margin: 100px 0 0 80px;
+    p {
+      margin-right: 50px;
+    }
   }
 
   .service-block-h2 {
@@ -687,7 +697,7 @@
   }
 
   .service-block-des2 {
-    margin: 100px 0 0 250px;
+    margin: 100px 0 0 150px;
   }
 
   .service-block-ul {
@@ -711,7 +721,6 @@ button:focus {
   justify-content: space-between;
   align-items: center;
   .img1 {
-    margin-left: 50px;
     width: 200px;
     height: 400px;
     background-image: url(../../assets/images/e1.png);
@@ -724,7 +733,6 @@ button:focus {
     background-image: url(../../assets/images/e2.png);
     background-repeat: no-repeat;
     background-size: cover;
-    margin-right: 50px;
   }
   .content-error {
     position: relative;
@@ -761,6 +769,14 @@ button:focus {
     margin-top: 90px;
     font-size: 20px;
     color: black;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .e404 {
+    span {
+      padding-right: 30px !important;
+      padding-left: 30px !important;
+    }
   }
 }
 @media screen and (max-width: 786px) {
