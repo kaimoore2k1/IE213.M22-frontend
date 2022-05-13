@@ -1,8 +1,7 @@
 export interface product {
     name: string;
     description: string;
-    rating: number;
-    ratingCount: number;
+    comments: comment[];
     price: number;
     salePrice?: number;
     variant?: Variant;
@@ -35,10 +34,8 @@ export interface productDetail{
 export interface commentAuthor{
   _id: string;
   name: string;
-  avatar:{
-    url: string;
-    alt?: string;
-  }
+  avatar: string;
+
 
 }
 export interface comment{

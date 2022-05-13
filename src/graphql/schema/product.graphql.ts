@@ -18,6 +18,9 @@ export const getAllProductsByCategory = (category: string) => gql`
           title
         }
         categories
+        comments{
+          rating
+        }
       }
     }
 `;

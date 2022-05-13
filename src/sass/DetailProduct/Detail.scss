@@ -17,7 +17,6 @@
           margin-bottom: 1rem;
           width: 100%;
         }
-
       }
       .product-detail-info {
         .price {
@@ -35,6 +34,30 @@
         }
         .ant-rate {
           margin-right: 1rem;
+        }
+      }
+      .ant-radio-group {
+        display: flex;
+
+        .ant-radio-button-wrapper {
+          font-size: 0.8rem;
+          margin-right: 0.5rem;
+          border-radius: 0.5rem;
+          border: transparent;
+          background: #ffe6aa;
+          height: 30px;
+        }
+        .ant-radio-button-wrapper:before {
+          display: none;
+        }
+        .ant-radio-button-wrapper:hover {
+          color: #000;
+        }
+        .ant-radio-button-wrapper-checked {
+          background: #f1af03;
+          color: #000;
+          border-radius: 0.5rem;
+          border: transparent;
         }
       }
       .product-quantity-input {

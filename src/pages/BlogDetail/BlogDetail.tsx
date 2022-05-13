@@ -35,7 +35,7 @@ const exampleComment = [
     author: {
       _id: '1',
       name: "holi duch",
-      avatar: { url: "https://via.placeholder.com/150/24f355" },
+      avatar: "https://via.placeholder.com/150/24f355" ,
     },
   },
 ];
