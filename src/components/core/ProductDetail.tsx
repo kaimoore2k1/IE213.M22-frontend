@@ -8,6 +8,7 @@ import {
   Tabs,
   Row,
   Col,
+  Typography,
 } from "antd";
 import { useState, useEffect } from "react";
 import { productDetail, comment } from "./type";
@@ -15,6 +16,7 @@ import { decode } from "html-entities";
 import { Link } from "react-router-dom";
 import Comment from "./Comment";
 import CommentEditor from "./CommentEditor";
+import { categoryTranslate } from "./../../assets/categoryTranslate";
 
 interface ProductDetailProps {
   product: productDetail;
@@ -44,7 +46,6 @@ const ProdcutDetail = ({ product, comments }: ProductDetailProps) => {
       antTabElement.click();
     }
   };
-
 
   function updateQuantity() {
     const quantity = document.querySelector(
@@ -82,7 +83,7 @@ const ProdcutDetail = ({ product, comments }: ProductDetailProps) => {
             </Row>
             <Row gutter={16} className="sub-image">
               {product.images.slice(1, 5).map((image, index) => (
-                <Col xl={6}>
+                <Col xl={6} sm={3}>
                   <Image
                     key={index}
                     src={image.url}
@@ -166,14 +167,15 @@ const ProdcutDetail = ({ product, comments }: ProductDetailProps) => {
                 ) : null}
               </div>
             ) : null}
-            <div className="product-quantity-section">
+            <Form.Item label="Số lượng:" className="product-quantity-section">
               <InputNumber
                 className="product-quantity-input"
-                size="large"
+                size="middle"
                 min={1}
                 defaultValue={1}
                 controls={false}
                 onBlur={() => updateQuantity()}
+                value={productQuantity}
                 addonAfter={
                   <div
                     className="product-quantity-input-addon"
@@ -200,25 +202,42 @@ const ProdcutDetail = ({ product, comments }: ProductDetailProps) => {
                 }
                 max={product.stock === 0 ? 1 : product.stock}
               />
-              <Form.Item>
-                <Button
-                  type="primary"
-                  disabled={product.stock === 0}
-                  htmlType="submit"
-                  size="large"
-                >
-                  Thêm vào giỏ hàng
-                </Button>
-              </Form.Item>
-            </div>
+            </Form.Item>
+            <Form.Item className="button-section">
+              <Button
+                type="primary"
+                disabled={product.stock === 0}
+                htmlType="submit"
+                size="large"
+              >
+                Thêm Vào Giỏ Hàng
+              </Button>
+              <Button type="link" disabled={product.stock === 0} size="large">
+                Mua Ngay
+              </Button>
+            </Form.Item>
+            {product.stock === 0 && (
+              <Typography.Text type="danger">
+                Sản phẩm này hiện tại đã hết hàng
+              </Typography.Text>
+            )}
           </Form>
           <div className="category">
-            <span>Danh mục:</span>
-            {product.categories.map((category: string, index: number) => (
-              <Link to={``} key={index}>
-                {category}
-              </Link>
-            ))}
+            <span>Danh mục: </span>
+            {product.categories.map((e: string, index: number, arr) => {
+              let category = categoryTranslate(e);
+              let url =
+                arr.length == 0 || index == 0
+                  ? `/${category?.slugName}`
+                  : `/${categoryTranslate(arr[0])?.slugName}/${
+                      category?.slugName
+                    }`;
+              return (
+                <Link to={url} key={index}>
+                  {category?.name}
+                </Link>
+              );
+            })}
           </div>
         </Col>
       </Row>
