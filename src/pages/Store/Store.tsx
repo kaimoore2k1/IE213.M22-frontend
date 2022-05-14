@@ -6,6 +6,7 @@ import { useQuery } from "@apollo/client";
 import { getAllProductsByCategory } from "../../graphql/schema/product.graphql";
 import Loader from '../../components/core/Loader'
 import "../../sass/Store/Store.scss";
+import { categoryTranslate } from "../../assets/categoryTranslate";
 
 function Store() {
   const location = useLocation();
@@ -44,7 +45,7 @@ function Store() {
           ) : (
             <ProductCategorySection2
               productList={data.getAllProductsByCategory}
-              sectionName={path[0]}
+              sectionName={categoryTranslate(path[path.length-1])?.name??''}
             />
           )}
         </Col>
