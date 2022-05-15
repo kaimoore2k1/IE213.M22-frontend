@@ -11,6 +11,7 @@ interface blogSingleProps {
 }
 
 const BlogSingle = ({ blog, comments }: blogSingleProps) => {
+  const date= new Date(blog.date).toDateString();
   return (
     <div className="blog-single">
       <h1>{blog.title}</h1>
@@ -20,7 +21,7 @@ const BlogSingle = ({ blog, comments }: blogSingleProps) => {
           <strong> {blog.author}</strong>
         </span>
         <span className="date">
-          Lần chỉnh sửa cuối {blog.date.toLocaleDateString()}
+          Lần chỉnh sửa cuối {date}
         </span>
       </div>
       <div className="blog-description">{blog.description}</div>
@@ -30,7 +31,7 @@ const BlogSingle = ({ blog, comments }: blogSingleProps) => {
       />
       <div className="blog-detail-action">
         <div className="like-container blog-action-item">
-          <span>{blog.like}</span>
+          <span>{blog.like.length}</span>
           <LikeOutlined />
         </div>
         <div className="blog-action-item">
