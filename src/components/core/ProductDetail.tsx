@@ -73,7 +73,7 @@ const ProdcutDetail = ({ product, comments }: ProductDetailProps) => {
   return (
     <div className="product-detail">
       <Row gutter={40} className="product-detail_top">
-        <Col xl={12} sm={24} className="product-detail-image">
+        <Col xl={10} sm={24} className="product-detail-image">
           <Image.PreviewGroup>
             <Row className="main-image">
               <Image
@@ -81,9 +81,9 @@ const ProdcutDetail = ({ product, comments }: ProductDetailProps) => {
                 alt={product.images[0].title ?? product.name}
               />
             </Row>
-            <Row gutter={16} className="sub-image">
+            <Row gutter={16} justify="start" className="sub-image">
               {product.images.slice(1, 5).map((image, index) => (
-                <Col xl={6} sm={3}>
+                <Col  span={6}>
                   <Image
                     key={index}
                     src={image.url}
@@ -94,7 +94,7 @@ const ProdcutDetail = ({ product, comments }: ProductDetailProps) => {
             </Row>
           </Image.PreviewGroup>
         </Col>
-        <Col xl={12} sm={24} className="product-detail-info">
+        <Col xl={14} sm={24} className="product-detail-info">
           <div className="product-detail-info-title">
             <h1>{product.name}</h1>
           </div>

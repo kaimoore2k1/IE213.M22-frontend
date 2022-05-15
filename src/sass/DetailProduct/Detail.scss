@@ -129,12 +129,15 @@
   background-color: rgba(0, 0, 0, 0.7);
 }
 @media screen and (max-width: 768px) {
+  h1{
+    font-size:1.5rem;
+  }
   .detail {
     padding: unset !important;
   }
 }
 @media (max-width: 576px) {
-  .detail {
-    padding: 0 1rem;
+  .product-detail{
+    padding: 1rem !important;
   }
 }

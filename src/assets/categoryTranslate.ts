@@ -18,7 +18,7 @@ export const categoryTranslate = (category: string) => {
 
         case 'thukieng':
         case 'thu-kieng':
-        case 'Thú kiếng':
+        case 'Thú kiểng':
             return { name: 'Thú kiểng', slugName: 'thu-kieng', dbName: 'thukieng' };
 
         case 'hamster':
