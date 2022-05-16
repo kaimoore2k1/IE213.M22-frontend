@@ -73,7 +73,7 @@ const ProductCategorySection2 = ({ productList, sectionName }: Props) => {
         </div>
       </div>
       <div className="section__bottom">
-        <Row gutter={16}>
+        <Row gutter={[16,16]}>
           {productList
             .slice(page * productPerPage, (page + 1) * productPerPage)
             .map((item) => {

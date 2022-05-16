@@ -13,13 +13,13 @@ const BlogCategory = ({ blogList, categoryList }: blogCategoryProps) => {
   const blogPerPage = 8;
 
   const [page, setPage] = useState<number>(0);
-  const [currentCategory, setCurrentCategory] = useState<string>(
-    categoryList[0]
-  );
-  const [blogRenderList, setBlogRenderList] = useState<blogCard[]>(blogList);
-  const [featuredBlog, setFeaturedBlog] = useState<blogCard[]>(
-    blogList.sort((blog) => blog.likeCount).slice(0, 3)
-  );
+  // const [currentCategory, setCurrentCategory] = useState<string>(
+  //   categoryList[0]
+  // );
+  // const [blogRenderList, setBlogRenderList] = useState<blogCard[]>(blogList);
+  const featuredBlog = blogList
+    // .sort((blog) => blog.like.length).slice(0, 3)
+
 
   const [recentBlog, setRecentBlog] = useState<blogCard[]>(
     window.localStorage.getItem("recentBlog")
@@ -29,7 +29,7 @@ const BlogCategory = ({ blogList, categoryList }: blogCategoryProps) => {
 
   return (
     <div className="blog-category-list">
-      <div className="blog-category-header">
+      {/* <div className="blog-category-header">
         <ul className="category-list">
           {categoryList.map((category, index) => (
             <li
@@ -43,10 +43,16 @@ const BlogCategory = ({ blogList, categoryList }: blogCategoryProps) => {
             </li>
           ))}
         </ul>
-      </div>
+      </div> */}
       <div className="blog-category-body">
         <Row gutter={[16, 16]}>
-          <Col xl={{span:8,order:0}} lg={{span:8,order:0}} md={0} sm={{ span: 24, order: 3 }} xs={{ span: 24, order: 3 }} >
+          <Col
+            xl={{ span: 8, order: 0 }}
+            lg={{ span: 8, order: 0 }}
+            md={0}
+            sm={{ span: 24, order: 3 }}
+            xs={{ span: 24, order: 3 }}
+          >
             <BlogSideCardList
               name="Bài viết nổi bật nhất"
               blogList={featuredBlog}
@@ -56,28 +62,28 @@ const BlogCategory = ({ blogList, categoryList }: blogCategoryProps) => {
             )}
           </Col>
           <Col
-          order={1}
+            order={1}
             xl={16}
             lg={16}
             md={24}
             className="blog-card-container"
           >
             <Row gutter={[16, 16]}>
-              {blogList
-                .filter((blog) => blog.categories === currentCategory)
-                .slice(page * blogPerPage, (page + 1) * blogPerPage - 1)
-                .map((blog,index) => (
+              {blogList.slice(page * blogPerPage, (page + 1) * blogPerPage - 1)
+                .map((blog, index) => (
                   <Col md={12} sm={24} key={index} className="blog-card-wraper">
                     <BlogCard blog={blog} type="large" />
                   </Col>
+                
+                // .filter((blog) => blog.categories === currentCategory)
                 ))}
             </Row>
           </Col>
           <Col span={24} sm={{ order: 2 }} className="blog-category-pagination">
             <Pagination
               total={
-                blogList.filter((blog) => blog.categories === currentCategory)
-                  .length
+                // .filter((blog) => blog.categories === currentCategory)
+                blogList.length
               }
               showTotal={(total, range) =>
                 `${range[0]}-${range[1]} of ${total} items`

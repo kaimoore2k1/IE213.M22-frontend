@@ -68,7 +68,7 @@ export interface Props {
 export interface blog{
   _id: string;
   title: string;
-  like: number;
+  like: String[];
   share: number;
   description: string;
   category: string;

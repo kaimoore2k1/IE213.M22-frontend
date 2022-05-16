@@ -21,7 +21,7 @@ function Home() {
       ) : (
         <ProductCategorySection
           productList={pet.data.getAllProductsByCategory}
-          categoryList={["Chó cảnh", "Mèo cảnh", "Thú cưng khác"]}
+          categoryList={["Chó cảnh", "Mèo cảnh","Thú kiểng", "Hamster", "Thú cưng khác"]}
           sectionName="Thú cưng"
         />
       )}
