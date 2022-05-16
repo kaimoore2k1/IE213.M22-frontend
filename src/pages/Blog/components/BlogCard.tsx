@@ -13,10 +13,9 @@ export interface blogCard {
   comments: any;
   share: number;
   description?: string;
-  category?: string[];
+  category?: string;
   image: {
     url: string;
-    title?: string;
   };
   _id: string;
   author: string;

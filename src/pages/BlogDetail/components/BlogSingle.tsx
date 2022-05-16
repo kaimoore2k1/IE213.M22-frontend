@@ -44,7 +44,7 @@ const BlogSingle = ({ blog, comments }: blogSingleProps) => {
         </div>
       </div>
       <div className="comment-section">
-        <CommentEditor type="comment" />
+        <CommentEditor idBlog={blog._id} type="comment" />
         <div className="comment-list">
           {comments.map((comment, index) => (
             <Comment key={index} comment={comment} />
