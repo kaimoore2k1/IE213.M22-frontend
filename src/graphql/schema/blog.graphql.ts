@@ -10,7 +10,6 @@ export const getAllBlogs = () => gql`
             date
             image{
                 url
-                title
             }
             comments{
                 _id
@@ -32,7 +31,6 @@ export const getHotBlogs = () => gql`
             date
             image{
                 url
-                title
             }
             comments{
                 _id
@@ -54,7 +52,6 @@ export const getBlogBySlug = (slug: string) => gql`
             date
             image{
                 url
-                title
             }
             content
             description
