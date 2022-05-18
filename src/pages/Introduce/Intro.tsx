@@ -1,4 +1,5 @@
 import "../../sass/Intro/Intro.scss";
+import { Helmet } from "react-helmet";
 import { Col, Row, Typography } from "antd";
 import { IntroMember, IntroService } from "./components";
 import about from "../../assets/images/about.jpg";
@@ -8,11 +9,35 @@ function Intro() {
   const { Title, Text } = Typography;
   return (
     <>
+      <Helmet>
+        <title>Giới thiệu website thú cưng Sen Shop Thủ Đức</title>
+        <meta
+          name="title"
+          content="Giới thiệu website thú cưng Sen Shop Thủ Đức"
+        />
+        <meta
+          name="description"
+          content="Một trong những yếu tốt hàng đầu trong việc chăm sóc, huấn luyện thú cưng đó là chọn được cửa hàng thú cưng uy tín. Với Sen shop chúng tôi luôn đặt chất lượng sản phẩm, trải nghiệm khách hàng làm mục tiêu hàng đầu."
+        />
+        <link rel="canonical" href="https://senshop.tech/gioi-thieu" />
+        <meta property="og:type" content="article" />
+        <meta
+          property="og:title"
+          content="Giới thiệu website thú cưng Sen Shop Thủ Đức"
+        />
+        <meta property="og:url" content="https://senshop.tech/gioi-thieu" />
+        <meta
+          property="og:image"
+          content="https://cdn.senshop.tech/Blog/SenShop.jpg"
+        />
+        <meta
+          property="og:description"
+          content="Một trong những yếu tốt hàng đầu trong việc chăm sóc, huấn luyện thú cưng đó là chọn được cửa hàng thú cưng uy tín. Với Sen shop chúng tôi luôn đặt chất lượng sản phẩm, trải nghiệm khách hàng làm mục tiêu hàng đầu"
+        />
+      </Helmet>
       <section className="intro-member">
         <div className="intro-member__text">
-          <Title
-            style={{ color: "#FEA135", fontWeight: "bold" }}
-          >
+          <Title style={{ color: "#FEA135", fontWeight: "bold" }}>
             Đội ngũ nhân viên
           </Title>
           <Text style={{ fontSize: "20px" }}>
@@ -91,7 +116,7 @@ function Intro() {
         <div className="block-divider"></div>
         <div className="intro-service-element">
           <Row gutter={[48, 48]}>
-            <Col xs={24} sm={12} lg={8} >
+            <Col xs={24} sm={12} lg={8}>
               <IntroService
                 serTitle="CHẤT LƯỢNG"
                 serDes="Là một trong những website đi đầu trong 

@@ -8,20 +8,18 @@ import { handelRecursion } from "./router/type";
 import "./sass/App.scss";
 
 function App() {
-
-  const {checkAuth } = useAuthContext();
+  const { checkAuth } = useAuthContext();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const authenticate = async () => {
       await checkAuth();
       setLoading(false);
-      
-    }
+    };
 
-    authenticate()
+    authenticate();
   }, [checkAuth]);
-  if(loading) <Loader />
+  if (loading) <Loader />;
 
   return (
     <div className="App">
@@ -39,5 +37,3 @@ function App() {
 }
 
 export default App;
-
-

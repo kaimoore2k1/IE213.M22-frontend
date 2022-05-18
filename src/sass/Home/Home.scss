@@ -198,6 +198,14 @@
   display: none !important;
 }
 @media only screen and (max-width: 768px) {
+  .header__right {
+    display: inline-flex !important;
+    padding-top: 5%;
+    .ant-space {
+      display: inline !important;
+      text-align: center;
+    }
+  }
   .sign_in {
     display: none;
   }
@@ -806,6 +814,19 @@ button:focus {
       span {
         padding: 10vw !important;
       }
+    }
+  }
+}
+
+.drawer_profile {
+  .ant-drawer-content-wrapper {
+    width: 700px !important;
+  }
+}
+@media screen and (max-width: 700px) {
+  .drawer_profile {
+    .ant-drawer-content-wrapper {
+      width: 100% !important;
     }
   }
 }
