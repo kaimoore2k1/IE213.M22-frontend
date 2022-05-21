@@ -9,18 +9,18 @@ import { useMutation } from "@apollo/client";
 import { LOGIN } from "../../../graphql/mutations/login.graphql";
 import JWTManager from "../../utils/jwt"
 import { useAuthContext } from "../../context/AuthContext";
+// import bcrypt from "bcrypt";
 
 function Login() {
  
   const navigate = useNavigate();
   const {setIsAuthenticated} = useAuthContext()     
       const [login, {data, loading, error}] = useMutation(LOGIN);
-      const [errorMessage, setErrorMessage] = useState('')
-
+      const [errorMessage, setErrorMessage] = useState("")
       if (loading) return <p>loading....</p>;
       if (error) return <p>error</p>;
       const handleFinish = async (values: any) => {
-
+        // const hashPassword = bcrypt.hashSync(password, 10)
         const response = await login({
           variables : {username: values.username, password: values.password}
         })
@@ -34,7 +34,6 @@ function Login() {
           if (response.data?.login.message) setErrorMessage(response.data.login.message)
         }
         
-        
       }
       
   return (
@@ -42,7 +41,8 @@ function Login() {
       <div className="login--logo">
         <img src={logo} alt="logo-sen-shop" />
       </div>
-      {errorMessage && <p style={{color:"red", textAlign: "center", fontSize:"20px"}}>{errorMessage}</p>}
+      {errorMessage && <p style={{color:"red", textAlign: "center", fontSize:"20px"}} >{errorMessage}</p>}
+      
       <div className="login--form">
         <Form
           className="form--form"
