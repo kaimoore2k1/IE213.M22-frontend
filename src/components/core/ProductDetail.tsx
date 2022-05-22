@@ -17,14 +17,27 @@ import { Link } from "react-router-dom";
 import Comment from "./Comment";
 import CommentEditor from "./CommentEditor";
 import { categoryTranslate } from "./../../assets/categoryTranslate";
+import { useQuery } from "@apollo/client";
+import { getComments } from "../../graphql/schema/productDetail.graphql";
+import Loader from "./Loader";
 
 interface ProductDetailProps {
   product: productDetail;
-  comments: comment[];
 }
 
-const ProdcutDetail = ({ product, comments }: ProductDetailProps) => {
+const ProdcutDetail = ({ product }: ProductDetailProps) => {
   const [productQuantity, setProductQuantity] = useState(1);
+  const { loading, error, data } = useQuery(getComments(product._id));
+
+  const rating =
+    Math.round(
+      (product.comments.reduce(
+        (total, comment: any) => total + comment.rating,
+        0
+      ) /
+        product.comments.length) *
+        2
+    ) / 2;
 
   useEffect(() => {
     const quantity = document.querySelector(
@@ -83,7 +96,7 @@ const ProdcutDetail = ({ product, comments }: ProductDetailProps) => {
             </Row>
             <Row gutter={16} justify="start" className="sub-image">
               {product.images.slice(1, 5).map((image, index) => (
-                <Col  span={6}>
+                <Col span={6}>
                   <Image
                     key={index}
                     src={image.url}
@@ -124,9 +137,9 @@ const ProdcutDetail = ({ product, comments }: ProductDetailProps) => {
             )}
           </div>
           <div className="product-rating">
-            <Rate disabled allowHalf value={product.rating} />
+            <Rate disabled allowHalf value={product.comments.length===0?5:rating} />
             <a href="#comment" onClick={handleCommentTab}>
-              ({comments.length} nhận xét)
+              ({product.comments.length} nhận xét)
             </a>
           </div>
           <div className="product-description">{product.description}</div>
@@ -256,11 +269,19 @@ const ProdcutDetail = ({ product, comments }: ProductDetailProps) => {
           <Tabs.TabPane key="2" tab="Đánh giá">
             <div id="comment" className="comment-section">
               <CommentEditor idProduct={product._id} />
-              <div className="comment-list">
-                {comments.map((comment, index) => (
-                  <Comment key={index} comment={comment} />
-                ))}
-              </div>
+              {loading ? (
+                <Loader />
+              ) : error ? (
+                "Có lỗi xảy ra"
+              ) : (
+                <div className="comment-list">
+                  {data.getCommentsByProductID.map(
+                    (comment: comment, index: any) => (
+                      <Comment key={comment._id} comment={comment} />
+                    )
+                  )}
+                </div>
+              )}
             </div>
           </Tabs.TabPane>
         </Tabs>

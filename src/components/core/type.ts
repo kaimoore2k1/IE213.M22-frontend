@@ -30,6 +30,7 @@ export interface productDetail{
   images: Image[];//
   categories: string[];//
   _id: string;
+  comments: [];
 }
 export interface commentAuthor{
   _id: string;
@@ -42,7 +43,8 @@ export interface comment{
   _id: string;
   content: string;
   rating?: number;
-  author:commentAuthor;
+  user:string;
+  date: string;
 }
 export interface productCardProps {
   product: product;

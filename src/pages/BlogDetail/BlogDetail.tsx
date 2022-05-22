@@ -23,7 +23,7 @@ const BlogDetail = () => {
         ) : (
           <BlogSingle
             blog={blog.data.getBlogBySlug}
-            comments={exampleComment}
+            comments={[]}
           />
         )}
       </Col>

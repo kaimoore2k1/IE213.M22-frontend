@@ -1,29 +1,56 @@
-import { Form, Button, Rate, Input } from "antd";
+import { message, Form, Button, Rate, Input, Typography, Popover } from "antd";
 import { createComment } from "../../graphql/schema/productDetail.graphql";
+import { useAuthContext } from "../../modules/context/AuthContext";
+import { useState } from "react";
 import { useMutation } from "@apollo/client";
+import JWTManager from "../../modules/utils/jwt";
 const CommentEditor = ({ idProduct, idBlog }: any) => {
-  var [submit, { error, reset }] = useMutation(createComment);
-  function submitHandler(value: any) {
+  const [submit, { loading, error, reset }] = useMutation(createComment);
+  const [state, setState] = useState(0);
+  const { isAuthenticated } = useAuthContext();
+  const [form] = Form.useForm();
+  async function submitHandler(value: any) {
+    const result = await submit({
+      variables: {
+        ...value,
+        idProduct,
+        idBlog,
+        user: JWTManager.getUsername(),
+      },
+      onCompleted: () => {
+        reset();
+        form.resetFields();
+        message.success({
+          content: "Bình luận đã được gửi đi",
+          key: "comment",
+          duration: 1,
+        });
+      },
+      onError: () => {
+        reset();
+        form.resetFields();
+        message.error({
+          content: "Bình luận không thành công",
+          key: "comment",
+          duration: 1,
+        });
+      },
+    });
+    setState((e) => e + 1);
     console.log(
       JSON.stringify({
         ...value,
         idProduct,
         idBlog,
-        user: "626fd8e94c3052c6b5de23d5",
+        user: JWTManager.getUsername(),
       })
     );
   }
   return (
     <Form
       onFinish={(value) => {
-        submit({
-          variables: {
-            ...value,
-            idProduct,
-            idBlog,
-            user: "626fd8e94c3052c6b5de23d5",
-          },
-        });
+        message.loading({ content: "Đang gửi bình luận", key: "comment" });
+
         submitHandler(value);
       }}
     >
@@ -36,9 +63,23 @@ const CommentEditor = ({ idProduct, idBlog }: any) => {
         <Input.TextArea />
       </Form.Item>
       <Form.Item>
-        <Button htmlType="submit" type="primary">
-          Gửi bình luận
-        </Button>
+        <Popover
+          content={
+            <Typography.Text type="danger">
+              Bạn phải đăng nhập để có thể bình luận
+            </Typography.Text>
+          }
+          {...(!isAuthenticated?{trigger:"hover"}:{visible:false})}
+        >
+          <Button
+            htmlType="submit"
+            disabled={!isAuthenticated}
+            loading={loading}
+            type="primary"
+          >
+            Gửi bình luận
+          </Button>
+        </Popover>
       </Form.Item>
     </Form>
   );

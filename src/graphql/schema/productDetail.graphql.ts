@@ -19,6 +19,10 @@ export const getProductByName = (slug: string) => gql`
         url
         title
       }
+      comments {
+        _id
+        rating
+        }
       categories
       _id
     }
@@ -37,5 +41,16 @@ export const createComment = gql`
       idProduct
       content
       rating
+    }
+}`;
+export const getComments = (productID: string) => gql`
+    query{
+      getCommentsByProductID(productID: "${productID}"){
+        
+      _id
+      content
+      rating
+      user
+      date
     }
 }`;
