@@ -1,10 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Input, Button, Checkbox } from "antd";
 import "../../sass/Admin/AdminLoginForm.scss"
+import { useMutation } from "@apollo/client";
+import JWTManager from '../../modules/utils/jwt'
+import { useNavigate } from "react-router-dom";
+import { LOGIN_ADMIN } from "../../graphql/mutations/loginAdmin.graphql";
+import { useAuthContext } from "../../modules/context/AuthContext";
 
 function AdminLoginForm() {
-  const onFinish = (values: any) => {
-    console.log("Success:", values);
+  const navigate = useNavigate();
+  const {setIsAuthenticated} = useAuthContext() 
+  const [adminLogin, {data, loading, error}] = useMutation(LOGIN_ADMIN);
+  const [errorMessage, setErrorMessage] = useState("")
+  if (loading) return <p>loading....</p>;
+  if (error) return <p>error</p>;
+  const onFinish = async (values: any) => {
+    const response = await adminLogin({
+      variables : {username: values.username, password: values.password}
+    })
+    
+    if (response.data?.adminLogin.success) {
+      JWTManager.setToken(response.data.adminLogin.accessToken as string)
+      console.log(response.data.adminLogin.accessToken as string)
+      setIsAuthenticated(true)
+      console.log(response.data.adminLogin.accessToken)
+      navigate('/dashboard')
+    } else {
+      if (response.data?.adminLogin.message) setErrorMessage(response.data.adminLogin.message)
+    }
   }
   return (
     <Form

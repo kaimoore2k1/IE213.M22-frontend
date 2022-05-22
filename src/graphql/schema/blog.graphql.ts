@@ -61,9 +61,9 @@ export const getBlogBySlug = (slug: string) => gql`
         }
     }
 `;
-export const likeBlog = (_id: string, user: string) => gql`
-        mutation{
-  likeBlog(_id:"$_id", user:"$user" ){
-    like
+export const likeBlog = gql`
+    mutation likeBlog($_id:String, $user:String ){
+    likeBlog(_id:$_id, user:$user ){
+        like
   }
 }`

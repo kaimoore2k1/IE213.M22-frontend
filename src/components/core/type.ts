@@ -1,45 +1,42 @@
 export interface product {
-    name: string;
-    description: string;
-    comments: comment[];
-    price: number;
-    salePrice?: number;
-    variant?: Variant;
-    images: [Image];
-    categories: string[];
-    _id: string;
+  name: string;
+  description: string;
+  comments: comment[];
+  price: number;
+  salePrice?: number;
+  variant?: Variant;
+  images: [Image];
+  categories: string[];
+  _id: string;
 }
 interface Variant {
-  size: [string]
-  color: [string]
+  size: [string];
+  color: [string];
 }
 interface Image {
-    url: string;
-    title?: string;
-    author?: string;
+  url: string;
+  title?: string;
+  author?: string;
 }
-export interface productDetail{
-  name: string;//
-  price: number;//
-  stock: number;//
-  salePrice?: number;//
-  description: string;//
-  content: string;//
-  rating: number;//
-  variant?: Variant;//
-  images: Image[];//
-  categories: string[];//
+export interface productDetail {
+  name: string; //
+  price: number; //
+  stock: number; //
+  salePrice?: number; //
+  description: string; //
+  content: string; //
+  variant?: Variant; //
+  images: Image[]; //
+  categories: string[]; //
   _id: string;
   comments: [];
 }
-export interface commentAuthor{
+export interface commentAuthor {
   _id: string;
   name: string;
   avatar: string;
-
-
 }
-export interface comment{
+export interface comment {
   _id: string;
   content: string;
   rating?: number;
@@ -51,15 +48,15 @@ export interface productCardProps {
 }
 
 export interface productCategorySectionProps {
-    productList: product[];
-    categoryList: string[];
-    sectionName: string;
+  productList: product[];
+  categoryList: string[];
+  sectionName: string;
 }
 
 export interface CommentState {
-  comments: any[],
-  submitting: boolean,
-  value: string
+  comments: any[];
+  submitting: boolean;
+  value: string;
 }
 
 export interface Props {
@@ -67,7 +64,7 @@ export interface Props {
   currentCategory: number;
   updateCategory: (index: number) => void;
 }
-export interface blog{
+export interface blog {
   _id: string;
   title: string;
   like: String[];
@@ -77,8 +74,8 @@ export interface blog{
   author: string;
   date: Date;
   image: {
-      url: string;
-      title?: string;
+    url: string;
+    title?: string;
   };
   content: string;
 }

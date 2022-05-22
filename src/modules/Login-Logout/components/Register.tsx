@@ -12,13 +12,18 @@ function Register(){
     
       const navigate = useNavigate()      
       const [register, {data, loading, error}] = useMutation(REGISTER);
+      const [errorMessage, setErrorMessage] = useState("")
 
       if (loading) return <p>loading....</p>;
       if (error) return <p>error</p>;
-      const handleFinish =(values: any) => {
-        console.log(values)
-        register({variables : {username: values.username, password: values.password, email: values.email}})
-        navigate('..');
+      const handleFinish = async (values: any) => {
+        const response = await register({variables : {username: values.username, password: values.password, email: values.email}});
+        if(response.data?.register.success) {
+          navigate('..');
+        }else {
+          if (response.data?.register.message) setErrorMessage(response.data.register.message)
+        }
+        
         
       }
       
@@ -31,7 +36,7 @@ function Register(){
                 alt="logo-sen-shop" 
               />
             </div>
-            
+            {errorMessage && <p style={{color:"red", textAlign: "center", fontSize:"20px"}} >{errorMessage}</p>}
             <div className="Logout--form">
               <Form
                 onFinish={handleFinish}

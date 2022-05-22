@@ -14,7 +14,7 @@ import {
   message,
 } from "antd";
 import momment from "moment";
-import { ClockCircleOutlined, EditOutlined } from "@ant-design/icons";
+import { ClockCircleOutlined, EditOutlined,UserOutlined } from "@ant-design/icons";
 import { useAuthContext } from "../../modules/context/AuthContext";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -52,6 +52,7 @@ const Profile = () => {
       message.error("Vui lòng đăng nhập để xem thông tin cá nhân");
       navigate("/login");
     }
+    
   },[]);
 
   const [editAble, setEditAble] = useState(false);
@@ -92,7 +93,7 @@ const Profile = () => {
       <div className="profile-content__wrapper">
         <div className="profile-content">
           <div className="profile-content-header">
-            <Avatar size={100} />
+            <Avatar size={100} icon={<UserOutlined />} />
             <div>
               <h2 id="username">username</h2>
               <div className="time-joined">
