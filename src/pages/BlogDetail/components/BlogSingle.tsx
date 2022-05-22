@@ -23,13 +23,12 @@ const BlogSingle = ({ blog, comments }: blogSingleProps) => {
   const blogName = useParams().blogName ?? "";
   const [like, { error, data }] = useMutation(likeBlog);
   const { isAuthenticated } = useAuthContext();
-  const [likeCount, setLikeCount] = useState(blog.like.length);
-  const [liked, setLiked] = useState(
-    blog.like.includes(JWTManager.getUsername() ?? "")
+  const [blogLike, setBlogLike] = useState(
+    blog.like
   );
+  const user = JWTManager.getUsername() ?? "";
 
   const likeHandler = async () => {
-    const user = JWTManager.getUsername() ?? "";
     if (isAuthenticated) {
       const likeProcess = await like({
         variables: {
@@ -37,15 +36,14 @@ const BlogSingle = ({ blog, comments }: blogSingleProps) => {
           user,
         },
         onCompleted: () => {
-
-          if (liked) {
-            setLikeCount(likeCount - 1);
+          if (blogLike.includes(user)) {
+            setBlogLike(blogLike.filter((e) => e !== user));
+            
           } else {
-            setLikeCount(likeCount + 1);
+            setBlogLike(blogLike.concat(user));
           }
-          setLiked(!liked);
+          
         },
-
       });
       if(error){
         message.error({
@@ -90,8 +88,8 @@ const BlogSingle = ({ blog, comments }: blogSingleProps) => {
             className="like-container blog-action-item"
             onClick={likeHandler}
           >
-            <span>{likeCount}</span>
-            {liked ? <LikeFilled /> : <LikeOutlined />}
+            <span>{blogLike.length}</span>
+            {blogLike.includes(user) ? <LikeFilled /> : <LikeOutlined />}
           </div>
           <div className="blog-action-item">
             <span>{comments.length}</span>
