@@ -1,5 +1,10 @@
 import { RouterInterface } from "../../router/type";
-import { Spa, Hospital, Esthetic, Booking, Hotel } from "../Service";
+import {lazy} from "react"
+const Spa= lazy(() => import("../Service/Spa"));
+const Hotel = lazy(() => import("../Service/Hotel"));
+const Hospital = lazy(() => import("../Service/Hospital"));
+const Esthetic = lazy(() => import("../Service/Esthetic"));
+const Booking = lazy(() => import("../Service/Booking"));
 
 const RouterService: RouterInterface[] = [
   {

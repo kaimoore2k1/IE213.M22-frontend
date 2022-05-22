@@ -1,16 +1,19 @@
 import { RouterInterface } from "../router/type";
+import { lazy } from "react";
 import Home from "./Home/Home";
-import Store from "./Store/Store";
-import Detail from "../pages/DetailProduct/Detail";
-import Service from "./Service/Service";
-import Intro from "./Introduce/Intro";
-import Blog from "./Blog/Blog";
 import { RouterService } from "../modules/Service";
-import ServiceLayout from '../pages/Service/ServiceLayout'
-import Pay from "./Payment/Pay";
-import BlogDetail from "./BlogDetail/BlogDetail";
-
-import LoginRegister from "../modules/Login-Logout/LoginRegister";
+const Store = lazy(() => import("./Store/Store"));
+const Detail = lazy(() => import("../pages/DetailProduct/Detail"));
+const Service = lazy(() => import("./Service/Service"));
+const Intro = lazy(() => import("./Introduce/Intro"));
+const Blog = lazy(() => import("./Blog/Blog"));
+const ServiceLayout = lazy(() => import("../pages/Service/ServiceLayout"));
+const Pay = lazy(() => import("./Payment/Pay"));
+const BlogDetail = lazy(() => import("./BlogDetail/BlogDetail"));
+const LoginRegister = lazy(
+  () => import("../modules/Login-Logout/LoginRegister")
+);
+const Profile = lazy(() => import("../pages/Profile/Profile"));
 
 const RouterLayout: RouterInterface[] = [
   {
@@ -224,8 +227,14 @@ const RouterLayout: RouterInterface[] = [
     public: true,
     element: () => <BlogDetail />,
   },
-
+  {
+    name: "Profile",
+    path: "/profile",
+    index: false,
+    public: true,
+    children: [],
+    element: () => <Profile />,
+  }
 ];
 
 export default RouterLayout;
-

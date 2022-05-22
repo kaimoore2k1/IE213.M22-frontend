@@ -24,7 +24,7 @@ const Header = () => {
   }
   const menu = (
     <Menu>
-        <Menu.Item>Profile</Menu.Item>
+        <Menu.Item><Link to="/profile">Profile</Link></Menu.Item>
         <Menu.Item icon={<LogoutOutlined />} onClick={onClick}>Logout</Menu.Item>
     </Menu>
   )

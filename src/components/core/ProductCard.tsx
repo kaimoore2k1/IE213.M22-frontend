@@ -10,12 +10,15 @@ import { comment } from "./../../modules/Detail/Data";
 const ProductCard = ({ product }: productCardProps) => {
   const [viewHidden, setViewHidden] = useState(false);
 
-  const rating = Math.round(
-    product.comments.reduce(
-      (total, comment: any) => total + comment.rating,
-      0
-    ) / product.comments.length
-  );
+  const rating =
+    Math.round(
+      (product.comments.reduce(
+        (total, comment: any) => total + comment.rating,
+        0
+      ) /
+        product.comments.length) *
+        2
+    ) / 2;
   useEffect(() => {
     const productAddInfo = document.querySelector(
       `#${toSlug(product.name)} .card-additional-info`
