@@ -11,11 +11,13 @@ import {
   Select,
   Collapse,
   InputNumber,
+  message,
 } from "antd";
 import momment from "moment";
 import { ClockCircleOutlined, EditOutlined } from "@ant-design/icons";
 import { useAuthContext } from "../../modules/context/AuthContext";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "../../sass/Profile/Profile.scss";
 import AddressAutocomplate from "./../../components/core/AddressAutocomplate";
 
@@ -43,9 +45,18 @@ const { TabPane } = Tabs;
 
 const Profile = () => {
   const { isAuthenticated } = useAuthContext();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      message.error("Vui lòng đăng nhập để xem thông tin cá nhân");
+      navigate("/login");
+    }
+  },[]);
 
   const [editAble, setEditAble] = useState(false);
   const [result, setResult] = useState<string[]>([]);
+
   const handleSearch = (value: string) => {
     let res: string[] = [];
     if (!value || value.indexOf("@") >= 0) {
@@ -61,7 +72,10 @@ const Profile = () => {
   const saveProfile = (value: any) => {
     console.log(value);
     setEditAble(false);
-
+    //success
+    message.success("Cập nhật thành công");
+    //error
+    message.error("Cập nhật thất bại");
   };
   const savePassword = (value: any) => {
     console.log(value);
