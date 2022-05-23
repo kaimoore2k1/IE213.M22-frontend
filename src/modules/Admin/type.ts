@@ -1,11 +1,3 @@
-export interface UserData {
-  id: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  dateCreate: string;
-  productsBooked: [string];
-}
 export const userColumns = [
   {
     title: "ID",
@@ -41,37 +33,84 @@ export const userColumns = [
   },
 ];
 
-export const userData: UserData[] = [
+export interface BlogData {
+  id: number;
+  title: string;
+  date: string;
+  author: string;
+  categories: string;
+  description: string;
+}
+
+export const blogColumns = [
   {
-    id: 1,
-    firstName: "Kai",
-    lastName: "Moore",
-    email: "haohao12012001@gmail.com",
-    dateCreate: "05/05/2022",
-    productsBooked: ["Chó Husky, Thức ăn cho chó"],
+    title: "ID",
+    dataIndex: "id",
+    key: "id",
+    sorter: (a: { id: number }, b: { id: number }) => a.id - b.id,
+    width: '7%'
   },
   {
-    id: 2,
-    firstName: "Nguyễn",
-    lastName: "Định",
-    email: "senshopdottech@gmail.com",
-    dateCreate: "05/05/2022",
-    productsBooked: ["Chó Husky, Thức ăn cho chó"],
+    title: "Title",
+    dataIndex: "title",
+    key: "title",
   },
   {
-    id: 3,
-    firstName: "Trần",
-    lastName: "Đăng",
-    email: "senshopdottech@gmail.com",
-    dateCreate: "05/05/2022",
-    productsBooked: ["Chó Husky, Thức ăn cho chó"],
+    title: "Date",
+    dataIndex: "date",
+    key: "date",
   },
   {
-    id: 4,
-    firstName: "Phạm",
-    lastName: "Chiến",
-    email: "senshopdottech@gmail.com",
-    dateCreate: "05/05/2022",
-    productsBooked: ["Chó Husky, Thức ăn cho chó"],
+    title: "Author",
+    dataIndex: "author",
+    key: "author",
+  },
+  {
+    title: "Categories",
+    dataIndex: "category",
+    key: "category",
+  },
+  {
+    title: "Description",
+    dataIndex: "description",
+    key: "description",
   }
+]
+
+
+export const productColumn: any = [
+  {
+    title: "ID",
+    dataIndex: "id",
+    key: "id",
+    sorter: (a: { id: number }, b: { id: number }) => a.id - b.id,
+    width: "7%",
+  },
+  {
+    title: "Product Name",
+    dataIndex: "name",
+    key: "name",
+  },
+  {
+    title: "Price",
+    dataIndex: "price",
+    sorter: (a: { price: number }, b: { price: number }) => a.price - b.price,
+    key: "price",
+  },
+  {
+    title: "Stock",
+    dataIndex: "stock",
+    sorter: (a: { stock: number }, b: { stock: number }) => a.stock - b.stock,
+    key: "stock",
+  },
+  {
+    title: "Categories",
+    dataIndex: "categories",
+    key: "categories",
+  },
+  {
+    title: "Description",
+    dataIndex: "description",
+    key: "description",
+  },
 ];

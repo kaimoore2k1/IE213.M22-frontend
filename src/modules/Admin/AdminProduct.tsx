@@ -1,99 +1,46 @@
 import { Drawer, Table } from "antd";
 import React, { useEffect, useState } from "react";
+import AdminAddProduct from "./AdminAddProduct";
 import AdminContentHeader from "./AdminContentHeader";
-import AdminCreateUser from "./AdminCreateUser";
-
-interface ProductData {
-  id: number;
-  name: string;
-  price: number;
-  stock: number;
-  categories: string[];
-  description: string;
-}
-
-const productColumn = [
-  {
-    title: "ID",
-    dataIndex: "id",
-    key: "id",
-    sorter: (a: { id: number }, b: { id: number }) => a.id - b.id,
-    width: '7%'
-  },
-  {
-    title: "Product Name",
-    dataIndex: "name",
-    key: "name",
-  },
-  {
-    title: "Price",
-    dataIndex: "price",
-    sorter: (a: { price: number }, b: { price: number }) => a.price - b.price,
-    key: "price",
-  },
-  {
-    title: "Stock",
-    dataIndex: "stock",
-    sorter: (a: { stock: number }, b: { stock: number }) => a.stock - b.stock,
-    key: "stock",
-  },
-  {
-    title: "Categories",
-    dataIndex: "categories",
-    key: "categories",
-  },
-  {
-    title: "Description",
-    dataIndex: "description",
-    key: "description",
-  },
-  
-]
-
-const productData:ProductData[] = [
-  {
-    id: 1,
-    name: "Product",
-    price: 20000,
-    stock: 30,
-    categories: ["thucung", ", chocanh"],
-    description: "Product description"
-  },
-  {
-    id: 2,
-    name: "Product",
-    price: 20000,
-    stock: 30,
-    categories: ["thucung", ", chocanh"],
-    description: "Product description"
-  }
-] 
+import { getAllProduct } from "../../graphql/schema/product.graphql";
+import { useQuery } from "@apollo/client";
+import {productColumn} from './type';
 
 function AdminProduct() {
   const title = "Product Management";
+  const product = useQuery(getAllProduct);
   const [searchValue, setSearchValue] = useState("");
-  const [dataSource, setDataSource] = useState(productData);
+  const initialProduct: any[] | (() => any[]) = []
+  const [dataSource, setDataSource] = useState(initialProduct);
   const titleDrawer = "UPDATE PRODUCT";
+
   const [visible, setVisible] = useState(false);
   const onClose = () => {
     setVisible(false);
+    setContentDrawer(<></>)
   };
   const [contentDrawer, setContentDrawer] = useState(<></>);
   const showDrawer = (record: any) => {
     setVisible(true);
     setContentDrawer(
-      <AdminCreateUser visibleProp={setVisible} dataProp={record} />
+      <AdminAddProduct visibleProp={setVisible} dataProp={record} id={record.name}/>
     );
   };
   useEffect(() => {
-    setDataSource(
-      productData.filter((entry) => {
-        return (
-          entry.name.includes(searchValue)
-        );
-      })
-    );
-  }, [searchValue]);
+    if(product.data) {
+      let i = 0;
+      const newData = product.data.getAllProducts.map((data: any) => {
+        return { ...data, ...{ id: ++i }};
+      });
+      setDataSource(
+        newData.filter(
+          (entry: { name: string | string[] }) => {
+            return entry.name.includes(searchValue);
+          }
+        )
+      );
+    }
+  }, [product.data, searchValue]);
   return (
     <>
       <AdminContentHeader
@@ -112,6 +59,7 @@ function AdminProduct() {
       </Drawer>
       <Table
         size="small"
+        loading={product.loading}
         columns={productColumn}
         dataSource={dataSource}
         scroll={{ y: 265 }}

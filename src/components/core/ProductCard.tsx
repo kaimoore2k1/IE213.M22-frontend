@@ -7,6 +7,12 @@ import { productCardProps } from "./type";
 import toSlug from "../../assets/toSlug";
 
 const ProductCard = ({ product }: productCardProps) => {
+  if (!window.localStorage.getItem("products")) {
+    window.localStorage.setItem("products", "[]");
+  }
+  const [products, setProducts]: any = useState(
+    window.localStorage.getItem("products")
+  );
   const [viewHidden, setViewHidden] = useState(false);
   useEffect(() => {
     const productAddInfo = document.querySelector(
@@ -20,14 +26,32 @@ const ProductCard = ({ product }: productCardProps) => {
   }, [viewHidden]);
 
   function handelAddToCart(value: any) {
-    console.log({
+    let productCart: any = {
       variant: value ?? null,
       _id: product._id,
       name: product.name,
       price: product.salePrice ?? product.price,
-      image: product.images,
-      quantity: 1,
-    });
+      image: product.images[0],
+      quantity: 1, /* i nop du chu ca mo */
+    };
+    let flag = false;
+    const localCarts = JSON.parse(window.localStorage.getItem("products") as string);
+    if(localCarts[0] === undefined) {
+      productCart.quantity--;
+      localCarts.push(productCart);
+    }
+    for (let i = 0; i < localCarts.length; i++) {
+      if(localCarts[i].name === productCart.name) {
+        localCarts[i].quantity++
+        flag = true
+        break
+      }
+    }
+    if(!flag) {
+      localCarts.push(productCart)
+    }
+    window.localStorage.setItem("products", JSON.stringify(localCarts));
+    setProducts(window.localStorage.getItem("products") as string);
   }
 
   return (

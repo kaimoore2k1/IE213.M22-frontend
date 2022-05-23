@@ -3,6 +3,7 @@ import { PlusOutlined } from "@ant-design/icons";
 import React, { useState } from "react";
 import AdminCreateUser from "./AdminCreateUser";
 import AdminAddProduct from "./AdminAddProduct";
+import AdminAddBlog from "./AdminAddBlog"
 const { Title } = Typography;
 const { Search } = Input;
 
@@ -18,19 +19,21 @@ function AdminContentHeader(props: {
   let titleDrawer: string = ""
   let contentDrawer:JSX.Element = <></>
   const data:any = null
+  const id = ""
   switch (props.current) {
     case 1: {
       titleDrawer = "CREATE USER";
-      contentDrawer = <AdminCreateUser visibleProp={setVisible} dataProp={data}/>
+      contentDrawer = <AdminCreateUser visibleProp={setVisible} dataProp={data} id={id}/>
       break;
     }
     case 2: {
       titleDrawer = "ADD PRODUCT";
-      contentDrawer = <AdminAddProduct visibleProp={setVisible} dataProp={data}/>
+      contentDrawer = <AdminAddProduct visibleProp={setVisible} dataProp={data} id={id}/>
       break;
     }
     case 3: {
-      //statements;
+      titleDrawer = "ADD BLOG";
+      contentDrawer = <AdminAddBlog visibleProp={setVisible} dataProp={data}/>
       break;
     }
     default: {

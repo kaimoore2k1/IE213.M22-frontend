@@ -1,65 +1,79 @@
-import React from 'react'
+import React from "react";
 import { Table, Button } from "antd";
 import { useState } from "react";
 import { DeleteOutlined, ArrowLeftOutlined } from "@ant-design/icons";
 import { ColumnsType } from "antd/es/table";
-import { data } from "./data";
-import { DataType } from "./type"
-import { useNavigate } from 'react-router-dom';
+import { DataType } from "./type";
+import { useNavigate } from "react-router-dom";
 
 export interface CurrentProps {
-  callBackCurrent(childCurrent: number): void
+  callBackCurrent(childCurrent: number): void;
 }
 
 function Cart({ callBackCurrent }: CurrentProps) {
+  if (!window.localStorage.getItem("products")) {
+    window.localStorage.setItem("products", "[]");
+  }
+  let i = 0;
+  
   const navigate = useNavigate();
-  const [dataType, setDataType] = useState(data);
+  const data: DataType[] = JSON.parse(
+    window.localStorage.getItem("products") as string
+  );
+  const [dataType, setDataType] = useState<DataType[]>(
+    data.map((dt) => {
+      return { ...dt, ...{ key: ++i } };
+    })
+  );
   let isDisabled = true;
   if (dataType.length > 0) {
-    isDisabled = false
+    isDisabled = false;
   }
 
   const handelSub = (record: DataType) => {
-    record.soluong -= 1;
-    if (record.soluong < 1) {
-      record.soluong = 1;
+    record.quantity -= 1;
+    if (record.quantity < 1) {
+      record.quantity = 1;
     }
-    const value = record.soluong
-    const index = Number(record.key) - 1
-    const newRecord = { ...dataType[index], soluong: value }
-    const AfterValue = dataType.slice(index + 1, dataType.length)
-    const BeforeValue = dataType.slice(0, index)
-    setDataType(pre => {
-      return [...BeforeValue, newRecord, ...AfterValue]
-    })
+    const value = record.quantity;
+    const index = Number(record.key) - 1;
+    const newRecord = { ...dataType[index], quantity: value };
+    const AfterValue = dataType.slice(index + 1, dataType.length);
+    const BeforeValue = dataType.slice(0, index);
+    setDataType((pre: any) => {
+      return [...BeforeValue, newRecord, ...AfterValue];
+    });
+    window.localStorage.setItem('products', JSON.stringify(dataType));
   };
   const handelPlus = (record: DataType) => {
-    record.soluong += 1;
-    if (record.soluong < 1) {
-      record.soluong = 1;
+    record.quantity += 1;
+    if (record.quantity < 1) {
+      record.quantity = 1;
     }
-    const value = record.soluong
-    const index = Number(record.key) - 1
-    const newRecord = { ...dataType[index], soluong: value }
-    const AfterValue = dataType.slice(index + 1, dataType.length)
-    const BeforeValue = dataType.slice(0, index)
+    const value = record.quantity;
+    const index = Number(record.key) - 1;
+    const newRecord = { ...dataType[index], quantity: value };
+    const AfterValue = dataType.slice(index + 1, dataType.length);
+    const BeforeValue = dataType.slice(0, index);
     setDataType(() => {
-      return [...BeforeValue, newRecord, ...AfterValue]
-    })
+      return [...BeforeValue, newRecord, ...AfterValue];
+    });
+    window.localStorage.setItem('products', JSON.stringify(dataType));
   };
   const handelDelete = (record: DataType) => {
-    const newData = [...dataType]
-    const newRecord = newData.filter(e => e.key !== record.key)
+    const newData = [...dataType];
+    const newRecord = newData.filter((e) => e.key !== record.key);
     for (let i: number = 0; i < newRecord.length; i++) {
       newRecord[i].key = i + 1;
     }
-    setDataType(newRecord)
+    setDataType(newRecord);
+    window.localStorage.setItem('products', JSON.stringify(newRecord));
   };
   const columns: ColumnsType<DataType> = [
     {
       title: "SẢN PHẨM",
-      dataIndex: "sanpham",
-      key: "sanpham",
+      dataIndex: "name",
+      key: "name",
       align: "left",
       render: (text, record) => (
         <>
@@ -68,20 +82,20 @@ function Cart({ callBackCurrent }: CurrentProps) {
             style={{ marginRight: "10px" }}
             icon={<DeleteOutlined />}
           ></Button>
-          <img src={dataType[Number(record.key) - 1].img} alt="Product" />
-          {dataType[Number(record.key) - 1].sanpham}
+          <img src={dataType[Number(record.key) - 1].image.url} alt="Product" />
+          {dataType[Number(record.key) - 1].name}
         </>
       ),
     },
     {
       title: "GIÁ",
-      dataIndex: "gia",
-      key: "gia",
+      dataIndex: "price",
+      key: "price",
       align: "center",
       render: (title, record) => (
         <>
           <span>
-            {dataType[Number(record.key) - 1].gia.toLocaleString("vi-VN", {
+            {dataType[Number(record.key) - 1].price.toLocaleString("vi-VN", {
               style: "currency",
               currency: "VND",
             })}
@@ -91,14 +105,14 @@ function Cart({ callBackCurrent }: CurrentProps) {
     },
     {
       title: "SỐ LƯỢNG",
-      dataIndex: "soluong",
-      key: "soluong",
+      dataIndex: "quantity",
+      key: "quantity",
       align: "center",
       render: (title, record) => (
         <>
           <div className="button__frame">
             <button onClick={() => handelSub(record)}>-</button>
-            <span>{dataType[Number(record.key) - 1].soluong}</span>
+            <span>{dataType[Number(record.key) - 1].quantity}</span>
             <button onClick={() => handelPlus(record)}>+</button>
           </div>
         </>
@@ -112,8 +126,8 @@ function Cart({ callBackCurrent }: CurrentProps) {
       render: (title, record) => (
         <span>
           {(
-            dataType[Number(record.key) - 1].gia *
-            dataType[Number(record.key) - 1].soluong
+            dataType[Number(record.key) - 1].price *
+            dataType[Number(record.key) - 1].quantity
           ).toLocaleString("vi-VN", { style: "currency", currency: "VND" })}
         </span>
       ),
@@ -127,8 +141,8 @@ function Cart({ callBackCurrent }: CurrentProps) {
         columns={columns}
         summary={(pageData) => {
           let total = 0;
-          pageData.forEach(({ gia, soluong }) => {
-            total += gia * soluong;
+          pageData.forEach(({ price, quantity }) => {
+            total += price * quantity;
           });
           return (
             <>
@@ -151,11 +165,15 @@ function Cart({ callBackCurrent }: CurrentProps) {
         }}
       />
       <div className="handleButton">
-        <Button icon={<ArrowLeftOutlined />} onClick={() => navigate(-1)}>TIẾP TỤC XEM SẢN PHẨM</Button>
-        <Button disabled={isDisabled} onClick={() => callBackCurrent(1)}>THANH TOÁN</Button>
+        <Button icon={<ArrowLeftOutlined />} onClick={() => navigate(-1)}>
+          TIẾP TỤC XEM SẢN PHẨM
+        </Button>
+        <Button disabled={isDisabled} onClick={() => callBackCurrent(1)}>
+          THANH TOÁN
+        </Button>
       </div>
     </>
-  )
+  );
 }
 
-export default Cart
+export default Cart;

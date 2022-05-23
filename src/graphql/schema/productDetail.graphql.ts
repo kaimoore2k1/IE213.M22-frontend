@@ -1,7 +1,6 @@
 import { gql } from "@apollo/client";
 
-export  const getProductByName = (slug: string) => gql`
-  
+export const getProductByName = (slug: string) => gql`
   query {
     getProductByName (slugName:"${slug}") {
       name

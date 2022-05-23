@@ -1,9 +1,14 @@
+type Image = {
+    title: string;
+    url: string
+}
+
 export interface DataType {
     key: React.Key;
-    sanpham: string;
-    gia: number;
-    soluong: number;
-    img: string;
+    name: string;
+    price: number;
+    quantity: number;
+    image: Image;
 }
 export interface PaymentInformation {
     firstName: string;
@@ -27,7 +32,7 @@ export interface FieldData {
 export interface CustomizedFormProps {
     onChange: (fields: FieldData[]) => void;
     fields: FieldData[];
-    onSubmit: () => void;
+    onSubmit: (e:any) => void;
 }
 export interface PaymentMethod {
     paymentMethodID: number;
