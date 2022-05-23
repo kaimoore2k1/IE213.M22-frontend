@@ -1,4 +1,5 @@
-import { blog, comment } from "../../../components/core/type";
+import { blog } from "../../../components/core/type";
+import Loader from "../../../components/core/Loader";
 import { decode } from "html-entities";
 import { LikeOutlined, LikeFilled } from "@ant-design/icons";
 import { CommentIcon, ShareIcon } from "../../../assets/icons/BlogCustomIcon";
@@ -12,22 +13,23 @@ import { message } from "antd";
 import JWTManager from "../../../modules/utils/jwt";
 import { Helmet } from "react-helmet";
 import { useParams } from "react-router-dom";
+import { useQuery } from "@apollo/client";
+import { getCommentsByBlogID } from "../../../graphql/schema/blog.graphql";
 
 interface blogSingleProps {
   blog: blog;
-  comments: comment[];
 }
 
-const BlogSingle = ({ blog, comments }: blogSingleProps) => {
+const BlogSingle = ({ blog }: blogSingleProps) => {
+  const comments = useQuery(getCommentsByBlogID(blog._id));
   const date = new Date(blog.date).toDateString();
   const blogName = useParams().blogName ?? "";
   const [like, { error, data }] = useMutation(likeBlog);
   const { isAuthenticated } = useAuthContext();
-  const [blogLike, setBlogLike] = useState(
-    blog.like
-  );
+  const [blogLike, setBlogLike] = useState(blog.like);
   const user = JWTManager.getUsername() ?? "";
-
+  console.log(blog._id);
+  
   const likeHandler = async () => {
     if (isAuthenticated) {
       const likeProcess = await like({
@@ -38,14 +40,12 @@ const BlogSingle = ({ blog, comments }: blogSingleProps) => {
         onCompleted: () => {
           if (blogLike.includes(user)) {
             setBlogLike(blogLike.filter((e) => e !== user));
-            
           } else {
             setBlogLike(blogLike.concat(user));
           }
-          
         },
       });
-      if(error){
+      if (error) {
         message.error({
           content: "Đã có lỗi xảy ra, vui lòng thử lại sau",
           key: "like",
@@ -92,7 +92,7 @@ const BlogSingle = ({ blog, comments }: blogSingleProps) => {
             {blogLike.includes(user) ? <LikeFilled /> : <LikeOutlined />}
           </div>
           <div className="blog-action-item">
-            <span>{comments.length}</span>
+            <span>{comments?.data?.getCommentsByBlogID?.length ?? "0"}</span>
             <CommentIcon />
           </div>
           <div className="blog-action-item">
@@ -103,9 +103,23 @@ const BlogSingle = ({ blog, comments }: blogSingleProps) => {
         <div className="comment-section">
           <CommentEditor idBlog={blog._id} type="comment" />
           <div className="comment-list">
-            {comments.map((comment, index) => (
-              <Comment key={index} comment={comment} />
-            ))}
+            {comments.loading ? (
+              <Loader />
+            ) : (
+              <>
+                {comments.error ? (
+                  message.error({ content: "Lỗi khi tải bình luận" })
+                ) : (
+                  <>
+                    {comments.data.getCommentsByBlogID.map(
+                      (comment: any, index: any) => (
+                        <Comment key={index} comment={comment} />
+                      )
+                    )}
+                  </>
+                )}
+              </>
+            )}
           </div>
         </div>
       </div>

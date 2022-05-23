@@ -18,7 +18,7 @@ import Comment from "./Comment";
 import CommentEditor from "./CommentEditor";
 import { categoryTranslate } from "./../../assets/categoryTranslate";
 import { useQuery } from "@apollo/client";
-import { getComments } from "../../graphql/schema/productDetail.graphql";
+import { getCommentsByProductID } from "../../graphql/schema/productDetail.graphql";
 import Loader from "./Loader";
 import { Helmet } from "react-helmet";
 interface ProductDetailProps {
@@ -27,7 +27,7 @@ interface ProductDetailProps {
 
 const ProdcutDetail = ({ product }: ProductDetailProps) => {
   const [productQuantity, setProductQuantity] = useState(1);
-  const { loading, error, data } = useQuery(getComments(product._id));
+  const { loading, error, data } = useQuery(getCommentsByProductID(product._id));
 const slug= useParams().productName ?? "";
   const rating =
     Math.round(
@@ -290,7 +290,7 @@ const slug= useParams().productName ?? "";
                   "Có lỗi xảy ra"
                 ) : (
                   <div className="comment-list">
-                    {data.getCommentsByProductID.map(
+                    {data.getCommentsByProductIDByProductID.map(
                       (comment: comment, index: any) => (
                         <Comment key={comment._id} comment={comment} />
                       )

@@ -3,6 +3,8 @@ import { createComment } from "../../graphql/schema/productDetail.graphql";
 import { useAuthContext } from "../../modules/context/AuthContext";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
+import { getCommentsByProductID } from "../../graphql/schema/productDetail.graphql";
+import { getCommentsByBlogID } from "../../graphql/schema/blog.graphql";
 import JWTManager from "../../modules/utils/jwt";
 const CommentEditor = ({ idProduct, idBlog }: any) => {
   const [submit, { loading, error, reset }] = useMutation(createComment);
@@ -17,9 +19,12 @@ const CommentEditor = ({ idProduct, idBlog }: any) => {
         idBlog,
         user: JWTManager.getUsername(),
       },
+      refetchQueries: !!idProduct
+        ? [getCommentsByProductID(idProduct)]
+        : [getCommentsByBlogID(idBlog)],
       onCompleted: () => {
         reset();
-        form.resetFields();
+        form.resetFields(["content"]);
         message.success({
           content: "Bình luận đã được gửi đi",
           key: "comment",
@@ -48,6 +53,7 @@ const CommentEditor = ({ idProduct, idBlog }: any) => {
   }
   return (
     <Form
+      form={form}
       onFinish={(value) => {
         message.loading({ content: "Đang gửi bình luận", key: "comment" });
 
@@ -69,7 +75,7 @@ const CommentEditor = ({ idProduct, idBlog }: any) => {
               Bạn phải đăng nhập để có thể bình luận
             </Typography.Text>
           }
-          {...(!isAuthenticated?{trigger:"hover"}:{visible:false})}
+          {...(!isAuthenticated ? { trigger: "hover" } : { visible: false })}
         >
           <Button
             htmlType="submit"

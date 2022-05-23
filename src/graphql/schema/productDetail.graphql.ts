@@ -43,7 +43,7 @@ export const createComment = gql`
       rating
     }
 }`;
-export const getComments = (productID: string) => gql`
+export const getCommentsByProductID = (productID: string) => gql`
     query{
       getCommentsByProductID(productID: "${productID}"){
         

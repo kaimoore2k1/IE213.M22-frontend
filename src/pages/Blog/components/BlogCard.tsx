@@ -7,6 +7,9 @@ import {
 import "../../../sass/Blog/BlogCard.scss";
 import { Link } from "react-router-dom";
 import toSlug from "../../../assets/toSlug";
+import moment from "moment";
+
+moment.locale("vi");
 export interface blogCard {
   title: string;
   like: string[];
@@ -27,7 +30,7 @@ export interface blogCardProps {
 }
 
 const BlogCard = ({ type, blog }: blogCardProps) => {
-  const date = new Date(blog.date).toDateString();
+  const date = new Date(blog.date);
   return (
     <>
       {type === "small" ? (
@@ -47,7 +50,7 @@ const BlogCard = ({ type, blog }: blogCardProps) => {
             }
             description={
               <div className="blog-card-info__top">
-                <div className="blog-card-date">{date}</div>
+                <div className="blog-card-date">{moment(date).format("DD/MM/YYYY")}</div>
                 <div className="blog-card-author">{blog.author}</div>
               </div>
             }
@@ -91,7 +94,7 @@ const BlogCard = ({ type, blog }: blogCardProps) => {
               <>
                 <div className="blog-card-info__top">
                   <div className="blog-card-date">
-                    {date}
+                    {moment(date).format("DD/MM/YYYY")}
                   </div>
                   <div className="blog-card-author">{blog.author}</div>
                 </div>

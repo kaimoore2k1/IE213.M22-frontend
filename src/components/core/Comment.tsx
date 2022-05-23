@@ -11,21 +11,22 @@ interface commentProps {
 }
 
 function Comment({ comment }: commentProps) {
-  const date = new Date(comment.date).toDateString();
+  const date = new Date(comment.date);
+
   return (
     <AntdComment
       author={<a>{comment.user}</a>}
       avatar={<Avatar size={48} icon={<UserOutlined />} />}
       content={
         <>
-          {comment.rating && <Rate  value={comment.rating} disabled />}
+          {comment?.rating && <Rate  value={comment.rating} disabled />}
           <p>{comment.content}</p>
         </>
       }
       datetime={
         <>
           <Tooltip title={moment().format("YYYY-MM-DD HH:mm:ss")}>
-            <span>{moment(date).lang('vi').fromNow()}</span>
+            <span>{moment(date).from(new Date)}</span>
           </Tooltip>
         </>
       }
