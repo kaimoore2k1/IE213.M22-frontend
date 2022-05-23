@@ -9,10 +9,10 @@ const JWTManager = () => {
   const getToken = () => inMemoryToken;
   const getUsername = () => username;
   const setToken = (accessToken: string) => {
-    inMemoryToken = accessToken;
-
+    
     //Decode and countdown to refresh token
     const decoded = jwtDecode<JwtPayload & { username: string }>(accessToken);
+    inMemoryToken = accessToken;
     username = decoded.username;
     setRefreshTokenTimeout((decoded.exp as number) - (decoded.iat as number));
     return true;
@@ -31,7 +31,7 @@ const JWTManager = () => {
   window.addEventListener("storage", (event) => {
     if (event.key === LOGOUT_EVENT_NAME) inMemoryToken = null;
   });
-
+    //Lấy token từ phía client
   const getRefreshToken = async () => {
     try {
       const response = await fetch("http://localhost:4000/refresh_token", {
