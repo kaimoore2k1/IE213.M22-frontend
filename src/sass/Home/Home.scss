@@ -198,6 +198,14 @@
   display: none !important;
 }
 @media only screen and (max-width: 768px) {
+  .header__right {
+    display: inline-flex !important;
+    padding-top: 5%;
+    .ant-space {
+      display: inline !important;
+      text-align: center;
+    }
+  }
   .sign_in {
     display: none;
   }
@@ -331,6 +339,8 @@
 .slider {
   img {
     width: 100%;
+    object-fit: cover;
+    aspect-ratio:24/9;
   }
 }
 
@@ -471,11 +481,12 @@
     margin: 0 auto;
     background-color: #ffcf41;
     width: 100%;
-    height: 40px;
+    height: fit-content;
+
     font-size: 18px;
     font-weight: 700;
     text-align: center;
-    padding-top: 5px;
+    padding: 5px;
   }
   .category_menu {
     margin: 0 auto;
@@ -805,6 +816,19 @@ button:focus {
       span {
         padding: 10vw !important;
       }
+    }
+  }
+}
+
+.drawer_profile {
+  .ant-drawer-content-wrapper {
+    width: 700px !important;
+  }
+}
+@media screen and (max-width: 700px) {
+  .drawer_profile {
+    .ant-drawer-content-wrapper {
+      width: 100% !important;
     }
   }
 }

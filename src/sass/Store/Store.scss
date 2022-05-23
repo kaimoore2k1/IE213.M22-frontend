@@ -1,8 +1,13 @@
 .store__layout {
   padding: 0 5rem;
 }
-@media screen and (max-width: 600px) {
-  .store__layout {
-    padding: 0 1rem !important;
+@media (max-width: 768px) {
+  .store__layout{
+      padding:0 3rem;
   }
+}
+@media (max-width: 576px) {
+    .store__layout{
+        padding:0 1rem;
+    }
 }

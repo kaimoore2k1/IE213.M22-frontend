@@ -1,14 +1,70 @@
 import { gql } from "@apollo/client";
 
-export const getAllBlogs = gql `
+export const getAllBlogs =  gql`
     query {
-        getAllBlogs {
+        getAllBlogs  {
+            _id
             title
+            like
+            share
             date
-            author
-            category
+            image{
+                url
+            }
+            comments{
+                _id
+            }
             description
+            category
+            author
+            slug
             content
+      }
+    }
+`;
+export const getHotBlogs = () => gql`
+    query {
+        getHotBlogs {
+            _id
+            title
+            like
+            share
+            date
+            image{
+                url
+            }
+            comments{
+                _id
+            }
+            description
+            category
+            author
+            slug
+      }
+    }
+`;
+export const getBlogBySlug = (slug: string) => gql`
+    query {
+        getBlogBySlug (slug:"${slug}") {
+            _id
+            title
+            like
+            share
+            date
+            image{
+                url
+            }
+            content
+            description
+            category
+            author
+            slug
         }
     }
-`
+`;
+export const likeBlog = gql`
+    mutation likeBlog($_id:String, $user:String ){
+    likeBlog(_id:$_id, user:$user ){
+        like
+  }
+}`

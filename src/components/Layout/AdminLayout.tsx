@@ -6,6 +6,7 @@ import {
   UserOutlined,
   CodeSandboxOutlined,
   BookOutlined,
+  FormOutlined,
 } from "@ant-design/icons";
 import { Link, Outlet, useNavigate, useLocation } from "react-router-dom";
 import "../../sass/Admin/AdminLayout.scss";
@@ -64,6 +65,12 @@ function AdminLayout() {
       icon: <BookOutlined />,
       label: "Blog",
       path: "blogs",
+    },
+    {
+      key: "4",
+      icon: <FormOutlined />,
+      label: "Bookings",
+      path: "bookings",
     },
   ];
   return (
@@ -142,7 +149,7 @@ function AdminLayout() {
             backgroundColor: "white",
             textAlign: "center",
             position: "sticky",
-            bottom: "0"
+            bottom: "0",
           }}
         >
           {" "}

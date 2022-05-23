@@ -5,6 +5,7 @@ import { AddToCartIcon, SearchIcon } from "../../assets/icons/BlogCustomIcon";
 import "../../sass/Blog/ProductCard.scss";
 import { productCardProps } from "./type";
 import toSlug from "../../assets/toSlug";
+import { comment } from "./../../modules/Detail/Data";
 
 const ProductCard = ({ product }: productCardProps) => {
   if (!window.localStorage.getItem("products")) {
@@ -14,6 +15,16 @@ const ProductCard = ({ product }: productCardProps) => {
     window.localStorage.getItem("products")
   );
   const [viewHidden, setViewHidden] = useState(false);
+
+  const rating =
+    Math.round(
+      (product.comments.reduce(
+        (total, comment: any) => total + comment.rating,
+        0
+      ) /
+        product.comments.length) *
+        2
+    ) / 2;
   useEffect(() => {
     const productAddInfo = document.querySelector(
       `#${toSlug(product.name)} .card-additional-info`
@@ -72,8 +83,12 @@ const ProductCard = ({ product }: productCardProps) => {
         description={product.description}
       />
       <div className="rating-container">
-        <Rate disabled allowHalf value={product.rating} />
-        <span>{`(${product.ratingCount} nhận xét)`}</span>
+        <Rate
+          disabled
+          allowHalf
+          value={product.comments.length > 0 ? rating : 5}
+        />
+        <span>{`(${product.comments.length}) nhận xét)`}</span>
       </div>
       <div className="price-section">
         {product.salePrice ? (

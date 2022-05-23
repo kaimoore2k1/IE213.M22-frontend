@@ -9,16 +9,15 @@ import { Link } from "react-router-dom";
 import toSlug from "../../../assets/toSlug";
 export interface blogCard {
   title: string;
-  likeCount: number;
-  commentCount: number;
-  shareCount: number;
+  like: string[];
+  comments: any;
+  share: number;
   description?: string;
-  categories?: string;
-  images: {
+  category?: string;
+  image: {
     url: string;
-    title: string;
   };
-  id: number;
+  _id: string;
   author: string;
   date: Date;
 }
@@ -28,16 +27,17 @@ export interface blogCardProps {
 }
 
 const BlogCard = ({ type, blog }: blogCardProps) => {
+  const date = new Date(blog.date).toDateString();
   return (
     <>
       {type === "small" ? (
         <Card
           className="blog-card-small"
-          id={`blog-card-${blog.id}`}
+          id={`blog-card-${blog._id}`}
           hoverable={true}
           cover={
             <Link to={`/tap-chi/${toSlug(blog.title)}`}>
-              <img src={blog.images.url} alt="blog" />
+              <img src={blog.image.url} alt={blog.title} />
             </Link>
           }
         >
@@ -47,22 +47,22 @@ const BlogCard = ({ type, blog }: blogCardProps) => {
             }
             description={
               <div className="blog-card-info__top">
-                <div className="blog-card-date">{blog.date.toDateString()}</div>
+                <div className="blog-card-date">{date}</div>
                 <div className="blog-card-author">{blog.author}</div>
               </div>
             }
           />
           <div className="blog-card-footer">
             <div className="like-count">
-              <span>{blog.likeCount}</span>
+              <span>{blog.like.length}</span>
               <LikeIcon />
             </div>
             <div className="comment-count">
-              <span>{blog.commentCount}</span>
+              <span>{blog.comments.length}</span>
               <CommentIcon />
             </div>
             <div className="share-count">
-              <span>{blog.shareCount}</span>
+              <span>{blog.share}</span>
               <ShareIcon />
             </div>
           </div>
@@ -70,15 +70,15 @@ const BlogCard = ({ type, blog }: blogCardProps) => {
       ) : (
         <Card
           className="blog-card-large"
-          id={`blog-card-${blog.id}`}
+          id={`blog-card-${blog._id}`}
           hoverable={true}
           cover={
             <div className="blog-card-image__container">
               <Link to={`/tap-chi/${toSlug(blog.title)}`}>
-                <img src={blog.images.url} alt="blog" />
+                <img src={blog.image.url} alt="blog" />
               </Link>
               <div className="blog-card-category">
-                <span>{blog.categories}</span>
+                <span>{blog.category}</span>
               </div>
             </div>
           }
@@ -91,7 +91,7 @@ const BlogCard = ({ type, blog }: blogCardProps) => {
               <>
                 <div className="blog-card-info__top">
                   <div className="blog-card-date">
-                    {blog.date.toDateString()}
+                    {date}
                   </div>
                   <div className="blog-card-author">{blog.author}</div>
                 </div>
@@ -101,15 +101,15 @@ const BlogCard = ({ type, blog }: blogCardProps) => {
           />
           <div className="blog-card-footer">
             <div className="like-count">
-              <span>{blog.likeCount}</span>
+              <span>{blog.like.length}</span>
               <LikeIcon />
             </div>
             <div className="comment-count">
-              <span>{blog.commentCount}</span>
+              <span>{blog.comments.length}</span>
               <CommentIcon />
             </div>
             <div className="share-count">
-              <span>{blog.shareCount}</span>
+              <span>{blog.share}</span>
               <ShareIcon />
             </div>
           </div>

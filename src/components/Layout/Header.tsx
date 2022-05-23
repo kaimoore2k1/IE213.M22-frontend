@@ -1,4 +1,12 @@
-import { Input, Button, Badge, Dropdown, Space, Menu } from "antd";
+import {
+  Input,
+  Button,
+  Badge,
+  Dropdown,
+  Space,
+  Menu,
+  Tabs,
+} from "antd";
 import { Link } from "react-router-dom";
 import { Avatar } from "antd";
 import { UserOutlined } from "@ant-design/icons";
@@ -12,6 +20,7 @@ import JWTManager from "../../modules/utils/jwt";
 import { LogoutOutlined } from "@ant-design/icons";
 import { useState } from "react";
 const { Search } = Input;
+const { TabPane } = Tabs;
 const Header = () => {
   if (!window.localStorage.getItem("products")) {
     window.localStorage.setItem("products", "[]");
@@ -23,14 +32,28 @@ const Header = () => {
   const { isAuthenticated, logoutClient } = useAuthContext();
   const [logoutServer, _] = useMutation(LOGOUT);
 
-  const onClick = async () => {
+  const logoutHandler = async () => {
     logoutClient();
     await logoutServer({ variables: { username: JWTManager.getUsername() } });
   };
+
+  const [visible, setVisible] = useState(false);
+  // const showDrawer = () => {
+  //   setVisible(true);
+  // };
+  // const onClose = () => {
+  //   setVisible(false);
+  // };
+
   const menu = (
     <Menu>
-      <Menu.Item>Profile</Menu.Item>
-      <Menu.Item icon={<LogoutOutlined />} onClick={onClick}>
+      {/* <Menu.Item icon={<UserOutlined />} onClick={showDrawer}>
+        <Link to="/profile">Profile</Link>
+      </Menu.Item> */}
+      <Menu.Item icon={<UserOutlined />} >
+        <Link to="/profile">Profile</Link>
+      </Menu.Item>
+      <Menu.Item icon={<LogoutOutlined />} onClick={logoutHandler}>
         Logout
       </Menu.Item>
     </Menu>
@@ -55,13 +78,6 @@ const Header = () => {
               </Badge>
             </button>
           </Link>
-          <Link to={"/login"}>
-            <Avatar
-              className="sign_in-responsive"
-              size={48}
-              icon={<UserOutlined />}
-            />
-          </Link>
           {isAuthenticated ? (
             <>
               <Dropdown overlay={menu}>
@@ -69,11 +85,12 @@ const Header = () => {
                   style={{
                     marginLeft: "30px",
                     position: "relative",
-                    zIndex: "9999",
+                    zIndex: "99",
                     fontSize: "18px",
                   }}
                 >
                   <Avatar
+                    size={48}
                     style={{
                       color: "#f56a00",
                       backgroundColor: "#fde3cf",
@@ -88,11 +105,20 @@ const Header = () => {
           </Button> */}
             </>
           ) : (
-            <Link to={"/login"}>
-              <Button className="sign_in" type="primary" htmlType="submit">
-                <span>Đăng nhập</span>
-              </Button>
-            </Link>
+            <>
+              <Link to={"/login"}>
+                <Button className="sign_in" type="primary" htmlType="submit">
+                  <span>Đăng nhập</span>
+                </Button>
+              </Link>
+              <Link to={"/login"}>
+                <Avatar
+                  className="sign_in-responsive"
+                  size={48}
+                  icon={<UserOutlined />}
+                />
+              </Link>
+            </>
           )}
         </div>
       </div>
@@ -102,6 +128,24 @@ const Header = () => {
         onSearch={onSearch}
         enterButton
       />
+
+      {/* <Drawer
+        className="drawer_profile"
+        title="Profile"
+        placement="right"
+        onClose={onClose}
+        visible={visible}
+      >
+        <h2>HỒ SƠ TÀI KHOẢN</h2>
+        <Tabs type="card">
+          <TabPane tab="Thông tin cá nhân" key="1">
+            Content of Tab Pane 1
+          </TabPane>
+          <TabPane tab="Đổi mật khẩu" key="2">
+            Content of Tab Pane 2
+          </TabPane>
+        </Tabs>
+      </Drawer> */}
     </>
   );
 };
