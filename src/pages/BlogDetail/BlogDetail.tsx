@@ -7,12 +7,13 @@ import BlogSideCardList from "../Blog/components/BlogSideCardList";
 import Loader from "../../components/core/Loader";
 // import {blogList} from "../Blog/data";
 import "../../sass/BlogDetail/BlogDetail.scss";
+// import { Helmet } from "react-helmet";
 
 const BlogDetail = () => {
   const blogName = useParams().blogName ?? "";
   const blog = useQuery(getBlogBySlug(blogName));
   const blogs = useQuery(getAllBlogs());
-  console.log("blog :>> ", blog);
+  console.log("blog :>> ", blogName);
   return (
     <Row className="blog-detail-container">
       <Col xl={16} md={24}>

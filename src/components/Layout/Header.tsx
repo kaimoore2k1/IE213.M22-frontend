@@ -1,33 +1,59 @@
-import { Input, Button, Badge, Dropdown, Space, Menu } from "antd";
+import {
+  Input,
+  Button,
+  Badge,
+  Dropdown,
+  Space,
+  Menu,
+  Tabs,
+} from "antd";
 import { Link } from "react-router-dom";
-import { Avatar } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
+import { Avatar } from "antd";
+import { UserOutlined } from "@ant-design/icons";
 import logo from "../../assets/images/logo.svg";
 import cart from "../../assets/images/shoppingCart.svg";
 import "../../sass/Home/Home.scss";
 import { useAuthContext } from "../../modules/context/AuthContext";
 import { useMutation } from "@apollo/client";
-import {LOGOUT} from "../../graphql/mutations/logout.graphql"
-import JWTManager from "../../modules/utils/jwt"
+import { LOGOUT } from "../../graphql/mutations/logout.graphql";
+import JWTManager from "../../modules/utils/jwt";
 import { LogoutOutlined } from "@ant-design/icons";
+import { useState } from "react";
 const { Search } = Input;
+const { TabPane } = Tabs;
 const Header = () => {
   const onSearch = (value: string) => {
     console.log(value);
   };
-  const {isAuthenticated, logoutClient} = useAuthContext();
-  const [logoutServer, _] = useMutation(LOGOUT)
+  const { isAuthenticated, logoutClient } = useAuthContext();
+  const [logoutServer, _] = useMutation(LOGOUT);
 
-  const onClick = async () =>{
-    logoutClient()
-    await logoutServer({variables: {username: JWTManager.getUsername()}})
-  }
+  const logoutHandler = async () => {
+    logoutClient();
+    await logoutServer({ variables: { username: JWTManager.getUsername() } });
+  };
+
+  const [visible, setVisible] = useState(false);
+  // const showDrawer = () => {
+  //   setVisible(true);
+  // };
+  // const onClose = () => {
+  //   setVisible(false);
+  // };
+
   const menu = (
     <Menu>
-        <Menu.Item><Link to="/profile">Profile</Link></Menu.Item>
-        <Menu.Item icon={<LogoutOutlined />} onClick={onClick}>Logout</Menu.Item>
+      {/* <Menu.Item icon={<UserOutlined />} onClick={showDrawer}>
+        <Link to="/profile">Profile</Link>
+      </Menu.Item> */}
+      <Menu.Item icon={<UserOutlined />} >
+        <Link to="/profile">Profile</Link>
+      </Menu.Item>
+      <Menu.Item icon={<LogoutOutlined />} onClick={logoutHandler}>
+        Logout
+      </Menu.Item>
     </Menu>
-  )
+  );
   return (
     <>
       <div className="Header">
@@ -48,43 +74,48 @@ const Header = () => {
               </Badge>
             </button>
           </Link>
-          <Link to={"/login"}>
-            <Avatar className="sign_in-responsive" size={48} icon={<UserOutlined />} />
-          </Link>
-          {isAuthenticated ? 
+          {isAuthenticated ? (
             <>
-            <Dropdown overlay={menu} >
-              <Space
-                style={{ 
-                  marginLeft: "30px",
-                  position: "relative",
-                  zIndex: "9999",
-                  fontSize: "18px"
-                  
-                }}
-              >
-                <Avatar
+              <Dropdown overlay={menu}>
+                <Space
                   style={{
-                    color: "#f56a00",
-                    backgroundColor: "#fde3cf",
+                    marginLeft: "30px",
+                    position: "relative",
+                    zIndex: "99",
+                    fontSize: "18px",
                   }}
-                  icon={<UserOutlined />}
-                />
-                {JWTManager.getUsername()}
-              </Space>
-            </Dropdown>
-            {/* <Button className="sign_in" type="primary" htmlType="submit" onClick={onClick}>
+                >
+                  <Avatar
+                    size={48}
+                    style={{
+                      color: "#f56a00",
+                      backgroundColor: "#fde3cf",
+                    }}
+                    icon={<UserOutlined />}
+                  />
+                  {JWTManager.getUsername()}
+                </Space>
+              </Dropdown>
+              {/* <Button className="sign_in" type="primary" htmlType="submit" onClick={onClick}>
             <span>Đăng xuất</span>
           </Button> */}
             </>
-          : 
-            <Link to={"/login"}>
-              <Button className="sign_in" type="primary" htmlType="submit">
-                <span>Đăng nhập</span>
-              </Button>
-            </Link>  
-          }
-          
+          ) : (
+            <>
+              <Link to={"/login"}>
+                <Button className="sign_in" type="primary" htmlType="submit">
+                  <span>Đăng nhập</span>
+                </Button>
+              </Link>
+              <Link to={"/login"}>
+                <Avatar
+                  className="sign_in-responsive"
+                  size={48}
+                  icon={<UserOutlined />}
+                />
+              </Link>
+            </>
+          )}
         </div>
       </div>
       <Search
@@ -94,6 +125,23 @@ const Header = () => {
         enterButton
       />
 
+      {/* <Drawer
+        className="drawer_profile"
+        title="Profile"
+        placement="right"
+        onClose={onClose}
+        visible={visible}
+      >
+        <h2>HỒ SƠ TÀI KHOẢN</h2>
+        <Tabs type="card">
+          <TabPane tab="Thông tin cá nhân" key="1">
+            Content of Tab Pane 1
+          </TabPane>
+          <TabPane tab="Đổi mật khẩu" key="2">
+            Content of Tab Pane 2
+          </TabPane>
+        </Tabs>
+      </Drawer> */}
     </>
   );
 };

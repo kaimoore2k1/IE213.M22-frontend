@@ -1,12 +1,14 @@
 import { Menu } from "antd";
-import { CaretDownOutlined, CloseSquareOutlined, MenuOutlined } from "@ant-design/icons";
+import {
+  CaretDownOutlined,
+  CloseSquareOutlined,
+  MenuOutlined,
+} from "@ant-design/icons";
 import { Link, useLocation } from "react-router-dom";
 import phone from "../../assets/images/phone.svg";
 import face from "../../assets/images/face.svg";
 import youtube from "../../assets/images/youtube.svg";
-import { listSubMenu } from "../../modules/Home/type"
-
-
+import { listSubMenu } from "../../modules/Home/type";
 
 function Navigation() {
   const { SubMenu } = Menu;
@@ -14,7 +16,7 @@ function Navigation() {
   const current = location.pathname.split("/");
   const onClick = () => {
     document.getElementById("check-box-nav")?.click();
-  }
+  };
   return (
     <>
       <div className="menu">
@@ -135,22 +137,25 @@ function Navigation() {
             </a>
           </div>
         </section>
-        <input type="checkbox" name="" className="check-box" id="check-box-nav" />
+        <input
+          type="checkbox"
+          name=""
+          className="check-box"
+          id="check-box-nav"
+        />
         <label htmlFor="check-box-nav" className="nav_overlay"></label>
 
         <Menu
           className="navBar-responsive"
           selectedKeys={[
             listSubMenu.indexOf(current[2]) === -1 ? current[1] : current[2],
-          ]
-          }
+          ]}
           mode="inline"
           onClick={onClick}
         >
           <div style={{ height: "40px" }}>
             <label htmlFor="check-box-nav">
-              <CloseSquareOutlined className="close"
-              />
+              <CloseSquareOutlined className="close" />
             </label>
           </div>
 

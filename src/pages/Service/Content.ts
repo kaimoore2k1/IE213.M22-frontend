@@ -4,7 +4,7 @@ export const Content: content[] = [
     path: "cat-tia",
     className: "main-service-imgLeft",
     img: {
-      src: "http://petlove.vn/wp-content/uploads/2019/07/71GeJTERNGL._AC_SL1200_.jpg",
+      src: "https://cdn.senshop.tech/cat-tia.jpg",
       alt: "Cắt tỉa",
     },
     content: {
@@ -16,7 +16,7 @@ export const Content: content[] = [
     path: "trong-giu",
     className: "main-service-imgRight",
     img: {
-      src: "https://toplist.vn/images/800px/pet-kingdom-101653.jpg",
+      src: "https://cdn.senshop.tech/trong-giu.jpg",
       alt: "Trông giữ thú cưng",
     },
     content: {
@@ -28,7 +28,7 @@ export const Content: content[] = [
     path: "spa",
     className: "main-service-imgLeft",
     img: {
-      src: "https://mcdn.coolmate.me/uploads/December2021/spa-thu-cung-tphcm_39.png",
+      src: "https://cdn.senshop.tech/spa.png",
       alt: "Spa",
     },
     content: {
@@ -40,7 +40,7 @@ export const Content: content[] = [
     path: "benh-vien-thu-y",
     className: "main-service-imgRight",
     img: {
-      src: "https://pateforpet.com/admin/uploads/images/tieu-chi-lua-chon-phong-kham-benh-vien-thu-y-uy-tin.jpg",
+      src: "https://cdn.senshop.tech/thu-y.jpg",
       alt: "Bệnh viện thú y",
     },
     content: {
@@ -52,7 +52,7 @@ export const Content: content[] = [
     path: "dat-hen",
     className: "main-service-imgLeft",
     img: {
-      src: "https://www.toyotatiengiang.com.vn/vnt_upload/service/09_2018/dat-hen-dich-vu.jpg",
+      src: "https://cdn.senshop.tech/dat-hen-dich-vu.jpg",
       alt: "Đặt hẹn",
     },
     content: {
