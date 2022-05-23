@@ -12,10 +12,6 @@ function Intro() {
       <Helmet>
         <title>Giới thiệu website thú cưng Sen Shop Thủ Đức</title>
         <meta
-          name="title"
-          content="Giới thiệu website thú cưng Sen Shop Thủ Đức"
-        />
-        <meta
           name="description"
           content="Một trong những yếu tốt hàng đầu trong việc chăm sóc, huấn luyện thú cưng đó là chọn được cửa hàng thú cưng uy tín. Với Sen shop chúng tôi luôn đặt chất lượng sản phẩm, trải nghiệm khách hàng làm mục tiêu hàng đầu."
         />

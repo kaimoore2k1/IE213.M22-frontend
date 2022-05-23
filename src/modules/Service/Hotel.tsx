@@ -7,7 +7,6 @@ function Hotel() {
     <>
       <Helmet>
         <title>Dịch vụ trông giữ thú cưng sen shop</title>
-        <meta name="title" content="Dịch vụ trông giữ thú cưng sen shop" />
         <meta
           name="description"
           content="Dịch vụ lưu trú trông giữ chó mèo Sen Shop tự hào là khách sạn chó mèo

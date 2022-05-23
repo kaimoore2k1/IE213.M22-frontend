@@ -27,10 +27,6 @@ function Store() {
       <Helmet>
         <title>{categoryTranslate(path[path.length - 1])?.title}</title>
         <meta
-          name="title"
-          content={categoryTranslate(path[path.length - 1])?.title}
-        />
-        <meta
           name="description"
           content={categoryTranslate(path[path.length - 1])?.description}
         />

@@ -21,10 +21,6 @@ function Service() {
       <Helmet>
         <title>Sen Shop - Dịch vụ thú cưng, chăm sóc thú cưng ở thủ đức</title>
         <meta
-          name="title"
-          content="Sen Shop - Dịch vụ thú cưng, chăm sóc thú cưng ở thủ đức"
-        />
-        <meta
           name="description"
           content="Dịch vụ thú cưng, chăm sóc thú cưng ở thủ đức đem lại trải nghiệm hài lòng cho khách hàng, giúp thú cưng được thoải mái, thư giãn,...Mỗi khi bận rộn bạn đều có thể mang thú cưng đến gửi và chúng tôi sẽ nhiệt tình chăm sóc cho thú cưng của bạn."
         />

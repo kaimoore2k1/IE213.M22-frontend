@@ -7,7 +7,6 @@ function Esthetic() {
     <>
       <Helmet>
         <title>Dịch vụ cắt tỉa lông, tạo kiểu</title>
-        <meta name="title" content="Dịch vụ cắt tỉa lông, tạo kiểu" />
         <meta
           name="description"
           content="Dịch vụ cắt tỉa lông tạo kiểu cho chó mèo Sen Shop chúng tôi “cân đo

@@ -23,9 +23,7 @@ const BlogSingle = ({ blog, comments }: blogSingleProps) => {
   const blogName = useParams().blogName ?? "";
   const [like, { error, data }] = useMutation(likeBlog);
   const { isAuthenticated } = useAuthContext();
-  const [blogLike, setBlogLike] = useState(
-    blog.like
-  );
+  const [blogLike, setBlogLike] = useState(blog.like);
   const user = JWTManager.getUsername() ?? "";
 
   const likeHandler = async () => {
@@ -38,14 +36,12 @@ const BlogSingle = ({ blog, comments }: blogSingleProps) => {
         onCompleted: () => {
           if (blogLike.includes(user)) {
             setBlogLike(blogLike.filter((e) => e !== user));
-            
           } else {
             setBlogLike(blogLike.concat(user));
           }
-          
         },
       });
-      if(error){
+      if (error) {
         message.error({
           content: "Đã có lỗi xảy ra, vui lòng thử lại sau",
           key: "like",
@@ -59,7 +55,6 @@ const BlogSingle = ({ blog, comments }: blogSingleProps) => {
     <>
       <Helmet>
         <title>{blog.title}</title>
-        <meta name="title" content={blog.title} />
         <meta name="description" content={blog.description} />
         <link rel="canonical" href={`https://senshop.tech/${blogName}`} />
         <meta property="og:type" content="article" />

@@ -7,7 +7,6 @@ function Hospital() {
     <>
       <Helmet>
         <title>Bệnh viện thú cưng Sen shop thủ đức</title>
-        <meta name="title" content="Bệnh viện thú cưng Sen shop thủ đức" />
         <meta
           name="description"
           content="Tại Sen Shop, đội ngũ bác sĩ của chúng tôi được đào tạo để nâng cao

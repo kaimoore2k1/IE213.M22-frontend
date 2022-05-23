@@ -17,10 +17,6 @@ function Home() {
           chất lượng
         </title>
         <meta
-          name="title"
-          content="Sen Shop | Thú cưng, phụ kiện thú cưng, các dịch vụ thú cưng uy tín, chất lượng"
-        />
-        <meta
           name="description"
           content="Bán thú cưng, thức ăn thú cưng, phụ kiện thú cưng uy tín, giá rẻ khu vực Thủ Đức. Các dịch vụ thú cưng, dịch vụ thú y chất lượng phục vụ mọi lúc mọi nơi, hài lòng khách hàng."
         />

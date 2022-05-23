@@ -28,7 +28,7 @@ interface ProductDetailProps {
 const ProdcutDetail = ({ product }: ProductDetailProps) => {
   const [productQuantity, setProductQuantity] = useState(1);
   const { loading, error, data } = useQuery(getComments(product._id));
-const slug= useParams().productName ?? "";
+  const slug = useParams().productName ?? "";
   const rating =
     Math.round(
       (product.comments.reduce(
@@ -87,15 +87,11 @@ const slug= useParams().productName ?? "";
     <>
       <Helmet>
         <title>{product.name}</title>
-        <meta name="title" content={product.name} />
         <meta name="description" content={product.description} />
         <link rel="canonical" href={`https://senshop.tech/${slug}`} />
         <meta property="og:type" content="product" />
         <meta property="og:title" content={product.name} />
-        <meta
-          property="og:url"
-          content={`https://senshop.tech/${slug}`}
-        />
+        <meta property="og:url" content={`https://senshop.tech/${slug}`} />
         <meta property="og:image" content={product.images[0].url} />
         <meta property="og:description" content={product.description} />
       </Helmet>
@@ -152,7 +148,11 @@ const slug= useParams().productName ?? "";
               )}
             </div>
             <div className="product-rating">
-              <Rate disabled allowHalf value={product.comments.length===0?5:rating} />
+              <Rate
+                disabled
+                allowHalf
+                value={product.comments.length === 0 ? 5 : rating}
+              />
               <a href="#comment" onClick={handleCommentTab}>
                 ({product.comments.length} nhận xét)
               </a>
