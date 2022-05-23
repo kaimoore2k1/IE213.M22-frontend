@@ -6,12 +6,11 @@ import Content404 from "../NotFound/Content404";
 import Loader from "../../components/core/Loader";
 import { Helmet } from "react-helmet";
 const Blog = () => {
-  const blogs = useQuery(getAllBlogs());
+  const blogs = useQuery(getAllBlogs);
   return (
     <>
       <Helmet>
         <title>Tạp chí thú cưng Sen Shop Thủ Đức</title>
-        <meta name="title" content="Tạp chí thú cưng Sen Shop Thủ Đức" />
         <meta
           name="description"
           content="Những bài viết nổi bật, những kiến thức bổ ích mà nhiều người có thể chưa biết. Chúng tôi đem đến cho các bạn những bài viết về thú cưng, cách chăm sóc thú cưng cũng như một số kỹ năng nuôi thú cưng để các bạn có thể dễ dàng hơn."

@@ -24,3 +24,22 @@ export const getAllProductsByCategory = (category: string) => gql`
       }
     }
 `;
+
+export const getAllProduct = gql`
+    query {
+      getAllProducts {
+        name
+        price
+        stock
+        categories
+        description
+        salePrice
+        variant {
+          size
+          color
+        }
+        content
+        slugName
+      }
+  }
+`

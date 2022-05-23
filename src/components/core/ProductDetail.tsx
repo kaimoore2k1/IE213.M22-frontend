@@ -87,15 +87,11 @@ const slug= useParams().productName ?? "";
     <>
       <Helmet>
         <title>{product.name}</title>
-        <meta name="title" content={product.name} />
         <meta name="description" content={product.description} />
         <link rel="canonical" href={`https://senshop.tech/${slug}`} />
         <meta property="og:type" content="product" />
         <meta property="og:title" content={product.name} />
-        <meta
-          property="og:url"
-          content={`https://senshop.tech/${slug}`}
-        />
+        <meta property="og:url" content={`https://senshop.tech/${slug}`} />
         <meta property="og:image" content={product.images[0].url} />
         <meta property="og:description" content={product.description} />
       </Helmet>
@@ -152,7 +148,11 @@ const slug= useParams().productName ?? "";
               )}
             </div>
             <div className="product-rating">
-              <Rate disabled allowHalf value={product.comments.length===0?5:rating} />
+              <Rate
+                disabled
+                allowHalf
+                value={product.comments.length === 0 ? 5 : rating}
+              />
               <a href="#comment" onClick={handleCommentTab}>
                 ({product.comments.length} nhận xét)
               </a>
@@ -290,8 +290,8 @@ const slug= useParams().productName ?? "";
                   "Có lỗi xảy ra"
                 ) : (
                   <div className="comment-list">
-                    {data.getCommentsByProductIDByProductID.map(
-                      (comment: comment, index: any) => (
+                    {data.getCommentsByProductID.map(
+                      (comment: comment) => (
                         <Comment key={comment._id} comment={comment} />
                       )
                     )}

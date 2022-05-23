@@ -12,7 +12,7 @@ import "../../sass/BlogDetail/BlogDetail.scss";
 const BlogDetail = () => {
   const blogName = useParams().blogName ?? "";
   const blog = useQuery(getBlogBySlug(blogName));
-  const blogs = useQuery(getAllBlogs());
+  const blogs = useQuery(getAllBlogs);
   return (
     <Row className="blog-detail-container">
       <Col xl={16} md={24}>

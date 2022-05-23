@@ -59,7 +59,6 @@ const BlogSingle = ({ blog }: blogSingleProps) => {
     <>
       <Helmet>
         <title>{blog.title}</title>
-        <meta name="title" content={blog.title} />
         <meta name="description" content={blog.description} />
         <link rel="canonical" href={`https://senshop.tech/${blogName}`} />
         <meta property="og:type" content="article" />

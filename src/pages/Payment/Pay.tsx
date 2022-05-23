@@ -19,7 +19,6 @@ function Pay() {
     <>
       <Helmet>
         <title>Trang giỏ hàng sen shop</title>
-        <meta name="title" content="Trang giỏ hàng sen shop" />
         <meta
           name="description"
           content="Khi bạn thêm một sản phẩm vào giỏ hàng sen shop, bạn sẽ thấy được thông tin sản phẩm bạn đã chọn và tổng giá tiền cho các sản phẩm của bạn. Bạn có thể đến các phương thức thanh toán trước hoặc sau khi nhận hàng, thuận tiện cho việc khách hàng có thể dễ dàng mua hàng trong website."

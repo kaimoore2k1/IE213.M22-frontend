@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import { Form, Input, Row, Col, Button, Select } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { CurrentProps } from "./Cart";
-import { FieldData, CustomizedFormProps } from "./type"
+import { FieldData, CustomizedFormProps } from "./type";
 import { useNavigate } from "react-router-dom";
-
 
 function PayInformation({ callBackCurrent }: CurrentProps) {
   const prefixSelector = <Form.Item noStyle>+84</Form.Item>;
   const navigate = useNavigate();
-
+  let paymentInformation = JSON.parse(window.localStorage.getItem('products') as string)
   interface PaymentMethod {
     paymentMethodID: number;
     name: string;
@@ -29,11 +28,19 @@ function PayInformation({ callBackCurrent }: CurrentProps) {
     },
   ];
 
-
   const [isLoading, setIsLoading] = useState(false);
 
-  const handelFinish = (e: FieldData[]) => {
+  const handelFinish = (e: any) => {
     setIsLoading(true);
+    const day = new Date();
+    let total = 0;
+    let amount  = 0;
+    for (let i = 0; i < paymentInformation.length; i++) {
+      total += paymentInformation[i].price
+      amount += paymentInformation[i].quantity
+    }
+    const payment = {...e, products: paymentInformation, date: day.toLocaleDateString(), total, amount}
+    console.log(payment)
     setTimeout(() => {
       setIsLoading(false);
       callBackCurrent(3);
@@ -73,7 +80,7 @@ function PayInformation({ callBackCurrent }: CurrentProps) {
         </Col>
         <Col span={11}>
           <Form.Item
-            name="name"
+            name="lastName"
             label="Tên"
             rules={[
               {
@@ -181,7 +188,9 @@ function PayInformation({ callBackCurrent }: CurrentProps) {
         <Input.TextArea style={{ minHeight: "200px" }} />
       </Form.Item>
       <div className="handleButton handleButton_responsive">
-        <Button icon={<ArrowLeftOutlined />} onClick={() => navigate(-1)}>TIẾP TỤC XEM SẢN PHẨM</Button>
+        <Button icon={<ArrowLeftOutlined />} onClick={() => callBackCurrent(0)}>
+          GIỎ HÀNG
+        </Button>
         <Button htmlType="submit" loading={isLoading}>
           THANH TOÁN
         </Button>
@@ -190,20 +199,20 @@ function PayInformation({ callBackCurrent }: CurrentProps) {
   );
 
   const fields: FieldData[] = [
-    { name: ['firstName'] },
-    { name: ['name'] },
-    { name: ['country'] },
-    { name: ['address'] },
-    { name: ['code'] },
-    { name: ['city'] },
-    { name: ['numberPhone'] },
-    { name: ['email'] },
-    { name: ['paymentMethod'] },
-    { name: ['voucher'] },
-    { name: ['note'] }
-  ]
+    { name: ["firstName"] },
+    { name: ["lastName"] },
+    { name: ["country"] },
+    { name: ["address"] },
+    { name: ["code"] },
+    { name: ["city"] },
+    { name: ["numberPhone"] },
+    { name: ["email"] },
+    { name: ["paymentMethod"] },
+    { name: ["voucher"] },
+    { name: ["note"] },
+  ];
 
-  let tempFeilds: FieldData[] = []
+  let tempFeilds: FieldData[] = [];
 
   return (
     <>
@@ -211,10 +220,8 @@ function PayInformation({ callBackCurrent }: CurrentProps) {
       <div className="PayInformation__Form">
         <CustomizedForm
           fields={fields}
-          onChange={(newFields) => {
-            tempFeilds = newFields
-          }}
-          onSubmit={() => handelFinish(tempFeilds)}
+          onChange={() => {}}
+          onSubmit={handelFinish}
         />
       </div>
     </>

@@ -2,41 +2,73 @@ import { Drawer, Table } from "antd";
 import React, { useEffect, useState } from "react";
 import AdminContentHeader from "./AdminContentHeader";
 import AdminCreateUser from "./AdminCreateUser";
-import {UserData, userColumns, userData} from './type'
-
-
+import { userColumns } from "./type";
+import "../../sass/Admin/Admin.scss";
+import { useQuery } from "@apollo/client";
+import { getAllUsers } from "../../graphql/schema/user.graphql";
+import Loader from "../../components/core/Loader";
 
 function AdminUser() {
+  const { loading, error, data } = useQuery(getAllUsers);
   const title = "User Management";
+  const userData: any = [];
   const [dataSource, setDataSource] = useState(userData);
+
   const [searchValue, setSearchValue] = useState("");
-  useEffect(() => {
-    setDataSource(
-      userData.filter((entry) => {
-        const splitSearchValue = searchValue.split(" ");
-        const [first, second] = splitSearchValue;
-        return (
-          entry.firstName.includes(first) ||
-          entry.lastName.includes(second) ||
-          entry.firstName.includes(second) ||
-          entry.lastName.includes(first)
-        );
-      })
-    );
-  }, [searchValue]);
+
   const [visible, setVisible] = useState(false);
-  const titleDrawer = "UPDATE USER"
+
+  useEffect(() => {
+    if (data) {
+      let i = 0;
+      const newData = data.getAllUsers.map((data: any) => {
+        return { ...data, ...{ id: ++i }, ...{ password: "***************" } };
+      });
+      setDataSource(
+        newData.filter(
+          (entry: {
+            firstName: string | string[];
+            lastName: string | string[];
+          }) => {
+            const splitSearchValue = searchValue.split(" ");
+            const [first, second] = splitSearchValue;
+            return (
+              entry.firstName.includes(first) ||
+              entry.lastName.includes(second) ||
+              entry.firstName.includes(second) ||
+              entry.lastName.includes(first)
+            );
+          }
+        )
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
+  
+  const titleDrawer = "UPDATE USER";
   const onClose = () => {
     setVisible(false);
+    setContentDrawer(<></>);
   };
-  const [contentDrawer, setContentDrawer] = useState(<></>)
-  const showDrawer = (record: UserData) => {
+  const [contentDrawer, setContentDrawer] = useState(<></>);
+  const showDrawer = (record: any) => {
     setVisible(true);
-    setContentDrawer(<AdminCreateUser visibleProp={setVisible} dataProp={record}/>)
+    setContentDrawer(
+      <AdminCreateUser
+        visibleProp={setVisible}
+        dataProp={record}
+        id={record.username}
+      />
+    );
   };
+
   return (
     <>
-      <AdminContentHeader title={title} setSearchValue={setSearchValue} current={1}/>
+      <AdminContentHeader
+        title={title}
+        setSearchValue={setSearchValue}
+        current={1}
+      />
       <Drawer
         title={titleDrawer}
         placement="right"
@@ -46,19 +78,23 @@ function AdminUser() {
       >
         {contentDrawer}
       </Drawer>
-      <Table
-        size="small"
-        columns={userColumns}
-        dataSource={dataSource}
-        scroll={{ y: 265 }}
-        onRow={(record, rowIndex) => {
-          return {
-            onDoubleClick: event => {
-              showDrawer(record)
-            }
-          };
-        }}
-      />
+      {!loading ? (
+        <Table
+          size="small"
+          columns={userColumns}
+          dataSource={dataSource}
+          scroll={{ y: 265 }}
+          onRow={(record, rowIndex) => {
+            return {
+              onDoubleClick: (event) => {
+                showDrawer(record);
+              },
+            };
+          }}
+        />
+      ) : (
+        <Loader />
+      )}
     </>
   );
 }

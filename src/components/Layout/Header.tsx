@@ -22,6 +22,10 @@ import { useState } from "react";
 const { Search } = Input;
 const { TabPane } = Tabs;
 const Header = () => {
+  if (!window.localStorage.getItem("products")) {
+    window.localStorage.setItem("products", "[]");
+  }
+  let quantityProduct = JSON.parse(window.localStorage.getItem("products") as string).length
   const onSearch = (value: string) => {
     console.log(value);
   };
@@ -69,7 +73,7 @@ const Header = () => {
         <div className="header__right">
           <Link to={"/gio-hang"}>
             <button className="shopping_cart">
-              <Badge count={1} offset={[8, -5]}>
+              <Badge count={quantityProduct} offset={[8, -5]}>
                 <img src={cart} alt="Giỏ hàng" />
               </Badge>
             </button>

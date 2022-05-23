@@ -24,10 +24,6 @@ function LoginRegister() {
       <Helmet>
         <title>Đăng nhập, đăng ký tài khoản website sen shop</title>
         <meta
-          name="title"
-          content="Đăng nhập, đăng ký tài khoản website sen shop"
-        />
-        <meta
           name="description"
           content="Để có thể sử dụng tốt hơn bạn có thể đăng ký hoặc đăng nhập tài khoản vào website. Khi đó bạn có thể đánh giá các sản phẩm, phản hồi những ý tưởng thông tin hữu ích cho chúng tôi."
         />

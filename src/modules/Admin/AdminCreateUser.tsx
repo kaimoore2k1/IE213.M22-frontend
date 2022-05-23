@@ -1,15 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AvatarUpload from "../../components/core/AvatarUpload";
-import { Button, Col, Form, Input, Row } from "antd";
-import {UserData} from './type'
+import { Button, Col, Form, Input, message, Row } from "antd";
+import { createUser, getAllUsers } from "../../graphql/schema/user.graphql";
+import { useMutation } from "@apollo/client";
 
-function AdminCreateUser(props: { visibleProp: (arg0: boolean) => void, dataProp: any }) {
+function AdminCreateUser(props: { visibleProp: (arg0: boolean) => void, dataProp: any, id: any }) {
+  const [createOrUpdateUser, dataUserMutation] = useMutation(createUser);
   const prefixSelector = <Form.Item noStyle>+84</Form.Item>;
   const handleCancel = () =>{
     props.visibleProp(false)
   }
+  const onFinish = async (values:any) => {
+    if (props.id) {
+      await createOrUpdateUser({
+        variables: { username: props.id, data: values },
+        refetchQueries: [{query: getAllUsers}]
+      });
+    } else {
+      await createOrUpdateUser({
+        variables: { username: values.username, data: values },
+        refetchQueries: [{query: getAllUsers}]
+      });
+    }
+    
+    if (dataUserMutation.error) {
+      message.error('Error!');
+    }
+    else {
+      message.success('Successfully!');
+    }
+    props.visibleProp(false)
+  }
   return (
-    <Form layout="vertical" wrapperCol={{ span: 24 }} autoComplete="off" initialValues={props.dataProp}>
+    <Form layout="vertical" wrapperCol={{ span: 24 }} autoComplete="off" initialValues={props.dataProp} onFinish={onFinish}>
       <Row align="middle" justify="center">
         <Col span={3}>
           <Form.Item >
@@ -43,7 +66,7 @@ function AdminCreateUser(props: { visibleProp: (arg0: boolean) => void, dataProp
               },
             ]}
           >
-            <Input />
+            <Input/>
           </Form.Item>
         </Col>
       </Row>
@@ -117,7 +140,7 @@ function AdminCreateUser(props: { visibleProp: (arg0: boolean) => void, dataProp
       </Form.Item>
       <Row>
         <Col span={24} style={{ textAlign: 'right' }}>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" loading={dataUserMutation.loading}>
             Submit
           </Button>
           <Button

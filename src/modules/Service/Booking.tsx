@@ -11,6 +11,8 @@ import {
 import { useState } from "react";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { Helmet } from "react-helmet";
+import { BOOKING } from "../../graphql/mutations/booking.graphql";
+import { useMutation } from "@apollo/client";
 
 interface informationForm {
   name?: string;
@@ -23,6 +25,8 @@ interface informationForm {
 }
 const { confirm } = Modal;
 function Booking() {
+  const [booking] = useMutation(BOOKING);
+  const [form] = Form.useForm();
   const showConfirm = () => {
     if (
       InformationForm.name &&
@@ -42,6 +46,18 @@ function Booking() {
             description:
               "Cảm ơn bạn đã gửi đặt hẹn trước. Chúng tôi sẽ ghi nhận thông tin cho bạn!",
           });
+          booking({
+            variables: {
+              name: InformationForm.name,
+              number: InformationForm.number,
+              pet: InformationForm.pet,
+              service: InformationForm.service,
+              time: InformationForm.time,
+              dateTime: InformationForm.dateTime,
+              content: InformationForm.content || " ",
+            },
+          });
+          form.resetFields();
           console.log(InformationForm);
         },
         onCancel() {
@@ -50,13 +66,6 @@ function Booking() {
       });
     }
   };
-  const [name, setName] = useState<string>("");
-  const [number, setNumber] = useState<string>("");
-  const [pet, setPet] = useState<string>("");
-  const [service, setService] = useState<string>("");
-  const [time, setTime] = useState<string>("");
-  const [dateTime, setDateTime] = useState<string>("");
-  const [content, setContent] = useState<string>("");
   let InformationForm: informationForm = {
     name: "",
     number: "",
@@ -71,7 +80,6 @@ function Booking() {
     <>
       <Helmet>
         <title>Đặt hẹn dịch vụ ở thú cưng sen shop</title>
-        <meta name="title" content="Đặt hẹn dịch vụ ở thú cưng sen shop" />
         <meta
           name="description"
           content="Đặt hẹn trước là điều cần thiết với những người bận rộn mà muốn được chăm sóc nhanh cho thú cưng của mình. Sau khi tiếp nhận thông tin đặt hẹn chúng tôi sẽ lưu giữ thông tin để tạo điều kiện cho dịch vụ của bạn, và còn có các khuyến mãi khác."
@@ -100,6 +108,7 @@ function Booking() {
           wrapperCol={{ span: 24 }}
           autoComplete="off"
           className="booking-form"
+          form={form}
         >
           <Row justify="space-between">
             <Col span={11}>

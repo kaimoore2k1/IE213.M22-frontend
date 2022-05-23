@@ -7,7 +7,6 @@ function Spa() {
     <>
       <Helmet>
         <title>Dịch vụ Spa massage cho thú cưng</title>
-        <meta name="title" content="Dịch vụ Spa massage cho thú cưng" />
         <meta
           name="description"
           content=" Spa Thú Cưng Sen Shop tự hào là không gian thư giãn thoải mái, thân
