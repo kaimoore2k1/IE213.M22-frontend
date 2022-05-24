@@ -18,6 +18,7 @@ import { useMutation } from "@apollo/client";
 import { LOGOUT } from "../../graphql/mutations/logout.graphql";
 import JWTManager from "../../modules/utils/jwt";
 import { LogoutOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 const { Search } = Input;
 const { TabPane } = Tabs;
@@ -29,12 +30,14 @@ const Header = () => {
   const onSearch = (value: string) => {
     console.log(value);
   };
+  const navigate = useNavigate();
   const { isAuthenticated, logoutClient } = useAuthContext();
   const [logoutServer, _] = useMutation(LOGOUT);
 
   const logoutHandler = async () => {
     logoutClient();
     await logoutServer({ variables: { username: JWTManager.getUsername() } });
+    navigate('..')
   };
 
   const [visible, setVisible] = useState(false);
