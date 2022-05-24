@@ -14,7 +14,7 @@ import JWTManager from "../../../modules/utils/jwt";
 import { Helmet } from "react-helmet";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import { getCommentsByBlogID } from "../../../graphql/schema/blog.graphql";
+import { getCommentsByBlogID } from "../../../graphql/schema/comment.graphql";
 
 interface blogSingleProps {
   blog: blog;

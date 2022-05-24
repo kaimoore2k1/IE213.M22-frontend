@@ -1,10 +1,11 @@
 import { RouterInterface } from "./type";
+import {lazy} from "react"
 import Layout from "../components/Layout/Layout";
 import NotFound from "../pages/NotFound/NotFound";
 import RouterLayout from "../pages/module";
-import AdminLayout from "../components/Layout/AdminLayout";
-import AdminLoginForm from "../components/core/AdminLoginForm";
 import RouterAdminLayout from "../modules/Admin/module";
+const AdminLayout =  lazy(() => import("../components/Layout/AdminLayout"));
+const AdminLoginForm =  lazy(() => import("../components/core/AdminLoginForm"));
 
 const RouterView: RouterInterface[] = [
   {

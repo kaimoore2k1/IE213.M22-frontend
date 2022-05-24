@@ -68,13 +68,3 @@ export const likeBlog = gql`
         like
   }
 }`
-export const getCommentsByBlogID = (blogID: string) => gql`
-    query{
-      getCommentsByBlogID(blogID: "${blogID}"){
-      _id
-      content
-      user
-      date
-    }
-}
-`

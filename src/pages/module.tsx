@@ -1,7 +1,7 @@
 import { RouterInterface } from "../router/type";
 import { lazy } from "react";
-import Home from "./Home/Home";
 import { RouterService } from "../modules/Service";
+const Home = lazy(() => import("./Home/Home"));
 const Store = lazy(() => import("./Store/Store"));
 const Detail = lazy(() => import("../pages/DetailProduct/Detail"));
 const Service = lazy(() => import("./Service/Service"));

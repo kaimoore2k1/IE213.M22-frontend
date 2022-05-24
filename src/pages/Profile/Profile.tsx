@@ -14,7 +14,11 @@ import {
   message,
 } from "antd";
 import momment from "moment";
-import { ClockCircleOutlined, EditOutlined } from "@ant-design/icons";
+import {
+  ClockCircleOutlined,
+  EditOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 import { useAuthContext } from "../../modules/context/AuthContext";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -52,7 +56,7 @@ const Profile = () => {
       message.error("Vui lòng đăng nhập để xem thông tin cá nhân");
       navigate("/login");
     }
-  },[]);
+  }, []);
 
   const [editAble, setEditAble] = useState(false);
   const [result, setResult] = useState<string[]>([]);
@@ -92,12 +96,15 @@ const Profile = () => {
       <div className="profile-content__wrapper">
         <div className="profile-content">
           <div className="profile-content-header">
-            <Avatar size={100} />
+            <Avatar size={100} icon={<UserOutlined />} />
             <div>
               <h2 id="username">username</h2>
               <div className="time-joined">
                 <ClockCircleOutlined />
-                <span> Ngày tham gia: {momment().format("MMMM Do YYYY")}</span>
+                <span>
+                  {" "}
+                  Ngày tham gia: {momment(new Date()).format("Do MMMM YYYY")}
+                </span>
               </div>
               <Button
                 type="link"
@@ -117,8 +124,9 @@ const Profile = () => {
                 </Form.Item>
                 <Form.Item label="Giới tính">
                   <Radio.Group disabled={!editAble}>
-                    <Radio value={1}>Nam</Radio>
-                    <Radio value={2}>Nữ</Radio>
+                    <Radio value={"Nam"}>Nam</Radio>
+                    <Radio value={"Nữ"}>Nữ</Radio>
+                    <Radio value={"Khác"}>Khác</Radio>
                   </Radio.Group>
                 </Form.Item>
                 <Form.Item label="Ngày sinh">
@@ -168,7 +176,7 @@ const Profile = () => {
                 <Form.Item label="Mật khẩu">
                   <Input disabled={!editAble} placeholder="Nhập mật khẩu" />
                 </Form.Item>
-                <Form.Item>
+                <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                   <Button
                     {...(!editAble ? { hidden: true } : {})}
                     type="primary"
@@ -206,7 +214,9 @@ const Profile = () => {
                     <Form.Item label="Xác nhận mật khẩu">
                       <Input placeholder="Xác nhận mật khẩu" />
                     </Form.Item>
-                    <Button type="primary">Đổi mật khẩu</Button>
+                    <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                      <Button type="primary">Đổi mật khẩu</Button>
+                    </Form.Item>
                   </Form>
                 </Collapse.Panel>
                 <Collapse.Panel header="Vô hiệu hoá tài khoản" key="2">
@@ -214,9 +224,11 @@ const Profile = () => {
                     <Form.Item label="Nhập mật khẩu">
                       <Input placeholder="Nhập mật khẩu" />
                     </Form.Item>
-                    <Button type="primary" danger>
-                      Vô hiệu hoá tài khoản
-                    </Button>
+                    <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                      <Button type="primary" danger>
+                        Vô hiệu hoá tài khoản
+                      </Button>
+                    </Form.Item>
                   </Form>
                 </Collapse.Panel>
               </Collapse>
