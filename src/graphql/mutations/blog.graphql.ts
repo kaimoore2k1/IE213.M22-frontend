@@ -19,3 +19,16 @@ export const DELETE_BLOG = gql`
       _id
     }
 }`
+export const LIKE_BLOG = gql`
+  mutation likeBlog($_id:String, $user:String ){
+  likeBlog(_id:$_id, user:$user ){
+      like
+  }
+}`
+
+export const SHARE_BLOG = gql`
+  mutation shareBlog($_id:String ){
+  shareBlog(_id:$_id ){
+      share
+  }
+  }`

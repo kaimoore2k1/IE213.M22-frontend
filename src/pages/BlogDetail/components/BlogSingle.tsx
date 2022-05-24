@@ -6,7 +6,7 @@ import { CommentIcon, ShareIcon } from "../../../assets/icons/BlogCustomIcon";
 import CommentEditor from "../../../components/core/CommentEditor";
 import Comment from "../../../components/core/Comment";
 import { useMutation } from "@apollo/client";
-import { likeBlog } from "../../../graphql/schema/blog.graphql";
+import { LIKE_BLOG, SHARE_BLOG } from "../../../graphql/mutations/blog.graphql";
 import { useAuthContext } from "../../../modules/context/AuthContext";
 import { useState } from "react";
 import { message, Dropdown, Menu, Button } from "antd";
@@ -24,9 +24,11 @@ const BlogSingle = ({ blog }: blogSingleProps) => {
   const comments = useQuery(getCommentsByBlogID(blog._id));
   const date = new Date(blog.date).toDateString();
   const blogName = useParams().blogName ?? "";
-  const [like, { error, data }] = useMutation(likeBlog);
+  const [like, { error, data }] = useMutation(LIKE_BLOG);
+  const [share] = useMutation(SHARE_BLOG);
   const { isAuthenticated } = useAuthContext();
   const [blogLike, setBlogLike] = useState(blog.like);
+  const [blogShare, setBlogShare] = useState(blog.share);
   const user = JWTManager.getUsername() ?? "";
 
   const likeHandler = async () => {
@@ -54,15 +56,34 @@ const BlogSingle = ({ blog }: blogSingleProps) => {
       }
     }
   };
+  const shareHandler = () => {
+    share({
+      variables: {
+        _id: blog._id,
+      },
+      onCompleted: () => {
+        setBlogShare(blogShare + 1);
+      },
+      onError: () => {
+        console.log("share error");
+      },
+    });
+  };
   return (
     <>
       <Helmet>
         <title>{blog.title}</title>
         <meta name="description" content={blog.description} />
-        <link rel="canonical" href={`https://senshop.tech/tap-chi/${blogName}`} />
+        <link
+          rel="canonical"
+          href={`https://senshop.tech/tap-chi/${blogName}`}
+        />
         <meta property="og:type" content="article" />
         <meta property="og:title" content={blog.title} />
-        <meta property="og:url" content={`https://senshop.tech/tap-chi/${blogName}`} />
+        <meta
+          property="og:url"
+          content={`https://senshop.tech/tap-chi/${blogName}`}
+        />
         <meta property="og:image" content={blog.image.url} />
         <meta property="og:description" content={blog.description} />
       </Helmet>
@@ -102,6 +123,7 @@ const BlogSingle = ({ blog }: blogSingleProps) => {
                     target="_blank"
                     href={`http://www.facebook.com/sharer.php?u=https://senshop.tech/tap-chi/${blogName}`}
                     title="Share to Facebook"
+                    onClick={shareHandler}
                   >
                     Chia sẻ đến facebook
                   </a>
@@ -112,6 +134,7 @@ const BlogSingle = ({ blog }: blogSingleProps) => {
                     target="_blank"
                     href={`https://twitter.com/intent/tweet?url=https://senshop.tech/tap-chi/${blogName}`}
                     title="Share to Twitter"
+                    onClick={shareHandler}
                   >
                     Chia sẻ đến twitter
                   </a>
@@ -122,7 +145,11 @@ const BlogSingle = ({ blog }: blogSingleProps) => {
                       navigator.clipboard.writeText(
                         `https://senshop.tech/${blogName}`
                       );
-                      message.success({content:"Đã copy link bài viết", key:"copy"});
+                      message.success({
+                        content: "Đã copy link bài viết",
+                        key: "copy",
+                      });
+                      shareHandler();
                     }}
                   >
                     Copy Link
@@ -133,7 +160,7 @@ const BlogSingle = ({ blog }: blogSingleProps) => {
             placement="bottomLeft"
           >
             <div className="blog-action-item">
-              <span>{blog.share}</span>
+              <span>{blogShare}</span>
               <ShareIcon />
             </div>
           </Dropdown>
