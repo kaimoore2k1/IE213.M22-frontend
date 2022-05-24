@@ -1,5 +1,6 @@
 import { message, Form, Button, Rate, Input, Typography, Popover } from "antd";
-import { createComment,getCommentsByProductID,getCommentsByBlogID } from "../../graphql/schema/comment.graphql";
+import { getCommentsByProductID,getCommentsByBlogID } from "../../graphql/schema/comment.graphql";
+import {createComment} from "../../graphql/mutations/comment.graphql";
 import { useAuthContext } from "../../modules/context/AuthContext";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";

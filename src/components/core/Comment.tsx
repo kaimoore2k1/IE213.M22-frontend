@@ -16,11 +16,13 @@ import { useAuthContext } from "../../modules/context/AuthContext";
 import JWTManager from "../../modules/utils/jwt";
 import { decode, encode } from "html-entities";
 import {
-  updateComment,
-  deleteComment,
   getCommentsByProductID,
   getCommentsByBlogID,
 } from "../../graphql/schema/comment.graphql";
+import {
+  updateComment,
+  deleteComment,
+} from "../../graphql/mutations/comment.graphql";
 import { useMutation } from "@apollo/client";
 
 moment.locale("vi");
@@ -38,7 +40,7 @@ function Comment({ comment }: commentProps) {
 
   //edit comment fuction ->trigger edit btn
   //-> set comment content atribute contenteditable="true"
-  //-> set rating !disabled 
+  //-> set rating !disabled
   //-> change edit and delete button to save button (by change state)
   //-> send request to server
 
@@ -59,14 +61,12 @@ function Comment({ comment }: commentProps) {
     });
   };
 
-
   const editHandler = () => {
     setEdit(true);
     const commentContent = document.querySelector<HTMLInputElement>(
       `#comment-content_${comment._id}`
     );
-    commentContent
-      ?.setAttribute("contenteditable", "true");
+    commentContent?.setAttribute("contenteditable", "true");
     commentContent?.focus();
   };
   const updateHandler = () => {
@@ -142,7 +142,7 @@ function Comment({ comment }: commentProps) {
                     onConfirm={deleteHandler}
                     cancelText="Hủy"
                     okText="Xoá"
-                    okButtonProps={{danger: true}}
+                    okButtonProps={{ danger: true }}
                   >
                     <Button type="text" icon={<DeleteOutlined />}>
                       Xóa
