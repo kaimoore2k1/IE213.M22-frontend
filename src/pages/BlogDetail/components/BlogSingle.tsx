@@ -9,7 +9,7 @@ import { useMutation } from "@apollo/client";
 import { likeBlog } from "../../../graphql/schema/blog.graphql";
 import { useAuthContext } from "../../../modules/context/AuthContext";
 import { useState } from "react";
-import { message } from "antd";
+import { message, Dropdown, Menu, Button } from "antd";
 import JWTManager from "../../../modules/utils/jwt";
 import { Helmet } from "react-helmet";
 import { useParams } from "react-router-dom";
@@ -28,8 +28,7 @@ const BlogSingle = ({ blog }: blogSingleProps) => {
   const { isAuthenticated } = useAuthContext();
   const [blogLike, setBlogLike] = useState(blog.like);
   const user = JWTManager.getUsername() ?? "";
-  console.log(blog._id);
-  
+
   const likeHandler = async () => {
     if (isAuthenticated) {
       const likeProcess = await like({
@@ -60,10 +59,10 @@ const BlogSingle = ({ blog }: blogSingleProps) => {
       <Helmet>
         <title>{blog.title}</title>
         <meta name="description" content={blog.description} />
-        <link rel="canonical" href={`https://senshop.tech/${blogName}`} />
+        <link rel="canonical" href={`https://senshop.tech/tap-chi/${blogName}`} />
         <meta property="og:type" content="article" />
         <meta property="og:title" content={blog.title} />
-        <meta property="og:url" content={`https://senshop.tech/${blogName}`} />
+        <meta property="og:url" content={`https://senshop.tech/tap-chi/${blogName}`} />
         <meta property="og:image" content={blog.image.url} />
         <meta property="og:description" content={blog.description} />
       </Helmet>
@@ -94,10 +93,50 @@ const BlogSingle = ({ blog }: blogSingleProps) => {
             <span>{comments?.data?.getCommentsByBlogID?.length ?? "0"}</span>
             <CommentIcon />
           </div>
-          <div className="blog-action-item">
-            <span>{blog.share}</span>
-            <ShareIcon />
-          </div>
+          <Dropdown
+            overlay={
+              <Menu>
+                <Menu.Item>
+                  <a
+                    rel="noreferrer noopener"
+                    target="_blank"
+                    href={`http://www.facebook.com/sharer.php?u=https://senshop.tech/tap-chi/${blogName}`}
+                    title="Share to Facebook"
+                  >
+                    Chia sẻ đến facebook
+                  </a>
+                </Menu.Item>
+                <Menu.Item>
+                  <a
+                    rel="noreferrer noopener"
+                    target="_blank"
+                    href={`https://twitter.com/intent/tweet?url=https://senshop.tech/tap-chi/${blogName}`}
+                    title="Share to Twitter"
+                  >
+                    Chia sẻ đến twitter
+                  </a>
+                </Menu.Item>
+                <Menu.Item>
+                  <a
+                    onClick={() => {
+                      navigator.clipboard.writeText(
+                        `https://senshop.tech/${blogName}`
+                      );
+                      message.success({content:"Đã copy link bài viết", key:"copy"});
+                    }}
+                  >
+                    Copy Link
+                  </a>
+                </Menu.Item>
+              </Menu>
+            }
+            placement="bottomLeft"
+          >
+            <div className="blog-action-item">
+              <span>{blog.share}</span>
+              <ShareIcon />
+            </div>
+          </Dropdown>
         </div>
         <div className="comment-section">
           <CommentEditor idBlog={blog._id} type="comment" />

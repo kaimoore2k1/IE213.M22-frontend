@@ -14,6 +14,7 @@ import { useState } from "react";
 import { UserOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useAuthContext } from "../../modules/context/AuthContext";
 import JWTManager from "../../modules/utils/jwt";
+import { decode, encode } from "html-entities";
 import {
   updateComment,
   deleteComment,
@@ -37,7 +38,8 @@ function Comment({ comment }: commentProps) {
 
   //edit comment fuction ->trigger edit btn
   //-> set comment content atribute contenteditable="true"
-  //-> set rating !disabled ->change edit and delete button to save button (by change state)
+  //-> set rating !disabled 
+  //-> change edit and delete button to save button (by change state)
   //-> send request to server
 
   const deleteHandler = () => {
@@ -112,7 +114,7 @@ function Comment({ comment }: commentProps) {
               allowHalf
             />
           )}
-          <p id={`comment-content_${comment._id}`}>{comment.content}</p>
+          <p id={`comment-content_${comment._id}`}>{decode(comment.content)}</p>
         </>
       }
       datetime={

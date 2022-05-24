@@ -215,7 +215,7 @@ const Profile = () => {
                       <Input placeholder="Xác nhận mật khẩu" />
                     </Form.Item>
                     <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                      <Button type="primary">Đổi mật khẩu</Button>
+                      <Button  htmlType="submit" type="primary">Đổi mật khẩu</Button>
                     </Form.Item>
                   </Form>
                 </Collapse.Panel>
@@ -225,7 +225,7 @@ const Profile = () => {
                       <Input placeholder="Nhập mật khẩu" />
                     </Form.Item>
                     <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                      <Button type="primary" danger>
+                      <Button type="primary"  htmlType="submit" danger>
                         Vô hiệu hoá tài khoản
                       </Button>
                     </Form.Item>
