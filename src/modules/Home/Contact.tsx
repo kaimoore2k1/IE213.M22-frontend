@@ -1,42 +1,51 @@
 import { Modal, Form, Input, Button, Typography, notification } from "antd";
 import React from "react";
 import "../../sass/Home/Home.scss";
-import { information } from './type'
-import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { information } from "./type";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
+import { useMutation } from "@apollo/client";
+import { CONTACT } from "../../graphql/mutations/contact.graphql";
 
 const { confirm } = Modal;
 
 function Contact() {
-
+  const [form] = Form.useForm();
+  const [contact] = useMutation(CONTACT);
   const showConfirm = () => {
     if (Information.name && Information.mail && Information.content) {
-
       confirm({
-        title: 'Xác nhận gửi thông tin?',
+        title: "Xác nhận gửi thông tin?",
         icon: <ExclamationCircleOutlined />,
-        content: 'Gửi phản hồi cho chúng tôi',
+        content: "Gửi phản hồi cho chúng tôi",
         onOk() {
           notification.info({
-            message: 'Thông báo!',
-            description:
-              'Cảm ơn bạn đã gửi phản hồi cho chúng tôi!',
+            message: "Thông báo!",
+            description: "Cảm ơn bạn đã gửi phản hồi cho chúng tôi!",
+          });
+          contact({
+            variables: {
+              name: Information.name,
+              mail: Information.mail,
+              content: Information.content,
+            },
           });
           console.log(Information);
+          form.resetFields();
         },
         onCancel() {
-          console.log('Cancel');
+          console.log("Cancel");
         },
       });
     }
-  }
+  };
 
   const { Title, Text } = Typography;
 
   let Information: information = {
     name: "",
     mail: "",
-    content: ""
-  }
+    content: "",
+  };
 
   return (
     <div className="home--contact">
@@ -60,15 +69,47 @@ function Contact() {
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
           autoComplete="off"
+          form={form}
         >
-          <Form.Item name="name" rules={[{ required: true, message: 'Chưa nhập tên' }]}>
-            <Input placeholder="Tên" onChange={(e) => { Information.name = e.target.value.toString() }} />
+          <Form.Item
+            name="name"
+            rules={[{ required: true, message: "Chưa nhập tên" }]}
+          >
+            <Input
+              placeholder="Tên"
+              onChange={(e) => {
+                Information.name = e.target.value.toString();
+              }}
+            />
           </Form.Item>
-          <Form.Item name="mail" rules={[{ required: true, message: 'Chưa nhập email' }]}>
-            <Input placeholder="Mail" onChange={(e) => { Information.mail = e.target.value.toString() }} />
+          <Form.Item
+            name="mail"
+            rules={[
+              { required: true, message: "Chưa nhập email" },
+              {
+                type: "email",
+                message: "Email không đúng định dạng",
+              },
+            ]}
+          >
+            <Input
+              placeholder="Mail"
+              onChange={(e) => {
+                Information.mail = e.target.value.toString();
+              }}
+            />
           </Form.Item>
-          <Form.Item name="content" rules={[{ required: true, message: 'Chưa nhập nội dung' }]}>
-            <Input.TextArea onChange={(e) => { Information.content = e.target.value.toString() }} className="InputLastChild" placeholder="Nội dung" />
+          <Form.Item
+            name="content"
+            rules={[{ required: true, message: "Chưa nhập nội dung" }]}
+          >
+            <Input.TextArea
+              onChange={(e) => {
+                Information.content = e.target.value.toString();
+              }}
+              className="InputLastChild"
+              placeholder="Nội dung"
+            />
           </Form.Item>
           <Form.Item name="submit">
             <Button onClick={showConfirm} type="primary" htmlType="submit">

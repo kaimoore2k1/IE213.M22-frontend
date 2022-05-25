@@ -56,10 +56,16 @@ const BlogSingle = ({ blog, comments }: blogSingleProps) => {
       <Helmet>
         <title>{blog.title}</title>
         <meta name="description" content={blog.description} />
-        <link rel="canonical" href={`https://senshop.tech/${blogName}`} />
+        <link
+          rel="canonical"
+          href={`https://senshop.tech/tap-chi/${blogName}`}
+        />
         <meta property="og:type" content="article" />
         <meta property="og:title" content={blog.title} />
-        <meta property="og:url" content={`https://senshop.tech/${blogName}`} />
+        <meta
+          property="og:url"
+          content={`https://senshop.tech/tap-chi/${blogName}`}
+        />
         <meta property="og:image" content={blog.image.url} />
         <meta property="og:description" content={blog.description} />
       </Helmet>

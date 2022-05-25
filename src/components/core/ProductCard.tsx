@@ -43,23 +43,25 @@ const ProductCard = ({ product }: productCardProps) => {
       name: product.name,
       price: product.salePrice ?? product.price,
       image: product.images[0],
-      quantity: 1, /* i nop du chu ca mo */
+      quantity: 1 /* i nop du chu ca mo */,
     };
     let flag = false;
-    const localCarts = JSON.parse(window.localStorage.getItem("products") as string);
-    if(localCarts[0] === undefined) {
+    const localCarts = JSON.parse(
+      window.localStorage.getItem("products") as string
+    );
+    if (localCarts[0] === undefined) {
       productCart.quantity--;
       localCarts.push(productCart);
     }
     for (let i = 0; i < localCarts.length; i++) {
-      if(localCarts[i].name === productCart.name) {
-        localCarts[i].quantity++
-        flag = true
-        break
+      if (localCarts[i].name === productCart.name) {
+        localCarts[i].quantity++;
+        flag = true;
+        break;
       }
     }
-    if(!flag) {
-      localCarts.push(productCart)
+    if (!flag) {
+      localCarts.push(productCart);
     }
     window.localStorage.setItem("products", JSON.stringify(localCarts));
     setProducts(window.localStorage.getItem("products") as string);

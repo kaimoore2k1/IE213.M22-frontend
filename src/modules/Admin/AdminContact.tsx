@@ -1,8 +1,9 @@
 import { useQuery } from "@apollo/client";
 import { Input, Table, Typography } from "antd";
 import { useEffect, useState } from "react";
-import { getAllBooking } from "../../graphql/schema/booking.graphql";
-import { bookingColumn } from "./type";
+import { getAllContact } from "../../graphql/schema/contact.graphql";
+import { contactColumn } from "./type";
+
 const { Title } = Typography;
 const { Search } = Input;
 
@@ -16,20 +17,20 @@ const { Search } = Input;
 //   content: String;
 // }
 
-const AdminBooking = () => {
-  const bookingData = useQuery(getAllBooking);
-  console.log("bookingData", bookingData);
+const AdminContact = () => {
+  const contactData = useQuery(getAllContact);
+  console.log("bookingData", contactData);
   const onSearch = (value: any) => {
     setSearchValue(value);
   };
   const [searchValue, setSearchValue] = useState("");
-  const initialBooking: any[] | (() => any[]) = [];
-  const [dataSource, setDataSource] = useState(initialBooking);
+  const initialContact: any[] | (() => any[]) = [];
+  const [dataSource, setDataSource] = useState(initialContact);
 
   useEffect(() => {
-    if (bookingData.data) {
+    if (contactData.data) {
       let i = 0;
-      const newData = bookingData.data.getAllBooking.map((data: any) => {
+      const newData = contactData.data.getAllContact.map((data: any) => {
         return { ...data, ...{ id: ++i } };
       });
       setDataSource(
@@ -38,10 +39,10 @@ const AdminBooking = () => {
         })
       );
     }
-  }, [bookingData.data, searchValue]);
+  }, [contactData.data, searchValue]);
   return (
     <>
-      <Title level={2}>Booking Management</Title>
+      <Title level={2}>Contact Management</Title>
       <Search
         placeholder="Search Name"
         onSearch={onSearch}
@@ -51,8 +52,8 @@ const AdminBooking = () => {
       />
       <Table
         size="small"
-        loading={bookingData.loading}
-        columns={bookingColumn}
+        loading={contactData.loading}
+        columns={contactColumn}
         dataSource={dataSource}
         scroll={{ y: 265 }}
       />
@@ -60,4 +61,4 @@ const AdminBooking = () => {
   );
 };
 
-export default AdminBooking;
+export default AdminContact;
