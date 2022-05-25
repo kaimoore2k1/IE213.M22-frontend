@@ -13,6 +13,24 @@ export const createComment = gql`
       rating
     }
 }`;
+
+export const getAllComments = gql`
+  query{
+    getAllComment{
+      _id
+      user
+      idProduct
+      idBlog
+      content
+      rating
+      username
+      date
+    }
+  }
+
+`;
+
+
 export const getCommentsByProductID = (productID: string) => gql`
     query{
       getCommentsByProductID(productID: "${productID}"){
@@ -36,8 +54,9 @@ query{
         idProduct
         idBlog
 }
-}
-`
+}`;
+
+
 export const updateComment = gql`
   mutation updateComment($_id:String!, $content: String!,$rating: Float,$user:String!){ 
   updateComment(_id:$_id,content:$content,user:$user,rating:$rating){

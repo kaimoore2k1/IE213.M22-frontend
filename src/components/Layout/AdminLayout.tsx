@@ -7,6 +7,7 @@ import {
   CodeSandboxOutlined,
   BookOutlined,
   FormOutlined,
+  CommentOutlined 
 } from "@ant-design/icons";
 import { Link, Outlet, useNavigate, useLocation } from "react-router-dom";
 import "../../sass/Admin/AdminLayout.scss";
@@ -72,6 +73,12 @@ function AdminLayout() {
       label: "Bookings",
       path: "bookings",
     },
+    {
+      key: "5",
+      icon: <CommentOutlined />,
+      label: "Comments",
+      path: "comments"
+    }
   ];
   return (
     <Layout className="Admin_Layout" style={{ height: "100%" }}>

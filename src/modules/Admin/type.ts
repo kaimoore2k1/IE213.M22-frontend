@@ -114,3 +114,44 @@ export const productColumn: any = [
     key: "description",
   },
 ];
+
+
+export const commentColumns = [
+  {
+    title: "ID",
+    dataIndex: "id",
+    key: "id",
+    sorter: (a: { id: number }, b: { id: number }) => a.id - b.id,
+    width: '7%'
+  },
+  {
+    title: "Content",
+    dataIndex: "content",
+    key: "content",
+  },
+  {
+    title: "Rating",
+    dataIndex: "rating",
+    key: "rating",
+  },
+  {
+    title: "User",
+    dataIndex: "user",
+    key: "user",
+  },
+  {
+    title: "Date",
+    dataIndex: "date",
+    key: "date",
+  },
+  {
+    title: "ID Product",
+    dataIndex: "idProduct",
+    key: "idProduct",
+  },
+  {
+    title: "ID Blog",
+    dataIndex: "idBlog",
+    key: "idBlog",
+  }
+]
