@@ -4,7 +4,7 @@ import "../../sass/DetailProduct/Detail.scss";
 import { useParams } from "react-router-dom";
 import Content404 from "../NotFound/Content404";
 import { useQuery } from "@apollo/client";
-import { getProductByName } from "../../graphql/schema/productDetail.graphql";
+import { getProductByName } from "../../graphql/schema/product.graphql";
 import Loader from "../../components/core/Loader";
 
 

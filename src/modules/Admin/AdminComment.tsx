@@ -1,34 +1,37 @@
 import React, { useEffect, useState } from "react";
 import AdminContentHeader from "./AdminContentHeader";
-import AdminAddBlog from "./AdminAddBlog";
 import "../../sass/Admin/Admin.scss";
 import { Drawer, Table } from "antd";
-import { blogColumns } from "./type";
+import { commentColumns } from "./type";
 import { useQuery } from "@apollo/client";
-import { getAllBlogs } from "../../graphql/schema/blog.graphql";
+import { getAllComments } from "../../graphql/schema/comment.graphql";
+import AdminAddComment from "./AdminAddComment";
 
-function AdminBlog() {
-  const blogs = useQuery(getAllBlogs);
-  const title = "Blog Management";
+
+function AdminComment() {
+  const comments = useQuery(getAllComments);
+
+  const title = "Comment Management";
   const initialValues: any[] = [];
   const [dataSource, setDataSource] = useState(initialValues);
   const [searchValue, setSearchValue] = useState("");
   
   useEffect(() => {
-    if (blogs.data) {
+
+    if (comments.data) {
       let i = 0;
-      const newData = blogs.data.getAllBlogs.map((data: any) => {
+      const newData = comments.data.getAllComments.map((data: any) => {
         return { ...data, ...{ id: ++i } };
       });
-      
+     
       setDataSource(
         newData.filter((entry: any) => {
           
-          return entry.title.includes(searchValue);
+          return entry.content.includes(searchValue);
         })
       );
     }
-  }, [blogs.data, searchValue]);
+  }, [comments.data, searchValue]);
   const [visible, setVisible] = useState(false);
   const titleDrawer = "UPDATE USER";
   const onClose = () => {
@@ -39,7 +42,7 @@ function AdminBlog() {
   const showDrawer = (record: { id: number }) => {
     setVisible(true);
     setContentDrawer(
-      <AdminAddBlog visibleProp={setVisible} dataProp={record} />
+      <AdminAddComment visibleProp={setVisible} dataProp={record} />
     );
   };
   return (
@@ -60,7 +63,7 @@ function AdminBlog() {
       </Drawer>
       <Table
         size="small"
-        columns={blogColumns}
+        columns={commentColumns}
         dataSource={dataSource}
         scroll={{ y: 265 }}
         onRow={(record, rowIndex) => {
@@ -75,4 +78,4 @@ function AdminBlog() {
   );
 }
 
-export default AdminBlog;
+export default AdminComment;

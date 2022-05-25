@@ -4,7 +4,7 @@ export const userColumns = [
     dataIndex: "id",
     key: "id",
     sorter: (a: { id: number }, b: { id: number }) => a.id - b.id,
-    width: '7%'
+    width: "7%",
   },
   {
     title: "First Name",
@@ -48,7 +48,7 @@ export const blogColumns = [
     dataIndex: "id",
     key: "id",
     sorter: (a: { id: number }, b: { id: number }) => a.id - b.id,
-    width: '7%'
+    width: "7%",
   },
   {
     title: "Title",
@@ -74,9 +74,8 @@ export const blogColumns = [
     title: "Description",
     dataIndex: "description",
     key: "description",
-  }
-]
-
+  },
+];
 
 export const productColumn: any = [
   {
@@ -112,5 +111,102 @@ export const productColumn: any = [
     title: "Description",
     dataIndex: "description",
     key: "description",
+  },
+];
+
+export const bookingColumn: any = [
+  {
+    title: "ID",
+    dataIndex: "id",
+    key: "id",
+    sorter: (a: { id: number }, b: { id: number }) => a.id - b.id,
+    width: "7%",
+  },
+  {
+    title: "Name",
+    dataIndex: "name",
+    key: "name",
+  },
+  {
+    title: "Number",
+    dataIndex: "number",
+    key: "number",
+  },
+  {
+    title: "Pet",
+    dataIndex: "pet",
+    key: "pet",
+  },
+  {
+    title: "Service",
+    dataIndex: "service",
+    key: "service",
+  },
+  {
+    title: "Time",
+    dataIndex: "time",
+    key: "time",
+  },
+  {
+    title: "DateTime",
+    dataIndex: "dateTime",
+    key: "dateTime",
+  },
+  {
+    title: "Content",
+    dataIndex: "content",
+    key: "content",
+  },
+];
+
+export const contactColumn = [
+  {
+    title: "ID",
+    dataIndex: "id",
+    key: "id",
+    sorter: (a: { id: number }, b: { id: number }) => a.id - b.id,
+    width: "7%",
+  },
+  {
+    title: "Name",
+    dataIndex: "name",
+    key: "name",
+  },
+  {
+    title: "Email",
+    dataIndex: "mail",
+    key: "mail",
+  },
+  {
+    title: "Content",
+    dataIndex: "content",
+    key: "content",
+  },
+];
+export const commentColumns = [
+  {
+    title: "Rating",
+    dataIndex: "rating",
+    key: "rating",
+  },
+  {
+    title: "User",
+    dataIndex: "user",
+    key: "user",
+  },
+  {
+    title: "Date",
+    dataIndex: "date",
+    key: "date",
+  },
+  {
+    title: "ID Product",
+    dataIndex: "idProduct",
+    key: "idProduct",
+  },
+  {
+    title: "ID Blog",
+    dataIndex: "idBlog",
+    key: "idBlog",
   },
 ];

@@ -1,7 +1,9 @@
 import { RouterInterface } from "../router/type";
 import { lazy } from "react";
-import Home from "./Home/Home";
 import { RouterService } from "../modules/Service";
+import Search from "../modules/Search/Search";
+import SearchValue from "../modules/Search/SearchValue";
+const Home = lazy(() => import("./Home/Home"));
 const Store = lazy(() => import("./Store/Store"));
 const Detail = lazy(() => import("../pages/DetailProduct/Detail"));
 const Service = lazy(() => import("./Service/Service"));
@@ -234,7 +236,23 @@ const RouterLayout: RouterInterface[] = [
     public: true,
     children: [],
     element: () => <Profile />,
-  }
+  },
+  {
+    name: "Search",
+    path: "/search",
+    index: false,
+    public: true,
+    children: [],
+    element: () => <Search />,
+  },
+  {
+    name: "Search",
+    path: "/search/:valueSearch",
+    index: false,
+    public: true,
+    children: [],
+    element: () => <SearchValue />,
+  },
 ];
 
 export default RouterLayout;

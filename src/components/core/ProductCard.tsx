@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { Button, Card, Rate, Form, Radio } from "antd";
+import { Button, Card, Rate, Form, Radio, message } from "antd";
 import { Link } from "react-router-dom";
 import { AddToCartIcon, SearchIcon } from "../../assets/icons/BlogCustomIcon";
 import "../../sass/Blog/ProductCard.scss";
 import { productCardProps } from "./type";
 import toSlug from "../../assets/toSlug";
-import { comment } from "./../../modules/Detail/Data";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const ProductCard = ({ product }: productCardProps) => {
   if (!window.localStorage.getItem("products")) {
@@ -15,7 +16,7 @@ const ProductCard = ({ product }: productCardProps) => {
     window.localStorage.getItem("products")
   );
   const [viewHidden, setViewHidden] = useState(false);
-
+  console.log('mount')
   const rating =
     Math.round(
       (product.comments.reduce(
@@ -43,26 +44,29 @@ const ProductCard = ({ product }: productCardProps) => {
       name: product.name,
       price: product.salePrice ?? product.price,
       image: product.images[0],
-      quantity: 1, /* i nop du chu ca mo */
+      quantity: 1 /* i nop du chu ca mo */,
     };
     let flag = false;
-    const localCarts = JSON.parse(window.localStorage.getItem("products") as string);
-    if(localCarts[0] === undefined) {
+    const localCarts = JSON.parse(
+      window.localStorage.getItem("products") as string
+    );
+    if (localCarts[0] === undefined) {
       productCart.quantity--;
       localCarts.push(productCart);
     }
     for (let i = 0; i < localCarts.length; i++) {
-      if(localCarts[i].name === productCart.name) {
-        localCarts[i].quantity++
-        flag = true
-        break
+      if (localCarts[i].name === productCart.name) {
+        localCarts[i].quantity++;
+        flag = true;
+        break;
       }
     }
-    if(!flag) {
-      localCarts.push(productCart)
+    if (!flag) {
+      localCarts.push(productCart);
     }
     window.localStorage.setItem("products", JSON.stringify(localCarts));
     setProducts(window.localStorage.getItem("products") as string);
+    message.success("Thêm vào giỏ hàng thành công");
   }
 
   return (
@@ -74,7 +78,12 @@ const ProductCard = ({ product }: productCardProps) => {
       hoverable={true}
       cover={
         <Link to={`/${toSlug(product.name)}`}>
-          <img src={product.images[0].url} alt="product" />
+          {/* <img src={product.images[0].url} alt="product" /> */}
+          <LazyLoadImage
+            alt={product.name}
+            effect="blur"
+            src={product.images[0].url}
+          />
         </Link>
       }
     >
