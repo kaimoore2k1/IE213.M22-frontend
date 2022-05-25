@@ -42,6 +42,8 @@ export interface comment {
   rating?: number;
   user:string;
   date: string;
+  idProduct: string;
+  idBlog: string;
 }
 export interface productCardProps {
   product: product;

@@ -9,6 +9,7 @@ import {
   Row,
   Col,
   Typography,
+  message
 } from "antd";
 import { useState, useEffect } from "react";
 import { productDetail, comment } from "./type";
@@ -18,7 +19,7 @@ import Comment from "./Comment";
 import CommentEditor from "./CommentEditor";
 import { categoryTranslate } from "./../../assets/categoryTranslate";
 import { useQuery } from "@apollo/client";
-import { getComments } from "../../graphql/schema/productDetail.graphql";
+import { getCommentsByProductID } from "../../graphql/schema/comment.graphql";
 import Loader from "./Loader";
 import { Helmet } from "react-helmet";
 interface ProductDetailProps {
@@ -27,8 +28,8 @@ interface ProductDetailProps {
 
 const ProdcutDetail = ({ product }: ProductDetailProps) => {
   const [productQuantity, setProductQuantity] = useState(1);
-  const { loading, error, data } = useQuery(getComments(product._id));
-  const slug = useParams().productName ?? "";
+  const { loading, error, data } = useQuery(getCommentsByProductID(product._id));
+const slug= useParams().productName ?? "";
   const rating =
     Math.round(
       (product.comments.reduce(
@@ -81,6 +82,7 @@ const ProdcutDetail = ({ product }: ProductDetailProps) => {
       image: product.images[0],
       quantity: productQuantity,
     });
+    message.success("Thêm vào giỏ hàng thành công");
   }
 
   return (
@@ -240,7 +242,7 @@ const ProdcutDetail = ({ product }: ProductDetailProps) => {
                 >
                   Thêm Vào Giỏ Hàng
                 </Button>
-                <Button type="link" disabled={product.stock === 0} size="large">
+                <Button type="link" disabled={product.stock === 0}  size="large">
                   Mua Ngay
                 </Button>
               </Form.Item>
@@ -291,7 +293,7 @@ const ProdcutDetail = ({ product }: ProductDetailProps) => {
                 ) : (
                   <div className="comment-list">
                     {data.getCommentsByProductID.map(
-                      (comment: comment, index: any) => (
+                      (comment: comment) => (
                         <Comment key={comment._id} comment={comment} />
                       )
                     )}

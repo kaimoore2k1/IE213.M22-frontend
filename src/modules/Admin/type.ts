@@ -183,3 +183,30 @@ export const contactColumn = [
     key: "content",
   },
 ];
+export const commentColumns = [
+  {
+    title: "Rating",
+    dataIndex: "rating",
+    key: "rating",
+  },
+  {
+    title: "User",
+    dataIndex: "user",
+    key: "user",
+  },
+  {
+    title: "Date",
+    dataIndex: "date",
+    key: "date",
+  },
+  {
+    title: "ID Product",
+    dataIndex: "idProduct",
+    key: "idProduct",
+  },
+  {
+    title: "ID Blog",
+    dataIndex: "idBlog",
+    key: "idBlog",
+  },
+];

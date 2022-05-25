@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
-import { Button, Card, Rate, Form, Radio } from "antd";
+import { Button, Card, Rate, Form, Radio,message } from "antd";
 import { Link } from "react-router-dom";
 import { AddToCartIcon, SearchIcon } from "../../assets/icons/BlogCustomIcon";
 import "../../sass/Blog/ProductCard.scss";
 import { productCardProps } from "./type";
 import toSlug from "../../assets/toSlug";
-import { comment } from "./../../modules/Detail/Data";
 
 const ProductCard = ({ product }: productCardProps) => {
   if (!window.localStorage.getItem("products")) {
@@ -65,6 +64,7 @@ const ProductCard = ({ product }: productCardProps) => {
     }
     window.localStorage.setItem("products", JSON.stringify(localCarts));
     setProducts(window.localStorage.getItem("products") as string);
+    message.success("Thêm vào giỏ hàng thành công");
   }
 
   return (

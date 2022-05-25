@@ -35,6 +35,7 @@ const Header = () => {
   const logoutHandler = async () => {
     logoutClient();
     await logoutServer({ variables: { username: JWTManager.getUsername() } });
+    navigate("..");
   };
 
   const [visible, setVisible] = useState(false);

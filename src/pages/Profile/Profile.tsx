@@ -14,12 +14,19 @@ import {
   message,
 } from "antd";
 import momment from "moment";
-import { ClockCircleOutlined, EditOutlined } from "@ant-design/icons";
+import {
+  ClockCircleOutlined,
+  EditOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 import { useAuthContext } from "../../modules/context/AuthContext";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../sass/Profile/Profile.scss";
+import JWTManager from "../../modules/utils/jwt";
 import AddressAutocomplate from "./../../components/core/AddressAutocomplate";
+import { useMutation } from "@apollo/client";
+import { CHANGE_PASSWORD } from "../../graphql/mutations/changePassword.graphql";
 
 momment.locale("vi");
 
@@ -43,16 +50,21 @@ const formLayout = {
 };
 const { TabPane } = Tabs;
 
+
+
 const Profile = () => {
   const { isAuthenticated } = useAuthContext();
   const navigate = useNavigate();
-
   useEffect(() => {
     if (!isAuthenticated) {
       message.error("Vui lòng đăng nhập để xem thông tin cá nhân");
       navigate("/login");
     }
-  },[]);
+  }, []);
+
+  //Thay đổi mật khẩu
+  const [changePassword, {data, loading, error}] = useMutation(CHANGE_PASSWORD);
+
 
   const [editAble, setEditAble] = useState(false);
   const [result, setResult] = useState<string[]>([]);
@@ -92,12 +104,15 @@ const Profile = () => {
       <div className="profile-content__wrapper">
         <div className="profile-content">
           <div className="profile-content-header">
-            <Avatar size={100} />
+            <Avatar size={100} icon={<UserOutlined />} />
             <div>
-              <h2 id="username">username</h2>
+              {isAuthenticated? (<h2 id="username">{JWTManager.getUsername()}</h2>): " "}
               <div className="time-joined">
                 <ClockCircleOutlined />
-                <span> Ngày tham gia: {momment().format("MMMM Do YYYY")}</span>
+                <span>
+                  {" "}
+                  Ngày tham gia: {momment(new Date()).format("Do MMMM YYYY")}
+                </span>
               </div>
               <Button
                 type="link"
@@ -117,8 +132,9 @@ const Profile = () => {
                 </Form.Item>
                 <Form.Item label="Giới tính">
                   <Radio.Group disabled={!editAble}>
-                    <Radio value={1}>Nam</Radio>
-                    <Radio value={2}>Nữ</Radio>
+                    <Radio value={"Nam"}>Nam</Radio>
+                    <Radio value={"Nữ"}>Nữ</Radio>
+                    <Radio value={"Khác"}>Khác</Radio>
                   </Radio.Group>
                 </Form.Item>
                 <Form.Item label="Ngày sinh">
@@ -168,7 +184,7 @@ const Profile = () => {
                 <Form.Item label="Mật khẩu">
                   <Input disabled={!editAble} placeholder="Nhập mật khẩu" />
                 </Form.Item>
-                <Form.Item>
+                <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                   <Button
                     {...(!editAble ? { hidden: true } : {})}
                     type="primary"
@@ -197,26 +213,82 @@ const Profile = () => {
               <Collapse>
                 <Collapse.Panel header="Đổi mật khẩu" key="1">
                   <Form onFinish={savePassword} {...formLayout}>
-                    <Form.Item label="Mật khẩu cũ">
-                      <Input placeholder="Mật khẩu cũ" />
+                    <Form.Item 
+                      label="Mật khẩu cũ" 
+                      name="password"
+                      rules={[
+                        { 
+                          required: true, 
+                          message: "Vui lòng nhập chính xác mật khẩu cũ!" 
+                        },
+                        { 
+                          min : 8, message: "Độ dài từ 8 kí tự" 
+                        } 
+                      ]
+                      }
+                      hasFeedback
+                    >
+                      <Input.Password placeholder="Mật khẩu cũ" />
                     </Form.Item>
-                    <Form.Item label="Mật khẩu mới">
-                      <Input placeholder="Mật khẩu mới" />
+                    <Form.Item 
+                      label="Mật khẩu mới" 
+                      name = "newPassword"
+                      hasFeedback
+                      rules={[
+                        { 
+                          required: true, 
+                          message: "Vui lòng nhập mật khẩu mới!" 
+                        },
+                        { 
+                          min : 8, message: "Độ dài từ 8 kí tự" 
+                        } 
+                      ]
+                      }
+                    >
+                      <Input.Password placeholder="Mật khẩu mới" />
                     </Form.Item>
-                    <Form.Item label="Xác nhận mật khẩu">
-                      <Input placeholder="Xác nhận mật khẩu" />
+                    <Form.Item 
+                      label="Xác nhận mật khẩu"
+                      name="Confirm Password"
+                      rules={[
+                        { 
+                          required: true, 
+                          message: "Vui lòng xác nhận mật khẩu!" 
+                        },
+                        ({ getFieldValue }) => ({
+                          validator(_, value) {
+                            if (!value || getFieldValue('newPassword') === value) {
+                              return Promise.resolve();
+                            }
+                            return Promise.reject(new Error('Xác nhận mật khẩu không chính xác!'));
+                          },
+                        }), 
+                        { 
+                          min : 8, message: "Độ dài từ 8 kí tự" 
+                        } 
+                      ]}
+                      hasFeedback
+                    
+                    >
+                      <Input.Password placeholder="Xác nhận mật khẩu" />
                     </Form.Item>
-                    <Button type="primary">Đổi mật khẩu</Button>
+                    <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                      <Button type="primary" htmlType="submit">Đổi mật khẩu</Button>
+                    </Form.Item>
                   </Form>
                 </Collapse.Panel>
                 <Collapse.Panel header="Vô hiệu hoá tài khoản" key="2">
                   <Form {...formLayout}>
-                    <Form.Item label="Nhập mật khẩu">
+                    <Form.Item 
+                      label="Nhập mật khẩu"
+                      >
                       <Input placeholder="Nhập mật khẩu" />
                     </Form.Item>
-                    <Button type="primary" danger>
-                      Vô hiệu hoá tài khoản
-                    </Button>
+                    <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                      <Button type="primary"  htmlType="submit" danger>
+                        Vô hiệu hoá tài khoản
+                      </Button>
+                    </Form.Item>
                   </Form>
                 </Collapse.Panel>
               </Collapse>
