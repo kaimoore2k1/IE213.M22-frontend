@@ -7,6 +7,7 @@ import {
   Col,
   notification,
   Modal,
+  DatePicker,
 } from "antd";
 import { useState } from "react";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
@@ -208,10 +209,9 @@ function Booking() {
                 label="Chọn ngày"
                 rules={[{ required: true, message: "Vui lòng chọn thời gian" }]}
               >
-                <Input
-                  type="date"
-                  onChange={(e) =>
-                    (InformationForm.dateTime = e.target.value.toString())
+                <DatePicker
+                  onChange={(e: any) =>
+                    (InformationForm.dateTime = e.format("DD-MM-YYYY"))
                   }
                 />
               </Form.Item>
