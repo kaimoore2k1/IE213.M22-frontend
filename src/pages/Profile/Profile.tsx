@@ -285,7 +285,7 @@ const Profile = () => {
                       <Input placeholder="Nhập mật khẩu" />
                     </Form.Item>
                     <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                      <Button type="primary" danger>
+                      <Button type="primary"  htmlType="submit" danger>
                         Vô hiệu hoá tài khoản
                       </Button>
                     </Form.Item>
