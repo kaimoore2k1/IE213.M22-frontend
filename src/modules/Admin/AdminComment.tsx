@@ -10,12 +10,14 @@ import AdminAddComment from "./AdminAddComment";
 
 function AdminComment() {
   const comments = useQuery(getAllComments);
-  const title = "Blog Management";
+
+  const title = "Comment Management";
   const initialValues: any[] = [];
   const [dataSource, setDataSource] = useState(initialValues);
   const [searchValue, setSearchValue] = useState("");
   
   useEffect(() => {
+
     if (comments.data) {
       let i = 0;
       const newData = comments.data.getAllComments.map((data: any) => {
@@ -25,7 +27,7 @@ function AdminComment() {
       setDataSource(
         newData.filter((entry: any) => {
           
-          return entry.title.includes(searchValue);
+          return entry.content.includes(searchValue);
         })
       );
     }

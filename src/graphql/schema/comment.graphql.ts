@@ -16,18 +16,16 @@ export const createComment = gql`
 
 export const getAllComments = gql`
   query{
-    getAllComment{
-      _id
-      user
-      idProduct
-      idBlog
-      content
-      rating
-      username
-      date
+    getAllComments{
+      
+        content
+        rating
+        user
+        date
+        idProduct
+        idBlog
     }
   }
-
 `;
 
 
