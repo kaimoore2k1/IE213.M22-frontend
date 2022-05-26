@@ -33,7 +33,7 @@ function AdminComment() {
     }
   }, [comments.data, searchValue]);
   const [visible, setVisible] = useState(false);
-  const titleDrawer = "UPDATE USER";
+  const titleDrawer = "UPDATE COMMENT";
   const onClose = () => {
     setVisible(false);
     setContentDrawer(<></>);
@@ -50,7 +50,7 @@ function AdminComment() {
       <AdminContentHeader
         title={title}
         setSearchValue={setSearchValue}
-        current={3}
+        current={4}
       />
       <Drawer
         title={titleDrawer}

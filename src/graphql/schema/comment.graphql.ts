@@ -17,7 +17,7 @@ export const createComment = gql`
 export const getAllComments = gql`
   query{
     getAllComments{
-      
+        _id
         content
         rating
         user

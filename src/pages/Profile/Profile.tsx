@@ -25,8 +25,9 @@ import { useNavigate } from "react-router-dom";
 import "../../sass/Profile/Profile.scss";
 import JWTManager from "../../modules/utils/jwt";
 import AddressAutocomplate from "./../../components/core/AddressAutocomplate";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { CHANGE_PASSWORD } from "../../graphql/mutations/changePassword.graphql";
+import { getAllUsers, getUserByUsername } from "../../graphql/schema/user.graphql";
 
 momment.locale("vi");
 
@@ -92,6 +93,11 @@ const Profile = () => {
   const savePassword = (value: any) => {
     console.log(value);
   };
+
+  
+  const initialUser = useQuery(getUserByUsername(JWTManager.getUsername()));
+  console.log(initialUser.data)
+
   return (
     <div className="profile">
       <div className="profile-wallpaper">
@@ -126,18 +132,18 @@ const Profile = () => {
           </div>
           <Tabs className="profile-content-body">
             <TabPane tab="Thông tin cá nhân" key="1">
-              <Form onFinish={saveProfile} {...formLayout}>
-                <Form.Item label="Họ và tên">
+              <Form  onFinish={saveProfile} {...formLayout}>
+                <Form.Item label="Họ và tên" name="name">
                   <Input disabled={!editAble} placeholder="Họ và tên" />
                 </Form.Item>
-                <Form.Item label="Giới tính">
+                <Form.Item label="Giới tính" name="sex">
                   <Radio.Group disabled={!editAble}>
                     <Radio value={"Nam"}>Nam</Radio>
                     <Radio value={"Nữ"}>Nữ</Radio>
                     <Radio value={"Khác"}>Khác</Radio>
                   </Radio.Group>
                 </Form.Item>
-                <Form.Item label="Ngày sinh">
+                <Form.Item label="Ngày sinh" name="birthday">
                   <DatePicker placeholder={"Chọn ngày"} disabled={!editAble} />
                 </Form.Item>
                 <Form.Item
@@ -165,6 +171,7 @@ const Profile = () => {
                       message: "Vui lòng nhập email của bạn!",
                     },
                   ]}
+                  name="email"
                 >
                   <AutoComplete
                     disabled={!editAble}
@@ -178,10 +185,10 @@ const Profile = () => {
                     ))}
                   </AutoComplete>
                 </Form.Item>
-                <Form.Item label="Địa chỉ">
+                <Form.Item label="Địa chỉ" name="address">
                   <AddressAutocomplate disabled={!editAble} />
                 </Form.Item>
-                <Form.Item label="Mật khẩu">
+                <Form.Item label="Mật khẩu" name="password">
                   <Input disabled={!editAble} placeholder="Nhập mật khẩu" />
                 </Form.Item>
                 <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
