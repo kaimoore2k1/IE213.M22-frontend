@@ -31,7 +31,13 @@ function AdminUser() {
             lastName: string | string[];
           }) => {
             const splitSearchValue = searchValue.split(" ");
-            const [first, second] = splitSearchValue;
+            let [first, second]:string[] = splitSearchValue;
+            if(entry.firstName === null) {
+              entry.firstName = ""
+            }
+            if(entry.lastName === null) {
+              entry.lastName = ""
+            }
             return (
               entry.firstName.includes(first) ||
               entry.lastName.includes(second) ||
@@ -43,7 +49,7 @@ function AdminUser() {
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+  }, [data, searchValue]);
   
   const titleDrawer = "UPDATE USER";
   const onClose = () => {

@@ -9,6 +9,7 @@ import {
   FormOutlined,
   ContactsOutlined,
   CommentOutlined,
+  PayCircleOutlined
 } from "@ant-design/icons";
 import { Link, Outlet, useNavigate, useLocation } from "react-router-dom";
 import "../../sass/Admin/AdminLayout.scss";
@@ -85,6 +86,12 @@ function AdminLayout() {
       icon: <CommentOutlined />,
       label: "Comments",
       path: "comments",
+    },
+    {
+      key: "7",
+      icon: <PayCircleOutlined />,
+      label: "Bills",
+      path: "bill",
     },
   ];
   return (

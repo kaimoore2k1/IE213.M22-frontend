@@ -3,7 +3,7 @@ import { PlusOutlined } from "@ant-design/icons";
 import React, { useState } from "react";
 import AdminCreateUser from "./AdminCreateUser";
 import AdminAddProduct from "./AdminAddProduct";
-import AdminAddBlog from "./AdminAddBlog"
+import AdminAddBlog from "./AdminAddBlog";
 const { Title } = Typography;
 const { Search } = Input;
 
@@ -16,28 +16,31 @@ function AdminContentHeader(props: {
   const onSearch = (value: any) => {
     props.setSearchValue(value);
   };
-  let titleDrawer: string = ""
-  let contentDrawer:JSX.Element = <></>
-  const data:any = null
-  const id = ""
+  let titleDrawer: string = "";
+  let contentDrawer: JSX.Element = <></>;
+  const data: any = null;
+  const id = "";
   switch (props.current) {
     case 1: {
       titleDrawer = "CREATE USER";
-      contentDrawer = <AdminCreateUser visibleProp={setVisible} dataProp={data} id={id}/>
+      contentDrawer = (
+        <AdminCreateUser visibleProp={setVisible} dataProp={data} id={id} />
+      );
       break;
     }
     case 2: {
       titleDrawer = "ADD PRODUCT";
-      contentDrawer = <AdminAddProduct visibleProp={setVisible} dataProp={data} id={id}/>
+      contentDrawer = (
+        <AdminAddProduct visibleProp={setVisible} dataProp={data} id={id} />
+      );
       break;
     }
     case 3: {
       titleDrawer = "ADD BLOG";
-      contentDrawer = <AdminAddBlog visibleProp={setVisible} dataProp={data}/>
+      contentDrawer = <AdminAddBlog visibleProp={setVisible} dataProp={data} />;
       break;
     }
     default: {
-      console.log("error");
       titleDrawer = "error";
       break;
     }
@@ -61,12 +64,17 @@ function AdminContentHeader(props: {
       </Drawer>
       <Title level={2}>{props.title}</Title>
       <div className="Admin_Header_Add">
-        <Button
-          type="primary"
-          shape="default"
-          icon={<PlusOutlined />}
-          onClick={showDrawer}
-        />
+        {props.current ? (
+          <Button
+            type="primary"
+            shape="default"
+            icon={<PlusOutlined />}
+            onClick={showDrawer}
+          />
+        ) : (
+          <></>
+        )}
+
         <Search
           placeholder="Search Name"
           onSearch={onSearch}

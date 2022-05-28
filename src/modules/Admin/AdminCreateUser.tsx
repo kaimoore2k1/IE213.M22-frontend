@@ -1,41 +1,64 @@
 import React, { useEffect, useState } from "react";
 import AvatarUpload from "../../components/core/AvatarUpload";
-import { Button, Col, Form, Input, message, Row } from "antd";
-import { createUser, getAllUsers } from "../../graphql/schema/user.graphql";
+import { Button, Col, Form, Input, message, Row, Popconfirm } from "antd";
+import { createUser, deleteUser, getAllUsers } from "../../graphql/schema/user.graphql";
 import { useMutation } from "@apollo/client";
 
-function AdminCreateUser(props: { visibleProp: (arg0: boolean) => void, dataProp: any, id: any }) {
+function AdminCreateUser(props: {
+  visibleProp: (arg0: boolean) => void;
+  dataProp: any;
+  id: any;
+}) {
   const [createOrUpdateUser, dataUserMutation] = useMutation(createUser);
+  const [deleteUserVariables, dataDeleteUser] = useMutation(deleteUser)
   const prefixSelector = <Form.Item noStyle>+84</Form.Item>;
-  const handleCancel = () =>{
-    props.visibleProp(false)
-  }
-  const onFinish = async (values:any) => {
+  const handleCancel = () => {
+    props.visibleProp(false);
+  };
+  const onFinish = async (values: any) => {
     if (props.id) {
       await createOrUpdateUser({
         variables: { username: props.id, data: values },
-        refetchQueries: [{query: getAllUsers}]
+        refetchQueries: [{ query: getAllUsers }],
       });
     } else {
       await createOrUpdateUser({
         variables: { username: values.username, data: values },
-        refetchQueries: [{query: getAllUsers}]
+        refetchQueries: [{ query: getAllUsers }],
       });
     }
-    
+
     if (dataUserMutation.error) {
-      message.error('Error!');
+      message.error("Error!");
+    } else {
+      message.success("Successfully!");
     }
-    else {
-      message.success('Successfully!');
-    }
-    props.visibleProp(false)
-  }
+    props.visibleProp(false);
+  };
+  const deleteHandler = () => {
+    deleteUserVariables({
+      variables: { username: props.dataProp.username },
+      onCompleted: () => {
+        message.success("Xóa thành công");
+        props.visibleProp(false);
+      },
+      onError: () => {
+        message.error("Xóa thất bại");
+      },
+      refetchQueries: [getAllUsers],
+    });
+  };
   return (
-    <Form layout="vertical" wrapperCol={{ span: 24 }} autoComplete="off" initialValues={props.dataProp} onFinish={onFinish}>
+    <Form
+      layout="vertical"
+      wrapperCol={{ span: 24 }}
+      autoComplete="off"
+      initialValues={props.dataProp}
+      onFinish={onFinish}
+    >
       <Row align="middle" justify="center">
         <Col span={3}>
-          <Form.Item >
+          <Form.Item>
             <AvatarUpload />
           </Form.Item>
         </Col>
@@ -66,7 +89,7 @@ function AdminCreateUser(props: { visibleProp: (arg0: boolean) => void, dataProp
               },
             ]}
           >
-            <Input/>
+            <Input />
           </Form.Item>
         </Col>
       </Row>
@@ -139,16 +162,22 @@ function AdminCreateUser(props: { visibleProp: (arg0: boolean) => void, dataProp
         <Input />
       </Form.Item>
       <Row>
-        <Col span={24} style={{ textAlign: 'right' }}>
-          <Button type="primary" htmlType="submit" loading={dataUserMutation.loading}>
+        <Col span={24} style={{ textAlign: "right" }}>
+          {props.dataProp && (
+            <Popconfirm
+              title={`Sau khi xoá sẽ không thể hồi phục`}
+              okButtonProps={{ danger: true }}
+              onConfirm={deleteHandler}
+            >
+              <Button type="primary" danger>
+                Delete
+              </Button>
+            </Popconfirm>
+          )}
+          <Button style={{ margin: "0 8px" }} type="primary" htmlType="submit">
             Submit
           </Button>
-          <Button
-            style={{ margin: '0 8px' }}
-            onClick={handleCancel}
-          >
-            Cancel
-          </Button>
+          <Button onClick={handleCancel}>Cancel</Button>
         </Col>
       </Row>
     </Form>

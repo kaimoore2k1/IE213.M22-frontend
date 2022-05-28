@@ -22,3 +22,11 @@ export const createUser = gql`
     }
 }
 `
+
+export const deleteUser = gql`
+    mutation deleteUser($username: String!){
+    deleteUser(username:$username) {
+        username
+    }
+}
+`
