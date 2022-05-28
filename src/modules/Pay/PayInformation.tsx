@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Input, Row, Col, Button, Select } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { CurrentProps } from "./Cart";
 import { FieldData, CustomizedFormProps } from "./type";
 import { useNavigate } from "react-router-dom";
+import {useMutation} from "@apollo/client";
+import { BILL, LASTEDBILL } from "../../graphql/mutations/bill.graphql";
 
 function PayInformation({ callBackCurrent }: CurrentProps) {
+  const [addBill, dataBillMutation] = useMutation(BILL);
   const prefixSelector = <Form.Item noStyle>+84</Form.Item>;
   const navigate = useNavigate();
-  let paymentInformation = JSON.parse(window.localStorage.getItem('products') as string)
+  let paymentInformation = JSON.parse(
+    window.localStorage.getItem("products") as string
+  );
   interface PaymentMethod {
     paymentMethodID: number;
     name: string;
@@ -28,23 +33,34 @@ function PayInformation({ callBackCurrent }: CurrentProps) {
     },
   ];
 
-  const [isLoading, setIsLoading] = useState(false);
 
-  const handelFinish = (e: any) => {
-    setIsLoading(true);
+  const handelFinish = async (e: any) => {
     const day = new Date();
     let total = 0;
-    let amount  = 0;
+    let amount = 0;
     for (let i = 0; i < paymentInformation.length; i++) {
-      total += paymentInformation[i].price
-      amount += paymentInformation[i].quantity
+      total += paymentInformation[i].price;
+      amount += paymentInformation[i].quantity;
     }
-    const payment = {...e, products: paymentInformation, date: day.toLocaleDateString(), total, amount}
-    console.log(payment)
-    setTimeout(() => {
-      setIsLoading(false);
-      callBackCurrent(3);
-    }, 1500);
+    const { firstName, lastName, address, numberPhone, paymentMethod } = e;
+    const productData = paymentInformation.map((infor: { name: any; quantity: any; price: any; }) => {
+      return {name: infor.name, quantity: infor.quantity, price: infor.price}
+    })
+    const payment = {
+      products: productData,
+      date: day.toLocaleDateString(),
+      total,
+      amount,
+      firstName,
+      lastName,
+      address,
+      numberPhone,
+      paymentMethod
+    };
+    await addBill({
+      variables: { data: payment }
+    })
+    callBackCurrent(3);
   };
 
   const CustomizedForm: React.FC<CustomizedFormProps> = ({
@@ -191,7 +207,7 @@ function PayInformation({ callBackCurrent }: CurrentProps) {
         <Button icon={<ArrowLeftOutlined />} onClick={() => callBackCurrent(0)}>
           GIỎ HÀNG
         </Button>
-        <Button htmlType="submit" loading={isLoading}>
+        <Button htmlType="submit" loading={dataBillMutation.loading}>
           THANH TOÁN
         </Button>
       </div>

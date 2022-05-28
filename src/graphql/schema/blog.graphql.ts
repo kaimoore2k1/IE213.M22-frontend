@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-export const getAllBlogs =  gql`
+export const getAllBlogsAdmin =  gql`
     query {
         getAllBlogs  {
             _id
@@ -19,6 +19,27 @@ export const getAllBlogs =  gql`
             author
             slug
             content
+      }
+    }
+`;
+export const getAllBlogsClient =  gql`
+    query {
+        getAllBlogs  {
+            _id
+            title
+            like
+            share
+            date
+            image{
+                url
+            }
+            comments{
+                _id
+            }
+            description
+            category
+            author
+            slug
       }
     }
 `;
@@ -50,10 +71,10 @@ export const getBlogBySlug = (slug: string) => gql`
             title
             like
             share
-            date
             image{
                 url
             }
+            date
             content
             description
             category
@@ -62,9 +83,3 @@ export const getBlogBySlug = (slug: string) => gql`
         }
     }
 `;
-export const likeBlog = gql`
-    mutation likeBlog($_id:String, $user:String ){
-    likeBlog(_id:$_id, user:$user ){
-        like
-  }
-}`

@@ -1,6 +1,8 @@
 import { RouterInterface } from "../../router/type";
-import { AdminUser, AdminProduct, AdminBlog } from "../Admin";
+import { AdminUser, AdminProduct, AdminBlog, AdminBill } from "../Admin";
 import AdminBooking from "./AdminBooking";
+import AdminContact from "./AdminContact";
+import AdminComment from "./AdminComment";
 
 const RouterAdminLayout: RouterInterface[] = [
   {
@@ -34,6 +36,30 @@ const RouterAdminLayout: RouterInterface[] = [
     public: true,
     children: [],
     element: () => <AdminBooking />,
+  },
+  {
+    name: "AdminContact",
+    path: "contacts",
+    index: true,
+    public: true,
+    children: [],
+    element: () => <AdminContact />,
+  },
+  {
+    name: "AdminComment",
+    path: "comments",
+    index: true,
+    public: true,
+    children: [],
+    element: () => <AdminComment />,
+  },
+  {
+    name: "AdminBill",
+    path: "bill",
+    index: true,
+    public: true,
+    children: [],
+    element: () => <AdminBill />,
   },
 ];
 

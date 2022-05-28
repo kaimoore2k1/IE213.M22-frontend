@@ -1,13 +1,5 @@
-import {
-  Input,
-  Button,
-  Badge,
-  Dropdown,
-  Space,
-  Menu,
-  Tabs,
-} from "antd";
-import { Link } from "react-router-dom";
+import { Input, Button, Badge, Dropdown, Space, Menu, Tabs } from "antd";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { Avatar } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import logo from "../../assets/images/logo.svg";
@@ -18,27 +10,33 @@ import { useMutation } from "@apollo/client";
 import { LOGOUT } from "../../graphql/mutations/logout.graphql";
 import JWTManager from "../../modules/utils/jwt";
 import { LogoutOutlined } from "@ant-design/icons";
-import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import toSlug from "../../assets/toSlug";
 const { Search } = Input;
 const { TabPane } = Tabs;
 const Header = () => {
+  const navigate = useNavigate();
   if (!window.localStorage.getItem("products")) {
     window.localStorage.setItem("products", "[]");
   }
-  let quantityProduct = JSON.parse(window.localStorage.getItem("products") as string).length
+  let quantityProduct = JSON.parse(
+    window.localStorage.getItem("products") as string
+  ).length;
   const onSearch = (value: string) => {
     console.log(value);
+    if (value) {
+      sessionStorage.setItem("valueSearch", value);
+      navigate(`/search/${toSlug(value)}`);
+    }
   };
-  const navigate = useNavigate();
   const { isAuthenticated, logoutClient } = useAuthContext();
   const [logoutServer, _] = useMutation(LOGOUT);
 
   const logoutHandler = async () => {
     logoutClient();
     await logoutServer({ variables: { username: JWTManager.getUsername() } });
-    navigate('..')
+    navigate("..");
   };
 
 
@@ -94,7 +92,7 @@ const Header = () => {
       {/* <Menu.Item icon={<UserOutlined />} onClick={showDrawer}>
         <Link to="/profile">Profile</Link>
       </Menu.Item> */}
-      <Menu.Item icon={<UserOutlined />} >
+      <Menu.Item icon={<UserOutlined />}>
         <Link to="/profile">Profile</Link>
       </Menu.Item>
       <Menu.Item icon={<LogoutOutlined />} onClick={logoutHandler}>

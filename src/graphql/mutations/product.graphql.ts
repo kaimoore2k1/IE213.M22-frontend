@@ -7,3 +7,11 @@ mutation updateProductByName($name: String!, $data: ProductInput){
   }
 }
 `
+
+export const DeleteProductByName = gql`
+mutation deleteProductByName($name: String!){
+  deleteProductByName(name:$name) {
+    name
+  }
+}
+`

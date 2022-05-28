@@ -1,50 +1,4 @@
-// .spinner {
-//     /* Spinner size and color */
-//     width: 1.5rem;
-//     height: 1.5rem;
-//     border-top-color: #444;
-//     border-left-color: #444;
-  
-//     /* Additional spinner styles */
-//     animation: spinner 400ms linear infinite;
-//     border-bottom-color: transparent;
-//     border-right-color: transparent;
-//     border-style: solid;
-//     border-width: 2px;
-//     border-radius: 50%;
-//     box-sizing: border-box;
-//     display: inline-block;
-//     vertical-align: middle;
-//     position: relative;
-//     left: 50%;
-//     top: 50%
-// }
-  
-//   /* Animation styles */
-//   @keyframes spinner {
-//     0% { transform: rotate(0deg); }
-//     100% { transform: rotate(360deg); }
-//   }
-  
-  
-//   /* Optional — create your own variations! */
-//   .spinner-large {
-//     width: 5rem;
-//     height: 5rem;
-//     border-width: 6px;
-//   }
-  
-//   .spinner-slow {
-//     animation: spinner 1s linear infinite;
-//   }
-  
-//   .spinner-blue {
-//     border-top-color: rgb(254,161,53);
-//     border-left-color: rgb(254,161,53);
-//   }
-
-
-  $bgColor:     rgb(255, 255, 255);
+$bgColor:     rgb(230, 220, 219);
 $bodyColor:   rgb(237, 166, 93);
 $tailColor:   rgb(198, 130, 59);
 $tummyColor:  rgb(242, 192, 137);
@@ -103,18 +57,17 @@ $borderWidth: 6.5px;
     $borderColor 100%
   );
 }
-
-.loading-cat-wrapper {
+.loading-cat-wrapper{
+  width:100%;
   display:flex;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
+  justify-content:center;
+  align-items:center;
 }
 
 .loading-cat {
   position: relative;
   display: inline-block;
-  scale:0.7;
+ 
   width: 480px;
   height: 360px;
 

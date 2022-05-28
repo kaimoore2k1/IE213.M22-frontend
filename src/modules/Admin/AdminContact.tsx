@@ -1,10 +1,11 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { Input, Table, Typography, Modal, message } from "antd";
-import {ExclamationCircleOutlined} from "@ant-design/icons";
 import { useEffect, useState } from "react";
-import { getAllBooking } from "../../graphql/schema/booking.graphql";
-import { deleteBookingById } from "../../graphql/mutations/booking.graphql";
-import { bookingColumn } from "./type";
+import {ExclamationCircleOutlined} from "@ant-design/icons";
+import { getAllContact } from "../../graphql/schema/contact.graphql";
+import { contactColumn } from "./type";
+import { deleteContactById } from "../../graphql/mutations/contact.graphql";
+
 const { Title } = Typography;
 const { Search } = Input;
 const { confirm } = Modal;
@@ -19,19 +20,21 @@ const { confirm } = Modal;
 //   content: String;
 // }
 
-const AdminBooking = () => {
-  const bookingData = useQuery(getAllBooking);
+const AdminContact = () => {
+  const contactData = useQuery(getAllContact);
+  const [deleteContact, dataDeleteContact] = useMutation(deleteContactById)
+  console.log("bookingData", contactData);
   const onSearch = (value: any) => {
     setSearchValue(value);
   };
   const [searchValue, setSearchValue] = useState("");
-  const initialBooking: any[] | (() => any[]) = [];
-  const [dataSource, setDataSource] = useState(initialBooking);
-  const [deleteBooking, dataDeleteBooking] = useMutation(deleteBookingById)
+  const initialContact: any[] | (() => any[]) = [];
+  const [dataSource, setDataSource] = useState(initialContact);
+
   useEffect(() => {
-    if (bookingData.data) {
+    if (contactData.data) {
       let i = 0;
-      const newData = bookingData.data.getAllBooking.map((data: any) => {
+      const newData = contactData.data.getAllContact.map((data: any) => {
         return { ...data, ...{ id: ++i } };
       });
       setDataSource(
@@ -40,7 +43,7 @@ const AdminBooking = () => {
         })
       );
     }
-  }, [bookingData.data, searchValue]);
+  }, [contactData.data, searchValue]);
   const showDeleteConfirm = (record: any) => {
     confirm({
       title: 'Are you sure delete this field?',
@@ -50,7 +53,7 @@ const AdminBooking = () => {
       okType: 'danger',
       cancelText: 'No',
       onOk() {
-        deleteBooking({
+        deleteContact({
           variables: { id: record._id },
           onCompleted: () => {
             message.success("Successfully!");
@@ -58,14 +61,14 @@ const AdminBooking = () => {
           onError: () => {
             message.error("Error!");
           },
-          refetchQueries: [getAllBooking],
+          refetchQueries: [getAllContact],
         });
       }
     });
   };
   return (
     <>
-      <Title level={2}>Booking Management</Title>
+      <Title level={2}>Contact Management</Title>
       <Search
         placeholder="Search Name"
         onSearch={onSearch}
@@ -75,8 +78,8 @@ const AdminBooking = () => {
       />
       <Table
         size="small"
-        loading={bookingData.loading}
-        columns={bookingColumn}
+        loading={contactData.loading}
+        columns={contactColumn}
         dataSource={dataSource}
         scroll={{ y: 265 }}
         onRow={(record, rowIndex) => {
@@ -89,4 +92,4 @@ const AdminBooking = () => {
   );
 };
 
-export default AdminBooking;
+export default AdminContact;

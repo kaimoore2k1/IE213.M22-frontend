@@ -1,12 +1,13 @@
 import { message, Form, Button, Rate, Input, Typography, Popover } from "antd";
-import { createComment,getCommentsByProductID,getCommentsByBlogID } from "../../graphql/schema/comment.graphql";
+import { getCommentsByProductID,getCommentsByBlogID } from "../../graphql/schema/comment.graphql";
+import {CREATE_COMMENT} from "../../graphql/mutations/comment.graphql";
 import { useAuthContext } from "../../modules/context/AuthContext";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 
 import JWTManager from "../../modules/utils/jwt";
 const CommentEditor = ({ idProduct, idBlog }: any) => {
-  const [submit, { loading, error, reset }] = useMutation(createComment);
+  const [submit, { loading, error, reset }] = useMutation(CREATE_COMMENT);
   const [state, setState] = useState(0);
   const { isAuthenticated } = useAuthContext();
   const [form] = Form.useForm();

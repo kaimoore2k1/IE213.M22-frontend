@@ -14,12 +14,15 @@ import { useState } from "react";
 import { UserOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useAuthContext } from "../../modules/context/AuthContext";
 import JWTManager from "../../modules/utils/jwt";
+import { decode, encode } from "html-entities";
 import {
-  updateComment,
-  deleteComment,
   getCommentsByProductID,
   getCommentsByBlogID,
 } from "../../graphql/schema/comment.graphql";
+import {
+  UPDATE_COMMENT,
+  DELETE_COMMENT,
+} from "../../graphql/mutations/comment.graphql";
 import { useMutation } from "@apollo/client";
 
 moment.locale("vi");
@@ -32,12 +35,13 @@ function Comment({ comment }: commentProps) {
   const [edit, setEdit] = useState<boolean>(false);
   const { isAuthenticated } = useAuthContext();
   const [rating, setRating] = useState(comment.rating ?? null);
-  const [update] = useMutation(updateComment);
-  const [_delete] = useMutation(deleteComment);
+  const [update] = useMutation(UPDATE_COMMENT);
+  const [_delete] = useMutation(DELETE_COMMENT);
 
   //edit comment fuction ->trigger edit btn
   //-> set comment content atribute contenteditable="true"
-  //-> set rating !disabled ->change edit and delete button to save button (by change state)
+  //-> set rating !disabled
+  //-> change edit and delete button to save button (by change state)
   //-> send request to server
 
   const deleteHandler = () => {
@@ -46,25 +50,23 @@ function Comment({ comment }: commentProps) {
         _id: comment._id,
       },
       onCompleted: () => {
-        message.success("Xóa bình luận thành công");
+        message.success("Deleted successfully!");
       },
       refetchQueries: !!comment.idProduct
         ? [getCommentsByProductID(comment.idProduct)]
         : [getCommentsByBlogID(comment.idBlog)],
       onError: () => {
-        message.error("Đã có lỗi xảy ra vui lòng thử lại sau");
+        message.error("Error!");
       },
     });
   };
-
 
   const editHandler = () => {
     setEdit(true);
     const commentContent = document.querySelector<HTMLInputElement>(
       `#comment-content_${comment._id}`
     );
-    commentContent
-      ?.setAttribute("contenteditable", "true");
+    commentContent?.setAttribute("contenteditable", "true");
     commentContent?.focus();
   };
   const updateHandler = () => {
@@ -84,11 +86,11 @@ function Comment({ comment }: commentProps) {
         },
         onCompleted: () => {
           commentContent?.setAttribute("contenteditable", "false");
-          message.success("Cập nhật thành công");
+          message.success("Updated successfully!");
           setEdit(false);
         },
         onError: () => {
-          message.error("Đã có lỗi xảy ra vui lòng thử lại sau");
+          message.error("Update error!");
           setEdit(false);
           commentContent?.setAttribute("contenteditable", "false");
           if (commentContent != undefined) {
@@ -112,7 +114,7 @@ function Comment({ comment }: commentProps) {
               allowHalf
             />
           )}
-          <p id={`comment-content_${comment._id}`}>{comment.content}</p>
+          <p id={`comment-content_${comment._id}`}>{decode(comment.content)}</p>
         </>
       }
       datetime={
@@ -140,7 +142,7 @@ function Comment({ comment }: commentProps) {
                     onConfirm={deleteHandler}
                     cancelText="Hủy"
                     okText="Xoá"
-                    okButtonProps={{danger: true}}
+                    okButtonProps={{ danger: true }}
                   >
                     <Button type="text" icon={<DeleteOutlined />}>
                       Xóa

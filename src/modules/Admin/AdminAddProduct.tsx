@@ -1,8 +1,8 @@
 import { useMutation } from "@apollo/client";
-import { Button, Col, Form, Input, message, Row } from "antd";
+import { Button, Col, Form, Input, message, Row, Popconfirm } from "antd";
 import React from "react";
 import PicturesWall from "../../components/core/PicturesWall";
-import { UpdateProductByName } from "../../graphql/mutations/product.graphql";
+import { DeleteProductByName, UpdateProductByName } from "../../graphql/mutations/product.graphql";
 import { getAllProduct } from "../../graphql/schema/product.graphql";
 
 function AdminAddProduct(props: {
@@ -11,6 +11,7 @@ function AdminAddProduct(props: {
   id: string;
 }) {
   const [updateProducts, dataProductMutation] = useMutation(UpdateProductByName);
+  const [deleteProduct, dataDeleteProduct] = useMutation(DeleteProductByName);
   const handleCancel = () => {
     props.visibleProp(false);
   };
@@ -33,6 +34,19 @@ function AdminAddProduct(props: {
       message.success('Successfully!');
     }
     props.visibleProp(false);
+  };
+  const deleteHandler = () => {
+    deleteProduct({
+      variables: { name: props.dataProp.name },
+      onCompleted: () => {
+        message.success("Deleted successfully!");
+        props.visibleProp(false);
+      },
+      onError: () => {
+        message.error("Delete error!");
+      },
+      refetchQueries: [getAllProduct],
+    });
   };
   return (
     <Form
@@ -93,12 +107,21 @@ function AdminAddProduct(props: {
       </Form.Item>
       <Row>
         <Col span={24} style={{ textAlign: "right" }}>
-          <Button type="primary" htmlType="submit" loading={dataProductMutation.loading}>
+          {props.dataProp && (
+            <Popconfirm
+              title={`Once deleted, this field can't be recovered !`}
+              okButtonProps={{ danger: true }}
+              onConfirm={deleteHandler}
+            >
+              <Button type="primary" danger>
+                Delete
+              </Button>
+            </Popconfirm>
+          )}
+          <Button style={{ margin: "0 8px" }} type="primary" htmlType="submit">
             Submit
           </Button>
-          <Button style={{ margin: "0 8px" }} onClick={handleCancel}>
-            Cancel
-          </Button>
+          <Button onClick={handleCancel}>Cancel</Button>
         </Col>
       </Row>
     </Form>

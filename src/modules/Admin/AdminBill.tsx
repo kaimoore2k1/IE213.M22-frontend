@@ -1,18 +1,18 @@
 import { Drawer, Table } from "antd";
 import React, { useEffect, useState } from "react";
-import AdminAddProduct from "./AdminAddProduct";
 import AdminContentHeader from "./AdminContentHeader";
-import { getAllProduct } from "../../graphql/schema/product.graphql";
 import { useQuery } from "@apollo/client";
-import {productColumn} from './type';
+import {billColumn} from './type';
+import AdminViewBill from "./AdminViewBill";
+import { GETALLBILLS } from "../../graphql/mutations/bill.graphql";
 
-function AdminProduct() {
-  const title = "Product Management";
-  const product = useQuery(getAllProduct);
+function AdminBill() {
+  const title = "Bill Management";
+  const bill = useQuery(GETALLBILLS);
   const [searchValue, setSearchValue] = useState("");
-  const initialProduct: any[] | (() => any[]) = []
-  const [dataSource, setDataSource] = useState(initialProduct);
-  const titleDrawer = "UPDATE PRODUCT";
+  const initialBill: any[] | (() => any[]) = []
+  const [dataSource, setDataSource] = useState(initialBill);
+  const titleDrawer = "BOOKED PRODUCT LIST";
 
   const [visible, setVisible] = useState(false);
   const onClose = () => {
@@ -23,30 +23,37 @@ function AdminProduct() {
   const showDrawer = (record: any) => {
     setVisible(true);
     setContentDrawer(
-      <AdminAddProduct visibleProp={setVisible} dataProp={record} id={record.name}/>
+      <AdminViewBill visibleProp={setVisible} dataProp={record} id={record._id}/>
     );
   };
   useEffect(() => {
-    if(product.data) {
+    if(bill.data) {
       let i = 0;
-      const newData = product.data.getAllProducts.map((data: any) => {
+      const newData = bill.data.getAllBills.map((data: any) => {
         return { ...data, ...{ id: ++i }};
       });
       setDataSource(
         newData.filter(
-          (entry: { name: string | string[] }) => {
-            return entry.name.includes(searchValue);
+          (entry: { firstName: string | string[]; lastName: string | string[]; }) => {
+            const splitSearchValue = searchValue.split(" ");
+            let [first, second]:string[] = splitSearchValue;
+            return (
+              entry.firstName.includes(first) ||
+              entry.lastName.includes(second) ||
+              entry.firstName.includes(second) ||
+              entry.lastName.includes(first)
+            )
           }
         )
       );
     }
-  }, [product.data, searchValue]);
+  }, [bill.data, searchValue]);
   return (
     <>
       <AdminContentHeader
         title={title}
         setSearchValue={setSearchValue}
-        current={2}
+        current={0}
         exportData={dataSource}
       />
       <Drawer
@@ -60,8 +67,8 @@ function AdminProduct() {
       </Drawer>
       <Table
         size="small"
-        loading={product.loading}
-        columns={productColumn}
+        loading={bill.loading}
+        columns={billColumn}
         dataSource={dataSource}
         scroll={{ y: 265 }}
         onRow={(record, rowIndex) => {
@@ -76,4 +83,4 @@ function AdminProduct() {
   );
 }
 
-export default AdminProduct;
+export default AdminBill;
