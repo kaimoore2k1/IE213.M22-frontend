@@ -5,10 +5,10 @@ import "../../sass/Admin/Admin.scss";
 import { Drawer, Table } from "antd";
 import { blogColumns } from "./type";
 import { useQuery } from "@apollo/client";
-import { getAllBlogs } from "../../graphql/schema/blog.graphql";
+import { getAllBlogsAdmin } from "../../graphql/schema/blog.graphql";
 
 function AdminBlog() {
-  const blogs = useQuery(getAllBlogs);
+  const blogs = useQuery(getAllBlogsAdmin);
   const title = "Blog Management";
   const initialValues: any[] = [];
   const [dataSource, setDataSource] = useState(initialValues);
