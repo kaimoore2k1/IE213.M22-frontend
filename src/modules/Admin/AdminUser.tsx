@@ -74,6 +74,7 @@ function AdminUser() {
         title={title}
         setSearchValue={setSearchValue}
         current={1}
+        exportData={dataSource}
       />
       <Drawer
         title={titleDrawer}

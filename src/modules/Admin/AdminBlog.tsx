@@ -48,6 +48,7 @@ function AdminBlog() {
         title={title}
         setSearchValue={setSearchValue}
         current={3}
+        exportData={dataSource}
       />
       <Drawer
         title={titleDrawer}

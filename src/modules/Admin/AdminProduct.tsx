@@ -47,6 +47,7 @@ function AdminProduct() {
         title={title}
         setSearchValue={setSearchValue}
         current={2}
+        exportData={dataSource}
       />
       <Drawer
         title={titleDrawer}

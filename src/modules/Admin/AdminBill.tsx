@@ -54,6 +54,7 @@ function AdminBill() {
         title={title}
         setSearchValue={setSearchValue}
         current={0}
+        exportData={dataSource}
       />
       <Drawer
         title={titleDrawer}
