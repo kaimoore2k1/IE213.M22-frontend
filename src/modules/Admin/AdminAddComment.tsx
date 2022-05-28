@@ -1,7 +1,6 @@
 import { useMutation } from "@apollo/client";
-import { Button, Col, Form, Input, message, Row } from "antd";
+import { Button, Col, Form, Input, message, Row, Popconfirm } from "antd";
 import React from "react";
-import PicturesWall from "../../components/core/PicturesWall";
 import { DELETE_COMMENT } from "../../graphql/mutations/comment.graphql";
 // import { createComment, deleteComment } from "../../graphql/schema/comment.graphql";
 
@@ -13,7 +12,7 @@ function AdminAddComment(props: {
     props.visibleProp(false);
   };
   const [deleteComment,{data, loading, error}] = useMutation(DELETE_COMMENT);
-  const handleDelete = () =>{
+  const deleteHandler = () =>{
     deleteComment({
       variables:{
         _id: props.dataProp._id
@@ -21,9 +20,9 @@ function AdminAddComment(props: {
     })
 
     if(error){
-      message.error("Xóa comment không thành công");
+      message.error("Deleted successfully!");
     }else{
-      message.success("Xóa comment thành công")
+      message.success("Delete Error!")
     }
   }
   
@@ -34,13 +33,6 @@ function AdminAddComment(props: {
       autoComplete="off"
       initialValues={props.dataProp}
     >
-      <Row align="middle" justify="center">
-        <Col span={9}>
-          <Form.Item>
-            <PicturesWall />
-          </Form.Item>
-        </Col>
-      </Row>
       <Form.Item
         name="content"
         label="Content"
@@ -73,15 +65,21 @@ function AdminAddComment(props: {
       </Form.Item>
       <Row>
         <Col span={24} style={{ textAlign: "right" }}>
-          <Button type="primary" htmlType="submit" >
+          {props.dataProp && (
+            <Popconfirm
+              title={`Once deleted, this field can't be recovered !`}
+              okButtonProps={{ danger: true }}
+              onConfirm={deleteHandler}
+            >
+              <Button type="primary" danger>
+                Delete
+              </Button>
+            </Popconfirm>
+          )}
+          <Button style={{ margin: "0 8px" }} type="primary" htmlType="submit">
             Submit
           </Button>
-          <Button style={{ margin: "0 8px" }} onClick={handleCancel}>
-            Cancel
-          </Button>
-          <Button style={{ margin: "0 8px" }} onClick={handleDelete} loading={loading}>
-            Delete
-          </Button>
+          <Button onClick={handleCancel}>Cancel</Button>
         </Col>
       </Row>
     </Form>

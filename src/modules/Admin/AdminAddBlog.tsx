@@ -50,14 +50,14 @@ function AdminAddBlog(props: {
           slug: toSlug(value.title),
         },
         onCompleted: () => {
-          message.success("Cập nhật thành công");
+          message.success("Updated successfully!");
           props.visibleProp(false);
           form.resetFields();
           setUrl("");
           setContent("");
         },
         onError: () => {
-          message.error("Cập nhật thất bại");
+          message.error("Update error!");
         },
         refetchQueries: [getAllBlogsAdmin],
       });
@@ -69,14 +69,14 @@ function AdminAddBlog(props: {
           slug: toSlug(value.title),
         },
         onCompleted: () => {
-          message.success("Thêm thành công");
+          message.success("Successfully!");
           props.visibleProp(false);
           form.resetFields();
           setUrl("");
           setContent("");
         },
         onError: () => {
-          message.error("Thêm thất bại");
+          message.error("Error!");
         },
         refetchQueries: [getAllBlogsAdmin],
       });
@@ -85,14 +85,14 @@ function AdminAddBlog(props: {
     deleteBlog({
       variables: { _id: props.dataProp._id },
       onCompleted: () => {
-        message.success("Xóa thành công");
+        message.success("Deleted successfully!");
         props.visibleProp(false);
         form.resetFields();
         setUrl("");
         setContent("");
       },
       onError: () => {
-        message.error("Xóa thất bại");
+        message.error("Delete error!");
       },
       refetchQueries: [getAllBlogsAdmin],
     });
@@ -199,7 +199,7 @@ function AdminAddBlog(props: {
         <Col span={24} style={{ textAlign: "right" }}>
           {props.dataProp && (
             <Popconfirm
-              title={`Sau khi xoá sẽ không thể hồi phục`}
+              title={`Once deleted, this field can't be recovered !`}
               okButtonProps={{ danger: true }}
               onConfirm={deleteHandler}
             >

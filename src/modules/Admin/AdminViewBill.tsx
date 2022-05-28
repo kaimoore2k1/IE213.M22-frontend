@@ -36,11 +36,11 @@ function AdminAddProduct(props: {
     deleteBill({
       variables: { id: props.dataProp._id },
       onCompleted: () => {
-        message.success("Xóa thành công");
+        message.success("Deleted successfully!");
         props.visibleProp(false);
       },
       onError: () => {
-        message.error("Xóa thất bại");
+        message.error("Delete error!");
       },
       refetchQueries: [GETALLBILLS],
     });
@@ -67,7 +67,7 @@ function AdminAddProduct(props: {
         <Col span={24} style={{ textAlign: "right" }}>
           {props.dataProp && (
             <Popconfirm
-              title={`Sau khi xoá sẽ không thể hồi phục`}
+              title={`Once deleted, this field can't be recovered !`}
               okButtonProps={{ danger: true }}
               onConfirm={deleteHandler}
             >
@@ -76,7 +76,7 @@ function AdminAddProduct(props: {
               </Button>
             </Popconfirm>
           )}
-          <Button onClick={handleCancel}>Cancel</Button>
+          <Button style={{ margin: "0 8px" }} onClick={handleCancel}>Cancel</Button>
         </Col>
       </Row>
     </>

@@ -13,3 +13,11 @@ mutation Booking($name: String, $number: String, $pet: String, $service: String,
   }
 }
 `;
+
+export const deleteBookingById = gql `
+  mutation deleteBookingById($id: String!) {
+    deleteBookingById(_id: $id) {
+      name
+    }
+  }
+`

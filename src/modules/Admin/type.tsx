@@ -281,9 +281,11 @@ export const contactColumn = [
 ];
 export const commentColumns = [
   {
-    title: "Rating",
-    dataIndex: "rating",
-    key: "rating",
+    title: "ID",
+    dataIndex: "id",
+    key: "id",
+    sorter: (a: { id: number }, b: { id: number }) => a.id - b.id,
+    width: "7%",
   },
   {
     title: "User",
@@ -296,13 +298,13 @@ export const commentColumns = [
     key: "date",
   },
   {
-    title: "ID Product",
-    dataIndex: "idProduct",
-    key: "idProduct",
+    title: "Rating",
+    dataIndex: "rating",
+    key: "rating",
   },
   {
-    title: "ID Blog",
-    dataIndex: "idBlog",
-    key: "idBlog",
-  },
+    title: "Content",
+    dataIndex: "content",
+    key: "content",
+  }
 ];
