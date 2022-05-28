@@ -16,9 +16,9 @@ export const getAllUsers = gql`
     }
 `
 
-export const getUserByUsername = (username: string | null) => gql`
+export const getUserByUsername = (username: string) => gql`
     query{
-        getUserByUsernamed(username: ${username}){
+        getUserByUsername(username:"${username}"){
             username
             firstName
             lastName
@@ -27,8 +27,7 @@ export const getUserByUsername = (username: string | null) => gql`
             numberPhone
             email
             dateCreate
-            productsBooked
-            
+            address
         }
     }
 `
@@ -37,6 +36,7 @@ export const createUser = gql`
     mutation createOrUpdateUser($username: String!, $data: UserInput){
     createOrUpdateUser(username:$username, data: $data) {
         username
+        email
     }
 }
 `
