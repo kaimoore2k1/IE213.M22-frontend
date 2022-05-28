@@ -1,7 +1,7 @@
 import { Row, Col } from "antd";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import { getBlogBySlug, getAllBlogs } from "../../graphql/schema/blog.graphql";
+import { getBlogBySlug, getAllBlogsClient } from "../../graphql/schema/blog.graphql";
 import BlogSingle from "./components/BlogSingle";
 import BlogSideCardList from "../Blog/components/BlogSideCardList";
 import Loader from "../../components/core/Loader";
@@ -12,7 +12,7 @@ import "../../sass/BlogDetail/BlogDetail.scss";
 const BlogDetail = () => {
   const blogName = useParams().blogName ?? "";
   const blog = useQuery(getBlogBySlug(blogName));
-  const blogs = useQuery(getAllBlogs);
+  const blogs = useQuery(getAllBlogsClient);
   return (
     <Row className="blog-detail-container">
       <Col xl={16} md={24}>

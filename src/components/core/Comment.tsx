@@ -20,8 +20,8 @@ import {
   getCommentsByBlogID,
 } from "../../graphql/schema/comment.graphql";
 import {
-  updateComment,
-  deleteComment,
+  UPDATE_COMMENT,
+  DELETE_COMMENT,
 } from "../../graphql/mutations/comment.graphql";
 import { useMutation } from "@apollo/client";
 
@@ -35,8 +35,8 @@ function Comment({ comment }: commentProps) {
   const [edit, setEdit] = useState<boolean>(false);
   const { isAuthenticated } = useAuthContext();
   const [rating, setRating] = useState(comment.rating ?? null);
-  const [update] = useMutation(updateComment);
-  const [_delete] = useMutation(deleteComment);
+  const [update] = useMutation(UPDATE_COMMENT);
+  const [_delete] = useMutation(DELETE_COMMENT);
 
   //edit comment fuction ->trigger edit btn
   //-> set comment content atribute contenteditable="true"

@@ -17,7 +17,7 @@ import {
   UPDATE_BLOG,
   DELETE_BLOG,
 } from "../../graphql/mutations/blog.graphql";
-import { getAllBlogs } from "../../graphql/schema/blog.graphql";
+import { getAllBlogsAdmin } from "../../graphql/schema/blog.graphql";
 import { useMutation } from "@apollo/client";
 // import PicturesWall from "../../components/core/PicturesWall";
 const joditConfig = {
@@ -59,7 +59,7 @@ function AdminAddBlog(props: {
         onError: () => {
           message.error("Cập nhật thất bại");
         },
-        refetchQueries: [getAllBlogs],
+        refetchQueries: [getAllBlogsAdmin],
       });
     else
       createBlog({
@@ -78,7 +78,7 @@ function AdminAddBlog(props: {
         onError: () => {
           message.error("Thêm thất bại");
         },
-        refetchQueries: [getAllBlogs],
+        refetchQueries: [getAllBlogsAdmin],
       });
   };
   const deleteHandler = () => {
@@ -94,7 +94,7 @@ function AdminAddBlog(props: {
       onError: () => {
         message.error("Xóa thất bại");
       },
-      refetchQueries: [getAllBlogs],
+      refetchQueries: [getAllBlogsAdmin],
     });
   };
   return (

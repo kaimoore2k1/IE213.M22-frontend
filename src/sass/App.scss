@@ -7,3 +7,11 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+[contenteditable="true"] {
+    padding: 0.5rem;
+    border: 1px solid #d9d9d9;
+    border-radius: 2px;
+    outline: #d1d1d1;
+    max-width: 500px;
+}

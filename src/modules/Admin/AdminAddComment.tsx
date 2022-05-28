@@ -1,6 +1,9 @@
-import { Button, Col, Form, Input, Row } from "antd";
+import { useMutation } from "@apollo/client";
+import { Button, Col, Form, Input, message, Row } from "antd";
 import React from "react";
 import PicturesWall from "../../components/core/PicturesWall";
+import { DELETE_COMMENT } from "../../graphql/mutations/comment.graphql";
+// import { createComment, deleteComment } from "../../graphql/schema/comment.graphql";
 
 function AdminAddComment(props: {
   visibleProp: (arg0: boolean) => void;
@@ -9,6 +12,21 @@ function AdminAddComment(props: {
   const handleCancel = () => {
     props.visibleProp(false);
   };
+  const [deleteComment,{data, loading, error}] = useMutation(DELETE_COMMENT);
+  const handleDelete = () =>{
+    deleteComment({
+      variables:{
+        _id: props.dataProp._id
+      }
+    })
+
+    if(error){
+      message.error("Xóa comment không thành công");
+    }else{
+      message.success("Xóa comment thành công")
+    }
+  }
+  
   return (
     <Form
       layout="vertical"
@@ -55,11 +73,14 @@ function AdminAddComment(props: {
       </Form.Item>
       <Row>
         <Col span={24} style={{ textAlign: "right" }}>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" >
             Submit
           </Button>
           <Button style={{ margin: "0 8px" }} onClick={handleCancel}>
             Cancel
+          </Button>
+          <Button style={{ margin: "0 8px" }} onClick={handleDelete} loading={loading}>
+            Delete
           </Button>
         </Col>
       </Row>

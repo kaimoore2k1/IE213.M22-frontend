@@ -1,12 +1,12 @@
 import { useQuery } from "@apollo/client";
-import { getAllBlogs, getHotBlogs } from "../../graphql/schema/blog.graphql";
+import { getAllBlogsClient, getHotBlogs } from "../../graphql/schema/blog.graphql";
 import BlogCategory from "./components/BlogCategory";
 import { blogList } from "./data";
 import Content404 from "../NotFound/Content404";
 import Loader from "../../components/core/Loader";
 import { Helmet } from "react-helmet";
 const Blog = () => {
-  const blogs = useQuery(getAllBlogs);
+  const blogs = useQuery(getAllBlogsClient);
   return (
     <>
       <Helmet>

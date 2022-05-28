@@ -3,7 +3,8 @@ import { PlusOutlined } from "@ant-design/icons";
 import React, { useState } from "react";
 import AdminCreateUser from "./AdminCreateUser";
 import AdminAddProduct from "./AdminAddProduct";
-import AdminAddBlog from "./AdminAddBlog";
+import AdminAddBlog from "./AdminAddBlog"
+import AdminAddComment from "./AdminAddComment";
 const { Title } = Typography;
 const { Search } = Input;
 
@@ -38,6 +39,11 @@ function AdminContentHeader(props: {
     case 3: {
       titleDrawer = "ADD BLOG";
       contentDrawer = <AdminAddBlog visibleProp={setVisible} dataProp={data} />;
+      break;
+    }
+    case 4:{
+      titleDrawer = "ADD COMMENT";
+      contentDrawer = <AdminAddComment visibleProp={setVisible} dataProp={data}/>
       break;
     }
     default: {

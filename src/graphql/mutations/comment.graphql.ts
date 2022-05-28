@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-export const createComment = gql`
+export const CREATE_COMMENT = gql`
     mutation createComment($idProduct: String, $idBlog: String, $content: String!,$rating: Float,$user:String!){ 
     createComment(user: $user,
       idProduct: $idProduct,
@@ -14,14 +14,14 @@ export const createComment = gql`
       rating
     }
 }`;
-export const updateComment = gql`
+export const UPDATE_COMMENT = gql`
 mutation updateComment($_id:String!, $content: String!,$rating: Float,$user:String!){ 
 updateComment(_id:$_id,content:$content,user:$user,rating:$rating){
   _id
 }
 }
 `
-export const deleteComment = gql`
+export const DELETE_COMMENT = gql`
 mutation deleteComment($_id:String!){
 deleteComment(_id:$_id){
   _id
