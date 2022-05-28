@@ -19,7 +19,8 @@ import { LOGOUT } from "../../graphql/mutations/logout.graphql";
 import JWTManager from "../../modules/utils/jwt";
 import { LogoutOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 const { Search } = Input;
 const { TabPane } = Tabs;
 const Header = () => {
@@ -39,6 +40,46 @@ const Header = () => {
     await logoutServer({ variables: { username: JWTManager.getUsername() } });
     navigate('..')
   };
+
+
+
+  const [user, setUser] = useState(null);
+  
+
+  useEffect(() => {
+    // const headers:any = ({
+    //   Accept: "application/json",
+    //   "Access-Control-Allow-Credentials": true, 
+    //   "Content-Type": "application/json",
+    // })
+    // const getUserProvider = async () => {
+      
+    //   await fetch("https://d9da-2001-ee0-5321-4c10-9969-874e-f83c-14a7.ap.ngrok.io/auth/login/success", {
+    //     method: "GET",
+    //     credentials: "include",
+    //     headers,
+    //   })
+    //   .then((response) => {
+    //     if (response.status === 200) return response.json();
+    //     throw new Error("authentication has been failed!");
+    //   })
+    //   .then((resObject) => {
+    //     setUser(resObject.user);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+    // };
+    // getUserProvider();
+
+    
+    axios.get('https://d9da-2001-ee0-5321-4c10-9969-874e-f83c-14a7.ap.ngrok.io/auth/home',{
+        withCredentials: true
+      }).then(res => {
+        setUser(res.data.user);
+      })
+  }, []);  
+  console.log('user: ', user)
 
   const [visible, setVisible] = useState(false);
   // const showDrawer = () => {

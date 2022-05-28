@@ -1,19 +1,26 @@
-import React, { useState } from "react";
-import { Form, Input, Button, Checkbox } from "antd";
-import "../../sass/Admin/AdminLoginForm.scss";
-import { useMutation } from "@apollo/client";
-import JWTManager from "../../modules/utils/jwt";
+import { useMutation, useQuery } from "@apollo/client";
+import { Button, Checkbox, Form, Input, message } from "antd";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LOGIN_ADMIN } from "../../graphql/mutations/loginAdmin.graphql";
+import { getAdminByName } from "../../graphql/schema/admin.graphql";
 import { useAuthContext } from "../../modules/context/AuthContext";
+import JWTManager from "../../modules/utils/jwt";
+import "../../sass/Admin/AdminLoginForm.scss";
 
 function AdminLoginForm() {
+  
   const navigate = useNavigate();
-  const {setIsAuthenticated} = useAuthContext() 
+  const {setIsAuthenticated, setIsAdmin, isAdmin, isAuthenticated} = useAuthContext() 
   const [adminLogin, {data, loading, error}] = useMutation(LOGIN_ADMIN);
   const [errorMessage, setErrorMessage] = useState("")
-  if (loading) return <p>loading....</p>;
-  if (error) return <p>error</p>;
+  // useEffect(() => {
+  //   if (isAdmin) {
+  //     message.info("Bạn đã đăng nhập rùi");
+  //     navigate("/dashboard");
+  //   }
+  // }, []);
+  
   const onFinish = async (values: any) => {
     const response = await adminLogin({
       variables : {username: values.username, password: values.password}
@@ -23,13 +30,32 @@ function AdminLoginForm() {
       JWTManager.setToken(response.data.adminLogin.accessToken as string)
       console.log(response.data.adminLogin.accessToken as string)
       setIsAuthenticated(true)
-      console.log(response.data.adminLogin.accessToken)
+      setIsAdmin(true)
       navigate('/dashboard')
     } else {
       if (response.data?.adminLogin.message) setErrorMessage(response.data.adminLogin.message)
     }
   };
+  // useEffect(async () => {
+
+  //   const checkAuth = await useQuery(getAdminByName, {
+  //     variables: {
+  //         username: JWTManager.getUsername() ?? false
+  //     }
+  //   })
+  //   if (checkAuth.loading) return <p>loadingQuery.....</p>;
+  //   if (checkAuth.error) return <p>errorQuery</p>;
+  //   if(checkAuth.data.getAdminByName.username ){
+  //       setIsAdmin(true)
+  //   }
+  //   console.log('data: ', checkAuth.data.getAdminByName.username)
+  
+  //   if (loading) return <p>loading....</p>;
+  //   if (error) return <p>error</p>;
+  // }, [isAdmin === true]);
+  console.log('isadmin: ', isAdmin)
   return (
+    <>
     <Form
       name="basic"
       labelCol={{ span: 8 }}
@@ -53,6 +79,7 @@ function AdminLoginForm() {
           style={{ width: "80%", position: "relative", left: "50%" }}
         />
       </Form.Item>
+      {errorMessage && <p style={{color:"red", textAlign: "center", fontSize:"20px"}}>{errorMessage}</p>}
       <Form.Item
         label="Username"
         name="username"
@@ -83,6 +110,8 @@ function AdminLoginForm() {
         </Button>
       </Form.Item>
     </Form>
+    </>
+    
   );
 }
 

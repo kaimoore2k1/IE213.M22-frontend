@@ -1,16 +1,17 @@
-import { Avatar, Dropdown, Space } from "antd";
+import { Avatar, Dropdown, message, Space } from "antd";
 import React from "react";
 import { UserOutlined } from "@ant-design/icons";
 import AdminLogout from "../../components/core/AdminLogout";
 import JWTManager from "../../modules/utils/jwt";
 import { useAuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function AdminLogin() {
-  const { isAuthenticated } = useAuthContext();
-
+  const { isAuthenticated, isAdmin } = useAuthContext();
+  const navigate = useNavigate();
   return (
     <>
-      {isAuthenticated ? (
+      {isAdmin ? (
         <>
           <div
             style={{

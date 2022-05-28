@@ -20,7 +20,7 @@ function App() {
     authenticate();
   }, [checkAuth]);
   if (loading) <Loader />;
-
+  
   return (
     <div className="App">
       <Suspense fallback={<Loader />}>

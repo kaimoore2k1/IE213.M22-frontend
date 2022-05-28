@@ -53,7 +53,7 @@ const { TabPane } = Tabs;
 
 
 const Profile = () => {
-  const { isAuthenticated } = useAuthContext();
+  const { isAuthenticated,isAdmin } = useAuthContext();
   const navigate = useNavigate();
   useEffect(() => {
     if (!isAuthenticated) {
@@ -61,9 +61,15 @@ const Profile = () => {
       navigate("/login");
     }
   }, []);
+  // useEffect(() => {
+  //   if (!isAdmin) {
+  //     message.error("Bạn không có quyền truy cập vào trang này");
+  //     navigate("..");
+  //   }
+  // }, []);
 
   //Thay đổi mật khẩu
-  const [changePassword, {data, loading, error}] = useMutation(CHANGE_PASSWORD);
+  // const [changePassword, {data, loading, error}] = useMutation(CHANGE_PASSWORD);
 
 
   const [editAble, setEditAble] = useState(false);

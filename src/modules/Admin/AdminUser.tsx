@@ -1,4 +1,4 @@
-import { Drawer, Table } from "antd";
+import { Drawer, message, Table } from "antd";
 import React, { useEffect, useState } from "react";
 import AdminContentHeader from "./AdminContentHeader";
 import AdminCreateUser from "./AdminCreateUser";
@@ -7,12 +7,16 @@ import "../../sass/Admin/Admin.scss";
 import { useQuery } from "@apollo/client";
 import { getAllUsers } from "../../graphql/schema/user.graphql";
 import Loader from "../../components/core/Loader";
+import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../context/AuthContext";
 
 function AdminUser() {
   const { loading, error, data } = useQuery(getAllUsers);
   const title = "User Management";
   const userData: any = [];
   const [dataSource, setDataSource] = useState(userData);
+  const navigate = useNavigate();
+  const { isAdmin } = useAuthContext();
 
   const [searchValue, setSearchValue] = useState("");
 
@@ -44,6 +48,12 @@ function AdminUser() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
+  // useEffect(() => {
+  //   if (!isAdmin) {
+      
+  //     navigate("/");
+  //   }
+  // }, [isAdmin]);
   
   const titleDrawer = "UPDATE USER";
   const onClose = () => {

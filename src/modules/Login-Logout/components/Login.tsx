@@ -13,7 +13,10 @@ import { useAuthContext } from "../../context/AuthContext";
 function Login() {
  
   const navigate = useNavigate();
-  const {setIsAuthenticated} = useAuthContext()     
+  const {setIsAuthenticated} = useAuthContext() 
+  const google = () => {
+    window.open("https://d9da-2001-ee0-5321-4c10-9969-874e-f83c-14a7.ap.ngrok.io/auth/google", "_self")
+  }    
       const [login, {data, loading, error}] = useMutation(LOGIN);
       const [errorMessage, setErrorMessage] = useState('')
 
@@ -87,6 +90,29 @@ function Login() {
           </Form.Item>
         </Form>
       </div>
+      <div className="logout-another">
+                <p
+                    style={{marginLeft: "240px",  fontSize: "20px"}}
+                >
+                    Hoặc
+                </p>
+                <div className="facebook-google">
+                    <Button
+                        className="facebook-google--css"
+                    >
+                      <a href="https://ebe9-2001-ee0-5321-4c10-ed8c-8b48-54bc-9568.ap.ngrok.io/auth/facebook">
+
+                        Facebook
+                      </a>
+                    </Button>
+                    <Button
+                        className="facebook-google--css"
+                        onClick={google}
+                    >
+                        Google
+                    </Button>
+                </div>
+            </div>
       <div className="login--text">
         <p>
           Bạn chưa có tài khoản?
