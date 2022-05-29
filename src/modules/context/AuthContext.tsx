@@ -69,13 +69,13 @@ const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     useEffect(() => {
         const token = JWTManager.getToken();
         const refreshToken = async () => {
-            return await JWTManager.getRefreshToken()
+            return await JWTManager.getRefreshToken() 
                     
         }
-        if(check !== null){
-            if(token || refreshToken){
-                setIsAdmin(true)
-            }
+        if(check.data?.getAdminByName.success){
+            setIsAdmin(true)
+        }else{
+            setIsAdmin(false)
         }
     },[])
     console.log('isadmin context: ', isAdmin)
