@@ -6,31 +6,44 @@ import logo from "../../assets/images/logo.svg";
 import cart from "../../assets/images/shoppingCart.svg";
 import "../../sass/Home/Home.scss";
 import { useAuthContext } from "../../modules/context/AuthContext";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { LOGOUT } from "../../graphql/mutations/logout.graphql";
 import JWTManager from "../../modules/utils/jwt";
 import { LogoutOutlined } from "@ant-design/icons";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import toSlug from "../../assets/toSlug";
+import { getProductBooked } from "../../graphql/schema/user.graphql";
 const { Search } = Input;
 const { TabPane } = Tabs;
 const Header = () => {
   const navigate = useNavigate();
-  if (!window.localStorage.getItem("products")) {
-    window.localStorage.setItem("products", "[]");
-  }
-  let quantityProduct = JSON.parse(
-    window.localStorage.getItem("products") as string
-  ).length;
+  const { isAuthenticated, logoutClient } = useAuthContext();
+  const currentUsername = String(JWTManager.getUsername())
+  const cartUser = useQuery(getProductBooked(currentUsername))
+  let quantityProduct = useRef(0)
+  useEffect(() => {
+    if(isAuthenticated) {
+      if(cartUser.data) {
+        quantityProduct.current = cartUser.data.getProductBooked.length
+      }
+    }
+    else {
+      if (!window.localStorage.getItem("products")) {
+        window.localStorage.setItem("products", "[]");
+      }
+      quantityProduct.current = JSON.parse(
+        window.localStorage.getItem("products") as string
+      ).length;
+    }
+  }, [cartUser.data, isAuthenticated])
+  
   const onSearch = (value: string) => {
-    console.log(value);
     if (value) {
       sessionStorage.setItem("valueSearch", value);
       navigate(`/search/${toSlug(value)}`);
     }
   };
-  const { isAuthenticated, logoutClient } = useAuthContext();
   const [logoutServer, _] = useMutation(LOGOUT);
 
   const logoutHandler = async () => {
@@ -38,8 +51,6 @@ const Header = () => {
     await logoutServer({ variables: { username: JWTManager.getUsername() } });
     navigate("..");
   };
-
-
 
   const [user, setUser] = useState(null);
   
@@ -77,7 +88,6 @@ const Header = () => {
         setUser(res.data.user);
       })
   }, []);  
-  console.log('user: ', user)
 
   const [visible, setVisible] = useState(false);
   // const showDrawer = () => {
@@ -115,7 +125,7 @@ const Header = () => {
         <div className="header__right">
           <Link to={"/gio-hang"}>
             <button className="shopping_cart">
-              <Badge count={quantityProduct} offset={[8, -5]}>
+              <Badge count={quantityProduct.current} offset={[8, -5]}>
                 <img src={cart} alt="Giỏ hàng" />
               </Badge>
             </button>

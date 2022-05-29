@@ -133,7 +133,6 @@ function AdminAddBlog(props: {
           placeholder="url"
           onBlur={({ target }: any) => {
             setUrl(target.value);
-            console.log(target.value);
           }}
         />
       </Form.Item>

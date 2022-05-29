@@ -6,7 +6,6 @@ interface blogListProps{
 }
 
 const BlogSideCardList = ({name,blogList} : blogListProps) => {
-    console.log("blogList :>> ", blogList);
     
     return (<div className="blog-side-bar">
         <h4>{name}</h4>

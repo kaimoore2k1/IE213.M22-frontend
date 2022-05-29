@@ -9,6 +9,7 @@ export interface DataType {
     price: number;
     quantity: number;
     image: Image;
+    ID_Product: string
 }
 export interface PaymentInformation {
     firstName: string;

@@ -23,7 +23,6 @@ const { confirm } = Modal;
 const AdminContact = () => {
   const contactData = useQuery(getAllContact);
   const [deleteContact, dataDeleteContact] = useMutation(deleteContactById)
-  console.log("bookingData", contactData);
   const onSearch = (value: any) => {
     setSearchValue(value);
   };

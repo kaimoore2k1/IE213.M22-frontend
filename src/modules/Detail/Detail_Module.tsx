@@ -78,8 +78,6 @@ function Detail_Module() {
     window.alert("Quý khách đã thêm sản phẩm vào giỏ hàng");
   };
 
-  console.log("re-render");
-
   return (
     <section>
       <nav></nav>

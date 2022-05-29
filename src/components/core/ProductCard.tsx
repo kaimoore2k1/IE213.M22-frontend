@@ -7,16 +7,28 @@ import { productCardProps } from "./type";
 import toSlug from "../../assets/toSlug";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { useAuthContext } from "../../modules/context/AuthContext";
+import JWTManager from "../../modules/utils/jwt";
+import { AddProductToCart } from "../../graphql/mutations/product.graphql";
+import { useMutation } from "@apollo/client";
+import { getProductBooked } from "../../graphql/schema/user.graphql";
 
 const ProductCard = ({ product }: productCardProps) => {
-  if (!window.localStorage.getItem("products")) {
-    window.localStorage.setItem("products", "[]");
-  }
-  const [products, setProducts]: any = useState(
-    window.localStorage.getItem("products")
-  );
+  const { isAuthenticated } = useAuthContext();
+  const currentUsername = String(JWTManager.getUsername());
+  const [addProductToCart, dataAddProductToCart] =
+    useMutation(AddProductToCart);
+  const [products, setProducts]: any = useState();
+  useEffect(() => {
+    if (isAuthenticated) {
+    } else {
+      if (!window.localStorage.getItem("products")) {
+        window.localStorage.setItem("products", "[]");
+      }
+      setProducts(window.localStorage.getItem("products"));
+    }
+  }, [isAuthenticated]);
   const [viewHidden, setViewHidden] = useState(false);
-  console.log('mount')
   const rating =
     Math.round(
       (product.comments.reduce(
@@ -36,37 +48,47 @@ const ProductCard = ({ product }: productCardProps) => {
       productAddInfo?.classList.add("hidden");
     }
   }, [viewHidden]);
-
-  function handelAddToCart(value: any) {
-    let productCart: any = {
-      variant: value ?? null,
-      _id: product._id,
-      name: product.name,
-      price: product.salePrice ?? product.price,
-      image: product.images[0],
-      quantity: 1 /* i nop du chu ca mo */,
-    };
-    let flag = false;
-    const localCarts = JSON.parse(
-      window.localStorage.getItem("products") as string
-    );
-    if (localCarts[0] === undefined) {
-      productCart.quantity--;
-      localCarts.push(productCart);
-    }
-    for (let i = 0; i < localCarts.length; i++) {
-      if (localCarts[i].name === productCart.name) {
-        localCarts[i].quantity++;
-        flag = true;
-        break;
+  async function handelAddToCart(value: any) {
+    if (product.stock <= 0) {
+      message.warning("Sản phẩm đã được bán hết!");
+    } else {
+      if (!isAuthenticated) {
+        let productCart: any = {
+          variant: value ?? null,
+          _id: product._id,
+          name: product.name,
+          price: product.salePrice ?? product.price,
+          image: product.images[0],
+          quantity: 1 /* i nop du chu ca mo */,
+        };
+        let flag = false;
+        const localCarts = JSON.parse(
+          window.localStorage.getItem("products") as string
+        );
+        if (localCarts[0] === undefined) {
+          productCart.quantity--;
+          localCarts.push(productCart);
+        }
+        for (let i = 0; i < localCarts.length; i++) {
+          if (localCarts[i].name === productCart.name) {
+            localCarts[i].quantity++;
+            flag = true;
+            break;
+          }
+        }
+        if (!flag) {
+          localCarts.push(productCart);
+        }
+        window.localStorage.setItem("products", JSON.stringify(localCarts));
+        setProducts(window.localStorage.getItem("products") as string);
+      } else {
+        await addProductToCart({
+          variables: { username: currentUsername, _id: product._id },
+          refetchQueries: [{ query: getProductBooked(currentUsername) }],
+        });
       }
+      message.success("Thêm vào giỏ hàng thành công");
     }
-    if (!flag) {
-      localCarts.push(productCart);
-    }
-    window.localStorage.setItem("products", JSON.stringify(localCarts));
-    setProducts(window.localStorage.getItem("products") as string);
-    message.success("Thêm vào giỏ hàng thành công");
   }
 
   return (

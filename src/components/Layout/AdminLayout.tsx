@@ -47,7 +47,6 @@ function AdminLayout() {
     }
   }, [location, navigate, isAdmin]);
 
-  console.log('isadmin: ', isAdmin)
   useEffect(() => {
     const handleResize = () => {
       if (!(window.innerWidth > 800) && collapsed === false) {

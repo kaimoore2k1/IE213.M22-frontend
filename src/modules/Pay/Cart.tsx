@@ -1,30 +1,60 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Table, Button } from "antd";
 import { useState } from "react";
 import { DeleteOutlined, ArrowLeftOutlined } from "@ant-design/icons";
 import { ColumnsType } from "antd/es/table";
 import { DataType } from "./type";
 import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../context/AuthContext";
+import JWTManager from "../../modules/utils/jwt";
+import { useMutation, useQuery } from "@apollo/client";
+import {
+  getProductBooked,
+  UpdateProductCart,
+} from "../../graphql/schema/user.graphql";
 
 export interface CurrentProps {
   callBackCurrent(childCurrent: number): void;
 }
 
 function Cart({ callBackCurrent }: CurrentProps) {
-  if (!window.localStorage.getItem("products")) {
-    window.localStorage.setItem("products", "[]");
-  }
-  let i = 0;
-  
   const navigate = useNavigate();
-  const data: DataType[] = JSON.parse(
-    window.localStorage.getItem("products") as string
-  );
-  const [dataType, setDataType] = useState<DataType[]>(
-    data.map((dt) => {
-      return { ...dt, ...{ key: ++i } };
-    })
-  );
+  const { isAuthenticated } = useAuthContext();
+  const initialValues: DataType[] = [];
+  const [dataType, setDataType] = useState<DataType[]>(initialValues);
+  const currentUsername = String(JWTManager.getUsername());
+  const cartUser = useQuery(getProductBooked(currentUsername));
+  const [updateProductCart, dataUpdateProductCart] =
+    useMutation(UpdateProductCart);
+  useEffect(() => {
+    if (isAuthenticated) {
+      if (cartUser.data) {
+        let i = 0;
+        setDataType(
+          cartUser.data.getProductBooked.map((dt: any) => {
+            return {
+              ...dt,
+              ...{ ID_Product: dt.ID_Product, key: ++i, image: { url: dt.images[0].url } },
+            };
+          })
+        );
+      }
+    } else {
+      let i = 0;
+      if (!window.localStorage.getItem("products")) {
+        window.localStorage.setItem("products", "[]");
+      }
+      const data: DataType[] = JSON.parse(
+        window.localStorage.getItem("products") as string
+      );
+      setDataType(
+        data.map((dt) => {
+          return { ...dt, ...{ key: ++i } };
+        })
+      );
+    }
+  }, [cartUser.data, isAuthenticated]);
+
   let isDisabled = true;
   if (dataType.length > 0) {
     isDisabled = false;
@@ -40,10 +70,22 @@ function Cart({ callBackCurrent }: CurrentProps) {
     const newRecord = { ...dataType[index], quantity: value };
     const AfterValue = dataType.slice(index + 1, dataType.length);
     const BeforeValue = dataType.slice(0, index);
-    setDataType((pre: any) => {
-      return [...BeforeValue, newRecord, ...AfterValue];
-    });
-    window.localStorage.setItem('products', JSON.stringify(dataType));
+    const newData = [...BeforeValue, newRecord, ...AfterValue];
+    setDataType(newData);
+    if (isAuthenticated) {
+      const dataUpdate = dataType.map(dt => {
+        return {
+          ID_Product: dt.ID_Product,
+          quantity: dt.quantity
+        }
+      })
+      updateProductCart({
+        variables: { username: currentUsername, data: dataUpdate},
+        refetchQueries: [getProductBooked(currentUsername)],
+      });
+    } else {
+      window.localStorage.setItem("products", JSON.stringify(dataType));
+    }
   };
   const handelPlus = (record: DataType) => {
     record.quantity += 1;
@@ -58,7 +100,20 @@ function Cart({ callBackCurrent }: CurrentProps) {
     setDataType(() => {
       return [...BeforeValue, newRecord, ...AfterValue];
     });
-    window.localStorage.setItem('products', JSON.stringify(dataType));
+    if (isAuthenticated) {
+      const dataUpdate = dataType.map(dt => {
+        return {
+          ID_Product: dt.ID_Product,
+          quantity: dt.quantity
+        }
+      })
+      updateProductCart({
+        variables: { username: currentUsername, data: dataUpdate},
+        refetchQueries: [getProductBooked(currentUsername)],
+      });
+    } else {
+      window.localStorage.setItem("products", JSON.stringify(dataType));
+    }
   };
   const handelDelete = (record: DataType) => {
     const newData = [...dataType];
@@ -67,7 +122,20 @@ function Cart({ callBackCurrent }: CurrentProps) {
       newRecord[i].key = i + 1;
     }
     setDataType(newRecord);
-    window.localStorage.setItem('products', JSON.stringify(newRecord));
+    if (isAuthenticated) {
+      const dataUpdate = newRecord.map(dt => {
+        return {
+          ID_Product: dt.ID_Product,
+          quantity: dt.quantity
+        }
+      })
+      updateProductCart({
+        variables: { username: currentUsername, data: dataUpdate},
+        refetchQueries: [getProductBooked(currentUsername)],
+      });
+    } else {
+      window.localStorage.setItem("products", JSON.stringify(newRecord));
+    }
   };
   const columns: ColumnsType<DataType> = [
     {

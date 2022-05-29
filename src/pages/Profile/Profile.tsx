@@ -79,7 +79,6 @@ const Profile = () => {
   
   const getAccountInfo = useQuery(getAccount(currentUsername))
   
-  console.log(getAccountInfo.data)
   const updatedData = {
     username: "",
     password: "",
@@ -103,7 +102,6 @@ const Profile = () => {
         info.phoneNumber = initialUser.data.getUserByUsername.numberPhone
         info.email = initialUser.data.getUserByUsername.email
         info.address = initialUser.data.getUserByUsername.address || initialUser.data.getUserByUsername.city + " " + initialUser.data.getUserByUsername.country
-        console.log(info)
         form.setFieldsValue(info)
       }
     } catch (error) {
@@ -138,7 +136,6 @@ const Profile = () => {
 
     setEditAble(false);
     //success
-    console.log(value)
     
     const name = value.fullname.split(" ");
     updatedData.lastName = name[0];
@@ -166,12 +163,10 @@ const Profile = () => {
       message.success("Cập nhật thông tin người dùng thành công")
     }
     
-    console.log("User information " + updateUserInfo.data.email)
 
     updateAcc({ variables: { username: updatedData.username, data: datainput } })
   };
   const savePassword = (value: any) => {
-    console.log(value);
     changePassword({ variables: { username: currentUsername, password: String(value.password), newPassword: String(value.newPassword) } })
   };
   const [form] = Form.useForm();

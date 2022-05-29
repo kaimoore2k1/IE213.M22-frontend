@@ -31,6 +31,20 @@ export const getUserByUsername = (username: string) => gql`
         }
     }
 `
+export const getProductBooked = (username: string) => gql`
+query {
+  getProductBooked(username:"${username}"){
+    ID_Product
+    price
+    images{
+      url
+      title
+    }
+    quantity
+    name
+  }
+}
+`
 
 export const createUser = gql`
     mutation createOrUpdateUser($username: String!, $data: UserInput){
@@ -47,4 +61,20 @@ export const deleteUser = gql`
         username
     }
 }
+`
+
+export const UpdateProductCart = gql`
+    mutation updateProductCart($username: String, $data: [BookedProductInput]) {
+        updateProductCart(username: $username, data: $data) {
+            username
+        }
+    }
+`
+
+export const ClearProductCart = gql `
+    mutation clearProductCart($username: String!) {
+        clearProductCart(username: $username) {
+            username
+        }
+    }
 `

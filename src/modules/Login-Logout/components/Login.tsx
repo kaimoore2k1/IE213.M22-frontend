@@ -30,7 +30,6 @@ function Login() {
         
         if (response.data?.login.success) {
           JWTManager.setToken(response.data.login.accessToken as string)
-          console.log(response.data.login.accessToken as string)
           setIsAuthenticated(true)
           navigate('..')
         } else {

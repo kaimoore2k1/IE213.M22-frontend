@@ -2,19 +2,30 @@ import React, { useEffect, useState } from "react";
 import { Button, Typography } from "antd";
 import { CartFinishIcon } from "../../assets/icons/CartFinishIcon";
 import { useNavigate } from "react-router-dom";
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { LASTEDBILL } from "../../graphql/mutations/bill.graphql";
+import { ClearProductCart } from "../../graphql/schema/user.graphql";
+import JWTManager from "../../modules/utils/jwt";
 
 
 function PaymentFinished() {
+  const currentUsername = String(JWTManager.getUsername());
   window.localStorage.setItem("products", "[]");
+  const [updateProductCart, dataUpdateProductCart] = useMutation(ClearProductCart);
+  updateProductCart({
+    variables: { username: currentUsername},
+  })
   const navigate = useNavigate();
   const bill = useQuery(LASTEDBILL)
   const initialValues:any = {total: 0}
   const [data, setData] = useState(initialValues)
+  console.log(data)
   useEffect(() => {
+    console.log("a")
     if(bill.data) {
-      setData(bill.data.getTheLastedBill)
+      if(bill.data.getTheLastedBill !== data) {
+        setData(bill.data.getTheLastedBill)
+      }
     }
   }, [bill.data])
   const dataFormat = data.total.toLocaleString("vi-VN", {

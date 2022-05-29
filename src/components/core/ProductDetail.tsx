@@ -18,15 +18,33 @@ import { Link, useParams } from "react-router-dom";
 import Comment from "./Comment";
 import CommentEditor from "./CommentEditor";
 import { categoryTranslate } from "./../../assets/categoryTranslate";
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { getCommentsByProductID } from "../../graphql/schema/comment.graphql";
 import Loader from "./Loader";
 import { Helmet } from "react-helmet";
+import { useAuthContext } from "../../modules/context/AuthContext";
+import { AddProductToCart } from "../../graphql/mutations/product.graphql";
+import JWTManager from "../../modules/utils/jwt";
+import { getProductBooked } from "../../graphql/schema/user.graphql";
 interface ProductDetailProps {
   product: productDetail;
 }
 
 const ProdcutDetail = ({ product }: ProductDetailProps) => {
+  const { isAuthenticated } = useAuthContext();
+  const currentUsername = String(JWTManager.getUsername());
+  const [addProductToCart, dataAddProductToCart] =
+    useMutation(AddProductToCart);
+  const [products, setProducts]: any = useState();
+  useEffect(() => {
+    if (isAuthenticated) {
+    } else {
+      if (!window.localStorage.getItem("products")) {
+        window.localStorage.setItem("products", "[]");
+      }
+      setProducts(window.localStorage.getItem("products"));
+    }
+  }, [isAuthenticated]);
   const [productQuantity, setProductQuantity] = useState(1);
   const { loading, error, data } = useQuery(getCommentsByProductID(product._id));
 const slug= useParams().productName ?? "";
@@ -73,18 +91,44 @@ const slug= useParams().productName ?? "";
     }
   }
 
-  function handelAddToCart(value: any) {
-    console.log({
-      variant: value ?? null,
-      _id: product._id,
-      name: product.name,
-      price: product.salePrice ?? product.price,
-      image: product.images[0],
-      quantity: productQuantity,
-    });
+  async function handelAddToCart(value: any) {
+    if (!isAuthenticated) {
+      let productCart: any = {
+        variant: value ?? null,
+        _id: product._id,
+        name: product.name,
+        price: product.salePrice ?? product.price,
+        image: product.images[0],
+        quantity: 1 /* i nop du chu ca mo */,
+      };
+      let flag = false;
+      const localCarts = JSON.parse(
+        window.localStorage.getItem("products") as string
+      );
+      if (localCarts[0] === undefined) {
+        productCart.quantity--;
+        localCarts.push(productCart);
+      }
+      for (let i = 0; i < localCarts.length; i++) {
+        if (localCarts[i].name === productCart.name) {
+          localCarts[i].quantity++;
+          flag = true;
+          break;
+        }
+      }
+      if (!flag) {
+        localCarts.push(productCart);
+      }
+      window.localStorage.setItem("products", JSON.stringify(localCarts));
+      setProducts(window.localStorage.getItem("products") as string);
+    } else {
+      await addProductToCart({
+        variables: { username: currentUsername, _id: product._id },
+        refetchQueries: [{ query: getProductBooked(currentUsername) }],
+      });
+    }
     message.success("Thêm vào giỏ hàng thành công");
   }
-
   return (
     <>
       <Helmet>

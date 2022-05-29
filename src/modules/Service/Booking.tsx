@@ -59,7 +59,6 @@ function Booking() {
             },
           });
           form.resetFields();
-          console.log(InformationForm);
         },
         onCancel() {
           console.log("Cancel");

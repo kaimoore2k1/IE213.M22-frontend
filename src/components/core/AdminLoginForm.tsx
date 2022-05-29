@@ -28,7 +28,6 @@ function AdminLoginForm() {
 
     if (response.data?.adminLogin.success) {
       JWTManager.setToken(response.data.adminLogin.accessToken as string)
-      console.log(response.data.adminLogin.accessToken as string)
       setIsAuthenticated(true)
       setIsAdmin(true)
       navigate('/dashboard')
@@ -53,7 +52,6 @@ function AdminLoginForm() {
   //   if (loading) return <p>loading....</p>;
   //   if (error) return <p>error</p>;
   // }, [isAdmin === true]);
-  console.log('isadmin: ', isAdmin)
   return (
     <>
     <Form

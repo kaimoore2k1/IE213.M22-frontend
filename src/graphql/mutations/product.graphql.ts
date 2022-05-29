@@ -15,3 +15,11 @@ mutation deleteProductByName($name: String!){
   }
 }
 `
+
+export const AddProductToCart = gql `
+mutation addProductToCart($username: String!, $_id: String){
+  addProductToCart(username:$username, _id:$_id) {
+    username
+  }
+}
+`
