@@ -1,3 +1,5 @@
+import { ReactChild, ReactFragment, ReactPortal } from "react";
+
 export const userColumns = [
   {
     title: "ID",
@@ -30,6 +32,7 @@ export const userColumns = [
     title: "Carts",
     dataIndex: "productsBooked",
     key: "productsBooked",
+    render: (text: {ID_Product?:string}) => <p>a{console.log(text?.ID_Product)}</p>,
   },
 ];
 

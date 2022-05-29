@@ -11,7 +11,9 @@ export const getAllUsers = gql`
             numberPhone
             email
             dateCreate
-            productsBooked
+            productsBooked {
+                ID_Product
+            }
         }
     }
 `

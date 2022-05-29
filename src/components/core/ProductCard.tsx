@@ -82,6 +82,7 @@ const ProductCard = ({ product }: productCardProps) => {
         window.localStorage.setItem("products", JSON.stringify(localCarts));
         setProducts(window.localStorage.getItem("products") as string);
       } else {
+        console.log(currentUsername)
         await addProductToCart({
           variables: { username: currentUsername, _id: product._id },
           refetchQueries: [{ query: getProductBooked(currentUsername) }],
