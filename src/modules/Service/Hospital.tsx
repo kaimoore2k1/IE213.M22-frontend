@@ -77,7 +77,7 @@ function Hospital() {
           <p className="pTitle service">Xét nghiệm – Chẩn đoán hình ảnh</p>
         </strong>
         <p>
-          Tại PetCare, các thiết bị y tế hiện đại được đầu tư nhằm phục vụ công
+          Tại Sen Shop, các thiết bị y tế hiện đại được đầu tư nhằm phục vụ công
           tác chăm sóc vật nuôi. Khi cần thiết, các bác sĩ sẽ tiến hành các
           phương pháp chẩn đoán hình ảnh hoặc làm xét nghiệm để đưa ra hướng
           điều trị phù hợp với thú cưng của bạn.
@@ -115,7 +115,7 @@ function Hospital() {
           <li>Kháng sinh đồ.</li>
         </ul>
         <p>
-          Ngoài ra PetCare còn liên kết với các phòng xét nghiệm tại nước ngoài
+          Ngoài ra Sen Shop còn liên kết với các phòng xét nghiệm tại nước ngoài
           trong trường hợp thú cưng của bạn cần thêm xét nghiệm chuyên khoa
           khác.
         </p>
@@ -123,7 +123,7 @@ function Hospital() {
           <p className="pTitle service">Phẫu thuật</p>
         </strong>
         <p>
-          Bệnh viện Thú y PetCare cung cấp dịch vụ phẫu thuật điều trị và phẫu
+          Bệnh viện Thú y Sen Shop cung cấp dịch vụ phẫu thuật điều trị và phẫu
           thuật thẩm mỹ. Các dịch vụ chúng tôi cung cấp bao gồm:
         </p>
         <p className="pTitle">Phẫu thuật điều trị</p>
@@ -180,7 +180,7 @@ function Hospital() {
           Bệnh về răng miệng là một trong những căn bệnh thường gặp ở chó mèo.
           Bệnh gây ảnh hưởng đến sức khỏe và chất lượng cuộc sống của vật nuôi
           nếu không được điều trị sớm. Để phòng ngừa bệnh và hạn chế các tổn
-          thương cho vật nuôi do vệ sinh răng chưa đúng cách, PetCare cung cấp
+          thương cho vật nuôi do vệ sinh răng chưa đúng cách, Sen Shop cung cấp
           dịch vụ chăm sóc răng miệng (chải răng, kiểm tra lợi và loại bỏ cặn
           bám làm vàng răng) cho chó mèo.
         </p>
@@ -214,8 +214,8 @@ function Hospital() {
           <p className="pTitle service">Cấp cứu 24/7</p>
         </strong>
         <p>
-          PetCare cung cấp dịch vụ cấp cứu 24/7, kể cả ngày lễ. Hãy gọi cho chi
-          nhánh PetCare gần nhất và mang thú cưng tới bệnh viện khi bạn thấy các
+          Sen Shop cung cấp dịch vụ cấp cứu 24/7, kể cả ngày lễ. Hãy gọi cho chi
+          nhánh Sen Shop gần nhất và mang thú cưng tới bệnh viện khi bạn thấy các
           biểu hiện :
         </p>
         <ul>
