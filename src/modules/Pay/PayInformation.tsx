@@ -4,11 +4,14 @@ import { ArrowLeftOutlined } from "@ant-design/icons";
 import { CurrentProps } from "./Cart";
 import { FieldData, CustomizedFormProps } from "./type";
 import { useNavigate } from "react-router-dom";
-import {useMutation, useQuery} from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { BILL, LASTEDBILL } from "../../graphql/mutations/bill.graphql";
 import { useAuthContext } from "../context/AuthContext";
 import JWTManager from "../../modules/utils/jwt";
-import { getProductBooked, getUserByUsername } from "../../graphql/schema/user.graphql";
+import {
+  getProductBooked,
+  getUserByUsername,
+} from "../../graphql/schema/user.graphql";
 
 function PayInformation({ callBackCurrent }: CurrentProps) {
   const { isAuthenticated } = useAuthContext();
@@ -16,25 +19,26 @@ function PayInformation({ callBackCurrent }: CurrentProps) {
   const [addBill, dataBillMutation] = useMutation(BILL);
   const prefixSelector = <Form.Item noStyle>+84</Form.Item>;
   const navigate = useNavigate();
-  let paymentInformation: any = useRef([])
+  let paymentInformation: any = useRef([]);
   const cartUser = useQuery(getProductBooked(currentUsername));
-  const [initialValues, setInitialValues] = useState()
-  const dataUserInformation = useQuery(getUserByUsername(currentUsername))
+  const [initialValues, setInitialValues] = useState();
+  const dataUserInformation = useQuery(getUserByUsername(currentUsername));
   useEffect(() => {
-    if(dataUserInformation.data) {
-      setInitialValues(dataUserInformation.data.getUserByUsername)
+    if (dataUserInformation.data) {
+      setInitialValues(dataUserInformation.data.getUserByUsername);
     }
-  }, [dataUserInformation.data])
+  }, [dataUserInformation.data]);
   useEffect(() => {
-    if(isAuthenticated) {
-      paymentInformation.current = cartUser.data.getProductBooked
-    }
-    else {
+    if (isAuthenticated) {
+      if (cartUser.data) {
+        paymentInformation.current = cartUser.data.getProductBooked;
+      }
+    } else {
       paymentInformation.current = JSON.parse(
         window.localStorage.getItem("products") as string
       );
     }
-  }, [cartUser.data.getProductBooked, isAuthenticated])
+  }, [cartUser.data, isAuthenticated]);
   interface PaymentMethod {
     paymentMethodID: number;
     name: string;
@@ -54,7 +58,6 @@ function PayInformation({ callBackCurrent }: CurrentProps) {
     },
   ];
 
-
   const handelFinish = async (e: any) => {
     const day = new Date();
     let total = 0;
@@ -64,9 +67,15 @@ function PayInformation({ callBackCurrent }: CurrentProps) {
       amount += paymentInformation.current[i].quantity;
     }
     const { firstName, lastName, address, numberPhone, paymentMethod } = e;
-    const productData = paymentInformation.current.map((infor: { name: any; quantity: any; price: any; }) => {
-      return {name: infor.name, quantity: infor.quantity, price: infor.price}
-    })
+    const productData = paymentInformation.current.map(
+      (infor: { name: any; quantity: any; price: any }) => {
+        return {
+          name: infor.name,
+          quantity: infor.quantity,
+          price: infor.price,
+        };
+      }
+    );
     const payment = {
       products: productData,
       date: day.toLocaleDateString(),
@@ -76,11 +85,11 @@ function PayInformation({ callBackCurrent }: CurrentProps) {
       lastName,
       address,
       numberPhone,
-      paymentMethod
+      paymentMethod,
     };
     await addBill({
-      variables: { data: payment }
-    })
+      variables: { data: payment },
+    });
     callBackCurrent(3);
   };
 

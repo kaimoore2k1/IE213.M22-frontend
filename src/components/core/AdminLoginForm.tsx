@@ -14,12 +14,12 @@ function AdminLoginForm() {
   const {setIsAuthenticated, setIsAdmin, isAdmin, isAuthenticated} = useAuthContext() 
   const [adminLogin, {data, loading, error}] = useMutation(LOGIN_ADMIN);
   const [errorMessage, setErrorMessage] = useState("")
-  // useEffect(() => {
-  //   if (isAdmin) {
-  //     message.info("Bạn đã đăng nhập rùi");
-  //     navigate("/dashboard");
-  //   }
-  // }, []);
+
+  useEffect(() => {
+    if(isAdmin) {
+      navigate('/dashboard')
+    }
+  }, [isAdmin, navigate])
   
   const onFinish = async (values: any) => {
     const response = await adminLogin({
@@ -35,23 +35,6 @@ function AdminLoginForm() {
       if (response.data?.adminLogin.message) setErrorMessage(response.data.adminLogin.message)
     }
   };
-  // useEffect(async () => {
-
-  //   const checkAuth = await useQuery(getAdminByName, {
-  //     variables: {
-  //         username: JWTManager.getUsername() ?? false
-  //     }
-  //   })
-  //   if (checkAuth.loading) return <p>loadingQuery.....</p>;
-  //   if (checkAuth.error) return <p>errorQuery</p>;
-  //   if(checkAuth.data.getAdminByName.username ){
-  //       setIsAdmin(true)
-  //   }
-  //   console.log('data: ', checkAuth.data.getAdminByName.username)
-  
-  //   if (loading) return <p>loading....</p>;
-  //   if (error) return <p>error</p>;
-  // }, [isAdmin === true]);
   return (
     <>
     <Form

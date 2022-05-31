@@ -36,14 +36,12 @@ function AdminLayout() {
 
   useEffect(() => {
     if (!isAdmin) {
-      message.error("Bạn không có quyền truy cập vào trang này");
-      navigate("/");
+      navigate("/admin");
     }
     else{
       if (location.pathname === "/dashboard") {
         navigate("/dashboard/users");
       }
-
     }
   }, [location, navigate, isAdmin]);
 

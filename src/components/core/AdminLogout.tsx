@@ -13,7 +13,7 @@ function AdminLogout() {
   const onClick = async () => {
     logoutClient()
     await logoutServer({ variables: { username: JWTManager.getUsername() } })
-    navigate('..')
+    navigate('/admin')
   }
   return (
     <Menu>
