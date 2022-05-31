@@ -32,7 +32,9 @@ export const userColumns = [
     title: "Carts",
     dataIndex: "productsBooked",
     key: "productsBooked",
-    render: (text: {ID_Product?:string}) => <p>a{console.log(text?.ID_Product)}</p>,
+    render: (text: any) => <p>{text[0]?text.map((txt:any) => {
+      return txt.ID_Product + ', '
+    }):"Cart Empty"}</p>,
   },
 ];
 
