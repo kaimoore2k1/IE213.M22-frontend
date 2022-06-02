@@ -52,7 +52,7 @@ const Header = () => {
     navigate("..");
   };
 
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState();
   
 
   useEffect(() => {
@@ -82,12 +82,14 @@ const Header = () => {
     // getUserProvider();
 
     
-    axios.get('https://d9da-2001-ee0-5321-4c10-9969-874e-f83c-14a7.ap.ngrok.io/auth/home',{
-        withCredentials: true
-      }).then(res => {
-        setUser(res.data.user);
+    axios.get('https://890c-116-109-196-38.ap.ngrok.io/auth/home',{
+      withCredentials: true
+      }).then((res) => {
+        setUser(res.data);
+        console.log('user provider: ', res.data)
       })
   }, []);  
+  
 
   const [visible, setVisible] = useState(false);
   // const showDrawer = () => {
