@@ -77,9 +77,10 @@ const Profile = () => {
   const [updateUser, updateUserInfo] = useMutation(createUser);
   
   
-  const getAccountInfo = useQuery(getAccount(currentUsername))
   
+  const getAccountInfo = useQuery(getAccount(currentUsername))
   console.log(getAccountInfo.data)
+  
   const updatedData = {
     username: "",
     password: "",

@@ -5,7 +5,7 @@ export const getAccount = (username: string) => gql`
     query{
         getAccountByName(username: ${username}){
             username
-            status
+            password
         }
     }
 `
