@@ -26,6 +26,7 @@ function AdminAddComment(props: {
     }else{
       message.success("Delete successfully!")
     }
+    props.visibleProp(false);
   }
   
   return (
