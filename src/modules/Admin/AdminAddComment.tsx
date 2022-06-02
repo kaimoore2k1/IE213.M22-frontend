@@ -2,6 +2,7 @@ import { useMutation } from "@apollo/client";
 import { Button, Col, Form, Input, message, Row, Popconfirm } from "antd";
 import React from "react";
 import { DELETE_COMMENT } from "../../graphql/mutations/comment.graphql";
+import { getAllComments } from "../../graphql/schema/comment.graphql";
 // import { createComment, deleteComment } from "../../graphql/schema/comment.graphql";
 
 function AdminAddComment(props: {
@@ -16,14 +17,16 @@ function AdminAddComment(props: {
     deleteComment({
       variables:{
         _id: props.dataProp._id
-      }
+      },
+      refetchQueries: [{query: getAllComments}]
     })
 
     if(error){
-      message.error("Deleted successfully!");
+      message.error("Deleted error!");
     }else{
-      message.success("Delete Error!")
+      message.success("Delete successfully!")
     }
+    props.visibleProp(false);
   }
   
   return (

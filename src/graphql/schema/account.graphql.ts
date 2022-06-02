@@ -1,11 +1,11 @@
 import { gql } from "@apollo/client";
 
-export const getAccount = (username: string) => gql`
+export const getAccountByName = (username: string) => gql`
 
     query{
-        getAccountByName(username: ${username}){
+        getAccountByName(username: "${username}"){
             username
-            status
+            password
         }
     }
 `
@@ -17,4 +17,18 @@ export const updateAccountInfo = gql`
         }
     }
 `
+export const deleteAccount = gql`
+    mutation deleteAccount($username: String!){
+        deleteAccount(username: $username){
+            username
+        }
+    }
+`
 
+export const deleteAccountFromFrontend = gql`
+    mutation deleteAccountFromFrontend($username: String!, $password: String!){
+        deleteAccountFromFrontend(username: $username, password: $password){
+            username
+        }
+    }
+`

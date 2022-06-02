@@ -1,8 +1,20 @@
 import { useMutation } from "@apollo/client";
-import { Button, Col, Form, Input, message, Row, Popconfirm } from "antd";
+import {
+  Button,
+  Col,
+  Form,
+  Input,
+  message,
+  Row,
+  Popconfirm,
+  InputNumber,
+} from "antd";
 import React from "react";
 import PicturesWall from "../../components/core/PicturesWall";
-import { DeleteProductByName, UpdateProductByName } from "../../graphql/mutations/product.graphql";
+import {
+  DeleteProductByName,
+  UpdateProductByName,
+} from "../../graphql/mutations/product.graphql";
 import { getAllProduct } from "../../graphql/schema/product.graphql";
 
 function AdminAddProduct(props: {
@@ -10,28 +22,29 @@ function AdminAddProduct(props: {
   dataProp: any;
   id: string;
 }) {
-  const [updateProducts, dataProductMutation] = useMutation(UpdateProductByName);
+  const [updateProducts, dataProductMutation] =
+    useMutation(UpdateProductByName);
   const [deleteProduct, dataDeleteProduct] = useMutation(DeleteProductByName);
   const handleCancel = () => {
     props.visibleProp(false);
   };
   const onFinish = async (values: any) => {
+    const {images, ...data} = values
     if (props.id) {
       await updateProducts({
-        variables: { name: props.id, data: values },
-        refetchQueries: [{query: getAllProduct}]
+        variables: { name: props.id, data },
+        refetchQueries: [{ query: getAllProduct }],
       });
     } else {
       await updateProducts({
-        variables: { name: values.name, data: values },
-        refetchQueries: [{query: getAllProduct}]
+        variables: { name: values.name, data},
+        refetchQueries: [{ query: getAllProduct }],
       });
     }
     if (dataProductMutation.error) {
-      message.error('Error!');
-    }
-    else {
-      message.success('Successfully!');
+      message.error("Error!");
+    } else {
+      message.success("Successfully!");
     }
     props.visibleProp(false);
   };
@@ -78,18 +91,18 @@ function AdminAddProduct(props: {
       <Row justify="space-between">
         <Col span={11}>
           <Form.Item name="price" label="Price">
-            <Input />
+            <InputNumber className="ant-input" size="small" />
           </Form.Item>
         </Col>
         <Col span={11}>
           <Form.Item name="salePrice" label="Sale Price">
-            <Input />
+            <InputNumber className="ant-input" size="small" />
           </Form.Item>
         </Col>
       </Row>
 
       <Form.Item name="stock" label="Stock">
-        <Input />
+        <InputNumber className="ant-input" size="small" />
       </Form.Item>
 
       <Form.Item name="categories" label="Categories">
