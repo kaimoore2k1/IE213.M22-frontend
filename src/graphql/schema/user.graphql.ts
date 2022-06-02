@@ -73,10 +73,19 @@ export const UpdateProductCart = gql`
     }
 `
 
-export const ClearProductCart = gql `
+export const ClearProductCart = gql`
     mutation clearProductCart($username: String!) {
         clearProductCart(username: $username) {
             username
+        }
+    }
+`
+
+export const updateUser = gql`
+    mutation updateUser($username: String!, $data: UserInput){
+        updateUser(username:$username, data: $data) {
+            username
+            email
         }
     }
 `

@@ -27,9 +27,9 @@ import JWTManager from "../../modules/utils/jwt";
 import AddressAutocomplate from "./../../components/core/AddressAutocomplate";
 import { useMutation, useQuery } from "@apollo/client";
 import { CHANGE_PASSWORD } from "../../graphql/mutations/changePassword.graphql";
-import { createUser, getUserByUsername } from "../../graphql/schema/user.graphql";
+import { createUser, deleteUser, getUserByUsername, updateUser } from "../../graphql/schema/user.graphql";
 import jwtDecode from "jwt-decode";
-import { getAccount, updateAccountInfo } from "../../graphql/schema/account.graphql";
+import { deleteAccountFromFrontend, getAccountByName, updateAccountInfo } from "../../graphql/schema/account.graphql";
 
 momment.locale("vi");
 
@@ -64,18 +64,17 @@ const Profile = () => {
 
   const initialUser = useQuery(getUserByUsername(currentUsername));
   const info = {
-    fullname: "",
-    sex: "",
+    fullname: "Nguyễn Văn A",
+    sex: "Nam",
     birthday: "",
-    phoneNumber: "",
-    email: "",
-    address: ""
+    phoneNumber: "0988712523",
+    email: "Senshoptd@gmail.com",
+    address: "Số 113, khu phố 6, phường Linh Trung, TP. Thủ Đức, TPHCM"
   }
 
 
   const [updateAcc] = useMutation(updateAccountInfo);
-  const [updateUser, updateUserInfo] = useMutation(createUser);
-  
+  const [update_user, updateUserInfo] = useMutation(updateUser);
   
   
   const updatedData = {
@@ -95,12 +94,26 @@ const Profile = () => {
     }
     try {
       if (initialUser.data) {
-        info.fullname = initialUser.data.getUserByUsername.lastName + " " + initialUser.data.getUserByUsername.firstName
-        info.sex = initialUser.data.getUserByUsername.sex || "Nam"
+        if(initialUser.data.getUserByUsername.lastName != null || initialUser.data.getUserByUsername.firstName != null){
+          info.fullname = initialUser.data.getUserByUsername.lastName + " " + initialUser.data.getUserByUsername.firstName || ""
+        }
+      
+        if(initialUser.data.getUserByUsername.sex){
+          info.sex = initialUser.data.getUserByUsername.sex
+        }
         info.birthday = ""
-        info.phoneNumber = initialUser.data.getUserByUsername.numberPhone
-        info.email = initialUser.data.getUserByUsername.email
-        info.address = initialUser.data.getUserByUsername.address || initialUser.data.getUserByUsername.city + " " + initialUser.data.getUserByUsername.country
+        if(initialUser.data.getUserByUsername.numberPhone){
+          info.phoneNumber = initialUser.data.getUserByUsername.numberPhone
+        }
+        if(initialUser.data.getUserByUsername.email){
+          info.email = initialUser.data.getUserByUsername.email 
+        }
+        if(initialUser.data.getUserByUsername.address){
+          info.address = initialUser.data.getUserByUsername.address 
+          if(initialUser.data.getUserByUsername.city !=null || initialUser.data.getUserByUsername.country!= null){
+            info.address = initialUser.data.getUserByUsername.city + " " + initialUser.data.getUserByUsername.country 
+          }
+        }
         form.setFieldsValue(info)
       }
     } catch (error) {
@@ -113,7 +126,8 @@ const Profile = () => {
 
   //Thay đổi mật khẩu
   const [changePassword] = useMutation(CHANGE_PASSWORD);
-
+  const [deleteAcc] = useMutation(deleteAccountFromFrontend);
+  const [disableUser] = useMutation(deleteUser);
 
   const [editAble, setEditAble] = useState(false);
   const [result, setResult] = useState<string[]>([]);
@@ -155,7 +169,7 @@ const Profile = () => {
       email: updatedData.email
     }
     
-    updateUser({ variables: { username: updatedData.username, data: updatedData } })
+    update_user({ variables: { username: updatedData.username, data: updatedData } })
     if(updateUserInfo.error){
       message.error("Cập nhật thông tin người dùng không thành công")
     }else{
@@ -168,6 +182,12 @@ const Profile = () => {
   const savePassword = (value: any) => {
     changePassword({ variables: { username: currentUsername, password: String(value.password), newPassword: String(value.newPassword) } })
   };
+
+  const disableAccount = (value: any) =>{
+    deleteAcc({variables: {username: currentUsername, password: value.password}})
+    disableUser({variables: {username: currentUsername}})
+  }
+
   const [form] = Form.useForm();
 
   return (
@@ -206,7 +226,7 @@ const Profile = () => {
             <TabPane tab="Thông tin cá nhân" key="1">
               <Form initialValues={info} form={form} onFinish={saveProfile} {...formLayout}>
                 <Form.Item label="Họ và tên" name="fullname">
-                  <Input disabled={!editAble} placeholder="Họ và tên" />
+                  <Input disabled={!editAble} placeholder={info.fullname} />
                 </Form.Item>
                 <Form.Item label="Giới tính" name="sex">
                   <Radio.Group disabled={!editAble}>
@@ -228,12 +248,13 @@ const Profile = () => {
                     },
                   ]}
                 >
-                  <InputNumber
+                  <Input
 
                     disabled={!editAble}
                     addonBefore={prefixSelector}
-                    controls={false}
+                    //controls={false}
                     style={{ width: "100%" }}
+                    placeholder={info.phoneNumber}
                   />
                 </Form.Item>
                 <Form.Item
@@ -249,7 +270,7 @@ const Profile = () => {
                   <AutoComplete
                     disabled={!editAble}
                     onSearch={handleSearch}
-                    placeholder="Nhập Email"
+                    placeholder={info.email}
                   >
                     {result.map((email: string) => (
                       <AutoComplete.Option key={email} value={email}>
@@ -259,11 +280,11 @@ const Profile = () => {
                   </AutoComplete>
                 </Form.Item>
                 <Form.Item label="Địa chỉ" name="address">
-                  <AutoComplete disabled={!editAble} />
+                  <AutoComplete disabled={!editAble} placeholder={info.address} />
                 </Form.Item>
-                <Form.Item label="Mật khẩu" name="password">
+                {/* <Form.Item label="Mật khẩu" name="password">
                   <Input.Password disabled={!editAble} placeholder="Nhập mật khẩu" />
-                </Form.Item>
+                </Form.Item> */}
                 <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                   <Button
                     {...(!editAble ? { hidden: true } : {})}
@@ -358,9 +379,10 @@ const Profile = () => {
                   </Form>
                 </Collapse.Panel>
                 <Collapse.Panel header="Vô hiệu hoá tài khoản" key="2">
-                  <Form {...formLayout}>
+                  <Form onFinish={disableAccount} {...formLayout} >
                     <Form.Item
                       label="Nhập mật khẩu"
+                      name="password"
                     >
                       <Input placeholder="Nhập mật khẩu" />
                     </Form.Item>
