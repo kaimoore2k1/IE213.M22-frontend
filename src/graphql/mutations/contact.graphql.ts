@@ -9,3 +9,12 @@ export const CONTACT = gql`
     }
   }
 `;
+
+export const deleteContactById = gql`
+  mutation deleteContactById($id: String) {
+    deleteContactById(_id: $id) {
+      name
+    }
+  }
+`;
+

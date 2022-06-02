@@ -1,3 +1,5 @@
+import { ReactChild, ReactFragment, ReactPortal } from "react";
+
 export const userColumns = [
   {
     title: "ID",
@@ -30,8 +32,107 @@ export const userColumns = [
     title: "Carts",
     dataIndex: "productsBooked",
     key: "productsBooked",
+    render: (text: any) => <p>{text[0]?text.map((txt:any) => {
+      return txt.ID_Product + ', '
+    }):"Cart Empty"}</p>,
   },
 ];
+
+export const billColumn = [
+  {
+    title: "ID",
+    dataIndex: "id",
+    key: "id",
+    sorter: (a: { id: number }, b: { id: number }) => a.id - b.id,
+    width: "7%",
+  },
+  {
+    title: "First Name",
+    dataIndex: "firstName",
+    key: "firstName",
+  },
+  {
+    title: "Last Name",
+    dataIndex: "lastName",
+    key: "lastName",
+  },
+  {
+    title: "Address",
+    dataIndex: "address",
+    key: "address",
+  },
+  {
+    title: "Phone Number",
+    dataIndex: "numberPhone",
+    key: "numberPhone",
+  },
+  {
+    title: "Total",
+    dataIndex: "total",
+    key: "total",
+  },
+  {
+    title: "Amount",
+    dataIndex: "amount",
+    key: "amount",
+  },
+  {
+    title: "Date",
+    dataIndex: "date",
+    key: "date",
+  },
+  {
+    title: "Payment Method",
+    dataIndex: "paymentMethod",
+    key: "paymentMethod",
+    filters: [
+      {
+        text: 'Transfer',
+        value: 'transfer',
+      },
+      {
+        text: 'Direct',
+        value: 'direct',
+      },
+    ],
+    onFilter: (value: string | number | boolean, record: any) => record.paymentMethod.indexOf(value) === 0
+  }
+]
+
+export const productBillColumn = [
+  {
+    title: "ID",
+    dataIndex: "id",
+    key: "id",
+    sorter: (a: { id: number }, b: { id: number }) => a.id - b.id,
+    width: "7%",
+  },
+  {
+    title: "Name",
+    dataIndex: "name",
+    key: "name",
+  },
+  {
+    title: "Price",
+    dataIndex: "price",
+    key: "price",
+  },
+  {
+    title: "Quantity",
+    dataIndex: "quantity",
+    key: "quantity",
+  },
+  {
+    title: "Total",
+    dataIndex: "totalProduct",
+    key: "totalProduct",
+    render: (title: any, record: any) => (
+      <span>
+        {record.price * record.quantity}
+      </span>
+    ),
+  }
+]
 
 export interface BlogData {
   id: number;
@@ -185,9 +286,11 @@ export const contactColumn = [
 ];
 export const commentColumns = [
   {
-    title: "Rating",
-    dataIndex: "rating",
-    key: "rating",
+    title: "ID",
+    dataIndex: "id",
+    key: "id",
+    sorter: (a: { id: number }, b: { id: number }) => a.id - b.id,
+    width: "7%",
   },
   {
     title: "User",
@@ -200,13 +303,13 @@ export const commentColumns = [
     key: "date",
   },
   {
-    title: "ID Product",
-    dataIndex: "idProduct",
-    key: "idProduct",
+    title: "Rating",
+    dataIndex: "rating",
+    key: "rating",
   },
   {
-    title: "ID Blog",
-    dataIndex: "idBlog",
-    key: "idBlog",
-  },
+    title: "Content",
+    dataIndex: "content",
+    key: "content",
+  }
 ];

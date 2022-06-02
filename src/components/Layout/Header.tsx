@@ -6,30 +6,44 @@ import logo from "../../assets/images/logo.svg";
 import cart from "../../assets/images/shoppingCart.svg";
 import "../../sass/Home/Home.scss";
 import { useAuthContext } from "../../modules/context/AuthContext";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { LOGOUT } from "../../graphql/mutations/logout.graphql";
 import JWTManager from "../../modules/utils/jwt";
 import { LogoutOutlined } from "@ant-design/icons";
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import axios from "axios";
 import toSlug from "../../assets/toSlug";
+import { getProductBooked } from "../../graphql/schema/user.graphql";
 const { Search } = Input;
 const { TabPane } = Tabs;
 const Header = () => {
   const navigate = useNavigate();
-  if (!window.localStorage.getItem("products")) {
-    window.localStorage.setItem("products", "[]");
-  }
-  let quantityProduct = JSON.parse(
-    window.localStorage.getItem("products") as string
-  ).length;
+  const { isAuthenticated, logoutClient } = useAuthContext();
+  const currentUsername = String(JWTManager.getUsername())
+  const cartUser = useQuery(getProductBooked(currentUsername))
+  let quantityProduct = useRef(0)
+  useEffect(() => {
+    if(isAuthenticated) {
+      if(cartUser.data) {
+        quantityProduct.current = cartUser.data.getProductBooked.length
+      }
+    }
+    else {
+      if (!window.localStorage.getItem("products")) {
+        window.localStorage.setItem("products", "[]");
+      }
+      quantityProduct.current = JSON.parse(
+        window.localStorage.getItem("products") as string
+      ).length;
+    }
+  }, [cartUser.data, isAuthenticated])
+  
   const onSearch = (value: string) => {
-    console.log(value);
     if (value) {
       sessionStorage.setItem("valueSearch", value);
       navigate(`/search/${toSlug(value)}`);
     }
   };
-  const { isAuthenticated, logoutClient } = useAuthContext();
   const [logoutServer, _] = useMutation(LOGOUT);
 
   const logoutHandler = async () => {
@@ -37,6 +51,43 @@ const Header = () => {
     await logoutServer({ variables: { username: JWTManager.getUsername() } });
     navigate("..");
   };
+
+  const [user, setUser] = useState(null);
+  
+
+  useEffect(() => {
+    // const headers:any = ({
+    //   Accept: "application/json",
+    //   "Access-Control-Allow-Credentials": true, 
+    //   "Content-Type": "application/json",
+    // })
+    // const getUserProvider = async () => {
+      
+    //   await fetch("https://d9da-2001-ee0-5321-4c10-9969-874e-f83c-14a7.ap.ngrok.io/auth/login/success", {
+    //     method: "GET",
+    //     credentials: "include",
+    //     headers,
+    //   })
+    //   .then((response) => {
+    //     if (response.status === 200) return response.json();
+    //     throw new Error("authentication has been failed!");
+    //   })
+    //   .then((resObject) => {
+    //     setUser(resObject.user);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+    // };
+    // getUserProvider();
+
+    
+    axios.get('https://d9da-2001-ee0-5321-4c10-9969-874e-f83c-14a7.ap.ngrok.io/auth/home',{
+        withCredentials: true
+      }).then(res => {
+        setUser(res.data.user);
+      })
+  }, []);  
 
   const [visible, setVisible] = useState(false);
   // const showDrawer = () => {
@@ -74,7 +125,7 @@ const Header = () => {
         <div className="header__right">
           <Link to={"/gio-hang"}>
             <button className="shopping_cart">
-              <Badge count={quantityProduct} offset={[8, -5]}>
+              <Badge count={quantityProduct.current} offset={[8, -5]}>
                 <img src={cart} alt="Giỏ hàng" />
               </Badge>
             </button>

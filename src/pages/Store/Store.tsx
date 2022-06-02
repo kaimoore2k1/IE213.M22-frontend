@@ -19,7 +19,6 @@ function Store() {
   const { loading, error, data } = useQuery(
     getAllProductsByCategory(path[path.length - 1])
   );
-  console.log("path :>> ", path);
   if (error) return <p>Error...</p>;
 
   return (

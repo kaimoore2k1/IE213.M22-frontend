@@ -13,7 +13,6 @@ const ProductCategorySection2 = ({ productList, sectionName }: Props) => {
   const [page, setPage] = useState<number>(0);
   const [productPerPage, setProductPerPage] = useState<number>(8);
   function handlPageChange(page: number, pageSize: number) {
-    console.log("page :>> ", page);
     setPage(page - 1);
   }
 

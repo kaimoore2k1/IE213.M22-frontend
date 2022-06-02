@@ -1,19 +1,26 @@
-import React, { useState } from "react";
-import { Form, Input, Button, Checkbox } from "antd";
-import "../../sass/Admin/AdminLoginForm.scss";
-import { useMutation } from "@apollo/client";
-import JWTManager from "../../modules/utils/jwt";
+import { useMutation, useQuery } from "@apollo/client";
+import { Button, Checkbox, Form, Input, message } from "antd";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LOGIN_ADMIN } from "../../graphql/mutations/loginAdmin.graphql";
+import { getAdminByName } from "../../graphql/schema/admin.graphql";
 import { useAuthContext } from "../../modules/context/AuthContext";
+import JWTManager from "../../modules/utils/jwt";
+import "../../sass/Admin/AdminLoginForm.scss";
 
 function AdminLoginForm() {
+  
   const navigate = useNavigate();
-  const {setIsAuthenticated} = useAuthContext() 
+  const {setIsAuthenticated, setIsAdmin, isAdmin, isAuthenticated} = useAuthContext() 
   const [adminLogin, {data, loading, error}] = useMutation(LOGIN_ADMIN);
   const [errorMessage, setErrorMessage] = useState("")
-  if (loading) return <p>loading....</p>;
-  if (error) return <p>error</p>;
+
+  useEffect(() => {
+    if(isAdmin) {
+      navigate('/dashboard')
+    }
+  }, [isAdmin, navigate])
+  
   const onFinish = async (values: any) => {
     const response = await adminLogin({
       variables : {username: values.username, password: values.password}
@@ -21,15 +28,15 @@ function AdminLoginForm() {
 
     if (response.data?.adminLogin.success) {
       JWTManager.setToken(response.data.adminLogin.accessToken as string)
-      console.log(response.data.adminLogin.accessToken as string)
       setIsAuthenticated(true)
-      console.log(response.data.adminLogin.accessToken)
+      setIsAdmin(true)
       navigate('/dashboard')
     } else {
       if (response.data?.adminLogin.message) setErrorMessage(response.data.adminLogin.message)
     }
   };
   return (
+    <>
     <Form
       name="basic"
       labelCol={{ span: 8 }}
@@ -53,6 +60,7 @@ function AdminLoginForm() {
           style={{ width: "80%", position: "relative", left: "50%" }}
         />
       </Form.Item>
+      {errorMessage && <p style={{color:"red", textAlign: "center", fontSize:"20px"}}>{errorMessage}</p>}
       <Form.Item
         label="Username"
         name="username"
@@ -83,6 +91,8 @@ function AdminLoginForm() {
         </Button>
       </Form.Item>
     </Form>
+    </>
+    
   );
 }
 

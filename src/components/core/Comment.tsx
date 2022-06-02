@@ -50,13 +50,13 @@ function Comment({ comment }: commentProps) {
         _id: comment._id,
       },
       onCompleted: () => {
-        message.success("Xóa bình luận thành công");
+        message.success("Deleted successfully!");
       },
       refetchQueries: !!comment.idProduct
         ? [getCommentsByProductID(comment.idProduct)]
         : [getCommentsByBlogID(comment.idBlog)],
       onError: () => {
-        message.error("Đã có lỗi xảy ra vui lòng thử lại sau");
+        message.error("Error!");
       },
     });
   };
@@ -86,11 +86,11 @@ function Comment({ comment }: commentProps) {
         },
         onCompleted: () => {
           commentContent?.setAttribute("contenteditable", "false");
-          message.success("Cập nhật thành công");
+          message.success("Updated successfully!");
           setEdit(false);
         },
         onError: () => {
-          message.error("Đã có lỗi xảy ra vui lòng thử lại sau");
+          message.error("Update error!");
           setEdit(false);
           commentContent?.setAttribute("contenteditable", "false");
           if (commentContent != undefined) {

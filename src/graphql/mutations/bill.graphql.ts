@@ -8,6 +8,14 @@ mutation Bill($data: InputBill){
 }
 `;
 
+export const deleteBillById = gql `
+  mutation deleteBillById($id: String) {
+    deleteBillById(_id: $id) {
+      _id
+    }
+  }
+`
+
 export const LASTEDBILL = gql`
     query {
         getTheLastedBill {
@@ -19,3 +27,28 @@ export const LASTEDBILL = gql`
         }
     }
 `
+
+export const getBillProducts = (id: string) => gql `
+query {
+  getBillProductById(_id:"${id}") {
+    name
+    price
+    quantity
+  }
+}
+`
+
+export const GETALLBILLS = gql`
+    query {
+      getAllBills {
+        _id
+        firstName
+        lastName
+        address
+        numberPhone
+        total
+        amount
+        date
+        paymentMethod
+      }
+    }`

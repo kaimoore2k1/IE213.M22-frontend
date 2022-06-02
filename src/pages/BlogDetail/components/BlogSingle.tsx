@@ -52,7 +52,6 @@ const BlogSingle = ({ blog }: blogSingleProps) => {
           key: "like",
           duration: 1,
         });
-        console.log(error);
       }
     }
   };

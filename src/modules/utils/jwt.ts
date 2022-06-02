@@ -37,6 +37,9 @@ const JWTManager = () => {
       const response = await fetch("http://localhost:4000/refresh_token", {
         credentials: "include",
       });
+      /* const response = await fetch("http://senshop.tech/refresh_token", {
+        credentials: "include",
+      }); */
       const data = (await response.json()) as {
         success: boolean;
         accessToken: string;

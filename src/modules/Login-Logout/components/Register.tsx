@@ -119,7 +119,10 @@ function Register(){
                     <Button
                         className="facebook-google--css"
                     >
-                        Facebook
+                        <a href="https://ebe9-2001-ee0-5321-4c10-ed8c-8b48-54bc-9568.ap.ngrok.io/auth/facebook">
+
+                          Facebook
+                        </a>
                     </Button>
                     <Button
                         className="facebook-google--css"

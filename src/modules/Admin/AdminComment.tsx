@@ -50,7 +50,8 @@ function AdminComment() {
       <AdminContentHeader
         title={title}
         setSearchValue={setSearchValue}
-        current={4}
+        current={0}
+        exportData={dataSource}
       />
       <Drawer
         title={titleDrawer}

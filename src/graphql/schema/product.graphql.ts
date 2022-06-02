@@ -3,6 +3,7 @@ import { gql } from "@apollo/client";
 export const getAllProductsByCategory = (category: string) => gql`
     query {
       getAllProductsByCategory (categories:"${category}") {
+        _id
         name
         price
         stock
@@ -28,6 +29,7 @@ export const getAllProductsByCategory = (category: string) => gql`
 export const getAllProduct = gql`
   query {
     getAllProducts {
+      _id
       name
       price
       stock

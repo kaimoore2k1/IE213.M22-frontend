@@ -11,7 +11,6 @@ import Loader from "../../components/core/Loader";
 
 export default function Detail() {
   const slug: string = useParams().productName ?? "";
-  console.log('slug :>> ', slug);
   
   const { loading, error, data } = useQuery(getProductByName(slug));
 

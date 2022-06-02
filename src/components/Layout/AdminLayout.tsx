@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Layout, Menu } from "antd";
+import { Layout, Menu, message } from "antd";
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -9,26 +9,41 @@ import {
   FormOutlined,
   ContactsOutlined,
   CommentOutlined,
+  PayCircleOutlined
 } from "@ant-design/icons";
 import { Link, Outlet, useNavigate, useLocation } from "react-router-dom";
 import "../../sass/Admin/AdminLayout.scss";
 import AdminLogin from "../../modules/Admin/AdminLogin";
+import { useAuthContext } from "../../modules/context/AuthContext";
 
 function AdminLayout() {
   const location = useLocation();
   const navigate = useNavigate();
-
+  const { isAdmin } = useAuthContext();
   const { Header, Sider, Content, Footer } = Layout;
   const [collapsed, setCollapsed] = useState(false);
   const onToggle = () => {
     setCollapsed(!collapsed);
   };
 
+  // useEffect(() => {
+  //   if (!isAdmin) {
+  //     message.error("Bạn không có quyền truy cập vào trang này");
+  //     navigate("/");
+  //   }
+  // }, [isAdmin]);
+  // console.log('isAdmin: ', isAdmin);
+
   useEffect(() => {
-    if (location.pathname === "/dashboard") {
-      navigate("/dashboard/users");
+    if (!isAdmin) {
+      navigate("/admin");
     }
-  }, [location, navigate]);
+    else{
+      if (location.pathname === "/dashboard") {
+        navigate("/dashboard/users");
+      }
+    }
+  }, [location, navigate, isAdmin]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -86,8 +101,15 @@ function AdminLayout() {
       label: "Comments",
       path: "comments",
     },
+    {
+      key: "7",
+      icon: <PayCircleOutlined />,
+      label: "Bills",
+      path: "bill",
+    },
   ];
   return (
+    <>
     <Layout className="Admin_Layout" style={{ height: "100%" }}>
       <Sider
         width="15%"
@@ -170,7 +192,9 @@ function AdminLayout() {
           Sen Shop &copy;2022 Created by senshop.tech
         </Footer>
       </Layout>
-    </Layout>
+      </Layout>
+    </>
+    
   );
 }
 

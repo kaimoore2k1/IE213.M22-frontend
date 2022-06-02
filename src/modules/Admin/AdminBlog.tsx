@@ -30,7 +30,7 @@ function AdminBlog() {
     }
   }, [blogs.data, searchValue]);
   const [visible, setVisible] = useState(false);
-  const titleDrawer = "UPDATE USER";
+  const titleDrawer = "UPDATE BLOG";
   const onClose = () => {
     setVisible(false);
     setContentDrawer(<></>);
@@ -48,6 +48,7 @@ function AdminBlog() {
         title={title}
         setSearchValue={setSearchValue}
         current={3}
+        exportData={dataSource}
       />
       <Drawer
         title={titleDrawer}

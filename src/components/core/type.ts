@@ -1,6 +1,7 @@
 export interface product {
   name: string;
   description: string;
+  stock: number,
   comments: comment[];
   price: number;
   salePrice?: number;
