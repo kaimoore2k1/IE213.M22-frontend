@@ -4,34 +4,42 @@ import { CartFinishIcon } from "../../assets/icons/CartFinishIcon";
 import { useNavigate } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";
 import { LASTEDBILL } from "../../graphql/mutations/bill.graphql";
-import { ClearProductCart } from "../../graphql/schema/user.graphql";
+import {
+  ClearProductCart,
+  getProductBooked,
+} from "../../graphql/schema/user.graphql";
 import JWTManager from "../../modules/utils/jwt";
-
 
 function PaymentFinished() {
   const currentUsername = String(JWTManager.getUsername());
   window.localStorage.setItem("products", "[]");
-  const [updateProductCart, dataUpdateProductCart] = useMutation(ClearProductCart);
-  updateProductCart({
-    variables: { username: currentUsername},
-  })
-  const navigate = useNavigate();
-  const bill = useQuery(LASTEDBILL)
-  const initialValues:any = {total: 0}
-  const [data, setData] = useState(initialValues)
-  console.log(data)
+  const [updateProductCart, dataUpdateProductCart] =
+    useMutation(ClearProductCart);
+
   useEffect(() => {
-    console.log("a")
-    if(bill.data) {
-      if(bill.data.getTheLastedBill !== data) {
-        setData(bill.data.getTheLastedBill)
+    updateProductCart({
+      variables: { username: currentUsername },
+      refetchQueries: [getProductBooked(currentUsername)],
+    });
+  }, [currentUsername, updateProductCart]);
+  console.log("a")
+  const navigate = useNavigate();
+  const bill = useQuery(LASTEDBILL);
+  const initialValues: any = { total: 0 };
+  const [data, setData] = useState(initialValues);
+  console.log(data);
+  useEffect(() => {
+    console.log("a");
+    if (bill.data) {
+      if (bill.data.getTheLastedBill !== data) {
+        setData(bill.data.getTheLastedBill);
       }
     }
-  }, [bill.data])
+  }, [bill.data]);
   const dataFormat = data.total.toLocaleString("vi-VN", {
     style: "currency",
     currency: "VND",
-  })
+  });
   return (
     <div className="PaymentFinished">
       <CartFinishIcon className="CartFinishIcon" />
@@ -55,10 +63,14 @@ function PaymentFinished() {
       <div className="DetailPaymentMethod">
         <Typography.Text>Phương thức thanh toán: </Typography.Text>
         <Typography.Text className="fontBold">
-          {data.paymentMethod === 'transfer'?'Chuyển khoản ngân hàng':'Trả tiền mặt khi nhận hàng'}
+          {data.paymentMethod === "transfer"
+            ? "Chuyển khoản ngân hàng"
+            : "Trả tiền mặt khi nhận hàng"}
         </Typography.Text>
       </div>
-      <Button className="OtherProduct" onClick={() => navigate(-1)}>XEM SẢN PHẨM KHÁC</Button>
+      <Button className="OtherProduct" onClick={() => navigate(-1)}>
+        XEM SẢN PHẨM KHÁC
+      </Button>
     </div>
   );
 }
