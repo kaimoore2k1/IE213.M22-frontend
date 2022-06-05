@@ -6,7 +6,7 @@ const JWTManager = () => {
   let username: string | null = null;
   const LOGOUT_EVENT_NAME = "jwt-logout";
 
-  const getToken = () => inMemoryToken;
+  const getToken = () => inMemoryToken as string;
   const getUsername = () => username;
   const setToken = (accessToken: string) => {
     
