@@ -18,7 +18,7 @@ function Register(){
       const handleFinish = async (values: any) => {
         const response = await register({variables : {username: values.username, password: values.password, email: values.email}});
         if(response.data?.register.success) {
-          navigate('..');
+          navigate('/login');
         }else {
           if (response.data?.register.message) setErrorMessage(response.data.register.message)
         }
