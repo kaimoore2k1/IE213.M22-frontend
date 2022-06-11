@@ -22,14 +22,12 @@ function PaymentFinished() {
       refetchQueries: [getProductBooked(currentUsername)],
     });
   }, [currentUsername, updateProductCart]);
-  console.log("a")
+
   const navigate = useNavigate();
   const bill = useQuery(LASTEDBILL);
   const initialValues: any = { total: 0 };
   const [data, setData] = useState(initialValues);
-  console.log(data);
   useEffect(() => {
-    console.log("a");
     if (bill.data) {
       if (bill.data.getTheLastedBill !== data) {
         setData(bill.data.getTheLastedBill);

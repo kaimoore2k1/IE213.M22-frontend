@@ -89,8 +89,8 @@ function Cart({ callBackCurrent }: CurrentProps) {
   };
   const handelPlus = (record: DataType) => {
     record.quantity += 1;
-    if (record.quantity < 1) {
-      record.quantity = 1;
+    if (record.quantity > 99) {
+      record.quantity = 99;
     }
     const value = record.quantity;
     const index = Number(record.key) - 1;

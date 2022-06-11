@@ -15,7 +15,8 @@ import AuthContextProvider from "./modules/context/AuthContext";
 
 const httpLink = createHttpLink({
 	// uri: 'https://senshopdottech.herokuapp.com/',
-	uri: 'http://localhost:4000/',
+	//uri: 'http://localhost:4000/',
+	uri: 'http://localhost:8000/graphql',
 	credentials: 'include'
 })
 

@@ -14,20 +14,17 @@ const Search = () => {
     return path.split("-").join("");
   });
   const { loading, error, data } = useQuery(getAllProduct);
-  console.log("data :>> ", data);
-  // const [dataSource, setDataSource] = useState([]);
+  const initialValue: any[] | (() => any[]) = []
+  const [dataSource, setDataSource] = useState(initialValue);
+  useEffect(() => {
+   if(data) {
+    setDataSource(data.getAllProducts)
+   }
+  }, [data])
 
-  // useEffect(() => {
-  //   if (data) {
-  //     setDataSource(
-  //       data.getAllProducts.map((data: any) => {
-  //         return { ...data };
-  //       })
-  //     );
-  //   }
-  // }, [data]);
   if (error) return <p>Error...</p>;
-  // console.log(dataSource);
+
+  
 
   return (
     <div className="store__layout" style={{ margin: "0 5rem" }}>
@@ -55,7 +52,7 @@ const Search = () => {
             <Loader />
           ) : (
             <ProductCategorySection2
-              productList={data.getAllProducts}
+              productList={dataSource}
               sectionName="Product"
             />
           )}
