@@ -8,7 +8,7 @@ import Comment from "../../../components/core/Comment";
 import { useMutation } from "@apollo/client";
 import { LIKE_BLOG, SHARE_BLOG } from "../../../graphql/mutations/blog.graphql";
 import { useAuthContext } from "../../../modules/context/AuthContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { message, Dropdown, Menu, Button } from "antd";
 import JWTManager from "../../../modules/utils/jwt";
 import { Helmet } from "react-helmet";
@@ -30,7 +30,9 @@ const BlogSingle = ({ blog }: blogSingleProps) => {
   const [blogLike, setBlogLike] = useState(blog.like);
   const [blogShare, setBlogShare] = useState(blog.share);
   const user = JWTManager.getUsername() ?? "";
-
+  // useEffect(() => {
+  //   window.localStorage.setItem("recentBlog", JSON.stringify(blog));
+  // },[])
   const likeHandler = async () => {
     if (isAuthenticated) {
       const likeProcess = await like({

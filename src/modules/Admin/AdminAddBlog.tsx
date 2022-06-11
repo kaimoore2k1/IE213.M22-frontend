@@ -186,7 +186,17 @@ function AdminAddBlog(props: {
       >
         <Input.TextArea className="adminCustomTextArea" />
       </Form.Item>
-      <Form.Item name="content" initialValue={content} label="Content">
+      <Form.Item
+        name="content"
+        initialValue={content}
+        rules={[
+          {
+            required: true,
+            message: "Required Information!",
+          },
+        ]}
+        label="Content"
+      >
         <JoditEditor
           ref={editor}
           value={content}

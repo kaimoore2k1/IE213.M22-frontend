@@ -17,15 +17,16 @@ const BlogCategory = ({ blogList, categoryList }: blogCategoryProps) => {
   //   categoryList[0]
   // );
   // const [blogRenderList, setBlogRenderList] = useState<blogCard[]>(blogList);
-  const featuredBlog = blogList
-    // .sort((blog) => blog.like.length).slice(0, 3)
+  const featuredBlog = blogList.slice(0, 3);
+  // .sort((blogA,blogB) =>  {console.log(blogA.like);
+  //  return blogB.like.length-blogA.like.length})
+    
 
 
-  const [recentBlog, setRecentBlog] = useState<blogCard[]>(
-    window.localStorage.getItem("recentBlog")
-      ? JSON.parse(window.localStorage.getItem("recentBlog") as string)
-      : []
-  );
+  // const [recentBlog, setRecentBlog] = useState<blogCard[]>(
+  //   window.localStorage.getItem("recentBlog")??[]
+
+  // );
 
   return (
     <div className="blog-category-list">
@@ -57,9 +58,9 @@ const BlogCategory = ({ blogList, categoryList }: blogCategoryProps) => {
               name="Bài viết nổi bật nhất"
               blogList={featuredBlog}
             />
-            {recentBlog.length > 0 && (
+            {/* {recentBlog.length > 0 && (
               <BlogSideCardList name="Bài viết gần đây" blogList={recentBlog} />
-            )}
+            )} */}
           </Col>
           <Col
             order={1}
@@ -69,7 +70,7 @@ const BlogCategory = ({ blogList, categoryList }: blogCategoryProps) => {
             className="blog-card-container"
           >
             <Row gutter={[16, 16]}>
-              {blogList.slice(page * blogPerPage, (page + 1) * blogPerPage - 1)
+              {blogList.slice(page * blogPerPage, (page + 1) * blogPerPage )
                 .map((blog, index) => (
                   <Col md={12} sm={24} key={index} className="blog-card-wraper">
                     <BlogCard blog={blog} type="large" />
@@ -88,7 +89,8 @@ const BlogCategory = ({ blogList, categoryList }: blogCategoryProps) => {
               showTotal={(total, range) =>
                 `${range[0]}-${range[1]} of ${total} items`
               }
-              defaultPageSize={20}
+              defaultPageSize={8}
+              onChange={(page) => setPage(page - 1)}
               defaultCurrent={page + 1}
             />
           </Col>

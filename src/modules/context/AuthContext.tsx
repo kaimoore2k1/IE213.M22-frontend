@@ -71,39 +71,7 @@ const AuthContextProvider = ({ children }: { children: ReactNode }) => {
       }
     }
   }, [check.data]);
-  // const token = JWTManager.getToken();
-  // const checkAdmin = useEffect(() =>{
-  //     const refreshToken = async () => {
-  //         return await JWTManager.getRefreshToken()
-
-  //     }
-  //     console.log('data:', check.data)
-  //     const result = refreshToken()
-  //     // if(check.data){
-
-  //     //     if(token || result) {
-
-  //     //         if (check.loading) return <p>loadingQuery.....</p>;
-  //     //         if (check.error) return <p>errorQuery</p>;
-  //     //         setIsAdmin(true) //loi sai
-  //     //     }
-  //     // }
-
-  // },[])
-  // console.log(checkAdmin)
-
-  // const {loading, error, data} = useQuery(getAdminByName, {
-  //     variables: {
-  //         username: JWTManager.getUsername() ?? false
-  //     }
-  // })
-  // // const checkAdmin = data.getAdminByName;
-  // // if(data.getAdminByName.username){
-  // //     setIsAdmin(true)
-  // // }
-  // if (loading) return <p>Loading.....</p>;
-  // if (error) return <p>error</p>;
-  // console.log('data: ', data.getAdminByName.username)
+ 
   const logoutClient = () => {
     JWTManager.deleteToken();
     setIsAuthenticated(false);
