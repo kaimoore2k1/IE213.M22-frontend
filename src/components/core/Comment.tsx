@@ -119,7 +119,7 @@ function Comment({ comment }: commentProps) {
       }
       datetime={
         <>
-          <Tooltip title={moment().format("YYYY-MM-DD HH:mm:ss")}>
+          <Tooltip title={moment(date).format("YYYY-MM-DD HH:mm:ss")}>
             <span>{moment(date).from(new Date())}</span>
           </Tooltip>
         </>
