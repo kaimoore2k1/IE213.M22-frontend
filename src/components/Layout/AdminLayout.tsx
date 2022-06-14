@@ -34,16 +34,16 @@ function AdminLayout() {
   // }, [isAdmin]);
   // console.log('isAdmin: ', isAdmin);
 
-  useEffect(() => {
-    if (!isAdmin) {
-      navigate("/admin");
-    }
-    else{
-      if (location.pathname === "/dashboard") {
-        navigate("/dashboard/users");
-      }
-    }
-  }, [location, navigate, isAdmin]);
+  // useEffect(() => {
+  //   if (!isAdmin) {
+  //     navigate("/admin");
+  //   }
+  //   else{
+  //     if (location.pathname === "/dashboard") {
+  //       navigate("/dashboard/users");
+  //     }
+  //   }
+  // }, [location, navigate, isAdmin]);
 
   useEffect(() => {
     const handleResize = () => {

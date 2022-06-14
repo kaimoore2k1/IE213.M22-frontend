@@ -9,7 +9,7 @@ import {
   Row,
   Col,
   Typography,
-  message
+  message,
 } from "antd";
 import { useState, useEffect } from "react";
 import { productDetail, comment } from "./type";
@@ -20,12 +20,15 @@ import CommentEditor from "./CommentEditor";
 import { categoryTranslate } from "./../../assets/categoryTranslate";
 import { useMutation, useQuery } from "@apollo/client";
 import { getCommentsByProductID } from "../../graphql/schema/comment.graphql";
+import { getRelatedProducts } from "../../graphql/schema/product.graphql";
 import Loader from "./Loader";
 import { Helmet } from "react-helmet";
 import { useAuthContext } from "../../modules/context/AuthContext";
 import { AddProductToCart } from "../../graphql/mutations/product.graphql";
 import JWTManager from "../../modules/utils/jwt";
 import { getProductBooked } from "../../graphql/schema/user.graphql";
+import { RelatedProduct } from "./../../modules/Detail/Data";
+import ProductCategorySection2 from "./ProductCategorySection2";
 interface ProductDetailProps {
   product: productDetail;
 }
@@ -46,8 +49,19 @@ const ProdcutDetail = ({ product }: ProductDetailProps) => {
     }
   }, [isAuthenticated]);
   const [productQuantity, setProductQuantity] = useState(1);
-  const { loading, error, data } = useQuery(getCommentsByProductID(product._id));
-const slug= useParams().productName ?? "";
+
+  const relatedProductsQuery = useQuery(
+    getRelatedProducts(
+      product._id,
+      product.categories[product.categories.length - 1]
+    )
+  );
+
+  const { loading, error, data } = useQuery(
+    getCommentsByProductID(product._id)
+  );
+
+  const slug = useParams().productName ?? "";
   const rating =
     Math.round(
       (product.comments.reduce(
@@ -286,7 +300,7 @@ const slug= useParams().productName ?? "";
                 >
                   Thêm Vào Giỏ Hàng
                 </Button>
-                <Button type="link" disabled={product.stock === 0}  size="large">
+                <Button type="link" disabled={product.stock === 0} size="large">
                   Mua Ngay
                 </Button>
               </Form.Item>
@@ -336,17 +350,28 @@ const slug= useParams().productName ?? "";
                   "Có lỗi xảy ra"
                 ) : (
                   <div className="comment-list">
-                    {data.getCommentsByProductID.map(
-                      (comment: comment) => (
-                        <Comment key={comment._id} comment={comment} />
-                      )
-                    )}
+                    {data.getCommentsByProductID.map((comment: comment) => (
+                      <Comment key={comment._id} comment={comment} />
+                    ))}
                   </div>
                 )}
               </div>
             </Tabs.TabPane>
           </Tabs>
         </div>
+      </div>
+      <div className="related-product-container" style={{margin:"2rem 0"}}>
+        {relatedProductsQuery.loading ? (
+          <Loader />
+        ) : relatedProductsQuery.error ? (
+          "Có lỗi xảy ra"
+        ) : (
+          <ProductCategorySection2
+            sectionName="Các sản phẩm liên quan"
+            productList={relatedProductsQuery.data.getRelatedProducts}
+            productsPerPage = {4}
+          />
+        )}
       </div>
     </>
   );
