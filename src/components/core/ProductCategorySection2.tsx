@@ -7,11 +7,12 @@ import { Row, Col, Pagination,Button } from "antd";
 interface Props {
   productList: product[];
   sectionName: string;
+  productsPerPage?: number
 }
 
-const ProductCategorySection2 = ({ productList, sectionName }: Props) => {
+const ProductCategorySection2 = ({ productList, sectionName,productsPerPage }: Props) => {
   const [page, setPage] = useState<number>(0);
-  const [productPerPage, setProductPerPage] = useState<number>(8);
+  const [productPerPage, setProductPerPage] = useState<number>(productsPerPage??8);
   function handlPageChange(page: number, pageSize: number) {
     setPage(page - 1);
   }

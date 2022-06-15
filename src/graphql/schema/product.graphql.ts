@@ -35,7 +35,6 @@ export const getAllProduct = gql`
       stock
       salePrice
       description
-      rating
       variant {
         size
         color
@@ -51,6 +50,32 @@ export const getAllProduct = gql`
     }
   }
 `;
+
+export const getRelatedProducts = (_id: string, category: string) => gql`
+  query {
+    getRelatedProducts (_id:"${_id}" , categories:"${category}") {
+      _id
+        name
+        price
+        stock
+        salePrice
+        description
+        variant {
+          size
+          color
+        }
+        images {
+          url
+          title
+        }
+        categories
+        comments{
+          rating
+        }
+    }
+  }
+
+`
 
 export const getAllProductBySearch = (value: string) => gql`
   query {
