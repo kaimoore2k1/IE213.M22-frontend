@@ -34,7 +34,7 @@ const JWTManager = () => {
     //Lấy token từ phía client
   const getRefreshToken = async () => {
     try {
-      const response = await fetch("http://localhost:4000/refresh_token", {
+      const response = await fetch("http://localhost:8000/refresh_token", {
         credentials: "include",
       });
       /* const response = await fetch("https://senshopdottech.herokuapp.com/refresh_token", {

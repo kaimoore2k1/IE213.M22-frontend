@@ -23,12 +23,12 @@ function Login() {
       if (loading) return <p>loading....</p>;
       if (error) return <p>error</p>;
       const handleFinish = async (values: any) => {
-
         const response = await login({
           variables : {username: values.username, password: values.password}
         })
         
         if (response.data?.login.success) {
+          console.log("true")
           JWTManager.setToken(response.data.login.accessToken as string)
           setIsAuthenticated(true)
           navigate('..')
