@@ -1,46 +1,16 @@
-# Getting Started with Create React App
+Backend: `https://github.com/kaimoore2k1/IE213.M22-backend `
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+use `npm start` to run
 
-## Available Scripts
+#Senshop preview
+##Landing page
 
-In the project directory, you can run:
+![alt text](https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/Senshop_screenshot%2Fscreencapture-localhost-3000-2023-02-12-16_07_38.jpg?alt=media&token=435f7776-dec4-4010-8809-13ffb65a4e52)
 
-### `npm start`
+##Product page
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![alt text](https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/Senshop_screenshot%2Fscreencapture-localhost-3000-thu-cung-2023-02-12-16_11_30.jpg?alt=media&token=712f59b0-340a-40ff-b339-b5faab16da64)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+##Dashboard 
+![alt text](https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/Senshop_screenshot%2Fscreencapture-localhost-3000-dashboard-2023-02-12-16_20_20.jpg?alt=media&token=9864493f-67cb-4c98-8bf0-beabd817a581)
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
